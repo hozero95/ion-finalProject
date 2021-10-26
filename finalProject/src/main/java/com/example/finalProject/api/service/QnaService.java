@@ -1,0 +1,22 @@
+package com.example.finalProject.api.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.finalProject.api.domain.QnaVO;
+import com.example.finalProject.api.repository.QnaRepository;
+
+@Service
+public class QnaService {
+	@Autowired
+	private QnaRepository qnaRepository;
+
+	public List<QnaVO> findAll() {
+		List<QnaVO> qna = new ArrayList<>();
+		qnaRepository.findAll().forEach(e -> qna.add(e));
+		return qna;
+	}
+}
