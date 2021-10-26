@@ -44,4 +44,6 @@ public class ProductListController {
 		List<ProductVO> product = productService.findByCategoryCode(CategoryCode, "higherprice");
 		return new ResponseEntity<List<ProductVO>>(product, HttpStatus.OK);
 	}
+	
+	// git test
 }
