@@ -19,4 +19,17 @@ public class CategoryService {
 		categoryRepository.findAll().forEach(e -> category.add(e));
 		return category;
 	}
+
+	public List<CategoryVO> showNav() {
+		List<CategoryVO> category = new ArrayList<>();
+		categoryRepository.findByCategoryUsedIsNullOrCategoryUsed(0L).forEach(e -> category.add(e));
+		return category;
+	}
+
+	public List<CategoryVO> bestshowNav() {
+		List<CategoryVO> category = new ArrayList<>();
+		categoryRepository.findByCategoryRefIsNullAndCategoryUsedIsNullOrCategoryUsed(0L).forEach(e -> category.add(e));
+		return category;
+	}
+
 }

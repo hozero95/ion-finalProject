@@ -19,4 +19,10 @@ public class ReplyService {
 		replyRepository.findAll().forEach(e -> reply.add(e));
 		return reply;
 	}
+
+	public List<ReplyVO> showDetailReply(Long replyUnum) {
+		List<ReplyVO> reply = new ArrayList<>();
+		replyRepository.findByReplyUnum(replyUnum).forEach(e -> reply.add(e));
+		return reply;
+	}
 }

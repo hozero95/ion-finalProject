@@ -19,4 +19,5 @@ public class QnaService {
 		qnaRepository.findAll().forEach(e -> qna.add(e));
 		return qna;
 	}
+
 }

@@ -13,7 +13,7 @@ import com.example.finalProject.api.repository.PaymentRepository;
 public class PaymentService {
 	@Autowired
 	private PaymentRepository paymentRepository;
-	
+
 	public List<PaymentVO> findAll() {
 		List<PaymentVO> payment = new ArrayList<>();
 		paymentRepository.findAll().forEach(e -> payment.add(e));
