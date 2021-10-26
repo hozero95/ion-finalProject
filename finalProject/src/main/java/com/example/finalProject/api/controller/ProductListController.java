@@ -21,27 +21,27 @@ public class ProductListController {
 	private ProductService productService;
 
 	@GetMapping(value = "/show/product/new", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<ProductVO>> showProductNew(@RequestParam String CategoryCode) {
-		List<ProductVO> product = productService.findByCategoryCode(CategoryCode, "new");
+	public ResponseEntity<List<ProductVO>> showProductNew(@RequestParam String categoryCode) {
+		List<ProductVO> product = productService.findByCategoryCode(categoryCode, "new");
 		return new ResponseEntity<List<ProductVO>>(product, HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/show/product/lowerprice", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<ProductVO>> showProductLowerprice(@RequestParam String CategoryCode) {
-		List<ProductVO> product = productService.findByCategoryCode(CategoryCode, "lowerprice");
+	public ResponseEntity<List<ProductVO>> showProductLowerprice(@RequestParam String categoryCode) {
+		List<ProductVO> product = productService.findByCategoryCode(categoryCode, "lowerprice");
 		return new ResponseEntity<List<ProductVO>>(product, HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/show/product/higherprice", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<ProductVO>> showProductHigherprice(@RequestParam String CategoryCode) {
-		List<ProductVO> product = productService.findByCategoryCode(CategoryCode, "higherprice");
+	public ResponseEntity<List<ProductVO>> showProductHigherprice(@RequestParam String categoryCode) {
+		List<ProductVO> product = productService.findByCategoryCode(categoryCode, "higherprice");
 		return new ResponseEntity<List<ProductVO>>(product, HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/show/product/manyreply", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<ProductVO>> showProductManyreply(@RequestParam String CategoryCode) {
+	public ResponseEntity<List<ProductVO>> showProductManyreply(@RequestParam String categoryCode) {
 		String query = "";
-		List<ProductVO> product = productService.findByCategoryCode(CategoryCode, "higherprice");
+		List<ProductVO> product = productService.findByCategoryCode(categoryCode, "higherprice");
 		return new ResponseEntity<List<ProductVO>>(product, HttpStatus.OK);
 	}
 	
