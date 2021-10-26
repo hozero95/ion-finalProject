@@ -8,32 +8,20 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.finalProject.api.domain.CategoryVO;
-import com.example.finalProject.api.domain.ProductVO;
 import com.example.finalProject.api.service.CategoryService;
-import com.example.finalProject.api.service.ProductService;
 
-@RequestMapping("/api/main")
+@RequestMapping("/api/best")
 @RestController
-public class MainController {
-	@Autowired
-	private ProductService productService;
+public class BestController {
 	@Autowired
 	private CategoryService categoryService;
 
-	@GetMapping(value = "/show/product", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<ProductVO>> showProduct(@RequestParam String productName) {
-		List<ProductVO> product = productService.findByProductNameContaining(productName);
-		return new ResponseEntity<List<ProductVO>>(product, HttpStatus.OK);
-	}
-
 	@GetMapping(value = "/show/nav", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<CategoryVO>> showNav() {
-		List<CategoryVO> category = categoryService.showNav();
+	public ResponseEntity<List<CategoryVO>> bestShowNav() {
+		List<CategoryVO> category = categoryService.bestshowNav();
 		return new ResponseEntity<List<CategoryVO>>(category, HttpStatus.OK);
 	}
-
 }

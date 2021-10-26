@@ -41,4 +41,17 @@ public class ProductService {
 		productRepository.findByCategoryCode(categoryCode, sort).forEach(e -> product.add(e));
 		return product;
 	}
+
+	public List<ProductVO> seasonShowProduct(Long productSeason) {
+		List<ProductVO> product = new ArrayList<>();
+		Sort sort = Sort.by("productRegdate").descending().and(Sort.by("productName"));
+		productRepository.findByProductSeason(productSeason, sort).forEach(e -> product.add(e));
+		return product;
+	}
+
+	public List<ProductVO> detailShowProduct(Long productUnum) {
+		List<ProductVO> product = new ArrayList<>();
+		productRepository.findByProductUnum(productUnum).forEach(e -> product.add(e));
+		return product;
+	}
 }

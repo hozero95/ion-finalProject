@@ -37,13 +37,13 @@ public class ProductListController {
 		List<ProductVO> product = productService.findByCategoryCode(categoryCode, "higherprice");
 		return new ResponseEntity<List<ProductVO>>(product, HttpStatus.OK);
 	}
-	
+
 	@GetMapping(value = "/show/product/manyreply", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<ProductVO>> showProductManyreply(@RequestParam String categoryCode) {
 		String query = "";
 		List<ProductVO> product = productService.findByCategoryCode(categoryCode, "higherprice");
 		return new ResponseEntity<List<ProductVO>>(product, HttpStatus.OK);
 	}
-	
+
 	// git test2
 }

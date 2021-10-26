@@ -11,29 +11,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.finalProject.api.domain.CategoryVO;
+import com.example.finalProject.api.domain.EventVO;
 import com.example.finalProject.api.domain.ProductVO;
-import com.example.finalProject.api.service.CategoryService;
+import com.example.finalProject.api.service.EventService;
 import com.example.finalProject.api.service.ProductService;
 
-@RequestMapping("/api/main")
+@RequestMapping("/api/season")
 @RestController
-public class MainController {
+public class SeasonController {
 	@Autowired
 	private ProductService productService;
 	@Autowired
-	private CategoryService categoryService;
+	private EventService eventService;
 
 	@GetMapping(value = "/show/product", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<ProductVO>> showProduct(@RequestParam String productName) {
-		List<ProductVO> product = productService.findByProductNameContaining(productName);
+	public ResponseEntity<List<ProductVO>> seasonShowProduct(@RequestParam Long productSeason) {
+		List<ProductVO> product = productService.seasonShowProduct(productSeason);
 		return new ResponseEntity<List<ProductVO>>(product, HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/show/nav", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<CategoryVO>> showNav() {
-		List<CategoryVO> category = categoryService.showNav();
-		return new ResponseEntity<List<CategoryVO>>(category, HttpStatus.OK);
+	@GetMapping(value = "/show/eventimage", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<EventVO>> seasonShowEventImage(@RequestParam Long eventUnum) {
+		List<EventVO> event = eventService.seasonShowEventImage(eventUnum);
+		return new ResponseEntity<List<EventVO>>(event, HttpStatus.OK);
 	}
-
 }
