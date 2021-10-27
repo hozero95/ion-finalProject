@@ -26,4 +26,8 @@ public class OrdersService {
 	public Long replaceOrder(Long orderUnum) {
 		return ordersMapper.replaceOrder(orderUnum);
 	}
+
+	public Long registOrder(OrdersVO ordersVO) {
+		return ordersMapper.registOrder(ordersVO);
+	}
 }
