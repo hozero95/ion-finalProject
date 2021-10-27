@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.finalProject.api.domain.CartVO;
@@ -16,6 +17,7 @@ import com.example.finalProject.api.domain.DeliveryVO;
 import com.example.finalProject.api.domain.EventVO;
 import com.example.finalProject.api.domain.OrdersVO;
 import com.example.finalProject.api.domain.PaymentVO;
+import com.example.finalProject.api.domain.TestDTO;
 import com.example.finalProject.api.domain.ProductVO;
 import com.example.finalProject.api.domain.QnaVO;
 import com.example.finalProject.api.domain.ReplyVO;
@@ -29,6 +31,7 @@ import com.example.finalProject.api.service.PaymentService;
 import com.example.finalProject.api.service.ProductService;
 import com.example.finalProject.api.service.QnaService;
 import com.example.finalProject.api.service.ReplyService;
+import com.example.finalProject.api.service.TestService;
 import com.example.finalProject.api.service.UsersService;
 
 @RestController
@@ -54,6 +57,8 @@ public class TestController {
 	private EventService eventService;
 	@Autowired
 	private CartService cartService;
+	@Autowired
+	private TestService testService;
 
 	@GetMapping(value = "/usersAll", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<UsersVO>> getUsersAll() {
@@ -63,7 +68,8 @@ public class TestController {
 
 	@GetMapping(value = "/productAll", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<ProductVO>> getProductAll() {
-		List<ProductVO> product = productService.findAll();
+//		List<ProductVO> product = productService.findAll();
+		List<ProductVO> product = testService.getAllProducts(); // MyBatis 사용
 		return new ResponseEntity<List<ProductVO>>(product, HttpStatus.OK);
 	}
 
@@ -113,5 +119,11 @@ public class TestController {
 	public ResponseEntity<List<CartVO>> getCartAll() {
 		List<CartVO> cart = cartService.findAll();
 		return new ResponseEntity<List<CartVO>>(cart, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/productCountList", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<TestDTO>> showCountList(@RequestParam String categoryCode) {
+		List<TestDTO> product = testService.showCountList(categoryCode);
+		return new ResponseEntity<List<TestDTO>>(product, HttpStatus.OK);
 	}
 }
