@@ -2,8 +2,6 @@ package com.example.finalProject.api.domain;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class TestDTO {
+public class ProductCountDTO {
 	private Long count;
 	private Long productUnum;
 	private String categoryCode;

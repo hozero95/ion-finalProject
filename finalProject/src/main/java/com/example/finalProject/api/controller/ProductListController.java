@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.finalProject.api.domain.ProductCountDTO;
 import com.example.finalProject.api.domain.ProductVO;
+import com.example.finalProject.api.service.ProductCountService;
 import com.example.finalProject.api.service.ProductService;
 
 @RequestMapping("/api/productlist")
@@ -19,6 +21,8 @@ import com.example.finalProject.api.service.ProductService;
 public class ProductListController {
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private ProductCountService productCountService;
 
 	@GetMapping(value = "/show/product/new", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<ProductVO>> showProductNew(@RequestParam String categoryCode) {
@@ -39,11 +43,8 @@ public class ProductListController {
 	}
 
 	@GetMapping(value = "/show/product/manyreply", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<ProductVO>> showProductManyreply(@RequestParam String categoryCode) {
-		String query = "";
-		List<ProductVO> product = productService.findByCategoryCode(categoryCode, "higherprice");
-		return new ResponseEntity<List<ProductVO>>(product, HttpStatus.OK);
+	public ResponseEntity<List<ProductCountDTO>> showManyReplyProduct(@RequestParam String categoryCode) {
+		List<ProductCountDTO> productCountDTOs = productCountService.showManyReplyProduct(categoryCode);
+		return new ResponseEntity<List<ProductCountDTO>>(productCountDTOs, HttpStatus.OK);
 	}
-
-	// git test2
 }

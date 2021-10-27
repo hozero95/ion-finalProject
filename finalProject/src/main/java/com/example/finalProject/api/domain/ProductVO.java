@@ -18,13 +18,13 @@ import lombok.NoArgsConstructor;
 public class ProductVO {
 	@Id
 	@Column(name = "product_unum")
-	private long productUnum;
+	private Long productUnum;
 	@Column(name = "category_code")
 	private String categoryCode;
 	@Column(name = "product_name")
 	private String productName;
 	@Column(name = "product_price")
-	private long productPrice;
+	private Long productPrice;
 	@Column(name = "product_regdate")
 	private Date productRegdate;
 	@Column(name = "product_season")

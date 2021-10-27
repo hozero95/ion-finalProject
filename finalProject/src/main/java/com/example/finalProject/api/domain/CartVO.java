@@ -21,13 +21,13 @@ import lombok.NoArgsConstructor;
 @IdClass(CartVO.CartPK.class)
 public class CartVO {
 	@Id
-	private long userUnum;
+	private Long userUnum;
 	@Id
-	private long productUnum;
+	private Long productUnum;
 	@Column(name = "cart_count")
-	private long cartCount;
+	private Long cartCount;
 	@Column(name = "cart_price")
-	private long cartPrice;
+	private Long cartPrice;
 	@Column(name = "cart_address")
 	private String cartAddress;
 
