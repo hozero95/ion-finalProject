@@ -8,4 +8,22 @@
 		   SET orders_status = 1
 		 WHERE order_unum = #{orderUnum}
 	</update>
+	
+	<insert id="registOrder">
+		INSERT INTO orders(
+			  order_status
+		    , order_address
+	 	    <if test="orderMessage != null">
+			, order_message
+		    </if>
+			, user_unum
+		) VALUES(
+			  #{orderStatus}
+			, #{orderAddress}
+    		<if test="orderMessage != null">
+     		, #{orderMessage}
+     		</if>
+    		, #{userUnum}
+		)
+	</insert>
 </mapper>
