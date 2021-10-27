@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.finalProject.api.mapper.ReplyMapper">
+	<insert id="registReply">
+		INSERT INTO reply(
+			  payment_unum
+			, reply_content
+			<if test="replyImage01Path != null">
+			, reply_image01_path
+			</if>
+		) VALUES(
+			  #{paymentUnum}
+			, #{replyContent}
+			<if test="replyImage01Path != null">
+			, #{replyImage01Path}
+			</if>
+		)
+	</insert>
+	
+	<update id="replaceReply">
+		UPDATE   reply
+		   SET   reply_content = #{replyContent}
+		   	   <if test="replyImage01Path != null">
+		   	   , reply_image01_path = #{replyImage01Path}
+		   	   </if>
+			   , reply_regdate = SYSDATE
+		 WHERE   reply_unum = #{replyUnum}
+	</update>
+</mapper>

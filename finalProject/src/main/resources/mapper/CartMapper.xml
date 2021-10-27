@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.finalProject.api.mapper.CartMapper">
+	<insert id="registCart">
+		<![CDATA[
+		INSERT INTO cart VALUES(
+			#{userUnum},
+			#{productUnum},
+			#{cartCount},
+			#{cartPrice},
+			#{cartAddress}
+		)
+		]]>
+	</insert>
+	
+	<update id="replaceCount">
+		UPDATE cart
+		   SET cart_count = #{cartCount},
+		       cart_price = #{cartPrice}
+		 WHERE user_unum = #{userUnum}
+		   AND product_unum = {product_unum}
+	</update>
+	
+	<update id="replaceAddress">
+		UPDATE cart
+		   SET cart_address = #{cartAddress}
+		 WHERE user_unum = #{userUnum}
+	</update>
+</mapper>

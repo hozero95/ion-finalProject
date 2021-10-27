@@ -7,12 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.finalProject.api.domain.DeliveryVO;
+import com.example.finalProject.api.mapper.DeliveryMapper;
 import com.example.finalProject.api.repository.DeliveryRepository;
 
 @Service
 public class DeliveryService {
 	@Autowired
 	private DeliveryRepository deliveryRepository;
+	@Autowired
+	private DeliveryMapper deliveryMapper;
 
 	public List<DeliveryVO> findAll() {
 		List<DeliveryVO> delivery = new ArrayList<>();
@@ -22,5 +25,9 @@ public class DeliveryService {
 
 	public Long deleteByOrderUnum(Long orderUnum) {
 		return deliveryRepository.deleteByOrderUnum(orderUnum);
+	}
+
+	public Long replaceDeliveryStatus(DeliveryVO deliveryVO) {
+		return deliveryMapper.replaceDeliveryStatus(deliveryVO);
 	}
 }

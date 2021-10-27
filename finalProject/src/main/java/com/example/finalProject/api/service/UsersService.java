@@ -7,12 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.finalProject.api.domain.UsersVO;
+import com.example.finalProject.api.mapper.UsersMapper;
 import com.example.finalProject.api.repository.UsersRepository;
 
 @Service
 public class UsersService {
 	@Autowired
 	private UsersRepository usersRepository;
+	@Autowired
+	private UsersMapper usersMapper;
 
 	public List<UsersVO> findAll() {
 		List<UsersVO> users = new ArrayList<>();
@@ -22,5 +25,13 @@ public class UsersService {
 
 	public Long deleteByUserUnum(Long userUnum) {
 		return usersRepository.deleteByUserUnum(userUnum);
+	}
+
+	public Long replacePassword(UsersVO usersVO) {
+		return usersMapper.replacePassword(usersVO);
+	}
+
+	public Long replaceUserInfo(UsersVO usersVO) {
+		return usersMapper.replaceUserInfo(usersVO);
 	}
 }

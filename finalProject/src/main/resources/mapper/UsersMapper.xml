@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.finalProject.api.mapper.UsersMapper">
+	<update id="replacePassword">
+		UPDATE users
+		   SET user_password = #{userPassword}
+		 WHERE user_unum = #{userUnum}
+	</update>
+
+	<update id="replaceUserInfo">
+		UPDATE users
+		   SET user_email = #{userEmail},
+		       user_address = #{userAddress},
+		       user_tel = #{userTel}
+		 WHERE user_unum = #{userUnum}
+	</update>
+</mapper>

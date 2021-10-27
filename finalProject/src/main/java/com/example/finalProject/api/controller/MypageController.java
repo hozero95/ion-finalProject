@@ -8,18 +8,24 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.finalProject.api.domain.DeliveryVO;
 import com.example.finalProject.api.domain.OrdDelDTO;
 import com.example.finalProject.api.domain.OrdPayDelProDTO;
 import com.example.finalProject.api.domain.PayOrdRepProDTO;
 import com.example.finalProject.api.domain.QnaVO;
 import com.example.finalProject.api.domain.ReplyVO;
+import com.example.finalProject.api.domain.UsersVO;
 import com.example.finalProject.api.service.DeliveryService;
 import com.example.finalProject.api.service.OrdDelService;
 import com.example.finalProject.api.service.OrdPayDelProService;
+import com.example.finalProject.api.service.OrdersService;
 import com.example.finalProject.api.service.PayOrdRepProService;
 import com.example.finalProject.api.service.QnaService;
 import com.example.finalProject.api.service.ReplyService;
@@ -42,6 +48,8 @@ public class MypageController {
 	private UsersService usersService;
 	@Autowired
 	private DeliveryService deliveryService;
+	@Autowired
+	private OrdersService ordersService;
 
 	@GetMapping(value = "/show/detail/reply", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<ReplyVO>> showDetailReply(@RequestParam Long replyUnum) {
@@ -118,6 +126,36 @@ public class MypageController {
 	
 	@DeleteMapping(value = "/remove/order", produces = MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<String> removeOrder(@RequestParam Long orderUnum) {
-		return deliveryService.deleteByOrderUnum(orderUnum) > 0 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>("fail", HttpStatus.OK);
+		return deliveryService.deleteByOrderUnum(orderUnum) > 0 && ordersService.replaceOrder(orderUnum) > 0 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>("fail", HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "/regist/reply", produces = MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<String> registReply(@RequestBody ReplyVO replyVO) {
+		return replyService.registReply(replyVO) > 0 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>("fail", HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "/regist/qna", produces = MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<String> registReply(@RequestBody QnaVO qnaVO) {
+		return qnaService.registQna(qnaVO) > 0 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>("fail", HttpStatus.OK);
+	}
+	
+	@PatchMapping(value = "/replace/deliverystatus", produces = MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<String> replaceDeliveryStatus(@RequestBody DeliveryVO deliveryVO) {
+		return deliveryService.replaceDeliveryStatus(deliveryVO) > 0 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>("fail", HttpStatus.OK);
+	}
+	
+	@PatchMapping(value = "/replace/reply", produces = MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<String> replaceReply(@RequestBody ReplyVO replyVO) {
+		return replyService.replaceReply(replyVO) > 0 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>("fail", HttpStatus.OK);
+	}
+	
+	@PatchMapping(value = "/replace/password", produces = MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<String> replacePassword(@RequestBody UsersVO usersVO) {
+		return usersService.replacePassword(usersVO) > 0 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>("fail", HttpStatus.OK);
+	}
+	
+	@PatchMapping(value = "/replace/userinfo", produces = MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<String> replaceUserInfo(@RequestBody UsersVO usersVO) {
+		return usersService.replaceUserInfo(usersVO) > 0 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>("fail", HttpStatus.OK);
 	}
 }
