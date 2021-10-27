@@ -2,8 +2,6 @@ package com.example.finalProject.api.domain;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -19,4 +19,8 @@ public class UsersService {
 		usersRepository.findAll().forEach(e -> users.add(e));
 		return users;
 	}
+
+	public Long deleteByUserUnum(Long userUnum) {
+		return usersRepository.deleteByUserUnum(userUnum);
+	}
 }

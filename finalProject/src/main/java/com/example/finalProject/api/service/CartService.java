@@ -19,4 +19,8 @@ public class CartService {
 		cartRepository.findAll().forEach(e -> cart.add(e));
 		return cart;
 	}
+
+	public Long deleteByUserUnumAndProductUnum(Long userUnum, Long productUnum) {
+		return cartRepository.deleteByUserUnumAndProductUnum(userUnum, productUnum);
+	}
 }

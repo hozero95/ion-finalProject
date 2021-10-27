@@ -9,4 +9,6 @@ import com.example.finalProject.api.domain.CarUseProDTO;
 @Mapper
 public interface CarUseProMapper {
 	List<CarUseProDTO> showPayOrder(Long userUnum);
+
+	List<CarUseProDTO> showCart(Long userUnum);
 }
