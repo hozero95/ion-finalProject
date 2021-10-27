@@ -20,4 +20,16 @@ public class QnaService {
 		return qna;
 	}
 
+	public List<QnaVO> mypageShowQna(Long userUnum) {
+		List<QnaVO> qna = new ArrayList<>();
+		qnaRepository.findByUserUnumOrderByQnaRegdateDesc(userUnum).forEach(e -> qna.add(e));
+		return qna;
+	}
+
+	public List<QnaVO> showDetailQna(Long qnaUnum) {
+		List<QnaVO> qna = new ArrayList<>();
+		qnaRepository.findByQnaUnum(qnaUnum).forEach(e -> qna.add(e));
+		return qna;
+	}
+
 }
