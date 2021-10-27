@@ -13,7 +13,11 @@ import lombok.RequiredArgsConstructor;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/").permitAll() // 누구나 접근 허용
+		http
+			.csrf().disable()
+			.authorizeRequests()
+			.antMatchers("/")
+			.permitAll() // 누구나 접근 허용
 		;
 	}
 }

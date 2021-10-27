@@ -19,4 +19,8 @@ public class DeliveryService {
 		deliveryRepository.findAll().forEach(e -> delivery.add(e));
 		return delivery;
 	}
+
+	public Long deleteByOrderUnum(Long orderUnum) {
+		return deliveryRepository.deleteByOrderUnum(orderUnum);
+	}
 }

@@ -16,4 +16,8 @@ public class CarUseProService {
 	public List<CarUseProDTO> showPayOrder(Long userUnum) {
 		return carUseProMapper.showPayOrder(userUnum);
 	}
+
+	public List<CarUseProDTO> showCart(Long userUnum) {
+		return carUseProMapper.showCart(userUnum);
+	}
 }
