@@ -37,12 +37,12 @@ public interface ProductRepository extends JpaRepository<ProductVO, Long> {
 	public List<ProductVO> findByCategoryCode(String CategoryCode, Sort sort);
 	
 	/* 
-	 	* 메인화면 - 제철 상품 불러오기, 제철상품화면 - 제철 상품 불러오기
-		* select *
-		*	from product
-		*  where product_season = {{product_season}}
-		*  order by product_regdate desc, product_name;
-		*/
+	 * 메인화면 - 제철 상품 불러오기, 제철상품화면 - 제철 상품 불러오기
+	 * select *
+	 *	 from product
+	 *  where product_season = {{product_season}}
+	 *  order by product_regdate desc, product_name;
+	 */
 	public List<ProductVO> findByProductSeason(Long productSeason, Sort sort);
 	
 	/* 
