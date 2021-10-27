@@ -18,9 +18,9 @@ import lombok.NoArgsConstructor;
 public class OrdersVO {
 	@Id
 	@Column(name = "order_unum")
-	private long orderUnum;
+	private Long orderUnum;
 	@Column(name = "order_status")
-	private long orderStatus;
+	private Long orderStatus;
 	@Column(name = "order_address")
 	private String orderAddress;
 	@Column(name = "order_regdate")
@@ -28,5 +28,5 @@ public class OrdersVO {
 	@Column(name = "order_message")
 	private String orderMessage;
 	@Column(name = "user_unum")
-	private long userUnum;
+	private Long userUnum;
 }

@@ -18,9 +18,9 @@ import lombok.NoArgsConstructor;
 public class ReplyVO {
 	@Id
 	@Column(name = "reply_unum")
-	private long replyUnum;
+	private Long replyUnum;
 	@Column(name = "payment_unum")
-	private long paymentUnum;
+	private Long paymentUnum;
 	@Column(name = "reply_content")
 	private String replyContent;
 	@Column(name = "reply_regdate")

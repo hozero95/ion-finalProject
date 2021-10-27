@@ -18,15 +18,15 @@ import lombok.NoArgsConstructor;
 public class PaymentVO {
 	@Id
 	@Column(name = "payment_unum")
-	private long paymentUnum;
+	private Long paymentUnum;
 	@Column(name = "order_unum")
-	private long orderUnum;
+	private Long orderUnum;
 	@Column(name = "product_unum")
-	private long productUnum;
+	private Long productUnum;
 	@Column(name = "payment_count")
-	private long paymentCount;
+	private Long paymentCount;
 	@Column(name = "payment_price")
-	private long paymentPrice;
+	private Long paymentPrice;
 	@Column(name = "payment_regdate")
 	private Date paymentRegdate;
 }

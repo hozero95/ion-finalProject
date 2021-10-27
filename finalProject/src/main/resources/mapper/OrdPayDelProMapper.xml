@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.finalProject.api.mapper.OrdPayDelProMapper">
+	<select id="showOrderDeliveryThreeMonth" resultType="OrdPayDelProDTO">
+		<![CDATA[
+		SELECT *
+		  FROM orders o
+		  LEFT OUTER JOIN payment p
+		    ON o.order_unum = p.order_unum
+		  LEFT OUTER JOIN delivery d
+		    ON o.order_unum = d.order_unum
+		  LEFT OUTER JOIN product t
+		    ON p.product_unum = t.product_unum
+		 WHERE o.user_unum = #{userUnum}
+		   AND o.order_regdate BETWEEN TRUNC(ADD_MONTHS(SYSDATE, -3) + 1) and SYSDATE
+		 ORDER BY o.order_regdate DESC, o.order_unum, p.payment_unum
+		]]>
+	</select>
+	
+	<select id="showOrderDeliveryAll" resultType="OrdPayDelProDTO">
+		<![CDATA[
+		SELECT *
+		  FROM orders o
+	   	  LEFT OUTER JOIN payment p
+		    ON o.order_unum = p.order_unum
+		  LEFT OUTER JOIN delivery d
+		    ON o.order_unum = d.order_unum
+		  LEFT OUTER JOIN product t
+		    ON p.product_unum = t.product_unum
+		 WHERE o.user_unum = #{userUnum}
+		 ORDER BY o.order_regdate DESC, o.order_unum, p.payment_unum
+		]]>
+	</select>
+	
+	<select id="showDetailOrder" resultType="OrdPayDelProDTO">
+		<![CDATA[
+		SELECT *
+		  FROM orders o
+		  LEFT OUTER JOIN payment p
+		    ON o.order_unum = p.order_unum
+		  LEFT OUTER JOIN delivery d
+		    ON o.order_unum = d.order_unum
+		  LEFT OUTER JOIN product t
+		    ON p.product_unum = t.product_unum
+		 WHERE o.order_unum = #{order_unum}
+		 ORDER BY o.order_regdate DESC, o.order_unum, p.payment_unum
+		]]>
+	</select>
+</mapper>

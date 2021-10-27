@@ -18,11 +18,11 @@ import lombok.NoArgsConstructor;
 public class DeliveryVO {
 	@Id
 	@Column(name = "delivery_unum")
-	private long deliveryUnum;
+	private Long deliveryUnum;
 	@Column(name = "order_unum")
-	private long orderUnum;
+	private Long orderUnum;
 	@Column(name = "delivery_status")
-	private long deliveryStatus;
+	private Long deliveryStatus;
 	@Column(name = "delivery_address")
 	private String deliveryAddress;
 	@Column(name = "delivery_regdate")

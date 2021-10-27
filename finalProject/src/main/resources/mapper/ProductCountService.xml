@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.finalProject.api.mapper.ProductCountMapper">
+	<select id="showBestProduct" resultType="ProductCountDTO">
+		<![CDATA[
+		SELECT count, p.*
+		  FROM product p
+		  LEFT OUTER JOIN (SELECT product_unum, count(*) count
+		                     FROM payment
+		                    GROUP BY product_unum) v
+		    ON p.product_unum = v.product_unum
+		 WHERE p.category_code IN (SELECT c.category_code
+		                             FROM category c
+		                            WHERE category_ref = #{categoryCode})
+		 ORDER BY NVL(count, 0) DESC, p.product_regdate DESC, product_name
+		]]>
+	</select>
+	
+	<select id="showManyReplyProduct" resultType="ProductCountDTO">
+		<![CDATA[
+		SELECT count, d.*
+		  FROM (SELECT p.product_unum, count(*) count
+		          FROM reply r
+		          LEFT OUTER JOIN payment p
+		            ON r.payment_unum = p.payment_unum
+		         GROUP BY p.product_unum) v
+		  LEFT OUTER JOIN product d
+		    ON v.product_unum = d.product_unum
+		 WHERE category_code = #{categoryCode}
+		 ORDER BY count DESC, product_regdate
+		]]>
+	</select>
+</mapper>

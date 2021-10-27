@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class UsersVO {
 	@Id
 	@Column(name = "user_unum")
-	private long userUnum;
+	private Long userUnum;
 	@Column(name = "user_id")
 	private String userId;
 	@Column(name = "user_password")
@@ -32,5 +32,5 @@ public class UsersVO {
 	@Column(name = "user_regdate")
 	private Date userRegdate;
 	@Column(name = "user_role")
-	private long userRole;
+	private Long userRole;
 }

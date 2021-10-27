@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class EventVO {
 	@Id
 	@Column(name = "event_unum")
-	private long eventUnum;
+	private Long eventUnum;
 	@Column(name = "event_title")
 	private String eventTitle;
 	@Column(name = "event_content")

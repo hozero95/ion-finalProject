@@ -18,9 +18,9 @@ import lombok.NoArgsConstructor;
 public class QnaVO {
 	@Id
 	@Column(name = "qna_unum")
-	private long qnaUnum;
+	private Long qnaUnum;
 	@Column(name = "user_unum")
-	private long userUnum;
+	private Long userUnum;
 	@Column(name = "qna_title")
 	private String qnaTitle;
 	@Column(name = "qna_content")

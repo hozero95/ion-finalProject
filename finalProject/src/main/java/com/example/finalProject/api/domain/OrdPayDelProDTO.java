@@ -2,8 +2,6 @@ package com.example.finalProject.api.domain;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,9 +10,23 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class TestDTO {
-	private Long count;
+public class OrdPayDelProDTO {
+	private Long orderUnum;
+	private Long orderStatus;
+	private String orderAddress;
+	private Date orderRegdate;
+	private String orderMessage;
+	private Long userUnum;
+	private Long paymentUnum;
 	private Long productUnum;
+	private Long paymentCount;
+	private Long paymentPrice;
+	private Date paymentRegdate;
+	private Long deliveryUnum;
+	private Long deliveryStatus;
+	private String deliveryAddress;
+	private Date deliveryRegdate;
+	private Date deliveryEnddate;
 	private String categoryCode;
 	private String productName;
 	private Long productPrice;
