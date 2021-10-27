@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.finalProject.api.mapper.CarUseMapper">
+	<select id="showPayOrder" resultType="CarUseDTO">
+		<![CDATA[
+		SELECT *
+		  FROM cart c
+		  LEFT OUTER JOIN users u
+			ON c.user_unum = u.user_unum
+		  LEFT JOIN product p
+		    ON c.product_unum = p.product_unum
+		 WHERE c.user_unum = #{user_unum}
+		]]>
+	</select>
+</mapper>

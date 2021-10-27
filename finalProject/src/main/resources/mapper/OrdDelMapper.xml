@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.finalProject.api.mapper.OrdDelMapper">
+	<select id="showOrderCancel" resultType="OrdDelDTO">
+		<![CDATA[
+		SELECT *
+		  FROM orders o
+		  LEFT JOIN delivery d
+			ON o.order_unum = d.order_unum
+		 WHERE d.delivery_status < 2 <!-- 배송 시작 전일 때만 주문취소 가능 -->
+		   AND o.user_unum = #{userUnum}
+         ORDER BY o.order_regdate DESC, o.order_unum DESC
+		]]>
+	</select>
+
+	<select id="showOrderChange" resultType="OrdDelDTO">
+		<![CDATA[
+		SELECT *
+		  FROM orders o
+		  LEFT JOIN delivery d
+		    ON o.order_unum = d.order_unum
+		 WHERE d.delivery_status = 3  <!-- 배송 완료일 때만 주문취소 가능 -->
+		   AND (sysdate - d.delivery_enddate) <= 7
+		   AND o.user_unum = #{userUnum}
+		 ORDER BY o.order_regdate DESC, o.order_unum DESC
+		]]>
+	</select>
+	
+	<select id="showOrderReturn" resultType="OrdDelDTO">
+		<![CDATA[
+		SELECT *
+		  FROM orders o
+		  LEFT JOIN delivery d
+		  	ON o.order_unum = d.order_unum
+		 WHERE d.delivery_status = 3  <!-- 배송 완료일 때만 주문취소 가능 -->
+		   AND (sysdate - d.delivery_enddate) <= 7
+		   AND o.user_unum = #{userUnum}
+		 ORDER BY o.order_regdate DESC, o.order_unum DESC
+		]]>
+	</select>
+</mapper>
