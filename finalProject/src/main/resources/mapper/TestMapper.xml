@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.finalProject.api.mapper.TestMapper">
+	<select id="selectTest" resultType="ProductVO">
+		<![CDATA[
+		SELECT *
+		  FROM product
+		]]>
+	</select>
+	
+	<select id="showCountList" resultType="TestDTO">
+		<![CDATA[
+		SELECT count, d.*
+		  FROM (SELECT p.product_unum, count(*) count
+		          FROM reply r
+		          LEFT OUTER JOIN payment p
+		            ON r.payment_unum = p.payment_unum
+		         GROUP BY p.product_unum) v
+		  LEFT OUTER JOIN product d
+		    ON v.product_unum = d.product_unum
+		 WHERE category_code = #{categoryCode}
+		 ORDER BY count desc, product_regdate
+		]]>
+	</select>
+</mapper>
