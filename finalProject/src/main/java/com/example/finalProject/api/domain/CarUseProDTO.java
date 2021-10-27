@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class CarUseDTO {
+public class CarUseProDTO {
 	private Long userUnum;
 	private Long productUnum;
 	private Long cartCount;
@@ -29,4 +29,11 @@ public class CarUseDTO {
 	private String userTel;
 	private Date userRegdate;
 	private Long userRole;
+	private String categoryCode;
+	private String productName;
+	private Long productPrice;
+	private Date productRegdate;
+	private Long productSeason;
+	private String productImage01Path;
+	private String productImage02Path;
 }

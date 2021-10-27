@@ -9,7 +9,7 @@
 		  FROM orders o
 		  LEFT JOIN delivery d
 			ON o.order_unum = d.order_unum
-		 WHERE d.delivery_status < 2 <!-- 배송 시작 전일 때만 주문취소 가능 -->
+		 WHERE d.delivery_status < 2 
 		   AND o.user_unum = #{userUnum}
          ORDER BY o.order_regdate DESC, o.order_unum DESC
 		]]>
@@ -21,7 +21,7 @@
 		  FROM orders o
 		  LEFT JOIN delivery d
 		    ON o.order_unum = d.order_unum
-		 WHERE d.delivery_status = 3  <!-- 배송 완료일 때만 주문취소 가능 -->
+		 WHERE d.delivery_status = 3 
 		   AND (sysdate - d.delivery_enddate) <= 7
 		   AND o.user_unum = #{userUnum}
 		 ORDER BY o.order_regdate DESC, o.order_unum DESC
@@ -34,7 +34,7 @@
 		  FROM orders o
 		  LEFT JOIN delivery d
 		  	ON o.order_unum = d.order_unum
-		 WHERE d.delivery_status = 3  <!-- 배송 완료일 때만 주문취소 가능 -->
+		 WHERE d.delivery_status = 3  
 		   AND (sysdate - d.delivery_enddate) <= 7
 		   AND o.user_unum = #{userUnum}
 		 ORDER BY o.order_regdate DESC, o.order_unum DESC
