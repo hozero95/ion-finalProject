@@ -15,8 +15,8 @@ import lombok.NoArgsConstructor;
 @Entity(name = "category")
 public class CategoryVO {
 	@Id
-	@Column(name = "category_code")
-	private String categoryCode;
+	@Column(name = "category_unum")
+	private String categoryUnum;
 	@Column(name = "category_name")
 	private String categoryName;
 	@Column(name = "category_ref")

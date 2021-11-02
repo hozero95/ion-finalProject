@@ -11,9 +11,9 @@
 		                     FROM payment
 		                    GROUP BY product_unum) v
 		    ON p.product_unum = v.product_unum
-		 WHERE p.category_code IN (SELECT c.category_code
+		 WHERE p.category_unum IN (SELECT c.category_unum
 		                             FROM category c
-		                            WHERE category_ref = #{categoryCode})
+		                            WHERE category_ref = #{categoryUnum})
 		 ORDER BY NVL(count, 0) DESC, p.product_regdate DESC, product_name
 		]]>
 	</select>
@@ -28,7 +28,7 @@
 		         GROUP BY p.product_unum) v
 		  LEFT OUTER JOIN product d
 		    ON v.product_unum = d.product_unum
-		 WHERE category_code = #{categoryCode}
+		 WHERE category_unum = #{categoryUnum}
 		 ORDER BY count DESC, product_regdate
 		]]>
 	</select>

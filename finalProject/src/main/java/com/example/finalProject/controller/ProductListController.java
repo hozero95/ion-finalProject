@@ -25,26 +25,26 @@ public class ProductListController {
 	private ProductCountService productCountService;
 
 	@GetMapping(value = "/show/product/new", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<ProductVO>> showProductNew(@RequestParam String categoryCode) {
-		List<ProductVO> product = productService.findByCategoryCode(categoryCode, "new");
+	public ResponseEntity<List<ProductVO>> showProductNew(@RequestParam Long categoryUnum) {
+		List<ProductVO> product = productService.findByCategoryCode(categoryUnum, "new");
 		return new ResponseEntity<List<ProductVO>>(product, HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/show/product/lowerprice", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<ProductVO>> showProductLowerprice(@RequestParam String categoryCode) {
-		List<ProductVO> product = productService.findByCategoryCode(categoryCode, "lowerprice");
+	public ResponseEntity<List<ProductVO>> showProductLowerprice(@RequestParam Long categoryUnum) {
+		List<ProductVO> product = productService.findByCategoryCode(categoryUnum, "lowerprice");
 		return new ResponseEntity<List<ProductVO>>(product, HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/show/product/higherprice", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<ProductVO>> showProductHigherprice(@RequestParam String categoryCode) {
-		List<ProductVO> product = productService.findByCategoryCode(categoryCode, "higherprice");
+	public ResponseEntity<List<ProductVO>> showProductHigherprice(@RequestParam Long categoryUnum) {
+		List<ProductVO> product = productService.findByCategoryCode(categoryUnum, "higherprice");
 		return new ResponseEntity<List<ProductVO>>(product, HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/show/product/manyreply", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<ProductCountDTO>> showManyReplyProduct(@RequestParam String categoryCode) {
-		List<ProductCountDTO> productCountDTOs = productCountService.showManyReplyProduct(categoryCode);
+	public ResponseEntity<List<ProductCountDTO>> showManyReplyProduct(@RequestParam Long categoryUnum) {
+		List<ProductCountDTO> productCountDTOs = productCountService.showManyReplyProduct(categoryUnum);
 		return new ResponseEntity<List<ProductCountDTO>>(productCountDTOs, HttpStatus.OK);
 	}
 }

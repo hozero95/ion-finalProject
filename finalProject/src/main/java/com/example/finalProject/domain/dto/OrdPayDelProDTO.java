@@ -27,7 +27,7 @@ public class OrdPayDelProDTO {
 	private String deliveryAddress;
 	private Date deliveryRegdate;
 	private Date deliveryEnddate;
-	private String categoryCode;
+	private Long categoryUnum;
 	private String productName;
 	private Long productPrice;
 	private Date productRegdate;

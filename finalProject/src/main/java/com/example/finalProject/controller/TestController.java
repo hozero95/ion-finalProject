@@ -122,8 +122,8 @@ public class TestController {
 	}
 
 	@GetMapping(value = "/productCountList", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<TestDTO>> showCountList(@RequestParam String categoryCode) {
-		List<TestDTO> product = testService.showCountList(categoryCode);
+	public ResponseEntity<List<TestDTO>> showCountList(@RequestParam Long categoryUnum) {
+		List<TestDTO> product = testService.showCountList(categoryUnum);
 		return new ResponseEntity<List<TestDTO>>(product, HttpStatus.OK);
 	}
 	

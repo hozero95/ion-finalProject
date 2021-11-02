@@ -11,5 +11,5 @@ import com.example.finalProject.domain.entity.ProductVO;
 public interface TestMapper {
 	List<ProductVO> selectTest();
 	
-	List<TestDTO> showCountList(String categoryCode);
+	List<TestDTO> showCountList(Long categoryUnum);
 }
