@@ -13,11 +13,11 @@ public class ProductCountService {
 	@Autowired
 	ProductCountMapper productCountMapper;
 
-	public List<ProductCountDTO> showBestProduct(String categoryCode) {
-		return productCountMapper.showBestProduct(categoryCode);
+	public List<ProductCountDTO> showBestProduct(Long categoryUnum) {
+		return productCountMapper.showBestProduct(categoryUnum);
 	}
 
-	public List<ProductCountDTO> showManyReplyProduct(String categoryCode) {
-		return productCountMapper.showManyReplyProduct(categoryCode);
+	public List<ProductCountDTO> showManyReplyProduct(Long categoryUnum) {
+		return productCountMapper.showManyReplyProduct(categoryUnum);
 	}
 }

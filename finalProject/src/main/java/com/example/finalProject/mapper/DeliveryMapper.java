@@ -9,5 +9,5 @@ import com.example.finalProject.domain.entity.DeliveryVO;
 @Mapper
 public interface DeliveryMapper {
 	@Transactional
-	public Long replaceDeliveryStatus(DeliveryVO deliveryVO);
+	public Long replaceDeliveryChange(DeliveryVO deliveryVO);
 }

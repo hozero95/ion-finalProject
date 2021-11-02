@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.finalProject.mapper.DeliveryMapper">
-	<update id="replaceOrder">
+	<update id="replaceDeliveryChange">
 		UPDATE delivery
 		   SET delivery_status = #{deliveryStatus}
 		 WHERE order_unum = #{orderUnum}

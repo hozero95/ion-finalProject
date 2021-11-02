@@ -8,7 +8,7 @@ import com.example.finalProject.domain.dto.ProductCountDTO;
 
 @Mapper
 public interface ProductCountMapper {
-	List<ProductCountDTO> showBestProduct(String categoryCode);
+	List<ProductCountDTO> showBestProduct(Long categoryUnum);
 
-	List<ProductCountDTO> showManyReplyProduct(String categoryCode);
+	List<ProductCountDTO> showManyReplyProduct(Long categoryUnum);
 }

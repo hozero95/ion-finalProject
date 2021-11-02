@@ -26,7 +26,7 @@ public class PayOrdRepProDTO {
 	private String replyContent;
 	private Date replyRegdate;
 	private String replyImage01Path;
-	private String categoryCode;
+	private Long categoryUnum;
 	private String productName;
 	private Long productPrice;
 	private Date productRegdate;

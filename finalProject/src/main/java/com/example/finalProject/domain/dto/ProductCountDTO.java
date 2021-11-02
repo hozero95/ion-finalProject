@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class ProductCountDTO {
 	private Long count;
 	private Long productUnum;
-	private String categoryCode;
+	private Long categoryUnum;
 	private String productName;
 	private Long productPrice;
 	private Date productRegdate;

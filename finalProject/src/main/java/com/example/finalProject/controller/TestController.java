@@ -122,8 +122,13 @@ public class TestController {
 	}
 
 	@GetMapping(value = "/productCountList", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<TestDTO>> showCountList(@RequestParam String categoryCode) {
-		List<TestDTO> product = testService.showCountList(categoryCode);
+	public ResponseEntity<List<TestDTO>> showCountList(@RequestParam Long categoryUnum) {
+		List<TestDTO> product = testService.showCountList(categoryUnum);
 		return new ResponseEntity<List<TestDTO>>(product, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/testapi", produces = MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<String> testapi() {
+		return new ResponseEntity<String>("API TEST 중입니다.", HttpStatus.OK);
 	}
 }

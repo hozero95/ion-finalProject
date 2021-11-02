@@ -23,7 +23,7 @@ public class CarUseProDTO {
 	private String userTel;
 	private Date userRegdate;
 	private Long userRole;
-	private String categoryCode;
+	private Long categoryUnum;
 	private String productName;
 	private Long productPrice;
 	private Date productRegdate;
