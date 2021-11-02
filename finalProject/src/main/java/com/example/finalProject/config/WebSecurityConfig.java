@@ -60,9 +60,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			// API 요청에 대한 권한 설정
 			.and()
 			.authorizeRequests()
-			.antMatchers("/api/**").permitAll() // 전체 사용자 사용 가능
-			.antMatchers("/api/mypage/**").hasAnyRole("USER", "ADMIN") // USER, ADMIN 권한만 사용 가능
-			.anyRequest().authenticated()
+//			.antMatchers("/api/**").permitAll() // 전체 사용자 사용 가능
+			.antMatchers("/api/user").hasAnyRole("USER", "ADMIN") // 본인 정보 불러오기
+			.antMatchers("/api/mypage/**").hasAnyRole("USER", "ADMIN") // 마이페이지
+			.antMatchers("/api/admin/**").hasAnyRole("ADMIN") // 관리자페이지
+			.anyRequest().permitAll()
 			
 			// JwtFilter를 addFilterBefore로 등록한 JwtSecurityConfig 클래스 적용
 			.and()
