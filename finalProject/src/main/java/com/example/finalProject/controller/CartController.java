@@ -28,7 +28,7 @@ public class CartController {
 	private CartService cartService;
 
 	@GetMapping(value = "/show/cart", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<CarUseProDTO>> registReply(@RequestParam Long userUnum) {
+	public ResponseEntity<List<CarUseProDTO>> showCart(@RequestParam Long userUnum) {
 		List<CarUseProDTO> carUseProDTOs = cartUseProService.showCart(userUnum);
 		return new ResponseEntity<List<CarUseProDTO>>(carUseProDTOs, HttpStatus.OK);
 	}

@@ -5,25 +5,35 @@
 <mapper namespace="com.example.finalProject.mapper.OrdersMapper">
 	<update id="replaceOrder">
 		UPDATE orders
-		   SET orders_status = 1
+		   SET order_status = 1
 		 WHERE order_unum = #{orderUnum}
 	</update>
 	
 	<insert id="registOrder">
 		INSERT INTO orders(
-			  order_status
+			  order_unum 
+			, order_status
 		    , order_address
 	 	    <if test="orderMessage != null">
 			, order_message
 		    </if>
+		    , order_regdate
 			, user_unum
 		) VALUES(
-			  #{orderStatus}
+			  seq_order_unum.nextval
+			, 0
 			, #{orderAddress}
     		<if test="orderMessage != null">
      		, #{orderMessage}
      		</if>
+     		, #{orderRegdate}
     		, #{userUnum}
 		)
 	</insert>
+	
+	<update id="replaceOrderReturn">
+		UPDATE orders
+		SET order_status = 2
+		WHERE order_unum = #{orderUnum}
+	</update>
 </mapper>

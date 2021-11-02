@@ -11,7 +11,15 @@
 			ON c.user_unum = u.user_unum
 		  LEFT JOIN product p
 		    ON c.product_unum = p.product_unum
-		 WHERE c.user_unum = #{user_unum}
+		 WHERE c.user_unum = #{userUnum}
 		]]>
+	</select>
+	
+	<select id="showCart" resultType="CarUseProDTO">
+		SELECT *
+		FROM cart c
+		LEFT JOIN product p
+		ON c.product_unum = p.product_unum
+		WHERE user_unum = #{userUnum}
 	</select>
 </mapper>

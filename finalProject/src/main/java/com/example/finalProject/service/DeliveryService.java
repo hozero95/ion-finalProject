@@ -27,7 +27,7 @@ public class DeliveryService {
 		return deliveryRepository.deleteByOrderUnum(orderUnum);
 	}
 
-	public Long replaceDeliveryStatus(DeliveryVO deliveryVO) {
-		return deliveryMapper.replaceDeliveryStatus(deliveryVO);
+	public Long replaceDeliveryChange(DeliveryVO deliveryVO) {
+		return deliveryMapper.replaceDeliveryChange(deliveryVO);
 	}
 }
