@@ -36,4 +36,8 @@ public class ReplyService {
 	public Long replaceReply(ReplyVO replyVO) {
 		return replyMapper.replaceReply(replyVO);
 	}
+	
+	public List<ReplyVO> detailShowReply(Long productUnum) {
+		return replyMapper.detailShowReply(productUnum);
+	}
 }

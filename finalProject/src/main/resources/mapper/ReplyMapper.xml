@@ -28,4 +28,15 @@
 			   , reply_regdate = SYSDATE
 		 WHERE   reply_unum = #{replyUnum}
 	</update>
+	
+	<select id="detailShowReply" resultType="ReplyVO">
+		SELECT r.*
+		  FROM reply r
+		  LEFT OUTER JOIN (SELECT *
+		                     FROM payment) v
+		    ON r.payment_unum = v.payment_unum
+		 WHERE v.product_unum = #{productUnum}
+		 ORDER BY reply_regdate DESC
+	</select>
+	
 </mapper>
