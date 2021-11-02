@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -128,6 +129,7 @@ public class TestController {
 	}
 	
 	@GetMapping(value = "/testapi", produces = MediaType.TEXT_PLAIN_VALUE)
+	@CrossOrigin(origins = {"http://localhost:8000"})
 	public ResponseEntity<String> testapi() {
 		return new ResponseEntity<String>("API TEST 중입니다.", HttpStatus.OK);
 	}
