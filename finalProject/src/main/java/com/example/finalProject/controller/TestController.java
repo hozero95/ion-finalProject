@@ -126,4 +126,9 @@ public class TestController {
 		List<TestDTO> product = testService.showCountList(categoryCode);
 		return new ResponseEntity<List<TestDTO>>(product, HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/testapi", produces = MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<String> testapi() {
+		return new ResponseEntity<String>("API TEST 중입니다.", HttpStatus.OK);
+	}
 }
