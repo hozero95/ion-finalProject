@@ -19,8 +19,8 @@ public class ProductVO {
 	@Id
 	@Column(name = "product_unum")
 	private Long productUnum;
-	@Column(name = "category_code")
-	private String categoryCode;
+	@Column(name = "category_unum")
+	private Long categoryUnum;
 	@Column(name = "product_name")
 	private String productName;
 	@Column(name = "product_price")

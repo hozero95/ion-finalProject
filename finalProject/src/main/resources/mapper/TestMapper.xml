@@ -20,7 +20,7 @@
 		         GROUP BY p.product_unum) v
 		  LEFT OUTER JOIN product d
 		    ON v.product_unum = d.product_unum
-		 WHERE category_code = #{categoryCode}
+		 WHERE category_unum = #{categoryUnum}
 		 ORDER BY count desc, product_regdate
 		]]>
 	</select>

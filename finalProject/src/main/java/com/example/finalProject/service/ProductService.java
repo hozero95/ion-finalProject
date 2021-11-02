@@ -28,7 +28,7 @@ public class ProductService {
 		return product;
 	}
 
-	public List<ProductVO> findByCategoryCode(String categoryCode, String sortCase) {
+	public List<ProductVO> findByCategoryCode(Long categoryUnum, String sortCase) {
 		List<ProductVO> product = new ArrayList<>();
 		Sort sort = Sort.by("productName");
 		if (sortCase.equals("new")) {
@@ -38,7 +38,7 @@ public class ProductService {
 		} else if (sortCase.equals("higherprice")) {
 			sort = Sort.by("productPrice").descending().and(Sort.by("productName"));
 		}
-		productRepository.findByCategoryCode(categoryCode, sort).forEach(e -> product.add(e));
+		productRepository.findByCategoryUnum(categoryUnum, sort).forEach(e -> product.add(e));
 		return product;
 	}
 

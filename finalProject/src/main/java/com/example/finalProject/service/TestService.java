@@ -18,7 +18,7 @@ public class TestService {
 		return testMapper.selectTest();
 	}
 
-	public List<TestDTO> showCountList(String categoryCode) {
-		return testMapper.showCountList(categoryCode);
+	public List<TestDTO> showCountList(Long categoryUnum) {
+		return testMapper.showCountList(categoryUnum);
 	}
 }

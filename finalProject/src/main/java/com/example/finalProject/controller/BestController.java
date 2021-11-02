@@ -31,8 +31,8 @@ public class BestController {
 	}
 
 	@GetMapping(value = "/show/product", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<ProductCountDTO>> showBestProduct(@RequestParam String categoryCode) {
-		List<ProductCountDTO> productCountDTOs = productCountService.showBestProduct(categoryCode);
+	public ResponseEntity<List<ProductCountDTO>> showBestProduct(@RequestParam Long categoryUnum) {
+		List<ProductCountDTO> productCountDTOs = productCountService.showBestProduct(categoryUnum);
 		return new ResponseEntity<List<ProductCountDTO>>(productCountDTOs, HttpStatus.OK);
 	}
 }

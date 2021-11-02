@@ -31,10 +31,10 @@ public interface ProductRepository extends JpaRepository<ProductVO, Long> {
 	 * 
 	 * select *
 	 *   from product
-	 *  where category_code = {{category_code}}
+	 *  where category_unum = {{category_unum}}
 	 *  order by product_regdate desc, product_name;
 	 */
-	public List<ProductVO> findByCategoryCode(String CategoryCode, Sort sort);
+	public List<ProductVO> findByCategoryUnum(Long categoryUnum, Sort sort);
 	
 	/* 
 	 * 메인화면 - 제철 상품 불러오기, 제철상품화면 - 제철 상품 불러오기
