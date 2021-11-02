@@ -139,9 +139,14 @@ public class MypageController {
 		return qnaService.registQna(qnaVO) > 0 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>("fail", HttpStatus.OK);
 	}
 	
-	@PatchMapping(value = "/replace/deliverystatus", produces = MediaType.TEXT_PLAIN_VALUE)
-	public ResponseEntity<String> replaceDeliveryStatus(@RequestBody DeliveryVO deliveryVO) {
-		return deliveryService.replaceDeliveryStatus(deliveryVO) > 0 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>("fail", HttpStatus.OK);
+	@PatchMapping(value = "/replace/orderchange", produces = MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<String> replaceDeliveryChange(@RequestBody DeliveryVO deliveryVO) {
+		return deliveryService.replaceDeliveryChange(deliveryVO) > 0 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>("fail", HttpStatus.OK);
+	}
+	
+	@PatchMapping(value = "/replace/orderreturn", produces = MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<String> replaceOrderReturn(@RequestBody DeliveryVO deliveryVO) {
+		return deliveryService.replaceDeliveryChange(deliveryVO) > 0 && ordersService.replaceOrderReturn(deliveryVO) > 0 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>("fail", HttpStatus.OK);
 	}
 	
 	@PatchMapping(value = "/replace/reply", produces = MediaType.TEXT_PLAIN_VALUE)

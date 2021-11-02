@@ -20,7 +20,7 @@
 		   SET cart_count = #{cartCount},
 		       cart_price = #{cartPrice}
 		 WHERE user_unum = #{userUnum}
-		   AND product_unum = {product_unum}
+		   AND product_unum = #{productUnum}
 	</update>
 	
 	<update id="replaceAddress">

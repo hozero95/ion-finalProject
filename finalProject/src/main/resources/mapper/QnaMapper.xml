@@ -5,14 +5,16 @@
 <mapper namespace="com.example.finalProject.mapper.QnaMapper">
 	<insert id="registQna">
 		INSERT INTO qna(
-			  user_unum
+		       qna_unum
+			,  user_unum
 			, qna_title
 			, qna_content
 			<if test="qnaComment != null">
 			, qna_comment
 			</if>
 		) VALUES(
-			  #{userUnum}
+			  seq_qna_unum.nextval
+			, #{userUnum}
 			, #{qnaTitle}
 			, #{qnaContent}
 			<if test="qnaComment != null">
