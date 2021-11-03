@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    
+    <Header></Header>
     <router-view/>
-    <button v-on:click="fetchData">get data</button>
+    <Footer></Footer>
+    
     
   
 
@@ -11,24 +13,22 @@
 </template>
 
 <script>
-import axios from 'axios'
-
+import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
 export default {
   name: 'App',
-  
-  methods: {
-    fetchData: function() {
-      axios.get('http://localhost:8000/api/main/show/nav')
-        .then(function(response) {
-          console.log(response);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+  data() {
+    return {
+      
     }
+  },
+  components : {
+    Header, Footer
   }
-
+  
 }
+
+
 </script>
 
 <style>
