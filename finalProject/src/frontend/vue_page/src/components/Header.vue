@@ -4,14 +4,14 @@
     <header class="header">
 		<!-- header left -->
 		<div class="header__logo">
-			<img src="" alt="">
+			<img src="../images/fish-Icon.png" alt="">
 			<!-- <a href="#">TEAM 5징어 </a> -->
         </div>
 		<!-- 검색창 -->
 		<div class="header__search">
 			<div class="input__header__search__input">
-				<input type="text">
-				<button class="" type="button"><i class="fas fa-search"></i></button>
+				<input type="">
+				<button class="search-btn" type="button"><i class="fas fa-search"></i></button>
 			</div>
 		</div>
 		<!-- header right -->
