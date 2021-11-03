@@ -3,7 +3,7 @@
     <h1>{{msg}}</h1>
     <p>here is test page 입니다.</p>
     <p>here is test page 입니다.</p>
-    <p>아무거나 적어야지</p>
+    <p>아무거나 적어야지123</p>
     <button v-on:click="fetchData">get data</button>
   </div>
   
