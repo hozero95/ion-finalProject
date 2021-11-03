@@ -16,11 +16,11 @@ import lombok.NoArgsConstructor;
 public class CategoryVO {
 	@Id
 	@Column(name = "category_unum")
-	private String categoryUnum;
+	private Long categoryUnum;
 	@Column(name = "category_name")
 	private String categoryName;
 	@Column(name = "category_ref")
-	private String categoryRef;
+	private Long categoryRef;
 	@Column(name = "category_used")
 	private Long categoryUsed;
 }
