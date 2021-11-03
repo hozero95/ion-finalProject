@@ -1,5 +1,6 @@
 <template>
-  <body>
+  
+<body>
     <div class="container_my">
 
         <div class="header_my">
@@ -35,10 +36,11 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                             활동관리
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <li><a class="dropdown-item" href="#">리뷰관리</a></li>
+                        <ul class="dropdown-menu " aria-labelledby="btnGroupDrop1">
+                            <li><a class="dropdown-item " href="#">리뷰관리</a></li>
                             <li><a class="dropdown-item" href="#">Q&A관리</a></li>
                         </ul>
+
                     </div>
 
                     <div class="btn-group" role="group">
@@ -53,60 +55,44 @@
                         </ul>
                     </div>
 
-
                 </div>
-
-
             </div>
 
             <div class="content_body">
 
-                <h2 class="stit"><span>비밀번호 변경</span></h2>
+                <h2 class="body_header">회원정보 변경</h2>
+
+                <div class="section notice_txt">
+                    <p>
+                        고객님의 개인정보를 소중하게 보호하려고 노력하고 있으며,<br>
+                        회원님의 동의 없이는 입력하신 회원정보를 제공하지 않습니다.
+
+                    </p>
+                </div>
+                <div class="information">
+                    <p class="notifications">고객님의 개인정보 보호를 위해 비밀번호를 다시 한번 입력해 주시기 바랍니다.</p>
+                </div>
+
                 <form id="submitForm" method="post">
+
                     <div class="password_change">
                         <div class="wrap">
-                            <label for="pwd" class="label">이전 비밀번호 : </label>
-                            <input type="password" id="pwd" name="pwd" title="비밀번호" value="" class="input_text small"
-                                style="width: 270px" maxlength="20">
+                            <label for="password" class="label">비밀번호 : </label>
+                            <input type="password" id="password" name="password" title="비밀번호" value=""
+                                class="input_text small" style="width: 270px">
+                            <span class="error_txt small warning"></span>
                         </div>
-
-                        <div class="wrap">
-                            <label for="pwd" class="label">변경될 비밀번호 : </label>
-                            <input type="password" id="pwd" name="pwd" title="비밀번호" value="" class="input_text small"
-                                style="width: 270px" maxlength="20">
-                        </div>
-                        <div class="wrap">
-                            <label for="newPwd" class="label">비밀번호 확인 : </label>
-                            <input type="password" id="newPwd" name="newPwd" title="비밀번호" value=""
-                                class="input_text small" style="width: 270px" maxlength="20">
-                        </div>
-
                     </div>
-
                     <div class="btn_area">
                         <button type="submit" id="submitBtn" class="cs_btn">확인</button>
                     </div>
-
-
-
                 </form>
 
-                <div class="information">
-                    <h4>주의하세요</h4>
-                    <ul>
-                        <li>비밀번호는 <span style="color: red;">영문과 숫자를 조합하여 8~20자리로 입력</span>해 주세요.</li>
-                        <li>아이디와 같은 비밀번호나 주민등록번호, 생일, 학번, 전화번호 등 개인정보와 관련된 숫자, 연속된 숫자, 동일 반복된 숫자 등 <br>다른 사람이 쉽게 알아낼 수
-                            있는 비밀번호는 사용하지 않도록 주의하여 주시기 바랍니다.</li>
-                    </ul>
-                </div>
+
 
             </div>
-
         </div>
-
-
     </div>
-
 </body>
 </template>
 
@@ -120,14 +106,14 @@ export default {
 /* header setting */
 .container_my {
     /* background-color: aqua; */
-
+    
     margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
     border-right: 1px solid #d1dadd;
     border-left: 1px solid #d1dadd;
     width: 1020px;
-    height: 2000px;
+    height: 900px;
 }
 
 .header_my {
@@ -137,24 +123,21 @@ export default {
     height: 94px;
     margin: 20px 0px 20px 0px;
 }
-
-.header_tag {
-    background-color: aquamarine;
+.header_tag{
+    /* background-color: aquamarine; */
     height: 37px;
     width: 139px;
     float: left;
     margin: 8px 0px 8px 0px;
     padding: 32px 15px 9px 18px;
 }
-
-.user_name {
+.user_name{
     height: 17.5px;
     width: 53.5px;
     font-size: 12px;
 
 }
-
-.ssg_img {
+.ssg_img{
     height: 37px;
     width: 139px;
 }
@@ -163,57 +146,84 @@ export default {
 /* content area */
 /* content_side setting  + content_body setting*/
 
-.content_my {
+.content_my{
     width: 1018px;
-    height: 1000px;
-    /* border: solid 3px red; */
+    height: 700px;
+    border : solid 3px red;
 }
 
-.content_side {
+.content_side{
     /* background-color: aqua; */
     float: left;
     width: 200px;
     height: 600px;
-
+    border-right: solid 1px #d1dadd;
 }
 
-.btn_size {
+.btn_size{
     width: 200px;
     height: 60px;
+    border : solid 1px #d1dadd;
     
-
 }
+
 
 /* ------------------------side bar end-------------------------------- */
-.content_body {
-    margin-left: 30px;
-    width: 770px;
+
+
+/* ------------------------content_my body start-------------------------------- */
+.content_body{
+    /* background-color: lightgray; */
     float: left;
+    margin-left: 35px;
+    width: 777px;
+    height: 600px;
 }
 
-/* ------------------------pw_change start-------------------------------- */
-.stit{
-    padding-top: 15px;
+.body_header{
+    height: fit-content;
+    width: 780px;
+    padding: 15px 0px 13px 10px;
     border-bottom: 1px solid #203a4d;
-    padding-bottom: 13px;
-    padding-left: 10px;
-    font-family: "Spoqa-Regular", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Arial, sans-serif;
-    font-size: 26px;
-    color: #203a4d;
-    font-weight: normal;
     line-height: 30px;
 }
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
 
-.password_change {
+.notice_txt {
+    
+    border-bottom: 1px solid #69696a;
+    text-align: center;
+}
+
+.information {
+    position: relative;
+    margin-top: 20px;
+    font-family: "Spoqa-Regular", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Arial, sans-serif;
+    font-size: 11px;
+    color: #777;
+    letter-spacing: -1px;
+    text-align: left;
+}
+
+.password_change{
+    position: relative;
+    height: 100px;
+    margin-top: 30px;
+    padding: 10px 0 30px 200px;
     border-top: 1px solid #e3e3e3;
     border-bottom: 1px solid #e3e3e3;
     background-color: #fbfbfb;
-    text-align: center;
-    height: 150px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: center;
+
 }
+
 .wrap {
     margin-top: 10px;
 }
@@ -233,14 +243,11 @@ export default {
     text-align: center;
 }
 
-.information {
-    position: relative;
-    margin-top: 20px;
-    font-family: "Spoqa-Regular", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Arial, sans-serif;
-    font-size: 11px;
-    color: #777;
-    border-top: 1px solid #d1dadd;
-    letter-spacing: -1px;
-    text-align: left;
-}
+
+/* ------------------------content_my body end-------------------------------- */
+
+
+
+
+
 </style>

@@ -43,6 +43,7 @@
                     </div>
 
                     <div class="btn-group" role="group">
+
                         <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle btn_size"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             정보관리
@@ -52,36 +53,77 @@
                             <li><a class="dropdown-item" href="#">비밀번호 변경</a></li>
                         </ul>
                     </div>
+
                 </div>
             </div>
 
             <div class="content_body">
 
-                <h2 class="body_header">주문배송 조회</h2>
-                <div class="body_header2">
-                    <span>조회기간 2021.07.28~2021.10.28(최근3개월)</span>
-                    <span>조회설정</span>
-                </div>
-                <div class = "body_content">
-                    <img src="" alt="img">
-                    <p style="font-size: 20px;">주문내역이 없습니다.</p>
-                    <a href="#" class="btn cs" name="btn_ssgMain" style="">쇼핑시작하기</a>
+                <h2 class="body_header">회원정보 변경</h2>
 
-
+                <div class="information">
+                    <img src="//sui.ssgcdn.com/ui/ssg/img/mem/ico_star.gif" alt="필수"> 표시는 필수입력 항목 이오니 반드시 입력해 주세요.
                 </div>
+
+                
+                <div class="filed1">
+                    <div class="filed1_lbox">
+                        <span>이메일 아이디 <img src="//sui.ssgcdn.com/ui/ssg/img/mem/ico_star.gif" alt="필수"></span>    
+                    </div>
+                    
+                    <div class="filed1_rbox"><span>user_email</span></div>
+                </div>
+                <div class="filed1">
+                    <div class="filed1_lbox">
+                        <span>이름 <img src="//sui.ssgcdn.com/ui/ssg/img/mem/ico_star.gif" alt="필수"></span>
+                    </div>
+                    
+                    <div class="filed1_rbox"><input type="text" name="name" value=""></div>
+                </div>
+
+                <div class="filed1">
+                    <div class="filed1_lbox">
+                        <span>자택주소 </span>
+                        
+                    </div>
+                    
+                    <div class="filed1_rbox">
+                        <input type="text" name="user_name" value="" class="input_box" >
+                        <div class="button_hyp"><a href="#"><span>우편번호찾기</span></a></div>
+                    </div>
+
+                    
+                </div>
+
+                <div class="filed1">
+                    <div class="filed1_lbox">
+                        <span>휴대폰번호 <img src="//sui.ssgcdn.com/ui/ssg/img/mem/ico_star.gif" alt="필수"> </span>
+                        
+                    </div>
+                    
+                    <div class="filed1_rbox">
+                        <input type="text" name="user_name" value="" class="input_box">
+                        <div class="button_hyp"><a href="#"><span>변경/인증</span></a></div>
+                    </div>
+
+                    
+                </div>
+
+                <div class="area_cs_btn">
+                    <a href="#" id="submitBtn" class="cs_btn" style="">확인</a>
+                    <a href="#" class="cs_btn white" style="">취소</a>
+                </div>
+                
 
 
                 
 
 
-
             </div>
-
-
         </div>
+    </div>        
 
-    </div>   
-</body>        
+</body>
 </template>
 
 <script>
@@ -101,7 +143,7 @@ export default {
     border-right: 1px solid #d1dadd;
     border-left: 1px solid #d1dadd;
     width: 1020px;
-    height: 2000px;
+    height: 700px;
 }
 
 .header_my {
@@ -140,7 +182,7 @@ export default {
 .content_my {
     width: 1018px;
     height: 1000px;
-    border: solid 3px red;
+    
 }
 
 .content_side {
@@ -148,17 +190,19 @@ export default {
     float: left;
     width: 200px;
     height: 600px;
-    border-right: solid 1px #d1dadd;
+    
 }
+
 .btn{
+    color: black;
     background-color: #F3FAFE;
-    color: #203a4d;
 }
 
 .btn_size {
     width: 200px;
     height: 60px;
     border: solid 1px #d1dadd;
+
 }
 
 
@@ -178,40 +222,82 @@ export default {
     height: fit-content;
     width: 780px;
     padding: 15px 0px 13px 10px;
-    border-bottom: 1px solid #203a4d;
+
     line-height: 30px;
 }
 
-.body_header2 {
-    background-color: #f5f5f5;
+
+.information {
+    position: relative;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    font-family: "Spoqa-Regular", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Arial, sans-serif;
+    font-size: 11px;
+    color: #777;
+    letter-spacing: -1px;
+    text-align: left;
+    border-bottom: 1px solid #203a4d;
     
-    height: 45px;
-    width: 777px;
-    padding: 22px 20px 18px;
+
+}
+.filed1{
+    height: fit-content;
+    width: 770px;
+    border-top: 1px solid #E5E5E5;
+    border-bottom: 1px solid #E5E5E5;
+    padding: 12px 10px 12px 10px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-
-}
-
-.body_content{
     
-    margin-top: 50px;
-    height: 228px;
-    width: 777px;
+}
+.filed1_lbox{
+    width: 100px;
+    
+}
+
+.filed1_rbox{
+    margin-left: 100px;
+    
+}
+.input_box{
+    float: left;
+}
+.button_hyp{
+    height: 30px;
+    width: 90px;
+    border-radius: 1.5px;
+    border: 1px solid black;
+    background-color: lightgrey;
+    margin-left: 5px;
+    display: inline-block;
     text-align: center;
-
-}
-.cs{
-    height: 40px;
-    width: 200px;
-    background-color: #f5f5f5;
-    border: 1px solid #e0e0e0;
-
+    float: left;
+    
 }
 
+.area_cs_btn{
+    margin-top: 20px;
+    
+    display: flex;
+    justify-content: center
+}
 
+.cs_btn{
+    width: 100px;
+    height: 50px;
+    background: #f14f4f;
+    color: #fff;
+    border: 1px solid #CCCCCC;
+    text-align: center;
+    padding: 12px 16px 10px 16px;
+    
+}
+
+.white{
+    margin-left: 30px;
+    background-color: #F9F9F9;
+    color: black;
+
+}
 
 
 

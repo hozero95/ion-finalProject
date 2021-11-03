@@ -6,7 +6,7 @@
 
 
             <p class="user_name">#손님</p>
-            <img class="ssg_img" src="./headimg.jpg" alt="img">
+            <img class="ssg_img" src="" alt="img">
 
 
         </div>
@@ -60,7 +60,7 @@
             <div class="content_body">
 
                 <h2 class="body_header">리뷰 관리</h2>
-                <img src="./headimg.jpg" alt="img" style="width: 777px; height: 62px;">
+                <img src="" alt="img" style="width: 777px; height: 62px;">
 
                 <div class="body_content">
                     <h3>미등록리뷰 n건</h3>
@@ -133,11 +133,6 @@
 
     </div>
 
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
 </body>
 
 </template>
