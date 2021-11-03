@@ -17,29 +17,30 @@
             
 
 
-
+        <router-link to=""></router-link>
         </div>
         
         <div>
         <div class="content_box right_line">
-            <h3>① 회원정보변경</h3>
+            <router-link to="userinfolocker"><h3>① 회원정보변경</h3></router-link>
         </div>
         
         <div class="content_box right_line">
-            <h3>② 비밀번호변경</h3>
+            <router-link to="pwchange"><h3>② 비밀번호변경</h3></router-link>
         </div>
         
         <div class="content_box " >
-            <h3>③ 주문/배송관리</h3>
+            <router-link to="deliverynoitem"><h3>③ 주문/배송관리</h3></router-link>
+            <!-- 주문상품이있다면 to = deliveryitem 으로가야함 데이터바인딩해서 vue 문법으로 다뤄야함 -->
         </div>
         </div>
         
         <div class="content_box2 right_line">
-            <h3>④ 리뷰관리</h3>
+            <router-link to="review"><h3>④ 리뷰관리</h3></router-link>
         </div>
         
         <div class="content_box2 ">
-            <h3>⑤ Q&A관리</h3>
+            <router-link to="QnA"><h3>⑤ Q&A관리</h3></router-link>
         </div>
 
         <img src="https://raw.githubusercontent.com/sky4564/img/master/마이페이지/event1.jpeg" alt="event" class="event_img right_line">

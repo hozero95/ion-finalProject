@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <Header></Header>
-    <Navbar_top></Navbar_top>
+    <Header v-if="flag == true" @hide ="flag = flase"></Header>
+    <Navbar_top v-if="flag == true"></Navbar_top>
     <router-view/>
-    <Footer></Footer>
+    <!-- <Footer v-if="flag == true"></Footer> -->
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   name: 'App',
   data() {
     return {
-      
+      flag : true
     }
   },
   components : {

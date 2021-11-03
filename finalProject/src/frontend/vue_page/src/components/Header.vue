@@ -17,11 +17,13 @@
 		<!-- header right -->
 		<ul class="header__menu">
 			
-            <router-link to="login"><li class="header__menu__iteam">로그인</li></router-link>
-			<li class="header__menu__iteam">회원가입</li>
-			<li class="header__menu__iteam">고객센터</li>
-			<li class="header__menu__iteam"><i class="far fa-user"></i></li>
-			<li class="header__menu__iteam"><i class="fas fa-truck"></i></li>
+            <router-link to="login"><li class="header__menu__iteam" @click = "$emit('hide')" >로그인</li></router-link>
+			<router-link to="joinuser"><li class="header__menu__iteam">회원가입</li></router-link>
+			<router-link to="review"><li class="header__menu__iteam">리뷰관리</li></router-link>
+            <router-link to="userpage"><li class="header__menu__iteam"><i class="far fa-user"></i></li></router-link>			
+            <router-link to="deliverynoitem"><li class="header__menu__iteam"><i class="fas fa-truck"></i></li></router-link>
+            <!-- 주문상품이있다면 to = deliveryitem 으로가야함 데이터바인딩해서 vue 문법으로 다뤄야함 -->
+			
 			<li class="header__menu__iteam"><i class="fas fa-shopping-cart"></i></li>
 		</ul>
     </header>
