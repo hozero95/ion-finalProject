@@ -29,7 +29,6 @@ import com.example.finalProject.service.DeliveryService;
 import com.example.finalProject.service.EventService;
 import com.example.finalProject.service.OrdersService;
 import com.example.finalProject.service.PaymentService;
-import com.example.finalProject.service.ProductService;
 import com.example.finalProject.service.QnaService;
 import com.example.finalProject.service.ReplyService;
 import com.example.finalProject.service.TestService;
@@ -40,8 +39,6 @@ import com.example.finalProject.service.UsersService;
 public class TestController {
 	@Autowired
 	private UsersService usersService;
-	@Autowired
-	private ProductService productService;
 	@Autowired
 	private OrdersService ordersService;
 	@Autowired

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.finalProject.domain.dto.ProductCountDTO;
 import com.example.finalProject.domain.entity.CartVO;
 import com.example.finalProject.domain.entity.ProductVO;
 import com.example.finalProject.domain.entity.ReplyVO;
