@@ -6,7 +6,7 @@
 
 
             <p class="user_name">#손님</p>
-            <img class="ssg_img" src="./headimg.jpg" alt="img">
+            <img class="ssg_img" src="" alt="img">
 
 
         </div>
@@ -62,7 +62,7 @@
                     <span>조회기간 2021.07.28~2021.10.28(최근3개월)</span>
                     <span>조회설정</span>
                 </div>
-                <dl class="dl_head">
+                <dl>
                     <dt>
                         <span class="codr_odrdeliv_odrdate notranslate" style="">2021.10.20</span>
                         <span>
@@ -93,34 +93,6 @@
                     </div>
 
                 </div>
-
-                <dl class="deli_info" role="presentation">
-                    <dt style="width: 200px;">주문자 정보</dt>
-                    <dd>
-                        <span style="">
-                            <span class="blind">주문자 성함</span><em style="">김병민</em>
-                            <span class="blind">주문자 전화번호</span> 010-5553-0475</span>
-                    </dd>
-                </dl>
-
-                <dl class="deli_info" role="presentation">
-                    <dt style="width: 200px;">받으시는 분</dt>
-                    <dd>
-                        <span style="">
-                            <span class="blind">받으시는분 성함</span><em style="">김병민</em>
-                            <span class="blind">받으시는분 전화번호</span> 010-5553-0475</span>
-                    </dd>
-                </dl>
-
-
-                <dl class="deli_info" role="presentation">
-                    <dt style="width: 200px;">받으시는 주소</dt>
-                    <dd>
-                        <span style="">
-                            <span class="blind">주소 성질</span><em style="">자택 : </em>
-                            <span class="blind">주소 상세</span>서울시 관악구  ㅇ ㅇ ㅇ</span>
-                    </dd>
-                </dl>
 
                 <div class="item_list" style="">
                     <table>
@@ -213,50 +185,9 @@
                     <button class="cs_button_item">반품신청</button>
                     <button class="cs_button_item">E-mail 상담</button>
                 </ul>
-                
-                    <div class="pay">
-                        <div class="codr_contit ty_underline area_pay_info">
-                            <h3 class="codr_contit_tx" style="">결제 정보</h3>
-                        </div>
-                        
-                        <div>
-                            <div class="pay_info" >
-                                <div>총 주문금액</div>
-                                <div>1111원</div>
-                            </div>
-                            <div class="pay_info">
-                                <div>총 할인금액</div>
-                                <div>0원</div>
-                            </div>
-                            <div class="pay_info">
-                                <div>배송비</div>
-                                <div>2500원</div>
-                            </div>
-                            <div class="pay_info topline">
-                                <div>총 결제금액</div>
-                                <div>3611원</div>
-                            </div>
-                        </div>
-                    </div>    
-
-
-
-                
-                
-                
-
             </div>
-
-            
-
-
-
-
-
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-                crossorigin="anonymous">
-            </script>
+        </div>
+    </div>
 </body>
 </template>
 
@@ -315,7 +246,7 @@ export default {
 
 .content_my {
     width: 1018px;
-    height: 1600px;
+    height: 1000px;
     border: solid 3px red;
 }
 
@@ -323,7 +254,7 @@ export default {
     /* background-color: aqua; */
     float: left;
     width: 200px;
-    height: 1600px;
+    height: 600px;
     border-right: solid 1px #d1dadd;
 }
 
@@ -389,7 +320,7 @@ export default {
 
 }
 
-.dl_head{
+dl {
     height: 60px;
     width: 777px;
 
@@ -502,7 +433,7 @@ ul {
 li a {
     display: block;
     padding: 28 px 15 px 26 px 32 px;
-    background: url(../img/order/bu_faq_q.png) no-repeat 0 25 px;
+    /* background: url(../img/order/bu_faq_q.png) no-repeat 0 25 px; */
     font-size: 14px;
     color: #222;
     line-height: 1.29;
@@ -518,48 +449,8 @@ li a {
     
 }
 
-.blind{
-    display: none;
-}
 
-.deli_info{
-    margin-top: 20px;
-    border-bottom: 1px solid #e0e0e0;
-    height: auto;
-    width: 777px;
-    font-size: 13px;
-    display: flex;
-    align-items: center;
 
-}
-.area_pay_info{
-    margin-left: auto;
-    margin-right: auto;
-    width: 400px;
-
-}
-
-.pay_info{
-    width: 400px;
-    font-size: 14px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 5px;
-    display: flex;
-    justify-content: space-between;
-}
-.topline{
-    font-size: 14px;
-    font-weight: bold;
-    border-top:  2px solid #e0e0e0;
-}
-.pay{
-    /* background-color: antiquewhite; */
-    margin-top: 70px;
-    height: 400px;
-    width: 777px;
-
-}
 
 
 /* ------------------------content_my body end-------------------------------- */

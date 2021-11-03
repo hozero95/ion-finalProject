@@ -43,6 +43,7 @@
                     </div>
 
                     <div class="btn-group" role="group">
+
                         <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle btn_size"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             정보관리
@@ -52,36 +53,57 @@
                             <li><a class="dropdown-item" href="#">비밀번호 변경</a></li>
                         </ul>
                     </div>
+
                 </div>
             </div>
 
             <div class="content_body">
 
-                <h2 class="body_header">주문배송 조회</h2>
-                <div class="body_header2">
-                    <span>조회기간 2021.07.28~2021.10.28(최근3개월)</span>
-                    <span>조회설정</span>
-                </div>
-                <div class = "body_content">
-                    <img src="" alt="img">
-                    <p style="font-size: 20px;">주문내역이 없습니다.</p>
-                    <a href="#" class="btn cs" name="btn_ssgMain" style="">쇼핑시작하기</a>
-
-
-                </div>
-
-
+                <h2 class="body_header">상품Q&A</h2>
                 
+                <ul style="font-size: 12px; margin-top: 30px;">
+                    <li>상품과 관련없는 내용, 비방, 광고, 불건전한 내용의 글은 사전 동의 없이 삭제될 수 있습니다.</li>
+                    <li>고객님께서 상품상세에서 Q&A에 작성하신 내용입니다.</li>
+               </ul>
 
+                <div class="body_content">
+                    <div class="content_tb">
+                        <table>
+                            <colgroup>
+                                <col style="width:276px">
+                                <col style="width:324px">
+                                <col style="width:99px">
+                                <col>
+                            </colgroup>
+                            <thead>
+                                <tr class="th_box">
+                                    <th scope="col">상품명</th>
+                                    <th scope="col">제목</th>
+                                    <th scope="col"><span>작성일</span></th>
+                                    <th scope="col"><span>답변상황</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="td_box">
+                                        <p><span>작성하신 상품 Q&A가 없습니다.</span></p>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
 
 
             </div>
 
-
         </div>
 
-    </div>   
-</body>        
+
+    </div>
+</body>
 </template>
 
 <script>
@@ -94,14 +116,14 @@ export default {
 /* header setting */
 .container_my {
     /* background-color: aqua; */
-
+    
     margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
     border-right: 1px solid #d1dadd;
     border-left: 1px solid #d1dadd;
     width: 1020px;
-    height: 2000px;
+    height: 900px;
 }
 
 .header_my {
@@ -111,8 +133,7 @@ export default {
     height: 94px;
     margin: 20px 0px 20px 0px;
 }
-
-.header_tag {
+.header_tag{
     /* background-color: aquamarine; */
     height: 37px;
     width: 139px;
@@ -120,15 +141,13 @@ export default {
     margin: 8px 0px 8px 0px;
     padding: 32px 15px 9px 18px;
 }
-
-.user_name {
+.user_name{
     height: 17.5px;
     width: 53.5px;
     font-size: 12px;
 
 }
-
-.ssg_img {
+.ssg_img{
     height: 37px;
     width: 139px;
 }
@@ -137,28 +156,25 @@ export default {
 /* content area */
 /* content_side setting  + content_body setting*/
 
-.content_my {
+.content_my{
     width: 1018px;
-    height: 1000px;
-    border: solid 3px red;
+    height: 700px;
+    border : solid 3px red;
 }
 
-.content_side {
+.content_side{
     /* background-color: aqua; */
     float: left;
     width: 200px;
     height: 600px;
     border-right: solid 1px #d1dadd;
 }
-.btn{
-    background-color: #F3FAFE;
-    color: #203a4d;
-}
 
-.btn_size {
+.btn_size{
     width: 200px;
     height: 60px;
-    border: solid 1px #d1dadd;
+    border : solid 1px #d1dadd;
+    
 }
 
 
@@ -166,7 +182,7 @@ export default {
 
 
 /* ------------------------content_my body start-------------------------------- */
-.content_body {
+.content_body{
     /* background-color: lightgray; */
     float: left;
     margin-left: 35px;
@@ -174,46 +190,73 @@ export default {
     height: 600px;
 }
 
-.body_header {
+.body_header{
     height: fit-content;
     width: 780px;
     padding: 15px 0px 13px 10px;
     border-bottom: 1px solid #203a4d;
     line-height: 30px;
 }
-
-.body_header2 {
-    background-color: #f5f5f5;
-    
-    height: 45px;
+.body_content{
+    /* background-color: aquamarine; */
+    margin-top: 30px;
+    height: 207px;
     width: 777px;
-    padding: 22px 20px 18px;
+}
+
+.content_tb{
+    /* background-color: brown; */
+}
+
+.blind{
+    display: none;
+}
+
+h2{
+    margin : 0px;
+    padding: 0px;
+    display: block;
+    font-size: 26px;
+    
+}
+
+h3{
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+thead{
+    /* background: red; */
+    height: 18px;
+    width: 80px;
+    padding: 15px;
+    border-bottom: 1px solid #ededed;
+    color: #222;
+    font-size: 12px;
+}
+
+.th_box{
+    background-color: lightgray;
+    height: 40px;
+    border-top: 1px solid #203a4d;
+    border-bottom: 1px solid #203a4d;
     display: flex;
-    justify-content: space-between;
+    justify-content:space-around;
+    align-items: center;
+}
+
+.td_box{
+    width: 777px;
+    height: 100px;
+    border-bottom: 1px solid #203a4d;
+    display: flex;
+    justify-content: center;
     align-items: center;
 
-
 }
-
-.body_content{
-    
-    margin-top: 50px;
-    height: 228px;
-    width: 777px;
-    text-align: center;
-
-}
-.cs{
-    height: 40px;
-    width: 200px;
-    background-color: #f5f5f5;
-    border: 1px solid #e0e0e0;
-
-}
-
-
-
-
 
 /* ------------------------content_my body end-------------------------------- */
+
+
+
 </style>

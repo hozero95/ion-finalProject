@@ -1,7 +1,7 @@
 <template>
-    <body>
-    <div class="content"> 
-        <div class="header"> 
+  <body>
+    <div class="content_my"> 
+        <div class="header_my"> 
         </div>
 
         <div class="deliver_header">
@@ -61,8 +61,8 @@ export default {
 </script>
 
 <style>
-    /* box sizing */
-.content {
+/* box sizing */
+.content_my{
     /* background-color: aqua; */
     
     margin-top: 30px;
@@ -74,7 +74,7 @@ export default {
     height: fit-content;
 }
 
-.header {
+.header_my{
     background-color: #F3FAFE;
     border-bottom: 3px solid #203a4d;
     width: 1020px;
@@ -87,13 +87,12 @@ export default {
     display: flex;
     justify-content: center;
 }
-.deliver_img{
-    
+.deliver_img{    
     float : left;
     padding: 30px;
     list-style-type: "\27A1";
     list-style-position: outside;
-    list
+    
 }   
 
 
@@ -121,10 +120,11 @@ export default {
 
 .event_img{
     height: 100px;
-    width: 508.2px;
+    width: 508px;
     float: left;
     cursor: pointer;
 }
 
 /* box sizing */
+
 </style>
