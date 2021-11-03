@@ -13,7 +13,7 @@
 			</div>	
 			<div class="footer__left__row2">
 				<p class="text2"><strong>SSG.COM 호스팅서비스 사업자 : (주)에스에스지닷컴</strong></p>
-				<div><img src="" alt=""></div>
+				<div><img src="../images/prize.png" alt=""></div>
 				<p class="text2"><strong>우리은행 채무지급보증 안내</strong></p>
 				<p class="text3">당사는 고객님이 현금 결제한 금액에 대해 우리은행과 채무지급보증 계약을 체결하여 안전거래를 보장하고 있습니다</p>
 				<ul>
@@ -25,7 +25,7 @@
 			</div>
 		</div>
 		<div class="footer__right">
-			<div><img src="" alt=""></div>
+			<div><img src="../images/qr.png" alt=""></div>
 		</div>
 	</footer>
 </div>
@@ -125,7 +125,6 @@ p{
 }
 
 /* footer */
-
 .footer {
     width: 100%;
     height: 335px;

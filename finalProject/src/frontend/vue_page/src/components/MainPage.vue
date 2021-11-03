@@ -1,49 +1,5 @@
 <template>
 <body>
-    <!-- top navbar -->
-    <div class="navbar-top">
-        <ul class="navbar-top__menu">
-            <li class="navbar-top__menu__iteam">생선
-				<div class="dropdown-content">
-					<a href="#">생물 생선</a>
-					<a href="#">냉동 생선</a>
-					<a href="#">반건조 생선</a>
-					<a href="#">굴비</a>
-				</div>
-			</li>
-            <li class="navbar-top__menu__iteam">킹크랩, 꽃게, 랍스터
-				<div class="dropdown-content">
-					<a href="#">킹크랩</a>
-					<a href="#">꽃게</a>
-					<a href="#">랍스터</a>
-				</div>
-			</li>
-            <li class="navbar-top__menu__iteam">새우류
-				<div class="dropdown-content">
-					<a href="#">냉동 새우</a>
-					<a href="#">횟감용 새우</a>
-					<a href="#">활새우</a>
-				</div>
-			</li>
-            <li class="navbar-top__menu__iteam">쭈꾸미, 오징어, 문어
-				<div class="dropdown-content">
-					<a href="#">쭈꾸미, 낙지, 꼴뚜기</a>
-					<a href="#">오징어 한치</a>
-					<a href="#">문어</a>
-				</div>
-			</li>
-            <li class="navbar-top__menu__iteam">/</li>
-            <li class="navbar-top__menu__iteam">제철</li>
-            <li class="navbar-top__menu__iteam">BEST</li>
-            <li class="navbar-top__menu__iteam">이벤트</li>
-        </ul>
-    </div>
-
-    <!-- ---------------------------------------------------------------------------------------- -->
-
-
-
-
     <!-- slider -->
     <section class="slider">
         <!-- slider 왼쪽 -->
@@ -51,13 +7,13 @@
             <div class="slider__img">
                 <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="" class="d-block w-30" alt="...">
+                    <img src="../images/img1.jpg" class="d-block w-30" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="" class="d-block w-30" alt="...">
+                    <img src="../images/img1.jpg" class="d-block w-30" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="" class="d-block w-30" alt="...">
+                    <img src="../images/img1.jpg" class="d-block w-30" alt="...">
                 </div>
                 </div>
             </div>
@@ -102,9 +58,9 @@
         </div>
         <div class="seasonal__seafoods">
             <div class="seasonal__seafoods__wrap">
-                <a href="" class="seafood" target="blank" data-type="">
+                <a href="" class="seafood" target="blank" data-type="" >
                     <img
-                    src=""
+                    src="../images/img1.jpg"
                     alt="해산물"
                     class="seafood__img"
                     />
@@ -123,7 +79,7 @@
             <div class="seasonal__seafoods__wrap">
                 <a href="" class="seafood" target="blank" data-type="">
                     <img
-                    src=""
+                    src="../images/img1.jpg"
                     alt="해산물"
                     class="seafood__img"
                     />
@@ -142,7 +98,7 @@
             <div class="seasonal__seafoods__wrap">
                 <a href="" class="seafood" target="blank" data-type="">
                     <img
-                    src=""
+                    src="../images/img1.jpg"
                     alt="해산물"
                     class="seafood__img"
                     />
@@ -161,7 +117,7 @@
             <div class="seasonal__seafoods__wrap">
                 <a href="" class="seafood" target="blank" data-type="">
                     <img
-                    src=""
+                    src="../images/img1.jpg"
                     alt="해산물"
                     class="seafood__img"
                     />
@@ -203,7 +159,7 @@
             <div class="best__seafoods__wrap">
                 <a href="" class="seafood" target="blank" data-type="">
                     <img
-                    src=""
+                    src="../images/img1.jpg"
                     alt="해산물"
                     class="seafood__img"
                     />
@@ -222,7 +178,7 @@
             <div class="best__seafoods__wrap">
                 <a href="" class="seafood" target="blank" data-type="">
                     <img
-                    src=""
+                    src="../images/img1.jpg"
                     alt="해산물"
                     class="seafood__img"
                     />
@@ -241,7 +197,7 @@
             <div class="best__seafoods__wrap">
                 <a href="" class="seafood" target="blank" data-type="">
                     <img
-                    src=""
+                    src="../images/img1.jpg"
                     alt="해산물"
                     class="seafood__img"
                     />
@@ -260,7 +216,7 @@
             <div class="best__seafoods__wrap">
                 <a href="" class="seafood" target="blank" data-type="">
                     <img
-                    src=""
+                    src="../images/img1.jpg"
                     alt="해산물"
                     class="seafood__img"
                     />
@@ -279,7 +235,7 @@
             <div class="best__seafoods__wrap">
                 <a href="" class="seafood" target="blank" data-type="">
                     <img
-                    src="g"
+                    src="../images/img1.jpg"
                     alt="해산물"
                     class="seafood__img"
                     />
@@ -298,7 +254,7 @@
             <div class="best__seafoods__wrap">
                 <a href="" class="seafood" target="blank" data-type="">
                     <img
-                    src=""
+                    src="../images/img1.jpg"
                     alt="해산물"
                     class="seafood__img"
                     />
@@ -317,7 +273,7 @@
             <div class="best__seafoods__wrap">
                 <a href="" class="seafood" target="blank" data-type="">
                     <img
-                    src=""
+                    src="../images/img1.jpg"
                     alt="해산물"
                     class="seafood__img"
                     />
@@ -336,7 +292,7 @@
             <div class="best__seafoods__wrap">
                 <a href="" class="seafood" target="blank" data-type="">
                     <img
-                    src=""
+                    src="../images/img1.jpg"
                     alt="해산물"
                     class="seafood__img"
                     />
@@ -353,7 +309,6 @@
                 </a>
             </div>
         </div>
-        
     </section>
 
     <section class = "more">
@@ -373,7 +328,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 *{
     box-sizing: border-box;
@@ -546,5 +500,6 @@ body{
         margin-left: 75px;
     }
 }
+
 
 </style>
