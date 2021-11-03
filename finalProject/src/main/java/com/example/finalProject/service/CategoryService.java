@@ -31,5 +31,5 @@ public class CategoryService {
 		categoryRepository.findByCategoryRefIsNullAndCategoryUsedIsNullOrCategoryUsed(0L).forEach(e -> category.add(e));
 		return category;
 	}
-
+	
 }
