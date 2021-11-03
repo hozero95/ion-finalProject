@@ -4,7 +4,16 @@
 
 <mapper namespace="com.example.finalProject.mapper.AdminMapper">
 	<insert id="categoryAdd">
-		INSERT INTO category VALUES(
+		INSERT INTO category
+		(
+			  event_unum
+			, category_name
+			<if test="categoryRef !=null">
+		    , category_ref
+		    </if>
+		    , category_used
+		) 
+		VALUES(
 		      seq_category_unum.nextval
 		    , #{categoryName}
 		    <if test="categoryRef !=null">
@@ -13,6 +22,145 @@
 		    , null
 		)
 	</insert>
-
+	
+	<delete id="categoryDelete">
+		DELETE 
+		  FROM category
+		 WHERE category_unum = #{categoryUnum}
+	</delete>
+	
+	<update id="categoryUseorNot">
+		UPDATE category
+	       SET category_used = #{categoryUsed}
+		 WHERE category_unum = #{categoryUnum}
+	</update>
+	
+	<insert id="eventAdd">
+		INSERT INTO event(
+		     event_unum
+		   , event_title
+		   , event_content
+		   , event_regdate
+		   <if test="eventEnddate !=null">
+  		   , event_enddate
+  		   </if>
+  		   <if test="eventImage01Path !=null">
+  		   , event_image01_path
+  		   </if>
+  		   <if test="eventImage02Path !=null">
+  		   , event_Image02_path
+  		   </if>
+		) VALUES(
+   			 seq_event_unum.nextval
+   		   , #{eventTitle}
+  		   , #{eventContent}
+  		   , sysdate
+  		   <if test="eventEnddate !=null">
+  		   , #{eventEnddate}
+  		   </if>
+  		   <if test="eventImage01Path !=null">
+  		   , #{eventImage01Path}
+  		   </if>
+  		   <if test="eventImage02Path !=null">
+  		   , #{eventImage02Path}
+  		   </if>
+		)
+	</insert>
+	
+	<delete id="eventDelete">
+		DELETE 
+		  FROM event
+		 WHERE event_unum = #{eventUnum}
+	</delete>
+	
+	<update id="eventDateChange">
+		UPDATE event
+		SET event_enddate = #{eventEnddate}
+		WHERE event_unum = #{eventUnum}
+	</update>
+	
+	<update id="deliveryStatus">
+		UPDATE delivery
+		SET delivery_status = #{deliveryStatus}
+		WHERE delivery_unum = #{deliveryUnum}
+	</update>
+	
+	<update id="orderStatus">
+		UPDATE orders
+		SET order_status = #{orderStatus}
+		WHERE order_unum = #{orderUnum}
+	</update>
+	
+	<insert id="productAdd">
+		INSERT INTO product(
+			  product_unum
+			, category_unum
+			, product_name
+			, product_price
+			, product_regdate
+			<if test="productSeason !=null">
+			, product_season
+			</if>
+			<if test="productImage01Path !=null">
+			, product_image01_path
+			</if>
+			<if test="productImage02Path !=null">
+			, product_image02_path
+			</if>
+		) VALUES(
+		      seq_product_unum.nextval
+		    , #{categoryUnum}
+		    , #{productName}
+		    , #{productPrice}
+		    , sysdate
+		    <if test="productSeason !=null">
+		    , #{productSeason}
+		    </if>
+		    <if test="productImage01Path !=null">
+		    , #{productImage01Path}
+		    </if>
+		    <if test="productImage02Path !=null">
+		    , #{productImage02Path}
+		    </if>
+		)
+	</insert>
+	
+	   <delete id="productDelete">
+      DELETE from product
+       WHERE product_unum = #{productUnum}
+   </delete>
+   
+   <update id="productInfoChange">
+      UPDATE product
+         SET category_unum = #{categoryUnum},
+             product_name = #{productName},
+             product_price = #{productPrice}
+             <if test="productSeason != null">
+             , product_season = #{productSeason}
+             </if>
+             <if test="productImage01Path != null">
+             , product_image01_path = #{productImage01Path}
+             </if>
+             <if test="productImage02Path != null">
+             , product_image02_path = #{productImage02Path}
+             </if>
+       WHERE product_unum = #{productUnum};
+   </update>
+   
+   <insert id="qnareply">
+      INSERT INTO qna values(
+          seq_qna_unum.nextval,
+          #{userUnum},
+          #{qnaTitle},
+          #{qnaContent},
+          #{qnaComment},
+          sysdate
+      )
+   </insert>
+   
+   <delete id="userDelete">
+      DELETE FROM users
+       WHERE user_unum = #{userUnum}
+   </delete>
 </mapper>
 
