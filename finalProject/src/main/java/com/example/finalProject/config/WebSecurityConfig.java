@@ -9,6 +9,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.example.finalProject.jwt.JwtAccessDeniedHandler;
 import com.example.finalProject.jwt.JwtAuthenticationEntryPoint;
@@ -66,8 +69,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/api/admin/**").hasAnyRole("ADMIN") // 관리자페이지
 			.anyRequest().permitAll()
 			
+			// CORS 설정
+			.and()
+			.cors()
+			
 			// JwtFilter를 addFilterBefore로 등록한 JwtSecurityConfig 클래스 적용
 			.and()
 			.apply(new JwtSecurityConfig(tokenProvider));
+	}
+	
+	// CORS configured
+	@Bean
+	public CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration();
+
+		configuration.addAllowedOrigin("*");
+		configuration.addAllowedHeader("*");
+		configuration.addAllowedMethod("*");
+		configuration.setAllowCredentials(true);
+
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
 	}
 }
