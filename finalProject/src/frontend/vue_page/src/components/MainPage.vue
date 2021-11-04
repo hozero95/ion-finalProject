@@ -50,20 +50,23 @@
                 <p>가을 제철 지나기 전에~~</p>
                 <h1>가을 seasonal 추천</h1>
                 <p>#해산물 #가을M #대하 #맛있다D</p>
+                <!-- 전체보기 버튼 -->
+                <div class="seasonal__top__all">
+                    <a href="">전체보기 <i class="fas fa-arrow-right"></i></a>
+                </div>
             </div>
-            <!-- 전체보기 버튼 -->
-            <div class="seasonal__top__all">
-                <a href="">전체보기 <i class="fas fa-arrow-right"></i></a>
-            </div>
+
         </div>
         <div class="seasonal__seafoods">
             <div class="seasonal__seafoods__wrap">
                 <a href="" class="seafood" target="blank" data-type="" >
-                    <img
-                    src="../images/img1.jpg"
-                    alt="해산물"
-                    class="seafood__img"
-                    />
+                    <router-link to="product">
+                        <img
+                        src="../images/img1.jpg"
+                        alt="해산물"
+                        class="seafood__img"
+                        />
+                    </router-link>
                     <div class="seafood__info">
                         <div class="seafood__info__top">
                             <div class="logo">5징어</div>
@@ -311,9 +314,11 @@
         </div>
     </section>
 
-    <section class = "more">
+    <div class = "more">
         <button>해산물 더보기<i class="fas fa-chevron-down"></i></button>
-    </section>
+    </div>
+
+
 </body>
 </template>
 
@@ -322,7 +327,17 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      products: [
+          {
+              productsimg: '../images/img1.jpg',
+              alt: '상품이미지1'
+          },
+                    {
+              productsimg: '../images/img1.jpg',
+              alt: '상품이미지1'
+          },
+      ]
     }
   }
 }
@@ -372,9 +387,8 @@ body{
 
 /* seasonal */
 .seasonal{
-    /* background-color: aqua; */
-    width: 1300px;
-    margin: 300px 0 0 300px;
+    background-color: aqua;
+    margin: 300px 300px 0 300px;
 }
 .seasonal__top__title{
     text-align: center;
@@ -386,10 +400,10 @@ body{
 }
 .seasonal__seafoods{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 .seasonal__seafoods__wrap{
-
+    margin : 10px 10px;
 }
 .seafood{
 

@@ -13,6 +13,13 @@ import JoinUser from '@/components/JoinUser'
 import UserInfoChange from '@/components/UserInfoChange'
 import UserInfoLocker from '@/components/UserInfoLocker'
 import QnA from '@/components/QnA'
+import Category from '@/components/category'
+import SeasonalProduct from '@/components/seasonalProduct'
+import BestProduct from '@/components/bestProduct'
+import Product from '@/components/Product'
+import Cart from '@/components/Cart'
+import Payment from '@/components/Payment'
+// import Event from '@/components/event'
 
 
 Vue.use(Router)
@@ -83,6 +90,36 @@ export default new Router({
       path: '/qna',
       name: 'is qna',
       component: QnA
+    },
+    {
+      path: '/category',
+      name: 'is category',
+      component: Category
+    },
+    {
+      path: '/seasonalProduct',
+      name: 'is seasonalProduct',
+      component: SeasonalProduct
+    },
+    {
+      path: '/bestProduct',
+      name: 'is bestProduct',
+      component: BestProduct
+    },
+    {
+      path: '/product',
+      name: 'is product',
+      component: Product
+    },
+    {
+      path: '/cart',
+      name: 'is cart',
+      component: Cart
+    },
+    {
+      path: '/payment',
+      name: 'is payment',
+      component: Payment
     },
   ]
 })
