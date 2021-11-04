@@ -114,7 +114,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .payment{
     margin-left: 323px;
     margin-top: 20px;

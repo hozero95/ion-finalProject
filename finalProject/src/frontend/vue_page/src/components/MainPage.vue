@@ -7,13 +7,13 @@
             <div class="slider__img">
                 <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="../images/img1.jpg" class="d-block w-30" alt="...">
+                    <img src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/img1.jpg" class="d-block w-30" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="../images/img1.jpg" class="d-block w-30" alt="...">
+                    <img src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/img1.jpg" class="d-block w-30" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="../images/img1.jpg" class="d-block w-30" alt="...">
+                    <img src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/img1.jpg" class="d-block w-30" alt="...">
                 </div>
                 </div>
             </div>
@@ -461,15 +461,15 @@ body{
     margin-top: 15px;
 }
 .best__seafoods{
-    /* background-color:aquamarine; */
-    width: 1300px;
-    margin-left: 300px;
+    background-color:aquamarine;
+
+    margin: 10px 200px 0 200px;
     display: flex;
     flex-wrap: wrap;
     /* justify-content:space-around; */
 }
 .best__seafoods__wrap{
-    margin-left: 3%;
+    margin: 3%;
 }
 .best__seafoods__wrap .seafood__img{
     width: 386px;

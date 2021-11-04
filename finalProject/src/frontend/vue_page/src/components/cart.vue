@@ -110,7 +110,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .cart{
     margin-left: 323px;
     margin-top: 20px;

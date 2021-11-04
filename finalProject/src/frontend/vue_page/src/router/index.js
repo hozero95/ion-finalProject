@@ -19,7 +19,7 @@ import BestProduct from '@/components/bestProduct'
 import Product from '@/components/Product'
 import Cart from '@/components/Cart'
 import Payment from '@/components/Payment'
-// import Event from '@/components/event'
+import Event from '@/components/event'
 
 
 Vue.use(Router)
@@ -120,6 +120,11 @@ export default new Router({
       path: '/payment',
       name: 'is payment',
       component: Payment
+    },
+    {
+      path: '/event',
+      name: 'is event',
+      component: Event
     },
   ]
 })
