@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <Header v-if="flag == true" @hide ="flag = flase"></Header>
-    <Navbar_top v-if="flag == true"></Navbar_top>
+    <Header></Header>
+    <Navbar_top></Navbar_top>
     <router-view/>
-    <!-- <Footer v-if="flag == true"></Footer> -->
+    <Footer></Footer>
   </div>
 </template>
 
