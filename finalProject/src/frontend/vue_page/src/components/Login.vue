@@ -1,6 +1,6 @@
 <template>
   <body>
-  <h1>{{msg}}</h1>
+  
      <div class="loginSheet">
         <div class="popContainer">
             <div class="popContent">
@@ -21,10 +21,11 @@
                         <label for="password">비밀번호</label>
                     </div>
 
-                    <input type="checkbox"> <span style="font-size: xx-small;">아이디 저장</span>
-                    <div id="setid">회원가입 </div>
-                    <div id="findpw">비밀번호 찾기 ┃</div>
-                    <div id="findid">아이디 찾기 ┃</div>
+                    <!-- <input type="checkbox"> <span style="font-size: xx-small;">아이디 저장</span> -->
+                    
+                    <router-link to="joinuser"><div id="setid">회원가입 </div></router-link>
+                    <!-- <div id="findpw">비밀번호 찾기 ┃</div>
+                    <div id="findid">아이디 찾기 ┃</div> -->
                     <input type="submit" value="로그인">
 
                     <!-- <div class="snsLogin">
@@ -59,7 +60,7 @@
                         
                     </div>                         -->
 
-                    <a href="https://github.com/" class="serch" > <span>비회원 조회</span> </a>
+                    <!-- <a href="https://github.com/" class="serch" > <span>비회원 조회</span> </a> -->
                 
                 </form>
 
