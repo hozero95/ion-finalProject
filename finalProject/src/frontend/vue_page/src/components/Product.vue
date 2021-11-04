@@ -269,17 +269,17 @@ body{
 }
 .button{
     display: flex;
-    width: 100%;
+    width: 230px;
     height: 60px;
     color: white;
 }
 .button .cartbtn{
     background-color: #222;
-    padding: 20px 0 0 130px;
+    padding: 16px 0 0 85px;
 }
 .button .buy{
     background-color: #132c7d;
-    padding: 20px 0 0 130px;
+    padding: 16px 0 0 85px;
 }
 
 
@@ -289,12 +289,11 @@ body{
     
 }
 .product-nav__menu{
-    margin-left: 310px;
     height: 70px;
     color: black;
     display: flex;
     font-size: 20px;
-    
+    justify-content: center;
 }
 .product-nav__menu__iteam{
     border: 1px solid gainsboro;

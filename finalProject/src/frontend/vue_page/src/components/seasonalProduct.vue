@@ -2,7 +2,7 @@
     <!-- seasonal -->
     <section class="seasonal">
         <div class="seasonal__img">
-            <img src="/images/seasonal01.jpeg" alt="">
+            <img src="../images/seasonal01.jpeg" alt="">
         </div>
         <div class="seasonal__seafoods">
             <div class="seasonal__seafoods__wrap">
@@ -91,7 +91,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 /* seasonal */
 .seasonal{
     /* background-color: aqua; */

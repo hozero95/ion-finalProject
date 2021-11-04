@@ -11,29 +11,30 @@
                         <router-link to="category"><a href="#">굴비</a></router-link>
                     </div>
 			    </li>
-            <router-link to="category">
-                <li class="navbar-top__menu__iteam">킹크랩, 꽃게, 랍스터
+            
+                <li class="navbar-top__menu__iteam">
+                    <a href="http://localhost:8080/#/category">킹크랩, 꽃게, 랍스터</a>
                     <div class="dropdown-content">
-                        <a href="#">킹크랩</a>
-                        <a href="#">꽃게</a>
-                        <a href="#">랍스터</a>
+                        <router-link to="category"><a href="#">킹크랩</a></router-link>
+                        <router-link to="category"><a href="#">꽃게</a></router-link>
+                        <router-link to="category"><a href="#">랍스터</a></router-link>
                     </div>
                 </li>
-            </router-link>
-            <router-link to="category">
-                <li class="navbar-top__menu__iteam">새우류
+
+                <li class="navbar-top__menu__iteam">
+                    <a href="http://localhost:8080/#/category">새우류</a>
                     <div class="dropdown-content">
-                        <a href="#">냉동 새우</a>
-                        <a href="#">횟감용 새우</a>
-                        <a href="#">활새우</a>
+                        <router-link to="category"><a href="#">냉동 새우</a></router-link>
+                        <router-link to="category"><a href="#">횟감용 새우</a></router-link>
+                        <router-link to="category"><a href="#">활새우</a></router-link>
                     </div>
                 </li>
-            </router-link>
-            <li class="navbar-top__menu__iteam">쭈꾸미, 오징어, 문어
+            <li class="navbar-top__menu__iteam">
+                <a href="http://localhost:8080/#/category">쭈꾸미, 오징어, 문어</a>
 				<div class="dropdown-content">
-					<a href="#">쭈꾸미, 낙지, 꼴뚜기</a>
-					<a href="#">오징어 한치</a>
-					<a href="#">문어</a>
+					<router-link to="category"><a href="#">쭈꾸미, 낙지, 꼴뚜기</a></router-link>
+					<router-link to="category"><a href="#">오징어 한치</a></router-link>
+					<router-link to="category"><a href="#">문어</a></router-link>
 				</div>
 			</li>
             <li class="navbar-top__menu__iteam">/</li>
