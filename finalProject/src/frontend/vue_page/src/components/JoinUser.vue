@@ -1,8 +1,8 @@
 <template>
-<body>
+<body class="body_my">
       <!-- header -->
         <div id="header">
-            <img src="" id="logo">
+            <img src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/img_xl.jpeg" id="logo">
         </div>
 
         
@@ -49,7 +49,7 @@
 
                 <!-- EMAIL -->
                 <div>
-                    <h3 class="join_title"><label for="email"> 이메일<span class="optional"></span></label></h3>
+                    <h3 class="join_title"><label for="email">본인확인 이메일<span class="optional"></span></label></h3>
                     <span class="box int_email">
                         <input type="text" id="email" class="int" maxlength="100" placeholder="입력">
                     </span>
@@ -100,9 +100,9 @@ html {
     height: 100%;
 }
 
-body {
+.body_my {
     margin: 0;
-    height: 100%;
+    height: 1000px;
     background: #f5f6f7;
     font-family: Dotum,'돋움',Helvetica,sans-serif;
 }

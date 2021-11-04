@@ -7,11 +7,11 @@
         <div class="deliver_header">
             
             
-            <span class="deliver_img"><img src="/deimg.jpg" alt="ss"></span>
-            <li class="deliver_img step1"><span ><img src="/deimg2.jpg" alt="ss"></span></li>
-            <li class="deliver_img step2"><span><img src="/deimg3.jpg" alt="ss"></span></li>
-            <li class="deliver_img step3"><span><img src="/deimg4.jpg" alt="ss"></span></li>
-            <li class="deliver_img step4"><span><img src="/deimg5.jpg" alt="ss"></span></li>
+            <span class="deliver_img"><img src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/deimg.jpg" alt="ss"></span>
+            <li class="deliver_img step1"><span ><img src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/deimg2.jpg" alt="ss"></span></li>
+            <li class="deliver_img step2"><span><img src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/deimg3.jpg" alt="ss"></span></li>
+            <li class="deliver_img step3"><span><img src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/deimg4.jpg" alt="ss"></span></li>
+            <li class="deliver_img step4"><span><img src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/deimg5.jpg" alt="ss"></span></li>
 
 
             

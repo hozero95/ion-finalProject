@@ -3,7 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import axios from 'axios'
+import store from './assets/store.js'
+
+
 
 
 Vue.config.productionTip = false
@@ -11,19 +13,12 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router, 
+  router,
+  store : store,
   components: { App },
   template: '<App/>',
   methods: {
-    fetchData: function() {
-      axios.get('https://codingapple1.github.io/vue/more1.json')
-        .then(function(response) {
-          console.log(response);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    }
+    
   }
 })
 

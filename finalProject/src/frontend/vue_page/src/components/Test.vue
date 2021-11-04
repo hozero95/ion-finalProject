@@ -3,8 +3,13 @@
     <h1>{{msg}}</h1>
     <p>here is test page 입니다.</p>
     <p>here is test page 입니다.</p>
-    <p>아무거나 적어야지123</p>
+    <p>{{ $store.state.age }}</p>
     <button v-on:click="fetchData">get data</button>
+    <button v-on:click="getdata">get data2</button>
+    <button v-on:click="getdata">get data2</button>
+    <button @click="$store.commit('한살더하기', 1)">버튼</button>
+
+
   </div>
   
   
@@ -27,8 +32,13 @@ export default {
         .catch(function(error) {
           console.log(error);
         });
+    },
+    getdata: function(){
+        
+
     }
   }
+
 
 }
 </script>

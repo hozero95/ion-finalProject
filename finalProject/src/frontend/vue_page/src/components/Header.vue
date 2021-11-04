@@ -4,7 +4,9 @@
     <header class="header">
 		<!-- header left -->
 		<div class="header__logo">
-			<img src="../images/fish-Icon.png" alt="">
+			<router-link to="/">
+                <img src="../images/fish-Icon.png" alt="">  
+            </router-link>
 			<!-- <a href="#">TEAM 5징어 </a> -->
         </div>
 		<!-- 검색창 -->
@@ -95,7 +97,7 @@ p{
 /* header */
 .header{
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     align-items: center;
     padding: 0 300px;
 }
@@ -107,14 +109,16 @@ p{
 .header__search{
     width: 230px;
     height: 15px;
-    margin-right: 35%;
+    margin-left: 30px;
+    /* margin-right: 35%; */
 
 }
 
 .input__header__search__input button{
-    position: absolute;
-    left: 620px;
-    top: 57px;
+    /* position: absolute; */
+    /* left: 620px; */
+    /* top: 57px; */
+    margin-left: 5px;
     color: #5172de;
 }
 

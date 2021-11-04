@@ -37,10 +37,10 @@ module.exports = {
   },
 
   build: {
-    // Template for index.html
+    // Template for index.html merge
     index: path.resolve(__dirname, '../../../../src/main/resources/templates/index.html'),
 
-    // Paths
+    // Paths merge
     assetsRoot: path.resolve(__dirname, '../../../../src/main/resources/templates'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',

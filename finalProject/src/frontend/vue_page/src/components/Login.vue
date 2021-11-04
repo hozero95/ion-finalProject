@@ -6,7 +6,7 @@
             <div class="popContent">
 
                 <div class="contentHeader">
-                    <h1><span>로그인</span></h1>
+                    <h1><span>로그인</span></h1>                
                 </div>
 
                 <form class="loginForm" action="" method="POST">
@@ -105,7 +105,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 /* ---------------------- boxMapping  -------------------------------- */
 .loginSheet{

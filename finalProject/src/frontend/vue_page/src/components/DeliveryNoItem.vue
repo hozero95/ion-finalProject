@@ -6,7 +6,7 @@
 
 
             <p class="user_name">#손님</p>
-            <img class="ssg_img" src="" alt="img">
+            <img class="ssg_img" src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/headimg.jpg" alt="img">
 
 
         </div>
@@ -25,7 +25,7 @@
                             주문관리
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <li><a class="dropdown-item" href="#">주문/배송관리</a></li>
+                            <li><a class="dropdown-item" href="#">주문/배송관리</a></li>
                             <li><a class="dropdown-item" href="#"></a></li>
                         </ul>
                     </div>
@@ -63,7 +63,7 @@
                     <span>조회설정</span>
                 </div>
                 <div class = "body_content">
-                    <img src="" alt="img">
+                    <img src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/del.jpg" alt="img">
                     <p style="font-size: 20px;">주문내역이 없습니다.</p>
                     <a href="#" class="btn cs" name="btn_ssgMain" style="">쇼핑시작하기</a>
 
