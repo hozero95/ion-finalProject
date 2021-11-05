@@ -1,19 +1,33 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
+  plugins: [
+    createPersistedState()
+  ],
   state(){
     return {
-      testid1 : 'hello store1',
-      testid2 : 'hello store2',
-      age: 0 ,
+      jwtToken: '',
+      userInfo: {
+        userUnum: -1,
+        userId: '',
+        userEmail: '',
+        userAddress: '',
+        userTel: '',
+        userRegdate: '',
+        authorities: {}
+      }
     }
   },
   mutations :{
-    한살더하기(state, data){
-      state.age += data;
+    setJwtToken(state, data) {
+      state.jwtToken = data.token;
+    },
+    setUserInfo(state, data) {
+      state.userInfo = data;
     }
   },
 

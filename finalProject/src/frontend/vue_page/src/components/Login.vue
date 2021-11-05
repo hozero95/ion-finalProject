@@ -1,34 +1,37 @@
 <template>
+
   <body>
-  
-     <div class="loginSheet">
-        <div class="popContainer">
-            <div class="popContent">
 
-                <div class="contentHeader">
-                    <h1><span>로그인</span></h1>                
-                </div>
+    <div class="loginSheet">
+      <div class="popContainer">
+        <div class="popContent">
 
-                <form class="loginForm" action="" method="POST">
-                    <div class="input-box">
-                        <input type="text" name="username" placeholder="아이디">
-                        <label for="username">아이디</label>
-                    </div>
+          <div class="contentHeader">
+            <h1><span>로그인</span></h1>
+          </div>
 
-                    <div class="input-box">
+          <form class="loginForm" action="" method="POST">
+            <div class="input-box">
+              <input id="inputId" type="text" name="username" placeholder="아이디">
+              <label for="username">아이디</label>
+            </div>
 
-                        <input id="password" type="password" name="password" placeholder="비밀번호">
-                        <label for="password">비밀번호</label>
-                    </div>
+            <div class="input-box">
 
-                    <!-- <input type="checkbox"> <span style="font-size: xx-small;">아이디 저장</span> -->
-                    
-                    <router-link to="joinuser"><div id="setid">회원가입 </div></router-link>
-                    <!-- <div id="findpw">비밀번호 찾기 ┃</div>
+              <input id="inputPassword" type="password" name="password" placeholder="비밀번호">
+              <label for="password">비밀번호</label>
+            </div>
+
+            <!-- <input type="checkbox"> <span style="font-size: xx-small;">아이디 저장</span> -->
+
+            <router-link to="joinuser">
+              <div id="setid">회원가입 </div>
+            </router-link>
+            <!-- <div id="findpw">비밀번호 찾기 ┃</div>
                     <div id="findid">아이디 찾기 ┃</div> -->
-                    <input type="submit" value="로그인">
+            <input @click="login" class="btnSubmit" type="button" value="로그인">
 
-                    <!-- <div class="snsLogin">
+            <!-- <div class="snsLogin">
                         <div class="snsImg">
 
                             <a href="http://www.naver.com">
@@ -60,154 +63,193 @@
                         
                     </div>                         -->
 
-                    <!-- <a href="https://github.com/" class="serch" > <span>비회원 조회</span> </a> -->
-                
-                </form>
+            <!-- <a href="https://github.com/" class="serch" > <span>비회원 조회</span> </a> -->
 
-                <div class=" adImg">
-                                <img src="https://raw.githubusercontent.com/sky4564/img/master/test.jpg" alt="ex"
-                                    class="adSize">
-                        
+          </form>
 
-                        <!-- <img class="adImg" src="https://raw.githubusercontent.com/sky4564/img/master/test.jpg" alt=""> -->
+          <div class=" adImg">
+            <img src="https://raw.githubusercontent.com/sky4564/img/master/test.jpg" alt="ex" class="adSize">
 
+
+            <!-- <img class="adImg" src="https://raw.githubusercontent.com/sky4564/img/master/test.jpg" alt=""> -->
 
 
 
-                    </div>
 
+          </div>
 
 
 
 
 
-            </div>
 
         </div>
-    </div>    
+
+      </div>
+    </div>
 
 
 
   </body>
-  
+
 </template>
 
 <script>
+  import axios from 'axios';
 
-export default {
+  export default {
     name: 'Login',
-    data(){
-        return{
-            msg: 'Login page'
-        }
+    data() {
+      return {
+        msg: 'Login page',
+        idVal: '',
+        passwordVal: ''
+      }
+    },
+    methods: {
+      login() {
+        this.idVal = document.getElementById('inputId').value;
+        this.passwordVal = document.getElementById('inputPassword').value;
+
+        // jwt 토큰 생성
+        axios.post('http://localhost:8000/api/signin', {
+            "userId": this.idVal,
+            "userPassword": this.passwordVal
+          })
+          .then(res => {
+            this.$store.commit('setJwtToken', res.data);
+
+            // 유저 정보 저장
+            const headers = {
+              "Authorization": "Bearer " + this.$store.state.jwtToken
+            };
+            axios.defaults.headers.post = null
+            axios.get('http://localhost:8000/api/user', {
+                headers
+              })
+              .then(res => {
+                this.$store.commit('setUserInfo', res.data);
+                console.log(this.$store.state.userInfo);
+              });
+          });
+
+        // location.href="/";
+      }
     }
 
-}
+  }
 </script>
 
 <style scoped>
-
-/* ---------------------- boxMapping  -------------------------------- */
-.loginSheet{
+  /* ---------------------- boxMapping  -------------------------------- */
+  .loginSheet {
     /* background-color: aqua; */
     width: 1380px;
     height: 513px;
     margin-left: auto;
     margin-right: auto;
-    
-}
 
-.popContainer{
+  }
+
+  .popContainer {
     /* background-color: bisque; */
-    
+
     width: 720px;
     height: 513px;
     margin-left: auto;
     margin-right: auto;
-    position: relative ;
-}
+    position: relative;
+  }
 
-.popContent{
+  .popContent {
     /* background-color: chartreuse; */
 
     width: 631px;
     height: 100%;
     margin-left: auto;
     margin-right: auto;
-}
+  }
 
-.contentHeader{
+  .contentHeader {
     /* background-color: brown; */
-    
+
     width: 631px;
     height: 28px;
     padding: 56px 0 0 0;
-    margin-bottom: 43px; 
-}
+    margin-bottom: 43px;
+  }
 
-.loginForm{
+  .loginForm {
     /* background-color: coral; */
-    
+
     display: inline-block;
     height: 394px;
     width: 330px;
-}
+  }
 
-.adImg{
+  .adImg {
     background-color: cornflowerblue;
-    
+
     float: right;
     height: 345px;
     width: 253px;
-}
+  }
 
 
-/* ---------------------- boxMapping end  -------------------------------- */
+  /* ---------------------- boxMapping end  -------------------------------- */
 
 
-/* ---------------------- login form  -------------------------------- */
-form{
-    padding:10px;
-}
-.input-box{
-    position:relative;
-    margin:10px 0;
-}
-.input-box > input{
-    background:transparent;
-    border:none;
+  /* ---------------------- login form  -------------------------------- */
+  form {
+    padding: 10px;
+  }
+
+  .input-box {
+    position: relative;
+    margin: 10px 0;
+  }
+
+  .input-box>input {
+    background: transparent;
+    border: none;
     border-bottom: solid 1px #ccc;
-    padding:20px 0px 5px 0px;
-    font-size:14pt;
-    width:100%;
-}
-input::placeholder{
-    color:transparent;
-}
-input:placeholder-shown + label{
-    color:#aaa;
-    font-size:14pt;
-    top:15px;
+    padding: 20px 0px 5px 0px;
+    font-size: 14pt;
+    width: 100%;
+  }
 
-}
-input:focus + label, label{
-    color:#8aa1a1;
-    font-size:10pt;
+  input::placeholder {
+    color: transparent;
+  }
+
+  input:placeholder-shown+label {
+    color: #aaa;
+    font-size: 14pt;
+    top: 15px;
+
+  }
+
+  input:focus+label,
+  label {
+    color: #8aa1a1;
+    font-size: 10pt;
     pointer-events: none;
     position: absolute;
-    left:0px;
-    top:0px;
-    transition: all 0.2s ease ;
+    left: 0px;
+    top: 0px;
+    transition: all 0.2s ease;
     -webkit-transition: all 0.2s ease;
     -moz-transition: all 0.2s ease;
     -o-transition: all 0.2s ease;
-}
+  }
 
-input:focus, input:not(:placeholder-shown){
+  input:focus,
+  input:not(:placeholder-shown) {
     border-bottom: solid 1px #8aa1a1;
-    outline:none;
-}
-input[type=submit]{
+    outline: none;
+  }
+
+  /* input[type=submit]{
     background-color: skyblue;
     border:none;
     color:white;
@@ -215,53 +257,66 @@ input[type=submit]{
     height:50px;
     font-size: 14pt;
     margin-top: 30px;
-}
+} */
+  .btnSubmit {
+    background-color: skyblue;
+    border: none;
+    color: white;
+    width: 100%;
+    height: 50px;
+    font-size: 14pt;
+    margin-top: 30px;
+  }
 
-#setid, #findid, #findpw{
+  #setid,
+  #findid,
+  #findpw {
     text-align: right;
     font-size: 10pt;
     padding: auto;
-    color:rgb(164, 164, 164);
+    color: rgb(164, 164, 164);
     float: right;
-    
-}
-/* ---------------------- login form end -------------------------------- */
+
+  }
+
+  /* ---------------------- login form end -------------------------------- */
 
 
-/* ---------------------- advertise image sizing -------------------------------- */
-.adSize{
+  /* ---------------------- advertise image sizing -------------------------------- */
+  .adSize {
     width: 253px;
     height: 385px;
-}
-/* ---------------------- advertise image sizing end -------------------------------- */
+  }
 
-/* ----------------------------SNS Login Image-------------------------- */
+  /* ---------------------- advertise image sizing end -------------------------------- */
 
-.snsLogin{
-    
+  /* ----------------------------SNS Login Image-------------------------- */
+
+  .snsLogin {
+
     width: 100%;
     height: 100px;
     margin-top: 20px;
     font-size: x-small;
     align-items: center;
-    
-}
 
-.snsImg{
+  }
+
+  .snsImg {
     display: flex;
-    justify-content :space-around;
-}
+    justify-content: space-around;
+  }
 
-.snsImgSize{
+  .snsImgSize {
     width: 50px;
     height: 50px;
-}
+  }
 
 
-/* ----------------------------SNS Login Image end-------------------------- */
+  /* ----------------------------SNS Login Image end-------------------------- */
 
-/* ----------------------------비회원 조회-------------------------- */
-.serch{
+  /* ----------------------------비회원 조회-------------------------- */
+  .serch {
     display: block;
     padding: 14px;
     border-top: #666 solid 0.5px;
@@ -272,8 +327,8 @@ input[type=submit]{
     text-align: center;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-}
+  }
 
 
-/* ----------------------------비회원 조회 end-------------------------- */
+  /* ----------------------------비회원 조회 end-------------------------- */
 </style>

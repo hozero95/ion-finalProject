@@ -28,7 +28,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UsersVO {
-	@JsonIgnore
 	@Id
 	@Column(name = "user_unum")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_user_unum")
