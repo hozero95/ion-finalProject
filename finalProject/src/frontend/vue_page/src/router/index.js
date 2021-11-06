@@ -20,6 +20,7 @@ import Product from '@/components/Product'
 import Cart from '@/components/Cart'
 import Payment from '@/components/Payment'
 import Event from '@/components/event'
+import AdminPage from '@/components/AdminPage'
 
 
 Vue.use(Router)
@@ -125,6 +126,12 @@ export default new Router({
       path: '/event',
       name: 'is event',
       component: Event
+    },
+    // ---------------------------- AdminPage Start --------------------------------------------
+    {
+      path: '/adminpage',
+      name: 'is adminpage',
+      component: AdminPage
     },
   ]
 })

@@ -154,7 +154,7 @@ export default {
     border-right: 1px solid #d1dadd;
     border-left: 1px solid #d1dadd;
     width: 1020px;
-    height: 2000px;
+    height: fit-content;
 }
 
 .header_my {
@@ -190,7 +190,7 @@ export default {
 .content_my{
     width: 1018px;
     height: 1000px;
-    border : solid 3px red;
+    /* border : solid 3px red; */
 }
 
 .content_side{
@@ -198,14 +198,12 @@ export default {
     float: left;
     width: 200px;
     height: 600px;
-    border-right: solid 1px #d1dadd;
+    
 }
 
 .btn_size{
     width: 200px;
     height: 60px;
-    border : solid 1px #d1dadd;
-    
 }
 
 
