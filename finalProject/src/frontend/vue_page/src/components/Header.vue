@@ -6,22 +6,22 @@
       <!-- header left -->
       <div class="header__logo">
         <router-link to="/">
-          <img src="../images/fish-Icon.png" alt="">
+          <img src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/logoimg_white_backgound.jpg" alt="" @click= "$store.commit('show')">
         </router-link>
         <!-- <a href="#">TEAM 5징어 </a> -->
       </div>
       <!-- 검색창 -->
-      <div class="header__search">
+      <!-- <div class="header__search">
         <div class="input__header__search__input">
           <input type="">
           <button class="search-btn" type="button"><i class="fas fa-search"></i></button>
         </div>
-      </div>
+      </div> -->
       <!-- header right -->
       <ul class="header__menu">
         <div v-if="this.$store.state.jwtToken == null || this.$store.state.jwtToken == ''">
           <router-link to="login">
-            <li class="header__menu__iteam" @click="$emit('hide')">로그인</li>
+            <li class="header__menu__iteam" @click="$store.commit('hideNav')">로그인</li>
           </router-link>
           <router-link to="joinuser">
             <li class="header__menu__iteam">회원가입</li>
@@ -29,7 +29,15 @@
         </div>
         <router-link to="review">
           <li class="header__menu__iteam">리뷰관리</li>
+        
         </router-link>
+                <router-link to="AdminPage">
+          <li class="header__menu__iteam" @click="[$store.commit('hideNav')],
+          $store.commit('hideFooter') ">
+            관리자 페이지</li>
+          <!-- v-if= test 하고 admin 속성에 따라 보이게 할것.-->
+        </router-link>
+
         <router-link to="userpage">
           <li class="header__menu__iteam"><i class="far fa-user"></i></li>
         </router-link>
@@ -51,7 +59,11 @@
 
 <script>
   export default {
-
+      data() {
+        return {
+          
+        }
+      },
   }
 </script>
 

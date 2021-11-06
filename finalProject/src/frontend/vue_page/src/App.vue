@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <Header></Header>
-    <Navbar_top></Navbar_top>
+    <Navbar_top v-if="$store.state.viewFlag[1] == 1"></Navbar_top>
     <router-view/>
-    <Footer></Footer>
+    <Footer v-if="$store.state.viewFlag[2] == 1"></Footer>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   name: 'App',
   data() {
     return {
-      flag : true
+      
     }
   },
   components : {

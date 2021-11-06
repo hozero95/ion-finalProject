@@ -3,11 +3,19 @@
     <h1>{{msg}}</h1>
     <p>here is test page 입니다.</p>
     <p>here is test page 입니다.</p>
-    <p>{{ $store.state.age }}</p>
+    <p>삭제하지마세요 ~ test 내역 확인중~</p>
+    
+    <p>{{ $store.state.viewflag[0]}}</p>
+    <p>{{ $store.state.viewflag[1]}}</p>
+    <p>{{ $store.state.viewflag[2]}}</p>
+    <p>{{ $store.state.test[0]}}</p>
+    <p>{{ $store.state.test[1]}}</p>
+    <p>{{ $store.state.test[2]}}</p>
+    
     <button v-on:click="fetchData">get data</button>
     <button v-on:click="getdata">get data2</button>
     <button v-on:click="getdata">get data2</button>
-    <button @click="$store.commit('한살더하기', 1)">버튼</button>
+    
 
 
   </div>

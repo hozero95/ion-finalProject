@@ -19,7 +19,9 @@ const store = new Vuex.Store({
         userTel: '',
         userRegdate: '',
         authorities: {}
-      }
+      },
+      test : [0,1,2],
+      viewflag : [0,1,2],
     }
   },
   mutations :{
@@ -28,7 +30,19 @@ const store = new Vuex.Store({
     },
     setUserInfo(state, data) {
       state.userInfo = data;
-    }
+    },
+    show(state){
+      state.viewFlag = [1,1,1];
+    },
+    hideHeader(state){
+      state.viewFlag[0] = 0;
+    },
+    hideNav(state){
+      state.viewFlag[1] = 0;
+    },
+    hideFooter(state){
+      state.viewFlag[2] = 0;
+    },
   },
 
 })
