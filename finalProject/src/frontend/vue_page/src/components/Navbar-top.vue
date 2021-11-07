@@ -1,52 +1,13 @@
 <template>
   <!-- top navbar -->
-  <div class="navbar-top" v->
-    <ul class="navbar-top__menu">
-      <li class="navbar-top__menu__iteam">
-        <a href="http://localhost:8001/#/category">생선</a>
+  <div class="navbar-top">
+    <ul id="element" class="navbar-top__menu">
+      <li v-for="(bigCate, index) in bigCates" v-bind:key="index" class="navbar-top__menu__iteam">
+        <a href="#">{{bigCate.categoryName}}</a>
         <div class="dropdown-content">
-          <router-link to="category"><a href="#">생물 생선</a></router-link>
-          <router-link to="category"><a href="#">냉동 생선</a></router-link>
-          <router-link to="category"><a href="#">반건조 생선</a></router-link>
-          <router-link to="category"><a href="#">굴비</a></router-link>
+          <router-link v-for="smallCate in smallCates[index]" v-bind:key="smallCate.categoryUnum" to="category"><a href="#">{{smallCate.categoryName}}</a></router-link>
         </div>
       </li>
-
-      <li class="navbar-top__menu__iteam">
-        <a href="http://localhost:8001/#/category">킹크랩, 꽃게, 랍스터</a>
-        <div class="dropdown-content">
-          <router-link to="category"><a href="#">킹크랩</a></router-link>
-          <router-link to="category"><a href="#">꽃게</a></router-link>
-          <router-link to="category"><a href="#">랍스터</a></router-link>
-        </div>
-      </li>
-
-      <li class="navbar-top__menu__iteam">
-        <a href="http://localhost:8001/#/category">새우류</a>
-        <div class="dropdown-content">
-          <router-link to="category"><a href="#">냉동 새우</a></router-link>
-          <router-link to="category"><a href="#">횟감용 새우</a></router-link>
-          <router-link to="category"><a href="#">활새우</a></router-link>
-        </div>
-      </li>
-      <li class="navbar-top__menu__iteam">
-        <a href="http://localhost:8001/#/category">쭈꾸미, 오징어, 문어</a>
-        <div class="dropdown-content">
-          <router-link to="category"><a href="#">쭈꾸미, 낙지, 꼴뚜기</a></router-link>
-          <router-link to="category"><a href="#">오징어 한치</a></router-link>
-          <router-link to="category"><a href="#">문어</a></router-link>
-        </div>
-      </li>
-      <li class="navbar-top__menu__iteam">/</li>
-      <router-link to="seasonalProduct">
-        <li class="navbar-top__menu__iteam">제철</li>
-      </router-link>
-      <router-link to="bestProduct">
-        <li class="navbar-top__menu__iteam">BEST</li>
-      </router-link>
-      <router-link to="event">
-        <li class="navbar-top__menu__iteam">이벤트</li>
-      </router-link>
     </ul>
   </div>
 </template>
@@ -54,6 +15,12 @@
 <script>
   import axios from 'axios'
   export default {
+    data() {
+      return {
+        bigCates: [],
+        smallCates: [[]]
+      }
+    },
     created() {
       axios.get('http://localhost:8000/api/main/show/nav')
         .then(res => {
@@ -67,19 +34,25 @@
           }
 
           var smallCate = new Array(bigCate.length);
-          for(var i = 0; i < smallCate.length; i++) {
+          for (var i = 0; i < smallCate.length; i++) {
             smallCate[i] = new Array();
           }
 
           for (var i = 0; i < res.data.length; i++) {
             if (!res.data[i].categoryRef == null || !res.data[i].categoryRef == '') {
-              for(var j = 0; j < bigCate.length; j++) {
-                if(res.data[i].categoryRef == bigCate[j].categoryUnum) {
+              for (var j = 0; j < bigCate.length; j++) {
+                if (res.data[i].categoryRef == bigCate[j].categoryUnum) {
                   smallCate[j].push(res.data[i]);
                 }
               }
             }
           }
+
+          this.bigCates = bigCate;
+          this.smallCates = smallCate;
+
+          console.log(this.bigCates);
+          console.log(this.smallCates);
         });
     }
   }
@@ -183,5 +156,4 @@
   .navbar-top__menu__iteam:hover .dropdown-content {
     display: block;
   }
-
 </style>
