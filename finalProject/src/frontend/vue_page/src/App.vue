@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header></Header>
-    <!-- <NavbarTop v-if="$store.state.viewFlag[1] == 1"></NavbarTop> -->
+    <!-- <Navbar_top v-if="$store.state.viewFlag[1] == 1"></Navbar_top> -->
     <NavbarTop></NavbarTop>
     <router-view/>
     <!-- <Footer v-if="$store.state.viewFlag[2] == 1"></Footer> -->

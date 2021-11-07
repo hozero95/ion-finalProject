@@ -1,5 +1,7 @@
 package com.example.finalProject.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,5 +68,9 @@ public class AdminService {
 
 	public Long userDelete(Long userUnum) {
 		return adminMapper.userDelete(userUnum);
+	}
+	
+	public List<ProductVO> productAll(){
+		return adminMapper.productAll();
 	}
 }
