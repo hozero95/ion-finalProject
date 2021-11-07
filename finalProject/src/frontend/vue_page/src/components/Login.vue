@@ -5,7 +5,6 @@
     <div class="loginSheet">
       <div class="popContainer">
         <div class="popContent">
-
           <div class="contentHeader">
             <h1><span>로그인</span></h1>
           </div>
@@ -17,81 +16,24 @@
             </div>
 
             <div class="input-box">
-
               <input id="inputPassword" type="password" name="password" placeholder="비밀번호">
               <label for="password">비밀번호</label>
             </div>
 
-            <!-- <input type="checkbox"> <span style="font-size: xx-small;">아이디 저장</span> -->
-
             <router-link to="joinuser">
               <div id="setid">회원가입 </div>
             </router-link>
-            <!-- <div id="findpw">비밀번호 찾기 ┃</div>
-                    <div id="findid">아이디 찾기 ┃</div> -->
+
             <input @click="login" class="btnSubmit" type="button" value="로그인">
-
-            <!-- <div class="snsLogin">
-                        <div class="snsImg">
-
-                            <a href="http://www.naver.com">
-                                <img class="snsImgSize"
-                                    src="https://raw.githubusercontent.com/sky4564/img/master/login/kakao_img.jpg"
-                                    alt="kakao">
-                            <br><span>카카오 로그인</span>
-                            </a>
-                            
-                            <a href=" http://www.naver.com"> <img class="snsImgSize"
-                                    src="https://raw.githubusercontent.com/sky4564/img/master/login/naver_img.jpg"
-                                    alt="naver">
-                                <br><span>네이버 로그인</span>
-                            </a>
-                            
-                            <a href=" http://www.naver.com"> <img class="snsImgSize"
-                                src="https://raw.githubusercontent.com/sky4564/img/master/login/facebook_img.jpg"
-                                alt="facebook">
-                            <br><span>페이스북 로그인</span>
-                            </a>
-                            
-                            <a href=" http://www.naver.com"> <img class="snsImgSize"
-                                src="https://raw.githubusercontent.com/sky4564/img/master/login/apple_img.jpg"
-                                alt="apple">
-                            <br><span>애플 로그인</span>
-                            </a>                                          
-                        
-                        </div>
-                        
-                    </div>                         -->
-
-            <!-- <a href="https://github.com/" class="serch" > <span>비회원 조회</span> </a> -->
-
           </form>
 
           <div class=" adImg">
             <img src="https://raw.githubusercontent.com/sky4564/img/master/test.jpg" alt="ex" class="adSize">
-
-
-            <!-- <img class="adImg" src="https://raw.githubusercontent.com/sky4564/img/master/test.jpg" alt=""> -->
-
-
-
-
           </div>
-
-
-
-
-
-
         </div>
-
       </div>
     </div>
-
-
-
   </body>
-
 </template>
 
 <script>
@@ -133,7 +75,7 @@
               });
           });
 
-        // location.href="/";
+        location.href="http://localhost:8001/";
       }
     }
 

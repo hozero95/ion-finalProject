@@ -20,8 +20,8 @@ const store = new Vuex.Store({
         userRegdate: '',
         authorities: {}
       },
-      test : [0,1,2],
-      viewflag : [0,1,2],
+      test : [0, 1, 2],
+      viewflag : [0, 1, 2],
     }
   },
   mutations :{
@@ -32,7 +32,7 @@ const store = new Vuex.Store({
       state.userInfo = data;
     },
     show(state){
-      state.viewFlag = [1,1,1];
+      state.viewFlag = [1, 1, 1];
     },
     hideHeader(state){
       state.viewFlag[0] = 0;
@@ -43,6 +43,10 @@ const store = new Vuex.Store({
     hideFooter(state){
       state.viewFlag[2] = 0;
     },
+    logout(state) {
+      state.jwtToken = null;
+      userInfo = null;
+    }
   },
 
 })

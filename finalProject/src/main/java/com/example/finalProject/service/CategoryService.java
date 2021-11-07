@@ -7,12 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.finalProject.domain.entity.CategoryVO;
+import com.example.finalProject.mapper.CategoryMapper;
 import com.example.finalProject.respository.CategoryRepository;
 
 @Service
 public class CategoryService {
 	@Autowired
 	private CategoryRepository categoryRepository;
+	@Autowired
+	private CategoryMapper categoryMapper;
 
 	public List<CategoryVO> findAll() {
 		List<CategoryVO> category = new ArrayList<>();
@@ -22,7 +25,7 @@ public class CategoryService {
 
 	public List<CategoryVO> showNav() {
 		List<CategoryVO> category = new ArrayList<>();
-		categoryRepository.findByCategoryUsedIsNullOrCategoryUsed(0L).forEach(e -> category.add(e));
+		category = categoryMapper.showNav();
 		return category;
 	}
 

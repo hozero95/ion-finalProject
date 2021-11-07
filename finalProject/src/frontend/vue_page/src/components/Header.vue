@@ -6,7 +6,8 @@
       <!-- header left -->
       <div class="header__logo">
         <router-link to="/">
-          <img src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/logoimg_white_backgound.jpg" alt="" @click= "$store.commit('show')">
+          <img src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/logoimg_white_backgound.jpg"
+            alt="" @click="$store.commit('show')">
         </router-link>
         <!-- <a href="#">TEAM 5징어 </a> -->
       </div>
@@ -27,16 +28,15 @@
             <li class="header__menu__iteam">회원가입</li>
           </router-link>
         </div>
-        <router-link to="review">
+        <!-- <router-link to="review">
           <li class="header__menu__iteam">리뷰관리</li>
-        
-        </router-link>
-                <router-link to="AdminPage">
-          <li class="header__menu__iteam" @click="[$store.commit('hideNav')],
-          $store.commit('hideFooter') ">
-            관리자 페이지</li>
-          <!-- v-if= test 하고 admin 속성에 따라 보이게 할것.-->
-        </router-link>
+        </router-link> -->
+        <div>
+          <li v-if="this.$store.state.jwtToken != null || this.$store.state.jwtToken != ''" class="header__menu__iteam" @click="logout">로그아웃</li>
+          <router-link to="AdminPage">
+            <li v-if="this.$store.state.userInfo.authorities.length >= 2" class="header__menu__iteam" @click="[$store.commit('hideNav')], $store.commit('hideFooter') ">관리자 페이지</li>
+          </router-link>
+        </div>
 
         <router-link to="userpage">
           <li class="header__menu__iteam"><i class="far fa-user"></i></li>
@@ -59,12 +59,18 @@
 
 <script>
   export default {
-      data() {
-        return {
-          
-        }
-      },
+    data() {
+      return {
+
+      }
+    },
+    methods : {
+      logout() {
+        this.$store.commit('logout');
+      }
+    }
   }
+
 </script>
 
 <style>
@@ -219,4 +225,5 @@
       padding-left: 170px;
     }
   }
+
 </style>
