@@ -162,5 +162,11 @@
       DELETE FROM users
        WHERE user_unum = #{userUnum}
    </delete>
+   
+   <select id="productAll" resultType="ProductVO">
+      SELECT *
+	    FROM product
+	   ORDER BY product_unum DESC
+   </select>
 </mapper>
 

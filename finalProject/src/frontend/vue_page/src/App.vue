@@ -1,9 +1,11 @@
 <template>
   <div id="app">
     <Header></Header>
-    <Navbar_top v-if="$store.state.viewFlag[1] == 1"></Navbar_top>
+    <!-- <Navbar_top v-if="$store.state.viewFlag[1] == 1"></Navbar_top> -->
+    <Navbar_top></Navbar_top>
     <router-view/>
-    <Footer v-if="$store.state.viewFlag[2] == 1"></Footer>
+    <!-- <Footer v-if="$store.state.viewFlag[2] == 1"></Footer> -->
+    <Footer></Footer>
   </div>
 </template>
 
