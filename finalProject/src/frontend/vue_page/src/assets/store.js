@@ -32,15 +32,14 @@ const store = new Vuex.Store({
     setUserInfo(state, data) {
       state.userInfo = data;
     },
-    show(state) {
-      state.viewFlag[0] = 1;
-      state.viewFlag[1] = 1;
-    },
-    hideNav(state) {
-      state.viewFlag[0] = 0;
+    showAll(state) {
+      state.viewflag = [1, 1];
     },
     hideFooter(state) {
-      state.viewFlag[1] = 0;
+      state.viewflag = [1, 0];
+    },
+    hideAll(state) {
+      state.viewflag = [0, 0];
     },
     logout(state) {
       state.jwtToken = '';

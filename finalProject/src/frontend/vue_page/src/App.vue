@@ -2,11 +2,11 @@
   <div id="app">
     <Header></Header>
 
-    <NavbarTop v-if="this.$store.state.viewflag[0] == 1"></NavbarTop>
+    <NavbarTop v-if="this.viewflag[0] == 1"></NavbarTop>
 
     <router-view></router-view>
 
-    <Footer v-if="this.$store.state.viewflag[1] == 1"></Footer>
+    <Footer v-if="this.viewflag[1] == 1"></Footer>
   </div>
 </template>
 
@@ -16,21 +16,28 @@
   import NavbarTop from './components/Navbar-top.vue'
   export default {
     name: 'App',
-    data() {
-      return {
-        viewflag: []
-      }
-    },
     components: {
       Header,
       Footer,
       NavbarTop
     },
+    data() {
+      return {
+        viewflag: []
+      }
+    },
+    created() {
+      this.viewflag = this.$store.state.viewflag;
+    },
     computed: {
-      
+      setViewFlag() {
+        return this.$store.state.viewflag;
+      }
     },
     watch: {
-
+      setViewFlag() {
+        this.viewflag = this.setViewFlag;
+      }
     }
   }
 </script>
