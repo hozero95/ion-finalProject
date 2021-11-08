@@ -27,7 +27,7 @@ const store = new Vuex.Store({
   },
   mutations: {
     setJwtToken(state, data) {
-      state.jwtToken = data.token;
+      state.jwtToken = data;
     },
     setUserInfo(state, data) {
       state.userInfo = data;
