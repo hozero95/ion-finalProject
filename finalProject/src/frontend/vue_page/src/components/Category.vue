@@ -30,8 +30,9 @@
 
 
       <div class="category__seafoods">
+
         <div class="category__seafoods__wrap" v-for="(product, index) in products" v-bind:key="index">
-          <a href="" class="seafood" target="blank" data-type="">
+          <a href="" class="seafood">
             <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
             <div class="seafood__info">
               <div class="seafood__info__logo">해물오빠</div>
@@ -44,6 +45,7 @@
           <input type="hidden" :value="product.productUnum">
         </div>
       </div>
+
     </section>
 
     <section class="more">
@@ -62,7 +64,7 @@
         categoryUnum: null,
         categoryName: null,
         products: [],
-        sort:''
+        sort: ''
       }
     },
     created() {
@@ -100,7 +102,7 @@
               product.push(res.data[i]);
             }
             this.products = product;
-            this.sort='최신순';
+            this.sort = '최신순';
           });
       },
       showLowerPrice() {
@@ -115,7 +117,7 @@
               product.push(res.data[i]);
             }
             this.products = product;
-            this.sort='낮은가격순';
+            this.sort = '낮은가격순';
           });
       },
       showHigherPrice() {
@@ -130,7 +132,7 @@
               product.push(res.data[i]);
             }
             this.products = product;
-            this.sort='높은가격순';
+            this.sort = '높은가격순';
           });
       },
       showManyReply() {
@@ -145,7 +147,7 @@
               product.push(res.data[i]);
             }
             this.products = product;
-            this.sort='리뷰많은순';
+            this.sort = '리뷰많은순';
           });
       }
     }
@@ -226,8 +228,8 @@
     margin-bottom: 2%;
   }
 
-  .seafood__info__clickable{
-      font-size: 20px;
+  .seafood__info__clickable {
+    font-size: 20px;
   }
 
   /* more btn */

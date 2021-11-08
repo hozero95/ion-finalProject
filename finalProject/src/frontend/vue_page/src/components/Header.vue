@@ -30,7 +30,7 @@
           <li class="header__menu__iteam" @click="logout">로그아웃</li>
         </router-link>
         <router-link to="AdminPage" v-if="this.$store.state.userInfo.authorities.length >= 2">
-          <li class="header__menu__iteam">관리자 페이지</li>
+          <li class="header__menu__iteam" @click="hiding">관리자 페이지</li>
         </router-link>
 
         <router-link to="userpage">
@@ -54,8 +54,11 @@
         this.$store.commit('logout');
         alert('로그아웃 되었습니다.');
       },
+      hiding() {
+        this.$store.commit('hideAll');
+      },
       showing() {
-        this.$store.commit('show');
+        this.$store.commit('showAll');
       },
       checkStore() {
         console.log(this.$store.state.jwtToken);
