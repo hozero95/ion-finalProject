@@ -31,7 +31,7 @@
                     />
                     <div class="seafood__info">
                         <div class="seafood__info__top">
-                            <div class="logo">5징어</div>
+                            <div class="logo">해물오빠</div>
                             <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
                         </div>
                         <div class="seafood__info__title">
@@ -50,7 +50,7 @@
                     />
                     <div class="seafood__info">
                         <div class="seafood__info__top">
-                            <div class="logo">5징어</div>
+                            <div class="logo">해물오빠</div>
                             <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
                         </div>
                         <div class="seafood__info__title">
@@ -69,7 +69,7 @@
                     />
                     <div class="seafood__info">
                         <div class="seafood__info__top">
-                            <div class="logo">5징어</div>
+                            <div class="logo">해물오빠</div>
                             <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
                         </div>
                         <div class="seafood__info__title">
@@ -88,7 +88,7 @@
                     />
                     <div class="seafood__info">
                         <div class="seafood__info__top">
-                            <div class="logo">5징어</div>
+                            <div class="logo">해물오빠</div>
                             <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
                         </div>
                         <div class="seafood__info__title">
@@ -107,7 +107,7 @@
                     />
                     <div class="seafood__info">
                         <div class="seafood__info__top">
-                            <div class="logo">5징어</div>
+                            <div class="logo">해물오빠</div>
                             <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
                         </div>
                         <div class="seafood__info__title">
@@ -126,7 +126,7 @@
                     />
                     <div class="seafood__info">
                         <div class="seafood__info__top">
-                            <div class="logo">5징어</div>
+                            <div class="logo">해물오빠</div>
                             <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
                         </div>
                         <div class="seafood__info__title">
@@ -145,7 +145,7 @@
                     />
                     <div class="seafood__info">
                         <div class="seafood__info__top">
-                            <div class="logo">5징어</div>
+                            <div class="logo">해물오빠</div>
                             <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
                         </div>
                         <div class="seafood__info__title">
@@ -164,7 +164,7 @@
                     />
                     <div class="seafood__info">
                         <div class="seafood__info__top">
-                            <div class="logo">5징어</div>
+                            <div class="logo">해물오빠</div>
                             <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
                         </div>
                         <div class="seafood__info__title">
@@ -244,10 +244,14 @@ export default {
 .seafood__info__top .logo{
     background-color: #132c7d;
     color: white;
-    width: 60px;
+    width: 80px;
     height: 25px;
     text-align: center;
 }
+
+.seafood__info__clickable{
+      font-size: 20px;
+  }
 
 /* more btn */
 .more{

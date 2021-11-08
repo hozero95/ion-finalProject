@@ -1,176 +1,193 @@
 <template>
+
   <body>
-	<hr>
-	<!-- footer -->
-	<footer class="footer">
-		<div class="footer__left">
-			<div class="footer__left__row1">
-				<p><strong>(주) 에스에스지닷컴</strong></p>
-				<p><h3><i class="fas fa-headset"></i> 1577-3419</h3></p>
-				<p class="text2">고객센터/전자금융거래분쟁처리</p>
-				<p class="text1">대표자: 강희석 서울특별시 종로구 우정국로 26 사업자등록번호: 870-88-01143 통신판매업 신고번호: 제2020-서울종로-1154호</p>
-				<p class="text1">개인정보보호책임자: 김민 Fax: 02-2068-7118 ssg@ssg.com</p>
-			</div>	
-			<div class="footer__left__row2">
-				<p class="text2"><strong>SSG.COM 호스팅서비스 사업자 : (주)에스에스지닷컴</strong></p>
-				<div><img src="../images/prize.png" alt=""></div>
-				<p class="text2"><strong>우리은행 채무지급보증 안내</strong></p>
-				<p class="text3">당사는 고객님이 현금 결제한 금액에 대해 우리은행과 채무지급보증 계약을 체결하여 안전거래를 보장하고 있습니다</p>
-				<ul>
-					<li></li>
-				</ul>
-			</div>	
-			<div class="footer__left__row3">
-				<p class="text3">㈜에스에스지닷컴 사이트의 상품/판매자/쇼핑정보, 컨텐츠, UI 등에 대한 무단 복제, 전송, 배포, 스크래핑 등의 행위는 저작권법, 콘텐츠사업 진흥법 등에 의하여 엄격히 금지됩니다. </p>
-			</div>
-		</div>
-		<div class="footer__right">
-			<div><img src="../images/qr.png" alt=""></div>
-		</div>
-	</footer>
-</div>
-</body>
+    <hr>
+    <!-- footer -->
+    <footer class="footer">
+      <div class="footer__left">
+        <div class="footer__left__row1">
+          <p><strong>(주) 에스에스지닷컴</strong></p>
+          <p>
+            <h3><i class="fas fa-headset"></i> 1577-3419</h3>
+          </p>
+          <p class="text2">고객센터/전자금융거래분쟁처리</p>
+          <p class="text1">대표자: 강희석 서울특별시 종로구 우정국로 26 사업자등록번호: 870-88-01143 통신판매업 신고번호: 제2020-서울종로-1154호</p>
+          <p class="text1">개인정보보호책임자: 김민 Fax: 02-2068-7118 ssg@ssg.com</p>
+        </div>
+        <div class="footer__left__row2">
+          <p class="text2"><strong>SSG.COM 호스팅서비스 사업자 : (주)에스에스지닷컴</strong></p>
+          <div><img src="../images/prize.png" alt=""></div>
+          <p class="text2"><strong>우리은행 채무지급보증 안내</strong></p>
+          <p class="text3">당사는 고객님이 현금 결제한 금액에 대해 우리은행과 채무지급보증 계약을 체결하여 안전거래를 보장하고 있습니다</p>
+          <ul>
+            <li></li>
+          </ul>
+        </div>
+        <div class="footer__left__row3">
+          <p class="text3">㈜에스에스지닷컴 사이트의 상품/판매자/쇼핑정보, 컨텐츠, UI 등에 대한 무단 복제, 전송, 배포, 스크래핑 등의 행위는 저작권법, 콘텐츠사업 진흥법 등에 의하여
+            엄격히 금지됩니다. </p>
+        </div>
+      </div>
+      <div class="footer__right">
+        <div><img src="../images/qr.png" alt=""></div>
+      </div>
+    </footer>
+  </body>
 </template>
 
 <script>
-export default {
+  export default {
 
-}
+  }
 </script>
 
 <style>
-/* Universal tags */
-* {
+  /* Universal tags */
+  * {
     box-sizing: border-box;
-}
+  }
 
-body {
+  body {
     font-family: 'Open Sans', sans-serif;
     margin: 0;
-}
+  }
 
-a {
+  a {
     text-decoration: none;
     color: var(--color-white);
-}
+  }
 
-ul {
+  ul {
     padding-left: 0;
-}
+  }
 
-li {
+  li {
     list-style: none;
-}
+  }
 
-button {
+  button {
     background-color: transparent;
     cursor: pointer;
     border: none;
     outline: none;
     padding: 0;
-}
-p{
+  }
+
+  p {
     margin: 0;
-}
-.text1{
+  }
+
+  .text1 {
     margin: 0;
     font-size: 12px;
     color: gray;
-}
-.text2{
+  }
+
+  .text2 {
     margin: 0;
     font-size: 12px;
-}
-.text3{
+  }
+
+  .text3 {
     margin: 0;
     font-size: 11px;
     color: gray;
-}
+  }
 
-/* header */
-.header{
+  /* header */
+  .header {
     display: flex;
     justify-content: space-around;
     align-items: center;
     padding: 0 300px;
-}
-.header__logo img{
+  }
+
+  .header__logo img {
     width: 100px;
     height: 100px;
     margin-top: 20px;
-}
-.header__search{
+  }
+
+  .header__search {
     width: 230px;
     height: 15px;
     margin-right: 35%;
 
-}
+  }
 
-.input__header__search__input button{
+  .input__header__search__input button {
     position: absolute;
     left: 620px;
     top: 57px;
     color: #5172de;
-}
+  }
 
-.header__menu{
+  .header__menu {
     display: flex;
     margin-top: 30px;
-}
+  }
 
-.header__menu__iteam{
+  .header__menu__iteam {
     padding: 8px 12px;
     margin: 0 4px;
 
-}
+  }
 
-/* footer */
-.footer {
+  /* footer */
+  .footer {
     width: 100%;
     height: 335px;
     padding: 0 320px;
-}
-.footer__left {
+  }
+
+  .footer__left {
     width: 70%;
     float: left;
-}
-.footer__left__row2{
+  }
+
+  .footer__left__row2 {
     margin-top: 20px;
-}
-.footer__left__row2 img{
+  }
+
+  .footer__left__row2 img {
     width: 750px;
     height: 60px;
     margin-left: 0;
 
-}
-.footer__left__row3{
+  }
+
+  .footer__left__row3 {
     margin-top: 20px;
-}
-.footer__right {
+  }
+
+  .footer__right {
     width: 30%;
     float: right;
     padding-left: 180px;
-}
-.footer__right img {
+  }
+
+  .footer__right img {
     width: 200px;
     height: 80px;
-}
+  }
 
-/* 노트북 사이즈 */
-@media screen and (max-width: 1500px) { 
-    .header{
-        padding: 0 80px;
+  /* 노트북 사이즈 */
+  @media screen and (max-width: 1500px) {
+    .header {
+      padding: 0 80px;
     }
-    .input__header__search__input button{
-        left: 387px;
-        top: 57px;
+
+    .input__header__search__input button {
+      left: 387px;
+      top: 57px;
     }
+
     .footer {
-        padding: 0 90px;
+      padding: 0 90px;
     }
-    .footer__right {
-        padding-left: 170px;
-    }
-}
 
+    .footer__right {
+      padding-left: 170px;
+    }
+  }
 </style>

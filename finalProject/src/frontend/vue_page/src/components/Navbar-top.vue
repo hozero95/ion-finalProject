@@ -5,8 +5,11 @@
       <li v-for="(bigCate, index) in bigCates" v-bind:key="index" class="navbar-top__menu__iteam">
         <a href="#">{{bigCate.categoryName}}</a>
         <div class="dropdown-content">
-          <router-link v-for="smallCate in smallCates[index]" v-bind:key="smallCate.categoryUnum" to="category"><a
-              href="#">{{smallCate.categoryName}}</a></router-link>
+          <div v-for="smallCate in smallCates[index]" v-bind:key="smallCate.categoryUnum"
+            @click="clickProduct(smallCate.categoryUnum, smallCate.categoryName)">
+            <a href="#">{{smallCate.categoryName}}</a>
+            <!-- <input type="hidden" :value="smallCate.categoryUnum"> -->
+          </div>
         </div>
       </li>
       <li class="navbar-top__menu__iteam">/</li>
@@ -64,6 +67,16 @@
           this.bigCates = bigCate;
           this.smallCates = smallCate;
         });
+    },
+    methods: {
+      clickProduct(categoryUnum, categoryName) {
+        this.$store.commit('setCategoryUnum', categoryUnum);
+        this.$store.commit('setCategoryName', categoryName);
+
+        if (this.$route.path !== '/category') {
+          this.$router.push('/category');
+        }
+      }
     }
   }
 </script>
