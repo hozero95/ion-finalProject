@@ -31,7 +31,7 @@ public class CategoryService {
 
 	public List<CategoryVO> bestshowNav() {
 		List<CategoryVO> category = new ArrayList<>();
-		categoryRepository.findByCategoryRefIsNullAndCategoryUsedIsNullOrCategoryUsed(0L).forEach(e -> category.add(e));
+		categoryRepository.findByCategoryRefIsNullAndCategoryUsedIsNullOrCategoryUsedOrderByCategoryUnum(0L).forEach(e -> category.add(e));
 		return category;
 	}
 	
