@@ -8,7 +8,7 @@ const store = new Vuex.Store({
   plugins: [
     createPersistedState()
   ],
-  state(){
+  state() {
     return {
       jwtToken: '',
       userInfo: {
@@ -20,32 +20,40 @@ const store = new Vuex.Store({
         userRegdate: '',
         authorities: {}
       },
-      test : [0, 1, 2],
-      viewflag : [0, 1, 2],
+      test: [0, 1, 2],
+      viewflag: [0, 1, 2],
+      categoryUnum: -1,
+      categoryName: ''
     }
   },
-  mutations :{
+  mutations: {
     setJwtToken(state, data) {
       state.jwtToken = data.token;
     },
     setUserInfo(state, data) {
       state.userInfo = data;
     },
-    show(state){
+    show(state) {
       state.viewFlag = [1, 1, 1];
     },
-    hideHeader(state){
+    hideHeader(state) {
       state.viewFlag[0] = 0;
     },
-    hideNav(state){
+    hideNav(state) {
       state.viewFlag[1] = 0;
     },
-    hideFooter(state){
+    hideFooter(state) {
       state.viewFlag[2] = 0;
     },
     logout(state) {
       state.jwtToken = null;
       userInfo = null;
+    },
+    setCategoryUnum(state, categoryUnum) {
+      state.categoryUnum = categoryUnum;
+    },
+    setCategoryName(state, categoryName) {
+      state.categoryName = categoryName;
     }
   },
 
