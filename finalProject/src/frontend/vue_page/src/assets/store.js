@@ -20,8 +20,7 @@ const store = new Vuex.Store({
         userRegdate: '',
         authorities: {}
       },
-      test: [0, 1, 2],
-      viewflag: [0, 1, 2],
+      viewflag: [1, 1], // navbar, footer
       categoryUnum: -1,
       categoryName: ''
     }
@@ -34,20 +33,26 @@ const store = new Vuex.Store({
       state.userInfo = data;
     },
     show(state) {
-      state.viewFlag = [1, 1, 1];
-    },
-    hideHeader(state) {
-      state.viewFlag[0] = 0;
+      state.viewFlag[0] = 1;
+      state.viewFlag[1] = 1;
     },
     hideNav(state) {
-      state.viewFlag[1] = 0;
+      state.viewFlag[0] = 0;
     },
     hideFooter(state) {
-      state.viewFlag[2] = 0;
+      state.viewFlag[1] = 0;
     },
     logout(state) {
-      state.jwtToken = null;
-      userInfo = null;
+      state.jwtToken = '';
+      state.userInfo = {
+        userUnum: -1,
+        userId: '',
+        userEmail: '',
+        userAddress: '',
+        userTel: '',
+        userRegdate: '',
+        authorities: []
+      };
     },
     setCategoryUnum(state, categoryUnum) {
       state.categoryUnum = categoryUnum;

@@ -1,4 +1,5 @@
 <template>
+
   <body>
     <div class="loginSheet">
       <div class="popContainer">
@@ -22,10 +23,12 @@
               <div id="setid">회원가입 </div>
             </router-link>
 
-            <input @click="login" class="btnSubmit" type="button" value="로그인">
+            <router-link to="/">
+              <input @click="login" class="btnSubmit" type="button" value="로그인">
+            </router-link>
           </form>
 
-          <div class=" adImg">
+          <div class="adImg">
             <img src="https://raw.githubusercontent.com/sky4564/img/master/test.jpg" alt="ex" class="adSize">
           </div>
         </div>
@@ -57,25 +60,32 @@
             "userPassword": this.passwordVal
           })
           .then(res => {
-            this.$store.commit('setJwtToken', res.data);
+            this.$store.commit('setJwtToken', res.data.token);
 
             // 유저 정보 저장
             const headers = {
+              "Content-Type": "application/json",
               "Authorization": "Bearer " + this.$store.state.jwtToken
             };
+
             axios.defaults.headers.post = null
             axios.get('http://localhost:8000/api/user', {
                 headers
               })
               .then(res => {
                 this.$store.commit('setUserInfo', res.data);
-                console.log(this.$store.state.userInfo);
+                alert(res.data.userId + '님 어서오세요.');
+              }, error => {
+                alert('회원 정보를 불러오는데 실패하였습니다.');
               });
+          }, error => {
+            alert('아이디 또는 비밀번호가 잘못되었습니다.');
           });
-        
+
         console.log(this.$store.state.jwtToken);
         console.log(this.$store.state.userInfo);
-        // location.href = "http://localhost:8001/";
+
+        this.$router.push('/');
       }
     }
 

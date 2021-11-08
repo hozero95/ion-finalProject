@@ -1,38 +1,39 @@
 <template>
   <div id="app">
     <Header></Header>
-    <!-- <Navbar_top v-if="$store.state.viewFlag[1] == 1"></Navbar_top> -->
-    <NavbarTop></NavbarTop>
-    <router-view/>
-    <!-- <Footer v-if="$store.state.viewFlag[2] == 1"></Footer> -->
-    <Footer></Footer>
+
+    <NavbarTop v-if="this.$store.state.viewflag[0] == 1"></NavbarTop>
+
+    <router-view></router-view>
+
+    <Footer v-if="this.$store.state.viewflag[1] == 1"></Footer>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
-import Footer from './components/Footer.vue'
-import NavbarTop from './components/Navbar-top.vue'
-export default {
-  name: 'App',
-  data() {
-    return {
+  import Header from './components/Header.vue'
+  import Footer from './components/Footer.vue'
+  import NavbarTop from './components/Navbar-top.vue'
+  export default {
+    name: 'App',
+    data() {
+      return {
+        viewflag: []
+      }
+    },
+    components: {
+      Header,
+      Footer,
+      NavbarTop
+    },
+    computed: {
       
+    },
+    watch: {
+
     }
-  },
-  components : {
-    Header,
-    Footer,
-    NavbarTop
   }
-  
-}
-
-
 </script>
 
 <style>
-#app {
-
-}
 </style>

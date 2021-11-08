@@ -65,4 +65,8 @@ public class UserService {
 	public Optional<UsersVO> getMyUserWithAuthorities() {
 		return SecurityUtil.getCurrentUsername().flatMap(usersRepository::findOneWithAuthoritiesByUserId);
 	}
+	
+	public Boolean getUserId(String userId) {
+		return usersRepository.existsByUserId(userId);
+	}
 }
