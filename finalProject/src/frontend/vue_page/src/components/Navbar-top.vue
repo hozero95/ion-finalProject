@@ -5,20 +5,34 @@
       <li v-for="(bigCate, index) in bigCates" v-bind:key="index" class="navbar-top__menu__iteam">
         <a href="#">{{bigCate.categoryName}}</a>
         <div class="dropdown-content">
-          <router-link v-for="smallCate in smallCates[index]" v-bind:key="smallCate.categoryUnum" to="category"><a href="#">{{smallCate.categoryName}}</a></router-link>
+          <router-link v-for="smallCate in smallCates[index]" v-bind:key="smallCate.categoryUnum" to="category"><a
+              href="#">{{smallCate.categoryName}}</a></router-link>
         </div>
       </li>
+      <li class="navbar-top__menu__iteam">/</li>
+      <router-link to="seasonalProduct">
+        <li class="navbar-top__menu__iteam">제철</li>
+      </router-link>
+      <router-link to="bestProduct">
+        <li class="navbar-top__menu__iteam">BEST</li>
+      </router-link>
+      <router-link to="event">
+        <li class="navbar-top__menu__iteam">이벤트</li>
+      </router-link>
     </ul>
   </div>
 </template>
 
 <script>
   import axios from 'axios'
+
   export default {
     data() {
       return {
         bigCates: [],
-        smallCates: [[]]
+        smallCates: [
+          []
+        ]
       }
     },
     created() {
@@ -26,7 +40,6 @@
         .then(res => {
           var bigCate = new Array();
 
-          var count = 0
           for (var i = 0; i < res.data.length; i++) {
             if (res.data[i].categoryRef == null || res.data[i].categoryRef == '') {
               bigCate.push(res.data[i]);
@@ -50,9 +63,6 @@
 
           this.bigCates = bigCate;
           this.smallCates = smallCate;
-
-          console.log(this.bigCates);
-          console.log(this.smallCates);
         });
     }
   }

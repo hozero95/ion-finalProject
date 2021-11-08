@@ -1,7 +1,5 @@
 <template>
-
   <body>
-
     <div class="loginSheet">
       <div class="popContainer">
         <div class="popContent">
@@ -74,8 +72,10 @@
                 console.log(this.$store.state.userInfo);
               });
           });
-
-        location.href="http://localhost:8001/";
+        
+        console.log(this.$store.state.jwtToken);
+        console.log(this.$store.state.userInfo);
+        // location.href = "http://localhost:8001/";
       }
     }
 
@@ -95,7 +95,6 @@
 
   .popContainer {
     /* background-color: bisque; */
-
     width: 720px;
     height: 513px;
     margin-left: auto;
@@ -105,7 +104,6 @@
 
   .popContent {
     /* background-color: chartreuse; */
-
     width: 631px;
     height: 100%;
     margin-left: auto;
@@ -114,7 +112,6 @@
 
   .contentHeader {
     /* background-color: brown; */
-
     width: 631px;
     height: 28px;
     padding: 56px 0 0 0;
@@ -123,7 +120,6 @@
 
   .loginForm {
     /* background-color: coral; */
-
     display: inline-block;
     height: 394px;
     width: 330px;
@@ -131,7 +127,6 @@
 
   .adImg {
     background-color: cornflowerblue;
-
     float: right;
     height: 345px;
     width: 253px;
@@ -200,6 +195,7 @@
     font-size: 14pt;
     margin-top: 30px;
 } */
+
   .btnSubmit {
     background-color: skyblue;
     border: none;

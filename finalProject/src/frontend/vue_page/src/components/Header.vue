@@ -11,6 +11,7 @@
         </router-link>
         <!-- <a href="#">TEAM 5징어 </a> -->
       </div>
+
       <!-- 검색창 -->
       <!-- <div class="header__search">
         <div class="input__header__search__input">
@@ -18,8 +19,10 @@
           <button class="search-btn" type="button"><i class="fas fa-search"></i></button>
         </div>
       </div> -->
+
       <!-- header right -->
       <ul class="header__menu">
+        <button @click="checkStore">store 체크</button>
         <div v-if="this.$store.state.jwtToken == null || this.$store.state.jwtToken == ''">
           <router-link to="login">
             <li class="header__menu__iteam" @click="$store.commit('hideNav')">로그인</li>
@@ -28,13 +31,12 @@
             <li class="header__menu__iteam">회원가입</li>
           </router-link>
         </div>
-        <!-- <router-link to="review">
-          <li class="header__menu__iteam">리뷰관리</li>
-        </router-link> -->
         <div>
-          <li v-if="this.$store.state.jwtToken != null || this.$store.state.jwtToken != ''" class="header__menu__iteam" @click="logout">로그아웃</li>
+          <li v-if="this.$store.state.jwtToken != null && this.$store.state.jwtToken != ''" class="header__menu__iteam"
+            @click="logout">로그아웃</li>
           <router-link to="AdminPage">
-            <li v-if="this.$store.state.userInfo.authorities.length >= 2" class="header__menu__iteam" @click="[$store.commit('hideNav')], $store.commit('hideFooter') ">관리자 페이지</li>
+            <li v-if="this.$store.state.userInfo.authorities.length >= 2" class="header__menu__iteam"
+              @click="[$store.commit('hideNav')], $store.commit('hideFooter') ">관리자 페이지</li>
           </router-link>
         </div>
 
@@ -44,33 +46,25 @@
         <router-link to="deliverynoitem">
           <li class="header__menu__iteam"><i class="fas fa-truck"></i></li>
         </router-link>
-        <!-- 주문상품이있다면 to = deliveryitem 으로가야함 데이터바인딩해서 vue 문법으로 다뤄야함 -->
-
-        <li class="header__menu__iteam"><i class="fas fa-shopping-cart"></i></li>
+        <router-link to="cart">
+          <li class="header__menu__iteam"><i class="fas fa-shopping-cart"></i></li>
+        </router-link>
       </ul>
     </header>
-
-
-
-
-
   </body>
 </template>
 
 <script>
   export default {
-    data() {
-      return {
-
-      }
-    },
-    methods : {
+    methods: {
       logout() {
         this.$store.commit('logout');
+      },
+      checkStore() {
+        console.log(this.$store.state.jwtToken);
       }
     }
   }
-
 </script>
 
 <style>
@@ -225,5 +219,4 @@
       padding-left: 170px;
     }
   }
-
 </style>
