@@ -20,16 +20,16 @@
 	
 	<select id="showManyReplyProduct" resultType="ProductCountDTO">
 		<![CDATA[
-		SELECT count, d.*
-		  FROM (SELECT p.product_unum, count(*) count
-		          FROM reply r
-		          LEFT OUTER JOIN payment p
-		            ON r.payment_unum = p.payment_unum
-		         GROUP BY p.product_unum) v
-		  LEFT OUTER JOIN product d
-		    ON v.product_unum = d.product_unum
-		 WHERE category_unum = #{categoryUnum}
-		 ORDER BY count DESC, product_regdate
-		]]>
+	    SELECT *
+	      FROM (SELECT p.product_unum, COUNT(*) count
+	              FROM reply r
+	              LEFT OUTER JOIN payment p
+	                ON r.payment_unum = p.payment_unum
+	             GROUP BY p.product_unum) v
+	      FULL OUTER JOIN product d
+	        ON v.product_unum = d.product_unum
+	     WHERE category_unum = #{categoryUnum}
+	     ORDER BY v.count nulls last, v.count desc
+	    ]]>
 	</select>
 </mapper>
