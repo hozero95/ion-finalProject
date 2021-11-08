@@ -1,153 +1,297 @@
 <template>
-<body class="body_my">
-      <!-- header -->
-        <div id="header">
-            <img src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/img_xl.jpeg" id="logo">
+
+  <body class="body_my">
+    <!-- header -->
+    <div id="header">
+      <img src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/img_xl.jpeg" id="logo">
+    </div>
+
+    <!-- wrapper -->
+    <div id="wrapper">
+
+      <!-- content-->
+      <div id="content">
+
+        <!-- ID -->
+        <div>
+          <h3 class="join_title"><label for="id">아이디</label></h3>
+          <span class="box int_id">
+            <input type="text" id="id" v-model="id" class="int" maxlength="30" minlength="3" placeholder="아이디 입력"
+              @input="inputIdCheck" required>
+            <button v-if="!idSave" id="btnCheck" @click="idExistCheck">중복확인</button>
+          </span>
+          <span v-if="idCheck" id="error_id" class="error_next_box">잘못된 아이디 입니다.</span>
         </div>
 
-        
-        <!-- wrapper -->
-        <div id="wrapper">
+        <!-- PW1 -->
+        <div>
+          <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
+          <span class="box int_pass">
+            <input type="password" id="pswd1" v-model="pswd1" class="int" maxlength="20" minlength="3"
+              placeholder="비밀번호 입력" required>
+            <!-- <span id="alertTxt">사용불가</span> -->
+            <img src="" id="pswd1_img1" class="pswdImg">
+          </span>
+          <span v-if="pswd1Check" id="error_password" class="error_next_box">잘못된 비밀번호 입니다.</span>
+        </div>
 
-            <!-- content-->
-            <div id="content">
+        <!-- PW2 -->
+        <div>
+          <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
+          <span class="box int_pass_check">
+            <input type="password" id="pswd2" v-model="pswd2" class="int" maxlength="20" minlength="3"
+              placeholder="비밀번호 재입력" @input="inputPswdCheck" required>
+            <img src="" id="pswd2_img1" class="pswdImg">
+          </span>
+          <span v-if="pswd2Check" id="error_password2" class="error_next_box">비밀번호가 일치하지 않습니다.</span>
+        </div>
 
-                <!-- ID -->
-                <div>
-                    <h3 class="join_title">
-                        <label for="id">아이디</label>
-                    </h3>
-                    <span class="box int_id">
-                        <input type="text" id="id" class="int" maxlength="20">
-                        <span class="step_url">@해물오빠.com</span>
-                    </span>
-                    <span class="error_next_box"></span>
-                </div>
+        <!-- EMAIL -->
+        <div>
+          <h3 class="join_title"><label for="email">본인확인 이메일<span class="optional"></span></label></h3>
+          <span class="box int_email">
+            <input type="email" id="email" v-model="email" class="int" maxlength="50" placeholder="이메일 입력"
+              @input="inputEmailCheck" required>
+          </span>
+          <span v-if="emailCheck" id="error_email" class="error_next_box">잘못된 이메일 입니다.</span>
+        </div>
 
-                <!-- PW1 -->
-                <div>
-                    <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
-                    <span class="box int_pass">
-                        <input type="text" id="pswd1" class="int" maxlength="20">
-                        <span id="alertTxt">사용불가</span>
-                        <img src="" id="pswd1_img1" class="pswdImg">
-                    </span>
-                    <span class="error_next_box"></span>
-                </div>
+        <!-- ADDRESS -->
+        <div>
+          <h3 class="join_title"><label for="address">주소</label></h3>
+          <span class="box int_address">
+            <input type="text" id="address" v-model="address" class="int" maxlength="100" placeholder="주소 입력" required>
+          </span>
+          <span v-if="addressCheck" id="error_address" class="error_next_box">잘못된 주소 입니다.</span>
+        </div>
 
-                <!-- PW2 -->
-                <div>
-                    <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
-                    <span class="box int_pass_check">
-                        <input type="text" id="pswd2" class="int" maxlength="20">
-                        <img src="" id="pswd2_img1" class="pswdImg">
-                    </span>
-                    <span class="error_next_box"></span>
-                </div>
+        <!-- PHONE -->
+        <div>
+          <h3 class="join_title"><label for="phoneNo">연락처</label></h3>
+          <span class="box int_mobile">
+            <input type="tel" id="mobile" v-model="tel" class="int" maxlength="20" placeholder="연락처 입력"
+              @input="inputTelCheck" required>
+          </span>
+          <span v-if="telCheck" id="error_tel" class="error_next_box">잘못된 연락처 입니다.</span>
+        </div>
 
-                
+        <!-- JOIN BTN-->
+        <div class="btn_area">
+          <button type="button" id="btnJoin" @click="checkForm">
+            <span>가입하기</span>
+          </button>
+        </div>
 
-                <!-- EMAIL -->
-                <div>
-                    <h3 class="join_title"><label for="email">본인확인 이메일<span class="optional"></span></label></h3>
-                    <span class="box int_email">
-                        <input type="text" id="email" class="int" maxlength="100" placeholder="입력">
-                    </span>
-                    <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>    
-                </div>
-
-                <!-- MOBILE -->
-                <div>
-                    <h3 class="join_title"><label for="phoneNo">주소</label></h3>
-                    <span class="box int_mobile">
-                        <input type="tel" id="mobile" class="int" maxlength="24" placeholder="주소 입력">
-                    </span>
-                    <span class="error_next_box"></span>    
-                </div>
-
-
-                <!-- JOIN BTN-->
-                <div class="btn_area">
-                    <button type="button" id="btnJoin">
-                        <span>가입하기</span>
-                    </button>
-                </div>
-
-                
-
-            </div> 
-            <!-- content-->
-
-        </div> 
-        <!-- wrapper -->
-    
-    </body>
+      </div>
+      <!-- content-->
+    </div>
+    <!-- wrapper -->
+  </body>
 </template>
 
 <script>
-export default {
-data() {
-    return {
-      flag : true
+  import axios from 'axios';
+
+  export default {
+    data() {
+      return {
+        id: null,
+        pswd1: null,
+        pswd2: null,
+        email: null,
+        address: null,
+        tel: null,
+
+        idSave: false,
+        idCheck: false,
+        pswd1Check: false,
+        pswd2Check: false,
+        emailCheck: false,
+        addressCheck: false,
+        telCheck: false
+      }
+    },
+    methods: {
+      idExistCheck() {
+        var url = 'http://localhost:8000/api/userid/' + this.id;
+        console.log(url);
+        axios.get(url)
+          .then(res => {
+            if (res.data) {
+              alert("이미 등록된 아이디 입니다.");
+              this.idSave = false;
+              this.idCheck = true;
+            } else {
+              alert("사용 가능한 아이디 입니다.");
+              this.idSave = true;
+              this.idCheck = false;
+            }
+          });
+      },
+      checkForm() {
+        var check = true;
+
+        if (this.id == null || this.id == '') {
+          this.idCheck = true;
+          check = false;
+        } else {
+          this.idCheck = false;
+        }
+        if (this.pswd1 == null || this.pswd1 == '') {
+          this.pswd1Check = true;
+          check = false;
+        } else {
+          this.pswd1Check = false;
+        }
+        if (this.pswd2 != this.pswd1 || this.pswd2 == null || this.pswd2 == '') {
+          this.pswd2Check = true;
+          check = false;
+        } else {
+          this.pswd2Check = false;
+        }
+        if (this.email == null || this.email == '') {
+          this.emailCheck = true;
+          check = false;
+        } else {
+          this.emailCheck = false;
+        }
+        if (this.address == null || this.address == '') {
+          this.addressCheck = true;
+          check = false;
+        } else {
+          this.addressCheck = false;
+        }
+        if (this.tel == null || this.tel == '') {
+          this.telCheck = true;
+          check = false;
+        } else {
+          this.telCheck = false;
+        }
+
+        if (check) {
+          if (this.idSave) {
+            axios.post('http://localhost:8000/api/signup', {
+                "userId": this.id,
+                "userPassword": this.pswd1,
+                "userEmail": this.email,
+                "userAddress": this.address,
+                "userTel": this.tel
+              })
+              .then(res => {
+                alert("회원가입 완료");
+                this.$router.push('/login');
+              });
+          } else {
+            alert("중복확인이 필요합니다.");
+          }
+        }
+      },
+      inputIdCheck() {
+        this.id = this.id.replace(/[^0-9|a-z|A-Z]/g, '').replace(/(\..*)\./g, '$1');
+      },
+      inputPswdCheck() {
+        if (this.pswd2 != this.pswd1 || this.pswd2 == null || this.pswd2 == '') {
+          this.pswd2Check = true;
+        } else {
+          this.pswd2Check = false;
+        }
+      },
+      inputTelCheck() {
+        var number = this.tel.replace(/[^0-9]/g, "");
+        var phone = "";
+
+        if (number.length < 4) {
+          return number;
+        } else if (number.length < 7) {
+          phone += number.substr(0, 3);
+          phone += "-";
+          phone += number.substr(3);
+        } else if (number.length < 11) {
+          phone += number.substr(0, 3);
+          phone += "-";
+          phone += number.substr(3, 3);
+          phone += "-";
+          phone += number.substr(6);
+        } else {
+          phone += number.substr(0, 3);
+          phone += "-";
+          phone += number.substr(3, 4);
+          phone += "-";
+          phone += number.substr(7);
+        }
+        this.tel = phone;
+      },
+      inputEmailCheck() {
+        var reg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+        var email = this.email;
+
+        if (!reg.test(email)) {
+          this.emailCheck = true;
+        } else {
+          this.emailCheck = false;
+        }
+      }
     }
-  },
-}
+  }
 </script>
 
 <style>
-/* 레이아웃 틀 */
-html {
+  /* 레이아웃 틀 */
+  html {
     height: 100%;
-}
+  }
 
-.body_my {
+  .body_my {
     margin: 0;
-    height: 1000px;
+    height: 1200px;
+    /* overflow:auto; */
     background: #f5f6f7;
-    font-family: Dotum,'돋움',Helvetica,sans-serif;
-}
-#logo {
+    font-family: Dotum, '돋움', Helvetica, sans-serif;
+  }
+
+  #logo {
     width: 240px;
     height: 240px;
     background-color: red;
 
-}
+  }
 
-#header {
+  #header {
     padding-top: 62px;
     padding-bottom: 20px;
     text-align: center;
-}
-#wrapper {
+  }
+
+  #wrapper {
     position: relative;
     height: 100%;
-}
+  }
 
-#content {
+  #content {
     position: absolute;
     left: 50%;
     transform: translate(-50%);
     width: 460px;
-}
+  }
 
 
 
 
-/* 입력폼 */
+  /* 입력폼 */
 
-input:focus {
+  input:focus {
     outline: none;
-}
+  }
 
 
-h3 {
+  h3 {
     margin: 19px 0 8px;
     font-size: 14px;
     font-weight: 700;
-}
+  }
 
 
-.box {
+  .box {
     display: block;
     width: 100%;
     height: 51px;
@@ -156,9 +300,9 @@ h3 {
     box-sizing: border-box;
     background: #fff;
     position: relative;
-}
+  }
 
-.int {
+  .int {
     display: block;
     position: relative;
     width: 100%;
@@ -166,34 +310,34 @@ h3 {
     border: none;
     background: #fff;
     font-size: 15px;
-}
+  }
 
-input {
-    font-family: Dotum,'돋움',Helvetica,sans-serif;    
-}
+  input {
+    font-family: Dotum, '돋움', Helvetica, sans-serif;
+  }
 
-.box.int_id {
-    padding-right: 110px;
-}
+  .box.int_id {
+    display: flex;
+  }
 
-.box.int_pass {
+  .box.int_pass {
     padding-right: 40px;
-}
+  }
 
-.box.int_pass_check {
+  .box.int_pass_check {
     padding-right: 40px;
-}
+  }
 
-.step_url {
+  .step_url {
     /*@naver.com*/
     position: absolute;
     top: 16px;
     right: 13px;
     font-size: 15px;
     color: #8e8e8e;
-}
+  }
 
-.pswdImg {
+  .pswdImg {
     width: 18px;
     height: 20px;
     display: inline-block;
@@ -202,35 +346,36 @@ input {
     right: 16px;
     margin-top: -10px;
     cursor: pointer;
-}
+  }
 
-#bir_wrap {
+  #bir_wrap {
     display: table;
     width: 100%;
-}
+  }
 
-#bir_yy {
+  #bir_yy {
     display: table-cell;
     width: 147px;
-    
-}
 
-#bir_mm {
+  }
+
+  #bir_mm {
     display: table-cell;
     width: 147px;
     vertical-align: middle;
-}
+  }
 
-#bir_dd {
+  #bir_dd {
     display: table-cell;
     width: 147px;
-}
+  }
 
-#bir_mm, #bir_dd {
+  #bir_mm,
+  #bir_dd {
     padding-left: 10px;
-}
+  }
 
-select {
+  select {
     width: 100%;
     height: 29px;
     font-size: 15px;
@@ -241,34 +386,33 @@ select {
     text-align: start;
     border: none;
     cursor: default;
-    font-family: Dotum,'돋움',Helvetica,sans-serif;
-}
+    font-family: Dotum, '돋움', Helvetica, sans-serif;
+  }
 
-/* 에러메세지 */
+  /* 에러메세지 */
 
-.error_next_box {
+  .error_next_box {
     margin-top: 9px;
     font-size: 12px;
-    color: red;    
-    display: none;
-}
+    color: red;
+  }
 
-#alertTxt {
+  #alertTxt {
     position: absolute;
     top: 19px;
     right: 38px;
     font-size: 12px;
     color: red;
     display: none;
-}
+  }
 
-/* 버튼 */
+  /* 버튼 */
 
-.btn_area {
+  .btn_area {
     margin: 30px 0 91px;
-}
+  }
 
-#btnJoin {
+  #btnJoin {
     width: 100%;
     padding: 21px 0 17px;
     border: 0;
@@ -277,6 +421,14 @@ select {
     background-color: #185B9A;
     font-size: 20px;
     font-weight: 400;
-    font-family: Dotum,'돋움',Helvetica,sans-serif;
-}
+    font-family: Dotum, '돋움', Helvetica, sans-serif;
+  }
+
+  #btnCheck {
+    width: 80px;
+    color: #fff;
+    font-size: 14px;
+    background-color: #185B9A;
+    font-family: Dotum, '돋움', Helvetica, sans-serif;
+  }
 </style>

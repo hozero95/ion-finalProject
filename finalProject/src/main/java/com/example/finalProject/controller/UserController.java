@@ -1,7 +1,10 @@
 package com.example.finalProject.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.finalProject.domain.dto.UserDto;
+import com.example.finalProject.domain.entity.QnaVO;
 import com.example.finalProject.domain.entity.UsersVO;
 import com.example.finalProject.util.UserService;
 
@@ -45,5 +49,11 @@ public class UserController {
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	public ResponseEntity<UsersVO> getUserInfo(@PathVariable String userId) {
 		return ResponseEntity.ok(userService.getUserWithAuthorities(userId).get());
+	}
+	
+	@GetMapping("/userid/{userId}")
+	public ResponseEntity<Boolean> getUserId(@PathVariable String userId) {
+		boolean check = userService.getUserId(userId);
+		return new ResponseEntity<Boolean>(check, HttpStatus.OK);
 	}
 }
