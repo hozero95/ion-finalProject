@@ -26,6 +26,6 @@ public interface CategoryRepository extends JpaRepository<CategoryVO, Long> {
 		 *	  and (category_used is null
 		 *	   or category_used = 0);
 		 */
-	public List<CategoryVO> findByCategoryRefIsNullAndCategoryUsedIsNullOrCategoryUsed(Long categoryUsed);
+	public List<CategoryVO> findByCategoryRefIsNullAndCategoryUsedIsNullOrCategoryUsedOrderByCategoryUnum(Long categoryUsed);
 	
 }
