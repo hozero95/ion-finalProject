@@ -4,7 +4,6 @@
 
 <mapper namespace="com.example.finalProject.mapper.ProductCountMapper">
 	<select id="showBestProduct" resultType="ProductCountDTO">
-		<![CDATA[
 		SELECT count, p.*
 		  FROM product p
 		  LEFT OUTER JOIN (SELECT product_unum, count(*) count
@@ -13,9 +12,11 @@
 		    ON p.product_unum = v.product_unum
 		 WHERE p.category_unum IN (SELECT c.category_unum
 		                             FROM category c
-		                            WHERE category_ref = #{categoryUnum})
+		                             <if test="categoryUnum != -1">
+		                            WHERE category_ref = #{categoryUnum}
+		                            </if>
+		                          )
 		 ORDER BY NVL(count, 0) DESC, p.product_regdate DESC, product_name
-		]]>
 	</select>
 	
 	<select id="showManyReplyProduct" resultType="ProductCountDTO">
