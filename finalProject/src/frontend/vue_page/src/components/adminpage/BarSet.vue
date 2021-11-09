@@ -2,35 +2,35 @@
 <body>
       <!-- 좌측 파란색 사이드바 시작 -->
     <div class="sidebar">
-        <div>
+        <div @click="$emit('openHome')">
           <i class="fas fa-home me-2"></i>
           <span>Home</span>
         </div>
-        <div>
+        <div @click="$emit('openCategory')">
           <i class="fas fa-clipboard-list me-2"></i>
           <span>카테고리</span>
         </div>
-        <div>
+        <div @click="$emit('openEventMng')">
           <i class="fas fa-birthday-cake me-2"></i>
           <span>이벤트</span>
         </div>
-        <div>
+        <div @click="$emit('openDeliveryMng')">
           <i class="fas fa-truck me-2"></i>
           <span>배송관리</span>
         </div>
-        <div>
+        <div @click="$emit('openOrderMng')">
           <i class="fas fa-coins me-2"></i>
           <span>주문관리</span>
         </div>
-        <div>
+        <div @click="$emit('openItemList')">
           <i class="fas fa-gifts me-2"></i>
           <span>상품관리</span>
         </div>
-        <div>
+        <div @click="$emit('openQnAMng')">
           <i class="fas fa-comments me-2"></i>
           <span>Q&A답변</span>
         </div>
-        <div>
+        <div @click="$emit('openCustomerMng')">
           <i class="fas fa-users-cog"></i>
           <span>회원관리</span>
         </div>
@@ -101,7 +101,7 @@ export default {
 
 <style>
 .sticky{
-  background-color: blueviolet;
+  
   
 }
 </style>
