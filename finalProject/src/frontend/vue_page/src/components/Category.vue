@@ -31,13 +31,14 @@
 
       <div class="category__seafoods">
 
-        <div class="category__seafoods__wrap" v-for="(product, index) in list" v-bind:key="index">
-          <a href="" class="seafood">
+        <div class="category__seafoods__wrap" v-for="(product, index) in list" v-bind:key="index"
+          @click="showDetail(product.productUnum)">
+          <a class="seafood">
             <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
             <div class="seafood__info">
               <div class="seafood__info__logo">해물오빠</div>
               <div class="seafood__info__title">
-                <a href="" class="seafood__info__clickable">{{product.productName}}</a>
+                <a class="seafood__info__clickable">{{product.productName}}</a>
               </div>
               <div class="seafood__info__price">{{product.productPrice}}원</div>
             </div>
@@ -181,11 +182,17 @@
             this.list.push(this.products[i]);
           }
         }
+      },
+      showDetail(productUnum) {
+        this.$store.commit('setProductUnum', productUnum);
 
-
+        if (this.$route.path !== '/product') {
+          this.$router.push('/product');
+        }
       }
     }
   }
+
 </script>
 
 <style>
@@ -283,4 +290,5 @@
       margin-left: 70px;
     }
   }
+
 </style>

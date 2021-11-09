@@ -29,13 +29,16 @@
 		 WHERE   reply_unum = #{replyUnum}
 	</update>
 	
-	<select id="detailShowReply" resultType="ReplyVO">
-		SELECT r.*
+	<select id="detailShowReply" resultType="RepUseDTO">
+		SELECT r.*, u.user_id
 		  FROM reply r
-		  LEFT OUTER JOIN (SELECT *
-		                     FROM payment) v
-		    ON r.payment_unum = v.payment_unum
-		 WHERE v.product_unum = #{productUnum}
+		  LEFT OUTER JOIN payment p
+		    ON r.payment_unum = p.payment_unum
+		  LEFT OUTER JOIN orders o
+		    ON p.order_unum = o.order_unum
+		  LEFT OUTER JOIN users u
+		    ON o.user_unum = u.user_unum
+		 WHERE p.product_unum = #{productUnum}
 		 ORDER BY reply_regdate DESC
 	</select>
 	
