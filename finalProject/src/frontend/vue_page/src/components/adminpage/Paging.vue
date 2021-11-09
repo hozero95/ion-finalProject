@@ -15,7 +15,11 @@
 
 <script>
 export default {
-
+  data() {
+    return {
+      viewflag = 1,
+    }
+  },
 }
 </script>
 
