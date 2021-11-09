@@ -22,7 +22,8 @@ const store = new Vuex.Store({
       },
       viewflag: [1, 1], // navbar, footer
       categoryUnum: -1,
-      categoryName: ''
+      categoryName: '',
+      productUnum: -1
     }
   },
   mutations: {
@@ -58,6 +59,9 @@ const store = new Vuex.Store({
     },
     setCategoryName(state, categoryName) {
       state.categoryName = categoryName;
+    },
+    setProductUnum(state, productUnum) {
+      state.productUnum = productUnum;
     }
   },
 
