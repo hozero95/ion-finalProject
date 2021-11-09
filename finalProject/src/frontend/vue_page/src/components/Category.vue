@@ -49,7 +49,7 @@
     </section>
 
     <section class="more">
-      <button @click="range()">해산물 더보기<i class="fas fa-chevron-down"></i></button>
+      <button @click="range()" v-if="showMore">해산물 더보기<i class="fas fa-chevron-down"></i></button>
     </section>
   </div>
 </template>
@@ -66,7 +66,8 @@
         products: [], //실제데이터
         list: [], //뿌려질데이터
         count: 0,
-        sort: ''
+        sort: '',
+        showMore: true
       }
     },
     created() {
@@ -170,12 +171,18 @@
         this.count += 8;
         if (this.count > this.products.length) {
           this.count = this.products.length;
+          this.showMore = false;
+        } else {
+          this.showMore = true;
         }
+
         if (this.count > index) {
           for (var i = index; i < this.count; i++) {
             this.list.push(this.products[i]);
           }
         }
+
+
       }
     }
   }

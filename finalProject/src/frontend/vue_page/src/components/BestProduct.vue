@@ -9,8 +9,9 @@
 
       <div class="container bestBtn">
         <div class="row row-cols-3 bestBtn__iteams">
-          <div class="col bestBtn__iteam">전체</div>
-          <button type="button" class="col bestBtn__iteam" v-for="(bigCate,index) in bigCates" v-bind:key="index">
+          <button type="button" class="col bestBtn__iteam" @click="showProduct(-1)">전체</button>
+          <button type="button" class="col bestBtn__iteam" v-for="(bigCate,index) in bigCates" v-bind:key="index"
+            @click="showProduct(index)">
             {{bigCate.categoryName}}</button>
         </div>
       </div>
@@ -19,7 +20,7 @@
       <!-- 제품 사진들  -->
       <!-- md__seafoods__wrap -->
       <div class="best__seafoods">
-        <div class="best__seafoods__wrap">
+        <div class="best__seafoods__wrap" v-for="(product, index) in list" v-bind:key="index">
           <a href="" class="seafood" target="blank" data-type="">
             <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
             <div class="seafood__info">
@@ -28,9 +29,9 @@
                 <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
               </div>
               <div class="seafood__info__title">
-                <a href="" class="seafood__info__clickable">빨간줄 꼬리 새우</a>
+                <a href="" class="seafood__info__clickable">{{product.productName}}</a>
               </div>
-              <div class="seafood__info__price">50000원</div>
+              <div class="seafood__info__price">{{product.productPrice}}원</div>
             </div>
           </a>
         </div>
@@ -38,7 +39,7 @@
     </section>
 
     <section class="more">
-      <button>해산물 더보기<i class="fas fa-chevron-down"></i></button>
+      <button @click="range()" v-if="showMore">해산물 더보기<i class="fas fa-chevron-down"></i></button>
     </section>
   </div>
 </template>
@@ -52,7 +53,10 @@
         categoryUnum: null,
         categoryName: null,
         bigCates: [],
-        products: []
+        products: [], //실제데이터
+        list: [], //뿌려질 데이터
+        count: 0,
+        showMore:true
       }
     },
     created() {
@@ -67,8 +71,11 @@
             }
           }
           this.bigCates = bigCate;
-          console.log(this.bigCates);
+        //   console.log(this.bigCates);
         });
+
+      this.showProduct(-1);
+      this.range();
     },
     computed: {
       setCategoryUnum() {
@@ -88,15 +95,42 @@
       }
     },
     methods: {
-      showProduct() {
-        axios.get('http://localhost:8000/api/best/show/product?categoryUnum=1')
+      showProduct(index) {
+        this.count = 0;
+        this.list = [];
+        var categoryUnum = -1;
+        if (index != -1) {
+          categoryUnum = this.bigCates[index].categoryUnum;
+        }
+
+        axios.get('http://localhost:8000/api/best/show/product', {
+            params: {
+              categoryUnum: categoryUnum
+            }
+          })
           .then(res => {
             var product = new Array();
             for (var i = 0; i < res.data.length; i++) {
               product.push(res.data[i]);
             }
             this.products = product;
+            this.range();
           })
+      },
+      range() {
+       var index = this.count;
+       this.count += 9;
+        if (this.count > this.products.length) {
+          this.count = this.products.length;
+          this.showMore=false;
+        }else{
+            this.showMore=true;
+        }
+        if ( this.count > index) {            
+          for (var i = index; i < this.count; i++) {
+            this.list.push(this.products[i]);
+          }
+        }
       }
 
 
@@ -105,7 +139,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .bestBtn {}
 
   .bestBtn__iteams {

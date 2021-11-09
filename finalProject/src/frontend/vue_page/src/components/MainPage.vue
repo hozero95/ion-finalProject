@@ -51,227 +51,81 @@
     <section class="seasonal">
       <div class="seasonal__top">
         <div class="seasonal__top__title">
-          <p>가을 제철 지나기 전에~~</p>
-          <h1>가을 seasonal 추천</h1>
-          <p>#해산물 #가을M #대하 #맛있다D</p>
+          <p>{{sort}} 제철 지나기 전에!!</p>
+          <h1>{{sort}}시즌 해물 추천</h1>
+          <p>#{{sort}} #해산물 #맛있다 :D</p>
           <!-- 전체보기 버튼 -->
           <div class="seasonal__top__all">
-            <a href="">전체보기 <i class="fas fa-arrow-right"></i></a>
+            <router-link to="seasonalProduct">
+              <a href="">전체보기 <i class="fas fa-arrow-right"></i></a>
+            </router-link>
           </div>
         </div>
 
       </div>
       <div class="seasonal__seafoods">
-        <div class="seasonal__seafoods__wrap">
+        <div class="seasonal__seafoods__wrap" v-for="(product,index) in seasonProduct" v-bind:key="index">
           <a href="" class="seafood" target="blank" data-type="">
             <router-link to="product">
               <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
             </router-link>
             <div class="seafood__info">
               <div class="seafood__info__top">
-                <div class="logo">5징어</div>
+                <div class="logo">해물오빠</div>
                 <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
               </div>
               <div class="seafood__info__title">
-                <a href="" class="seafood__info__clickable">빨간줄 꼬리 새우</a>
+                <a href="" class="seafood__info__clickable">{{product.productName}}</a>
               </div>
-              <div class="seafood__info__price">50000원</div>
+              <div class="seafood__info__price">{{product.productPrice}}원</div>
             </div>
           </a>
         </div>
-        <div class="seasonal__seafoods__wrap">
-          <a href="" class="seafood" target="blank" data-type="">
-            <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
-            <div class="seafood__info">
-              <div class="seafood__info__top">
-                <div class="logo">5징어</div>
-                <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
-              </div>
-              <div class="seafood__info__title">
-                <a href="" class="seafood__info__clickable">빨간줄 꼬리 새우</a>
-              </div>
-              <div class="seafood__info__price">50000원</div>
-            </div>
-          </a>
-        </div>
-        <div class="seasonal__seafoods__wrap">
-          <a href="" class="seafood" target="blank" data-type="">
-            <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
-            <div class="seafood__info">
-              <div class="seafood__info__top">
-                <div class="logo">5징어</div>
-                <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
-              </div>
-              <div class="seafood__info__title">
-                <a href="" class="seafood__info__clickable">빨간줄 꼬리 새우</a>
-              </div>
-              <div class="seafood__info__price">50000원</div>
-            </div>
-          </a>
-        </div>
-        <div class="seasonal__seafoods__wrap">
-          <a href="" class="seafood" target="blank" data-type="">
-            <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
-            <div class="seafood__info">
-              <div class="seafood__info__top">
-                <div class="logo">5징어</div>
-                <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
-              </div>
-              <div class="seafood__info__title">
-                <a href="" class="seafood__info__clickable">빨간줄 꼬리 새우</a>
-              </div>
-              <div class="seafood__info__price">50000원</div>
-            </div>
-          </a>
-        </div>
+
       </div>
     </section>
 
     <!-- best -->
     <section class="best">
       <div class="best__title">
-        <h1>5징어 베스트</h1>
-        <p>5징어 인기상품을 먹어보세요</p>
+        <h1>해물오빠 BEST</h1>
+        <p>해물오빠 인기상품을 먹어보세요!</p>
       </div>
 
       <div class="best__navbar-mid">
         <ul class="best__navbar-mid__menu">
-          <li class="best__navbar-mid__menu__iteam">전체</li>
-          <li class="best__navbar-mid__menu__iteam">생선</li>
-          <li class="best__navbar-mid__menu__iteam">킹크랩</li>
-          <li class="best__navbar-mid__menu__iteam">새우류</li>
-          <li class="best__navbar-mid__menu__iteam">쭈꾸미, 오징어, 문어</li>
+          <li class="best__navbar-mid__menu__iteam" @click="showBestProduct(-1)">전체</li>
+          <li v-for="(bigCate, index) in bigCates" v-bind:key="index" class="best__navbar-mid__menu__iteam"
+            @click="showBestProduct(index)">
+            {{bigCate.categoryName}}
+          </li>
         </ul>
       </div>
 
       <!-- 제품 사진들  -->
       <!-- md__seafoods__wrap -->
       <div class="best__seafoods">
-        <div class="best__seafoods__wrap">
+        <div class="best__seafoods__wrap" v-for="(product,index) in list" v-bind:key="index">
           <a href="" class="seafood" target="blank" data-type="">
             <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
             <div class="seafood__info">
               <div class="seafood__info__top">
-                <div class="logo">5징어</div>
+                <div class="logo">해물오빠</div>
                 <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
               </div>
               <div class="seafood__info__title">
-                <a href="" class="seafood__info__clickable">빨간줄 꼬리 새우</a>
+                <a class="seafood__info__clickable">{{product.productName}}</a>
               </div>
-              <div class="seafood__info__price">50000원</div>
+              <div class="seafood__info__price">{{product.productPrice}}원</div>
             </div>
           </a>
         </div>
-        <div class="best__seafoods__wrap">
-          <a href="" class="seafood" target="blank" data-type="">
-            <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
-            <div class="seafood__info">
-              <div class="seafood__info__top">
-                <div class="logo">5징어</div>
-                <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
-              </div>
-              <div class="seafood__info__title">
-                <a href="" class="seafood__info__clickable">빨간줄 꼬리 새우</a>
-              </div>
-              <div class="seafood__info__price">50000원</div>
-            </div>
-          </a>
-        </div>
-        <div class="best__seafoods__wrap">
-          <a href="" class="seafood" target="blank" data-type="">
-            <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
-            <div class="seafood__info">
-              <div class="seafood__info__top">
-                <div class="logo">5징어</div>
-                <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
-              </div>
-              <div class="seafood__info__title">
-                <a href="" class="seafood__info__clickable">빨간줄 꼬리 새우</a>
-              </div>
-              <div class="seafood__info__price">50000원</div>
-            </div>
-          </a>
-        </div>
-        <div class="best__seafoods__wrap">
-          <a href="" class="seafood" target="blank" data-type="">
-            <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
-            <div class="seafood__info">
-              <div class="seafood__info__top">
-                <div class="logo">5징어</div>
-                <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
-              </div>
-              <div class="seafood__info__title">
-                <a href="" class="seafood__info__clickable">빨간줄 꼬리 새우</a>
-              </div>
-              <div class="seafood__info__price">50000원</div>
-            </div>
-          </a>
-        </div>
-        <div class="best__seafoods__wrap">
-          <a href="" class="seafood" target="blank" data-type="">
-            <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
-            <div class="seafood__info">
-              <div class="seafood__info__top">
-                <div class="logo">5징어</div>
-                <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
-              </div>
-              <div class="seafood__info__title">
-                <a href="" class="seafood__info__clickable">빨간줄 꼬리 새우</a>
-              </div>
-              <div class="seafood__info__price">50000원</div>
-            </div>
-          </a>
-        </div>
-        <div class="best__seafoods__wrap">
-          <a href="" class="seafood" target="blank" data-type="">
-            <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
-            <div class="seafood__info">
-              <div class="seafood__info__top">
-                <div class="logo">5징어</div>
-                <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
-              </div>
-              <div class="seafood__info__title">
-                <a href="" class="seafood__info__clickable">빨간줄 꼬리 새우</a>
-              </div>
-              <div class="seafood__info__price">50000원</div>
-            </div>
-          </a>
-        </div>
-        <div class="best__seafoods__wrap">
-          <a href="" class="seafood" target="blank" data-type="">
-            <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
-            <div class="seafood__info">
-              <div class="seafood__info__top">
-                <div class="logo">5징어</div>
-                <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
-              </div>
-              <div class="seafood__info__title">
-                <a href="" class="seafood__info__clickable">빨간줄 꼬리 새우</a>
-              </div>
-              <div class="seafood__info__price">50000원</div>
-            </div>
-          </a>
-        </div>
-        <div class="best__seafoods__wrap">
-          <a href="" class="seafood" target="blank" data-type="">
-            <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
-            <div class="seafood__info">
-              <div class="seafood__info__top">
-                <div class="logo">5징어</div>
-                <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
-              </div>
-              <div class="seafood__info__title">
-                <a href="" class="seafood__info__clickable">빨간줄 꼬리 새우</a>
-              </div>
-              <div class="seafood__info__price">50000원</div>
-            </div>
-          </a>
-        </div>
+
       </div>
     </section>
 
     <div class="more">
-      <button>해산물 더보기<i class="fas fa-chevron-down"></i></button>
+      <button @click="range()" v-if="showMore">해산물 더보기<i class="fas fa-chevron-down"></i></button>
     </div>
 
 
@@ -279,11 +133,12 @@
 </template>
 
 <script>
+  import axios from 'axios'
+
   export default {
-    name: 'HelloWorld',
+
     data() {
       return {
-        msg: 'Welcome to Your Vue.js App',
         products: [{
             productsimg: '../images/img1.jpg',
             alt: '상품이미지1'
@@ -292,9 +147,129 @@
             productsimg: '../images/img1.jpg',
             alt: '상품이미지1'
           },
-        ]
+        ],
+        seasonProduct: [], //메인시즌상품
+        bestProduct: [], //메인베스트상품
+        sort: '',
+        bigCates: [],
+        categoryUnum: null,
+        categoryName: null,
+        list:[],
+        count:0,
+        showMore:true
+      }
+    },
+    created() {
+      var now = new Date();
+      var season = parseInt(now.getMonth()) + 1;
+      var seasonmonth;
+
+      if (parseInt(season / 3) == 1) {
+        seasonmonth = 0; //봄
+        this.sort = '봄';
+      } else if (parseInt(season / 3) == 2) {
+        seasonmonth = 1; //여름
+        this.sort = '여름';
+      } else if (parseInt(season / 3) == 3) {
+        seasonmonth = 2; //가을
+        this.sort = '가을';
+      } else {
+        seasonmonth = 3; //겨울
+        this.sort = '겨울';
+      }
+
+      axios.get('http://localhost:8000/api/season/show/product', {
+          params: {
+            productSeason: seasonmonth
+          }
+        })
+        .then(res => {
+          var product = new Array();
+
+          for (var i = 0; i < res.data.length; i++) {
+            if (res.data[i].productSeason != null && res.data[i].productSeason != '') {
+              product.push(res.data[i]);
+            }
+          }
+          this.seasonProduct = product;
+        })
+      this.showBestNav(),
+      this.showBestProduct(-1)
+    },
+    computed: {
+      setCategoryUnum() {
+        return this.$store.state.categoryUnum;
+      },
+      setCategoryName() {
+        return this.$store.state.categoryName;
+      }
+    },
+    watch: {
+      setCategoryUnum() {
+        this.categoryUnum = this.setCategoryUnum;
+
+      },
+      setCategoryName() {
+        this.categoryName = this.setCategoryName;
+      }
+    },
+    methods: {
+      showBestNav() {
+        axios.get('http://localhost:8000/api/best/show/nav')
+          .then(res => {
+            // console.log(res);
+            var bigCate = new Array();
+
+            for (var i = 0; i < res.data.length; i++) {
+              if (res.data[i].categoryRef == null || res.data[i].categoryRef == '') {
+                bigCate.push(res.data[i]);
+              }
+            }
+            this.bigCates = bigCate;
+            // console.log(this.bigCates);
+          });
+      },
+      showBestProduct(index) {
+        this.count=0;
+        this.list=[];
+        var categoryUnum = -1;
+        if (index != -1) {
+          categoryUnum = this.bigCates[index].categoryUnum;
+        }
+
+        axios.get('http://localhost:8000/api/best/show/product', {
+            params: {
+              categoryUnum: categoryUnum
+            }
+          })
+          .then(res => {
+            var product = new Array();
+            for (var i = 0; i < res.data.length; i++) {
+              product.push(res.data[i]);
+            }
+            this.bestProduct = product;
+            // console.log(this.product)
+          this.range();
+          })
+      },
+      range(){
+        var index = this.count;
+        this.count += 9;
+        if(this.count > this.bestProduct.length){
+          this.count=this.bestProduct.length;
+          this.showMore=false;
+        }else{
+          this.showMore=true;
+        }
+        if( this.count > index){
+          for(var i=index; i<this.count;i++){
+            this.list.push(this.bestProduct[i]);
+          }
+        }
+
       }
     }
+
   }
 </script>
 
@@ -386,7 +361,7 @@
   .seafood__info__top .logo {
     background-color: #132c7d;
     color: white;
-    width: 60px;
+    width: 80px;
     height: 25px;
     text-align: center;
   }
