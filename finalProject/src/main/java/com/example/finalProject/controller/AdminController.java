@@ -82,7 +82,7 @@ public class AdminController {
 				: new ResponseEntity<String>("fail", HttpStatus.OK);
 	}
 
-	@PostMapping(value = "product/add", produces = MediaType.TEXT_PLAIN_VALUE)
+	@PostMapping(value = "/product/add", produces = MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<String> productAdd(@RequestBody ProductVO productVO) {
 		return adminService.productAdd(productVO) > 0 ? new ResponseEntity<String>("success", HttpStatus.OK)
 				: new ResponseEntity<String>("fail", HttpStatus.OK);

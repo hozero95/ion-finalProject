@@ -2,11 +2,13 @@
   <div id="app">
     <Header></Header>
 
-    <NavbarTop v-if="this.viewflag[0] == 1"></NavbarTop>
+    <!-- <NavbarTop v-if="this.viewflag[0] == 1"></NavbarTop> -->
+    <NavbarTop></NavbarTop>
 
     <router-view></router-view>
 
-    <Footer v-if="this.viewflag[1] == 1"></Footer>
+    <!-- <Footer v-if="this.viewflag[1] == 1"></Footer> -->
+    <Footer></Footer>
   </div>
 </template>
 
