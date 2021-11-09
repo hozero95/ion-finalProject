@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.finalProject.domain.entity.UsersVO;
@@ -16,10 +17,10 @@ public class UsersService {
 	private UsersRepository usersRepository;
 	@Autowired
 	private UsersMapper usersMapper;
-
-	public List<UsersVO> findAll() {
+	
+	public List<UsersVO> getUserAll() {
 		List<UsersVO> users = new ArrayList<>();
-		usersRepository.findAll().forEach(e -> users.add(e));
+		usersRepository.findAll(Sort.by(Sort.Direction.DESC, "userUnum")).forEach(e -> users.add(e));
 		return users;
 	}
 
