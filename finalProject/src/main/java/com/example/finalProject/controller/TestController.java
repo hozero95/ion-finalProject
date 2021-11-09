@@ -60,7 +60,7 @@ public class TestController {
 
 	@GetMapping(value = "/usersAll", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<UsersVO>> getUsersAll() {
-		List<UsersVO> users = usersService.findAll();
+		List<UsersVO> users = usersService.getUserAll();
 		return new ResponseEntity<List<UsersVO>>(users, HttpStatus.OK);
 	}
 

@@ -21,13 +21,17 @@ import com.example.finalProject.domain.entity.EventVO;
 import com.example.finalProject.domain.entity.OrdersVO;
 import com.example.finalProject.domain.entity.ProductVO;
 import com.example.finalProject.domain.entity.QnaVO;
+import com.example.finalProject.domain.entity.UsersVO;
 import com.example.finalProject.service.AdminService;
+import com.example.finalProject.service.UsersService;
 
 @RestController
 @RequestMapping("/api/admin")
 public class AdminController {
 	@Autowired
 	private AdminService adminService;
+	@Autowired
+	private UsersService usersService;
 
 	@PostMapping(value = "/category/add", produces = MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<String> categoryAdd(@RequestBody CategoryVO categoryVO) {
@@ -112,5 +116,11 @@ public class AdminController {
 	public ResponseEntity<List<ProductVO>> productAll() {
 		List<ProductVO> productall = adminService.productAll();
 		return new ResponseEntity<List<ProductVO>>(productall, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/user/all", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<UsersVO>> getUserAll() {
+		List<UsersVO> userAll = usersService.getUserAll();
+		return new ResponseEntity<List<UsersVO>>(userAll, HttpStatus.OK);
 	}
 }
