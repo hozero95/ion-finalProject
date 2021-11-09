@@ -31,7 +31,7 @@
 
       <div class="category__seafoods">
 
-        <div class="category__seafoods__wrap" v-for="(product, index) in products" v-bind:key="index">
+        <div class="category__seafoods__wrap" v-for="(product, index) in list" v-bind:key="index">
           <a href="" class="seafood">
             <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
             <div class="seafood__info">
@@ -49,7 +49,7 @@
     </section>
 
     <section class="more">
-      <button>해산물 더보기<i class="fas fa-chevron-down"></i></button>
+      <button @click="range()">해산물 더보기<i class="fas fa-chevron-down"></i></button>
     </section>
   </div>
 </template>
@@ -63,7 +63,9 @@
       return {
         categoryUnum: null,
         categoryName: null,
-        products: [],
+        products: [], //실제데이터
+        list: [], //뿌려질데이터
+        count: 0,
         sort: ''
       }
     },
@@ -71,6 +73,7 @@
       this.categoryUnum = this.$store.state.categoryUnum;
       this.categoryName = this.$store.state.categoryName;
       this.showNew();
+      this.range();
     },
     computed: {
       setCategoryUnum() {
@@ -91,6 +94,8 @@
     },
     methods: {
       showNew() {
+        this.count = 0;
+        this.list = [];
         axios.get('http://localhost:8000/api/productlist/show/product/new', {
             params: {
               categoryUnum: this.categoryUnum
@@ -103,9 +108,12 @@
             }
             this.products = product;
             this.sort = '최신순';
+            this.range();
           });
       },
       showLowerPrice() {
+        this.count = 0;
+        this.list = [];
         axios.get('http://localhost:8000/api/productlist/show/product/lowerprice', {
             params: {
               categoryUnum: this.categoryUnum
@@ -118,9 +126,12 @@
             }
             this.products = product;
             this.sort = '낮은가격순';
+            this.range();
           });
       },
       showHigherPrice() {
+        this.count = 0;
+        this.list = [];
         axios.get('http://localhost:8000/api/productlist/show/product/higherprice', {
             params: {
               categoryUnum: this.categoryUnum
@@ -133,9 +144,12 @@
             }
             this.products = product;
             this.sort = '높은가격순';
+            this.range();
           });
       },
       showManyReply() {
+        this.count = 0;
+        this.list = [];
         axios.get('http://localhost:8000/api/productlist/show/product/manyreply', {
             params: {
               categoryUnum: this.categoryUnum
@@ -148,7 +162,20 @@
             }
             this.products = product;
             this.sort = '리뷰많은순';
+            this.range();
           });
+      },
+      range() {
+        var index = this.count;
+        this.count += 8;
+        if (this.count > this.products.length) {
+          this.count = this.products.length;
+        }
+        if (this.count > index) {
+          for (var i = index; i < this.count; i++) {
+            this.list.push(this.products[i]);
+          }
+        }
       }
     }
   }
