@@ -48,10 +48,10 @@
 
           <!-- 장바구니 바로구매 버튼 -->
           <div class="button">
-            <router-link to="cart"><button class="button cartbtn">장바구니</button></router-link>
-            <router-link to="payment">
-              <div class="button buy">바로구매</div>
-            </router-link>
+            <div class="button cartbtn" @click="addCart">장바구니</div>
+            <!-- <router-link to="payment"> -->
+            <div class="button buy">바로구매</div>
+            <!-- </router-link> -->
           </div>
         </div>
 
@@ -261,13 +261,48 @@
         var maskingId = '';
         var idLength = id.length;
 
-        if(idLength < 3) {
+        if (idLength < 3) {
           maskingId = id.replace(/(?<=.{1})./gi, "*");
         } else {
           maskingId = id.replace(/(?<=.{2})./gi, "*");
         }
 
         return maskingId;
+      },
+      addCart() {
+        var headers = {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + this.$store.state.jwtToken
+        };
+
+        var body = {
+          userUnum: this.$store.state.userInfo.userUnum,
+          productUnum: this.productUnum,
+          cartCount: this.productCount,
+          cartPrice: this.productPrice,
+          cartAddress: this.$store.state.userInfo.userAddress
+        }
+
+        axios.defaults.headers.post = null;
+        axios({
+            url: 'http://localhost:8000/api/detail/regist/cart',
+            method: 'post',
+            headers: headers,
+            data: body
+          })
+          .then((res) => {
+            if (res.data) {
+              alert("장바구니에 등록되었습니다.");
+              if (confirm("장바구니로 이동하시겠습니까?")) {
+                this.$router.push('/cart');
+              }
+            } else {
+              alert("이미 장바구니에 들어있는 상품이거나, 장바구니에 담을 수 없는 상품입니다.");
+            }
+          })
+          .catch((err) => {
+            alert("이미 장바구니에 들어있는 상품이거나, 장바구니에 담을 수 없는 상품입니다.");
+          });
       }
     }
   }
@@ -348,8 +383,9 @@
   }
 
   .button {
+    text-align: center;
     display: flex;
-    width: 230px;
+    width: 500px;
     height: 60px;
     color: white;
   }
