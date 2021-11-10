@@ -66,6 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //			.antMatchers("/api/**").permitAll() // 전체 사용자 사용 가능
 			.antMatchers("/api/user").hasAnyRole("USER", "ADMIN") // 본인 정보 불러오기
 			.antMatchers("/api/mypage/**").hasAnyRole("USER", "ADMIN") // 마이페이지
+			.antMatchers("/api/detail/regist/cart").hasAnyRole("USER", "ADMIN") // 장바구니에 저장 기능
 			.antMatchers("/api/admin/**").hasAnyRole("ADMIN") // 관리자페이지
 			.anyRequest().permitAll()
 			
