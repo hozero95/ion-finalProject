@@ -81,7 +81,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   /* Universal tags */
   * {
     box-sizing: border-box;

@@ -21,6 +21,7 @@ import Cart from '@/components/Cart'
 import Payment from '@/components/Payment'
 import Event from '@/components/event'
 import AdminPage from '@/components/AdminPage'
+import Boot from '@/components/BootStrapTest'
 
 
 Vue.use(Router)
@@ -132,6 +133,11 @@ export default new Router({
       path: '/adminpage',
       name: 'is adminpage',
       component: AdminPage
+    },
+    {
+      path: '/boot',
+      name: 'is bootstraptest',
+      component: Boot
     },
   ]
 })
