@@ -168,5 +168,17 @@
 	    FROM product
 	   ORDER BY product_unum DESC
    </select>
+   
+   <select id="orderDeliveryAll" resultType="OrdPayDelProDTO">
+ 	  SELECT *
+		FROM orders o
+		LEFT OUTER JOIN payment p
+		ON o.order_unum = p.order_unum
+		LEFT OUTER JOIN delivery d
+		ON o.order_unum = d.order_unum
+		LEFT OUTER JOIN product t
+		ON p.product_unum = t.product_unum
+		ORDER BY o.order_regdate DESC, o.order_unum, p.payment_unum
+   </select>
 </mapper>
 

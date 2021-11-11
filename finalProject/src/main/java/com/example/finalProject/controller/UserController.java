@@ -1,12 +1,12 @@
 package com.example.finalProject.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.finalProject.domain.dto.LoginDto;
 import com.example.finalProject.domain.dto.UserDto;
-import com.example.finalProject.domain.entity.QnaVO;
 import com.example.finalProject.domain.entity.UsersVO;
 import com.example.finalProject.util.UserService;
 
@@ -36,6 +36,12 @@ public class UserController {
 		return ResponseEntity.ok(userService.signup(userDto));
 	}
 
+	@PostMapping("/passwordcheck")
+	public ResponseEntity<String> passwordCheck(@RequestBody LoginDto loginDto) {
+		return userService.passwordCheck(loginDto) ? new ResponseEntity<String>("success", HttpStatus.OK)
+				: new ResponseEntity<String>("fail", HttpStatus.OK);
+	}
+
 	// USER, ADMIN 두 가지 권한 모두 호출 허용
 	@GetMapping("/user")
 	@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
@@ -50,7 +56,7 @@ public class UserController {
 	public ResponseEntity<UsersVO> getUserInfo(@PathVariable String userId) {
 		return ResponseEntity.ok(userService.getUserWithAuthorities(userId).get());
 	}
-	
+
 	@GetMapping("/userid/{userId}")
 	public ResponseEntity<Boolean> getUserId(@PathVariable String userId) {
 		boolean check = userService.getUserId(userId);

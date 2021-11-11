@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.finalProject.domain.dto.OrdPayDelProDTO;
 import com.example.finalProject.domain.entity.CategoryVO;
 import com.example.finalProject.domain.entity.DeliveryVO;
 import com.example.finalProject.domain.entity.EventVO;
@@ -122,5 +123,11 @@ public class AdminController {
 	public ResponseEntity<List<UsersVO>> getUserAll() {
 		List<UsersVO> userAll = usersService.getUserAll();
 		return new ResponseEntity<List<UsersVO>>(userAll, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/orderdelivery/all", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<OrdPayDelProDTO>> orderDeliveryAll(){
+		List<OrdPayDelProDTO> orderDeliveryAll = adminService.orderDeliveryAll();
+		return new ResponseEntity<List<OrdPayDelProDTO>>(orderDeliveryAll, HttpStatus.OK);
 	}
 }

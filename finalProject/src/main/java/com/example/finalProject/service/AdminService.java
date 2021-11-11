@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.finalProject.domain.dto.OrdPayDelProDTO;
 import com.example.finalProject.domain.entity.CategoryVO;
 import com.example.finalProject.domain.entity.DeliveryVO;
 import com.example.finalProject.domain.entity.EventVO;
@@ -72,5 +73,9 @@ public class AdminService {
 	
 	public List<ProductVO> productAll(){
 		return adminMapper.productAll();
+	}
+	
+	public List<OrdPayDelProDTO> orderDeliveryAll(){
+		return adminMapper.orderDeliveryAll();
 	}
 }

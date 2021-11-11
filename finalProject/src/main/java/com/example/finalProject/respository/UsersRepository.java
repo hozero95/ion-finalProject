@@ -24,4 +24,6 @@ public interface UsersRepository extends JpaRepository<UsersVO, Long> {
 	Optional<UsersVO> findOneWithAuthoritiesByUserId(String userId);
 
 	public Boolean existsByUserId(String userId);
+	
+	public List<UsersVO> findByUserId(String userId);
 }
