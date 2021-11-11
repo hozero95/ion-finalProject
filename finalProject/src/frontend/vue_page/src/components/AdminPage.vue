@@ -45,7 +45,7 @@
 <script>
 import BarSet from './adminpage/BarSet.vue'
 import DashBoard from './adminpage/DashBoard';
-import Category from './adminpage/Category.vue';
+import Category from './adminpage/CategoryMng.vue';
 import EventMng from './adminpage/EventMng.vue';
 import DeliveryMng from './adminpage/DeliveryMng.vue'
 import OrderMng from './adminpage/OrderMng.vue'
