@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.example.finalProject.domain.dto.OrdPayDelProDTO;
 import com.example.finalProject.domain.entity.CategoryVO;
 import com.example.finalProject.domain.entity.DeliveryVO;
 import com.example.finalProject.domain.entity.EventVO;
@@ -40,5 +41,7 @@ public interface AdminMapper {
 	public Long userDelete(Long userUnum);
 	
 	public List<ProductVO> productAll();
+	
+	public List<OrdPayDelProDTO> orderDeliveryAll();
 
 }
