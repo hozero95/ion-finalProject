@@ -21,7 +21,7 @@
       <!-- md__seafoods__wrap -->
       <div class="best__seafoods">
         <div class="best__seafoods__wrap" v-for="(product, index) in list" v-bind:key="index"
-        @click="showDetail(product.productUnum)">
+          @click="showDetail(product.productUnum)">
           <a class="seafood" target="blank" data-type="">
             <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
             <div class="seafood__info">
@@ -57,7 +57,7 @@
         products: [], //실제데이터
         list: [], //뿌려질 데이터
         count: 0,
-        showMore:true
+        showMore: true
       }
     },
     created() {
@@ -72,7 +72,7 @@
             }
           }
           this.bigCates = bigCate;
-        //   console.log(this.bigCates);
+          //   console.log(this.bigCates);
         });
 
       this.showProduct(-1);
@@ -119,15 +119,15 @@
           })
       },
       range() {
-       var index = this.count;
-       this.count += 9;
+        var index = this.count;
+        this.count += 9;
         if (this.count > this.products.length) {
           this.count = this.products.length;
-          this.showMore=false;
-        }else{
-            this.showMore=true;
+          this.showMore = false;
+        } else {
+          this.showMore = true;
         }
-        if ( this.count > index) {            
+        if (this.count > index) {
           for (var i = index; i < this.count; i++) {
             this.list.push(this.products[i]);
           }
@@ -138,6 +138,7 @@
 
         if (this.$route.path !== '/product') {
           this.$router.push('/product');
+          location.replace('#app');
         }
       }
 

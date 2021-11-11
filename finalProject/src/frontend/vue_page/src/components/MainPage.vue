@@ -60,9 +60,9 @@
 
       </div>
       <div class="seasonal__seafoods">
-        <div class="seasonal__seafoods__wrap" v-for="(product,index) in seasonProduct" v-bind:key="index"
+        <div class="seasonal__seafoods__wrap" v-for="(product, index) in seasonProduct" v-bind:key="index"
           @click="showDetail(product.productUnum)">
-          <a href="" class="seafood" target="blank" data-type="">
+          <a class="seafood">
             <router-link to="product">
               <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
             </router-link>
@@ -72,7 +72,7 @@
                 <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
               </div>
               <div class="seafood__info__title">
-                <a href="" class="seafood__info__clickable">{{product.productName}}</a>
+                <a class="seafood__info__clickable">{{product.productName}}</a>
               </div>
               <div class="seafood__info__price">{{product.productPrice}}원</div>
             </div>
@@ -102,9 +102,9 @@
       <!-- 제품 사진들  -->
       <!-- md__seafoods__wrap -->
       <div class="best__seafoods">
-        <div class="best__seafoods__wrap" v-for="(product,index) in list" v-bind:key="index"
+        <div class="best__seafoods__wrap" v-for="(product, index) in list" v-bind:key="index"
           @click="showDetail(product.productUnum)">
-          <a href="" class="seafood" target="blank" data-type="">
+          <a class="seafood">
             <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
             <div class="seafood__info">
               <div class="seafood__info__top">
@@ -131,7 +131,7 @@
 </template>
 
 <script>
-  import axios from 'axios'
+  import axios from 'axios';
 
   export default {
 
@@ -218,7 +218,6 @@
       showBestNav() {
         axios.get('http://localhost:8000/api/best/show/nav')
           .then(res => {
-            // console.log(res);
             var bigCate = new Array();
 
             for (var i = 0; i < res.data.length; i++) {
@@ -227,7 +226,6 @@
               }
             }
             this.bigCates = bigCate;
-            // console.log(this.bigCates);
           });
       },
       showBestProduct(index) {
@@ -249,7 +247,6 @@
               product.push(res.data[i]);
             }
             this.bestProduct = product;
-            // console.log(this.product)
             this.range();
           })
       },
@@ -265,7 +262,6 @@
               }
             }
             this.events = event;
-            console.log(this.event)
           })
       },
       range() {
@@ -288,6 +284,7 @@
 
         if (this.$route.path !== '/product') {
           this.$router.push('/product');
+          location.replace('#app');
         }
       }
 

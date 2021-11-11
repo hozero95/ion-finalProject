@@ -188,6 +188,7 @@
 
         if (this.$route.path !== '/product') {
           this.$router.push('/product');
+          location.replace('#app');
         }
       }
     }
