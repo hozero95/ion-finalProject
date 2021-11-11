@@ -97,7 +97,7 @@
     <!-- table area start -->
     
     <div>
-      <h1>TABLE PAGINATION123</h1>
+      <h1>상품 관리</h1>
 
 <table class="table table-bordered" style="border: 2px solid black">
       <thead>
@@ -121,7 +121,7 @@
       <tbody>
         <tr v-for="(p, index) in paginatedData" :key="index">
           <th scope="row">
-            {{index}}
+            {{index+1}}
             <button style="float: right" @click="showMdfModal(index)">
               <i class="fas fa-tools"></i>
             </button>
