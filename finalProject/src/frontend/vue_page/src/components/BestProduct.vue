@@ -20,8 +20,9 @@
       <!-- 제품 사진들  -->
       <!-- md__seafoods__wrap -->
       <div class="best__seafoods">
-        <div class="best__seafoods__wrap" v-for="(product, index) in list" v-bind:key="index">
-          <a href="" class="seafood" target="blank" data-type="">
+        <div class="best__seafoods__wrap" v-for="(product, index) in list" v-bind:key="index"
+        @click="showDetail(product.productUnum)">
+          <a class="seafood" target="blank" data-type="">
             <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
             <div class="seafood__info">
               <div class="seafood__info__top">
@@ -29,7 +30,7 @@
                 <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
               </div>
               <div class="seafood__info__title">
-                <a href="" class="seafood__info__clickable">{{product.productName}}</a>
+                <a class="seafood__info__clickable">{{product.productName}}</a>
               </div>
               <div class="seafood__info__price">{{product.productPrice}}원</div>
             </div>
@@ -130,6 +131,13 @@
           for (var i = index; i < this.count; i++) {
             this.list.push(this.products[i]);
           }
+        }
+      },
+      showDetail(productUnum) {
+        this.$store.commit('setProductUnum', productUnum);
+
+        if (this.$route.path !== '/product') {
+          this.$router.push('/product');
         }
       }
 

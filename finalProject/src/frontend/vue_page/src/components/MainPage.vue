@@ -7,40 +7,36 @@
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="slider__img">
           <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/img1.jpg"
-                class="d-block w-30" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/img1.jpg"
-                class="d-block w-30" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/img1.jpg"
-                class="d-block w-30" alt="...">
-            </div>
-          </div>
-        </div>
-        <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button> -->
-        <!-- slider 오른쪽 -->
-        <div class="slider__right">
-          <!-- slider 오른쪽 위 -->
-          <div class="slider__right__text">
-            <p>
-              해산물 베스트 셀러 <br>
-              해물벅스 10만원 쿠폰
-            </p>
-          </div>
-          <!-- slider 오른쪽 아래 -->
-          <div class="slider__right__arrow">
 
+
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+              <div class="slider__img">
+                <div class="carousel-inner">
+
+                  <div class="carousel-item active test">
+                    <img src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/img1.jpg"
+                      class="d-block w-30" alt="..." style="float: left">
+                    <div class="slider__right" style="float: left">
+                      <div class="slider__right__text">
+                        <p>{{seasonEvent.eventTitle}}</p>
+                        <p>{{seasonEvent.eventContent}}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="carousel-item test" v-for="(event, index) in events" v-bind:key="index">
+                    <img src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/img1.jpg"
+                      class="d-block w-30" alt="..." style="float: left">
+                    <div class="slider__right" style="float: left">
+                      <div class="slider__right__text">
+                        <p>{{event.eventTitle}}</p>
+                        <p>{{event.eventContent}}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -64,7 +60,8 @@
 
       </div>
       <div class="seasonal__seafoods">
-        <div class="seasonal__seafoods__wrap" v-for="(product,index) in seasonProduct" v-bind:key="index">
+        <div class="seasonal__seafoods__wrap" v-for="(product,index) in seasonProduct" v-bind:key="index"
+          @click="showDetail(product.productUnum)">
           <a href="" class="seafood" target="blank" data-type="">
             <router-link to="product">
               <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
@@ -105,7 +102,8 @@
       <!-- 제품 사진들  -->
       <!-- md__seafoods__wrap -->
       <div class="best__seafoods">
-        <div class="best__seafoods__wrap" v-for="(product,index) in list" v-bind:key="index">
+        <div class="best__seafoods__wrap" v-for="(product,index) in list" v-bind:key="index"
+          @click="showDetail(product.productUnum)">
           <a href="" class="seafood" target="blank" data-type="">
             <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
             <div class="seafood__info">
@@ -154,12 +152,15 @@
         bigCates: [],
         categoryUnum: null,
         categoryName: null,
-        list:[],
-        count:0,
-        showMore:true
+        list: [],
+        count: 0,
+        showMore: true,
+        events: [],
+        seasonEvent: {}
       }
     },
     created() {
+      this.showEvent()
       var now = new Date();
       var season = parseInt(now.getMonth()) + 1;
       var seasonmonth;
@@ -194,7 +195,7 @@
           this.seasonProduct = product;
         })
       this.showBestNav(),
-      this.showBestProduct(-1)
+        this.showBestProduct(-1)
     },
     computed: {
       setCategoryUnum() {
@@ -230,8 +231,8 @@
           });
       },
       showBestProduct(index) {
-        this.count=0;
-        this.list=[];
+        this.count = 0;
+        this.list = [];
         var categoryUnum = -1;
         if (index != -1) {
           categoryUnum = this.bigCates[index].categoryUnum;
@@ -249,25 +250,47 @@
             }
             this.bestProduct = product;
             // console.log(this.product)
-          this.range();
+            this.range();
           })
       },
-      range(){
+      showEvent() {
+        axios.get('http://localhost:8000/api/event/show/event')
+          .then(res => {
+            var event = new Array();
+            for (var i = 0; i < res.data.length; i++) {
+              if (i == 0) {
+                this.seasonEvent = res.data[i];
+              } else {
+                event.push(res.data[i]);
+              }
+            }
+            this.events = event;
+            console.log(this.event)
+          })
+      },
+      range() {
         var index = this.count;
         this.count += 9;
-        if(this.count > this.bestProduct.length){
-          this.count=this.bestProduct.length;
-          this.showMore=false;
-        }else{
-          this.showMore=true;
+        if (this.count > this.bestProduct.length) {
+          this.count = this.bestProduct.length;
+          this.showMore = false;
+        } else {
+          this.showMore = true;
         }
-        if( this.count > index){
-          for(var i=index; i<this.count;i++){
+        if (this.count > index) {
+          for (var i = index; i < this.count; i++) {
             this.list.push(this.bestProduct[i]);
           }
         }
+      },
+      showDetail(productUnum) {
+        this.$store.commit('setProductUnum', productUnum);
 
+        if (this.$route.path !== '/product') {
+          this.$router.push('/product');
+        }
       }
+
     }
 
   }
@@ -288,18 +311,24 @@
 
   }
 
-  .slider__img {
-    padding-left: 400px;
-    position: absolute;
-    top: 80px;
-    border-radius: 5%;
+  .test {
+    /* position: absolute; */
+    /* display: inline-block; */
+    background-color: blueviolet;
+    width: 1500px;
+    margin: 80px 0 0 500px;
+    text-align: center;
+  }
+
+  .test img {
+    border-radius: 10%;
   }
 
   .slider__right {
-    /* background-color: palevioletred; */
-    float: right;
-    padding-right: 600px;
-    height: 511px;
+    background-color: palevioletred;
+    float: left;
+    padding-right: 500px;
+    /* height: 511px; */
   }
 
   .slider__right__text {
@@ -307,7 +336,7 @@
     height: 50%;
     font-size: 40px;
     color: white;
-    margin: 100px 0 0 40px;
+    margin: 60px 50px 0 40px;
   }
 
   .slider__right__arrow {
@@ -342,8 +371,6 @@
   .seasonal__seafoods__wrap {
     margin: 10px 10px;
   }
-
-  .seafood {}
 
   .seasonal__seafoods img {
     width: 290px;
@@ -463,5 +490,9 @@
       /* background-color:aquamarine; */
       margin-left: 75px;
     }
+
+    /* .carousel-inner {
+      position: flex;
+    } */
   }
 </style>
