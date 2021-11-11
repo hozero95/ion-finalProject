@@ -2,6 +2,7 @@ package com.example.finalProject.respository;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +19,7 @@ public interface QnaRepository extends JpaRepository<QnaVO, Long> {
  	 *	where user_unum = {{user_unum}}
 	 *	order by qna_regdate desc;
 	 */
+	
 	public List<QnaVO> findByUserUnumOrderByQnaRegdateDesc(Long userUnum);
 	
 	/*
