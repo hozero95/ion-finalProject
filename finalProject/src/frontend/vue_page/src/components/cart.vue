@@ -307,8 +307,9 @@
 
   .left {
     float: left;
+    height: 520px;
+    overflow: scroll;
     width: 930px;
-    height: 300px;
   }
 
   .left__top__chk {
