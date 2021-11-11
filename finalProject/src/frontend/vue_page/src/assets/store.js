@@ -20,10 +20,17 @@ const store = new Vuex.Store({
         userRegdate: '',
         authorities: {}
       },
+
       viewflag: [1, 1], // navbar, footer
+
       categoryUnum: -1,
       categoryName: '',
-      productUnum: -1
+
+      productUnum: -1,
+
+      payProductUnum: -1,
+      payProductCount: -1,
+      payProductPrice: -1
     }
   },
   mutations: {
@@ -62,6 +69,15 @@ const store = new Vuex.Store({
     },
     setProductUnum(state, productUnum) {
       state.productUnum = productUnum;
+    },
+    setPayProductUnum(state, payProductUnum) {
+      state.payProductUnum = payProductUnum;
+    },
+    setPayProductCount(state, payProductCount) {
+      state.payProductCount = payProductCount;
+    },
+    setPayProductPrice(state, payProductPrice) {
+      state.payProductPrice = payProductPrice;
     }
   },
 

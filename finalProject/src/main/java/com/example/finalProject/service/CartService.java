@@ -38,4 +38,8 @@ public class CartService {
 	public Long replaceAddress(CartVO cartVO) {
 		return cartMapper.replaceAddress(cartVO);
 	}
+	
+	public Long trashCart(Long userUnum) {
+		return cartMapper.trashCart(userUnum);
+	}
 }

@@ -15,4 +15,6 @@ public interface CartMapper {
 	
 	@Transactional
 	public Long replaceAddress(CartVO cartVO);
+	
+	public Long trashCart(Long userUnum);
 }

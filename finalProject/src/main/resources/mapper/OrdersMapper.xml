@@ -9,6 +9,14 @@
 		 WHERE order_unum = #{orderUnum}
 	</update>
 	
+	<select id="recentOrderUnum" resultType="OrdersVO">
+		SELECT *
+		  FROM orders
+		 WHERE user_unum = #{userUnum}
+		   AND rownum = 1
+		 ORDER BY order_regdate desc
+	</select>
+	
 	<insert id="registOrder">
 		INSERT INTO orders(
 			  order_unum 
@@ -26,7 +34,7 @@
     		<if test="orderMessage != null">
      		, #{orderMessage}
      		</if>
-     		, #{orderRegdate}
+     		, sysdate
     		, #{userUnum}
 		)
 	</insert>
