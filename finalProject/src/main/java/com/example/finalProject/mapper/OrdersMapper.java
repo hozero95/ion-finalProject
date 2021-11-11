@@ -16,4 +16,6 @@ public interface OrdersMapper {
 	
 	@Transactional
 	public Long replaceOrderReturn(DeliveryVO deliveryVO);
+	
+	public OrdersVO recentOrderUnum(Long userUnum);
 }

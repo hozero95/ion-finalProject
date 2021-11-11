@@ -2,9 +2,12 @@ package com.example.finalProject.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
+import org.apache.ibatis.javassist.runtime.Desc;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.finalProject.domain.entity.DeliveryVO;
@@ -36,5 +39,9 @@ public class OrdersService {
 	
 	public Long replaceOrderReturn(DeliveryVO deliveryVO) {
 		return ordersMapper.replaceOrderReturn(deliveryVO);
+	}
+	
+	public Long recentOrderUnum(Long userUnum) {
+		return ordersMapper.recentOrderUnum(userUnum).getOrderUnum();
 	}
 }

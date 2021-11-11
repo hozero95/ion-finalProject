@@ -28,4 +28,9 @@
 		   SET cart_address = #{cartAddress}
 		 WHERE user_unum = #{userUnum}
 	</update>
+	
+	<delete id="trashCart">
+		DELETE FROM cart
+		 WHERE user_unum = #{userUnum}
+	</delete>
 </mapper>

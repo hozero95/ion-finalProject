@@ -50,7 +50,7 @@
           <div class="button">
             <div class="button cartbtn" @click="addCart">장바구니</div>
             <!-- <router-link to="payment"> -->
-            <div class="button buy">바로구매</div>
+            <div class="button buy" @click="goPayment()">바로구매</div>
             <!-- </router-link> -->
           </div>
         </div>
@@ -270,43 +270,61 @@
         return maskingId;
       },
       addCart() {
-        var headers = {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + this.$store.state.jwtToken
-        };
+        if (this.$store.state.jwtToken != null && this.$store.state.jwtToken != '') {
+          var headers = {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + this.$store.state.jwtToken
+          };
 
-        var body = {
-          userUnum: this.$store.state.userInfo.userUnum,
-          productUnum: this.productUnum,
-          cartCount: this.productCount,
-          cartPrice: this.productPrice,
-          cartAddress: this.$store.state.userInfo.userAddress
-        }
+          var body = {
+            userUnum: this.$store.state.userInfo.userUnum,
+            productUnum: this.productUnum,
+            cartCount: this.productCount,
+            cartPrice: this.productPrice,
+            cartAddress: this.$store.state.userInfo.userAddress
+          }
 
-        axios.defaults.headers.post = null;
-        axios({
-            url: 'http://localhost:8000/api/detail/regist/cart',
-            method: 'post',
-            headers: headers,
-            data: body
-          })
-          .then((res) => {
-            if (res.data) {
-              alert("장바구니에 등록되었습니다.");
-              if (confirm("장바구니로 이동하시겠습니까?")) {
-                this.$router.push('/cart');
+          axios.defaults.headers.post = null;
+          axios({
+              url: 'http://localhost:8000/api/detail/regist/cart',
+              method: 'post',
+              headers: headers,
+              data: body
+            })
+            .then((res) => {
+              if (res.data) {
+                alert("장바구니에 등록되었습니다.");
+                if (confirm("장바구니로 이동하시겠습니까?")) {
+                  this.$router.push('/cart');
+                }
+              } else {
+                alert("이미 장바구니에 들어있는 상품이거나, 장바구니에 담을 수 없는 상품입니다.");
               }
-            } else {
+            })
+            .catch((err) => {
               alert("이미 장바구니에 들어있는 상품이거나, 장바구니에 담을 수 없는 상품입니다.");
-            }
-          })
-          .catch((err) => {
-            alert("이미 장바구니에 들어있는 상품이거나, 장바구니에 담을 수 없는 상품입니다.");
-          });
+            });
+        } else {
+          alert("로그인이 필요한 서비스입니다.");
+          this.$router.push('/login');
+        }
+      },
+      goPayment() {
+        if (this.$store.state.jwtToken != null && this.$store.state.jwtToken != '') {
+          this.$store.commit('setPayProductUnum', this.productUnum);
+          this.$store.commit('setPayProductCount', this.productCount);
+          this.$store.commit('setPayProductPrice', this.productPrice);
+          
+          if (this.$route.path !== '/payment') {
+            this.$router.push('/payment');
+          }
+        } else {
+          alert("로그인이 필요한 서비스입니다.");
+          this.$router.push('/login');
+        }
       }
     }
   }
-
 </script>
 
 <style>
@@ -568,5 +586,4 @@
       padding-left: 20%;
     }
   }
-
 </style>
