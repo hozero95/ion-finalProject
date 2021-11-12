@@ -30,7 +30,6 @@
 		LEFT OUTER JOIN product d
 		ON p.product_unum = d.product_unum
 		WHERE o.user_unum = #{userUnum}
-		AND r.reply_regdate BETWEEN #{replyStartDate} AND #{replyEndDate}
 		ORDER BY r.reply_regdate DESC
 		]]>
 	</select>

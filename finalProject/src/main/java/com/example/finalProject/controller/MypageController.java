@@ -114,10 +114,8 @@ public class MypageController {
 	}
 
 	@GetMapping(value = "/show/reply/register", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<PayOrdRepProDTO>> registReply(@RequestParam Long userUnum,
-			@RequestParam String replyStartDate, @RequestParam String replyEndDate) {
-		List<PayOrdRepProDTO> payOrdRepProDTOs = payOrdRepProService.registReply(userUnum, replyStartDate,
-				replyEndDate);
+	public ResponseEntity<List<PayOrdRepProDTO>> registReply(@RequestParam Long userUnum) {
+		List<PayOrdRepProDTO> payOrdRepProDTOs = payOrdRepProService.registReply(userUnum);
 		return new ResponseEntity<List<PayOrdRepProDTO>>(payOrdRepProDTOs, HttpStatus.OK);
 	}
 

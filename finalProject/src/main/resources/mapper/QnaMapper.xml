@@ -12,6 +12,7 @@
 			<if test="qnaComment != null">
 			, qna_comment
 			</if>
+			, qna_regdate
 		) VALUES(
 			  seq_qna_unum.nextval
 			, #{userUnum}
@@ -20,6 +21,7 @@
 			<if test="qnaComment != null">
 			, #{qnaComment}
 			</if>
+			, sysdate
 		)
 	</insert>
 	

@@ -68,7 +68,7 @@
           </ul>
 
           <div class="body_content">
-            <button id="qnaadd" type="button">+</button>
+            <button class="qnaadd" v-if="add_qna && showComment" @click="addQnaStatus()" type="button">+</button>
             <div class="content_tb">
               <table>
                 <!-- <colgroup>
@@ -77,29 +77,68 @@
                   <col style="width:99px">
                   <col>
                 </colgroup> -->
-                <thead>
+                <thead v-if="add_qna && showComment">
                   <tr class="th_box">
                     <th class="td_size1">제목</th>
                     <th class="td_size2">내용</th>
                     <th class="td_size3"><span>작성일</span></th>
-                    <th class="td_size4"><span>답변상황</span></th>
+                    <th class="td_size4"><span>답변</span></th>
                   </tr>
                 </thead>
 
-                <tbody>
+                <tbody v-if="add_qna && showComment">
                   <tr v-if="qnais">
                     <td class="td_box">
-                      <p><span>작성하신 상품 Q&A가 없습니다.</span></p>
+                      <p><span>작성된 Q&A가 없습니다.</span></p>
                     </td>
-
                   </tr>
+                  
                   <tr class="th_underbox" v-for="(qna, index) in qnas" v-bind:key="index">
-                    <td class="td_size1">{{qna.qnaTitle}}</td>
-                    <td class="td_size2">{{qna.qnaContent}}</td>
-                    <td class="td_size3">{{toDate(qna.qnaRegdate)}}</td>
-                    <td class="td_size4">{{qna.qnaConment}}</td>
+                    <td class="td_size1">{{titleSubstring(qna.qnaTitle)}}</td>
+                    <td class="td_size2" @click="showContComm(qna)">{{contentSubstring(qna.qnaContent)}}</td>
+                    <td class="td_size3">{{dateFormat(qna.qnaRegdate)}}</td>
+                    <td class="td_size4" v-if="qna.resComment != null">O</td>
+                    <td class="td_size4" v-if="qna.resComment == null">X</td>
                   </tr>
                 </tbody>
+
+                <br>
+                <div class="add_qna" v-if="!add_qna && showComment">
+                  <textarea name="ta_qna_modify" placeholder="제목" id="qna_modify" cols="95" rows="1" style="resize:none"
+                    v-model="title"></textarea><br>
+                  <textarea name="ta_qna_modify" placeholder="내용" id="qna_modify" cols="95" rows="11"
+                    style="resize:none" v-model="content"></textarea><br>
+                  <div class="add_qna_button">
+                    <button type="button" @click="addQnaConfirm()">추가</button>
+                    <button type="button" @click="addQnaStatus()">취소</button>
+                  </div>
+                </div>
+
+
+                <div class="add_comment" v-if="!showComment && add_qna">
+                  <div class="add_comment_box">
+                    <div class="qnatitle">
+                      <strong>제목 : </strong>{{contComm.qnaTitle}}
+                    </div>
+
+                    <strong>내용 : </strong>
+                    <div class="qnacontent">
+                      <textarea name="ta_qna_modify" id="qna_modify" cols="95" rows="3" style="resize:none; border:none"
+                        :value="contComm.qnaContent" readonly></textarea><br>
+                    </div>
+
+                    <div v-if="resContentis" class="contentres">
+                      &nbsp; &nbsp; &nbsp;<strong>↳</strong>
+                      <strong>답변 : </strong> {{contComm.resContent}}
+                    </div>
+
+                    <div class="add_qna_button">
+                      <button type="button" @click="allContCommStatus()">돌아가기</button>
+                    </div>
+
+                  </div>
+                </div>
+
 
               </table>
             </div>
@@ -122,13 +161,20 @@
 
     data() {
       return {
-        userUnum: null,
         qnas: [],
-        qnais: true
+        qnais: true,
+        add_qna: true,
+        showComment: true,
+        resContentis: false,
+        title: '',
+        content: '',
+        comment_title: '',
+        comment_content: '',
+        qna_comment: '',
+        contComm: {}
       }
     },
     created() {
-      this.userUnum = this.$store.state.userUnum;
       this.showqna();
     },
     // computed: {
@@ -143,6 +189,10 @@
     // },
     methods: {
       showqna() {
+        this.add_qna = true;
+        this.showComment = true;
+
+
         var headers = {
           "Content-Type": "application/json",
           "Authorization": "Bearer " + this.$store.state.jwtToken
@@ -150,21 +200,25 @@
 
         axios({
             url: 'http://localhost:8000/api/mypage/show/qna',
+            method: 'get',
             headers: headers,
             params: {
               userUnum: this.$store.state.userInfo.userUnum
             }
           })
           .then(res => {
+            console.log(res);
             var qna = new Array();
             for (var i = 0; i < res.data.length; i++) {
               qna.push(res.data[i]);
             }
             this.qnas = qna;
-            this.qnamessage();
-          })
+            this.qnaMessage();
+          }, error => {
+            console.log(error);
+          });
       },
-      qnamessage() {
+      qnaMessage() {
         if (this.qnas.length > 0) {
           this.qnais = false;
         } else {
@@ -172,17 +226,76 @@
         }
       },
       dateFormat(date) {
-        var regdate = date;
+        var regdate = new Date(date);
         var year = regdate.getFullYear();
-        var month = ('0' + (regdate.getMonth() + 1)).slice(-2);
-        var day = ('0' + today.getDate()).slice(-2);
+        var month = regdate.getMonth() + 1;
+        var day = regdate.getDate();
 
         return year + '-' + month + '-' + day;
       },
       toDate(date) {
         return new Date(date).toLocaleDateString('en-US');
-      }
+      },
+      addQnaStatus() {
+        this.add_qna = !this.add_qna;
+      },
+      addQnaConfirm() {
+        var headers = {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + this.$store.state.jwtToken
+        };
+
+        var body = {
+          userUnum: this.$store.state.userInfo.userUnum,
+          qnaTitle: this.title,
+          qnaContent: this.content
+        };
+
+        axios({
+            url: 'http://localhost:8000/api/mypage/regist/qna',
+            method: 'post',
+            headers: headers,
+            data: body
+          })
+          .then(res => {
+            alert("질문등록이 완료되었습니다.");
+            this.showqna();
+            this.title = '';
+            this.content = '';
+            this.addQnaStatus();
+          }, error => {
+            alert("질문등록에 실패하였습니다.");
+            this.addQnaStatus();
+          });
+      },
+      contentSubstring(str) {
+        if (str.length > 15) {
+          str = str.substring(0, 15) + "...";
+        }
+        return str;
+      },
+      titleSubstring(str) {
+        if (str.length > 5) {
+          str = str.substring(0, 5) + "...";
+        }
+        return str;
+      },
+      allContCommStatus() {
+        this.showComment = !this.showComment;
+
+      },
+      showContComm(qna) {
+        this.contComm = qna;
+        if (this.contComm.resContent != null) {
+          this.resContentis = true;
+        } else {
+          this.resContentis = false;
+        }
+        this.allContCommStatus();
+      },
+
     },
+
 
   }
 </script>
@@ -283,9 +396,13 @@
     width: 777px;
   }
 
-  #qnaadd {
+  .qnaadd {
     font-size: 30px;
-    margin-left: 700px;
+    margin-left: 650px;
+  }
+
+  .add_qna_button {
+    margin-left: 660px;
   }
 
   .content_tb {
