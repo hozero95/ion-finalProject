@@ -1,4 +1,5 @@
 <template>
+
   <body class="body_review">
     <div class="container_my">
       <div class="header_my">
@@ -9,7 +10,7 @@
       <div class="content_my">
         <div class="content_side">
           <div class="card">
-            <div class="card-header hd1"  @click="ONOFF1">
+            <div class="card-header hd1" @click="ONOFF1">
               주문관리
               <button v-if="item1bt==0" style="margin-left :85px">
                 <i class="fas fa-chevron-up"></i>
@@ -20,12 +21,12 @@
             </div>
 
             <ul class="list-group list-group-flush" v-if="sideitem1 ==1">
-              <li class="list-group-item side_item">주문 관리</i></li>
-              <li class="list-group-item side_item">배송 관리</li>              
+              <li class="list-group-item side_item">주문 관리</li>
+              <li class="list-group-item side_item">배송 관리</li>
             </ul>
           </div>
           <div class="card">
-            <div class="card-header hd1"  @click="ONOFF2">
+            <div class="card-header hd1" @click="ONOFF2">
               활동관리
               <button v-if="item2bt==0" style="margin-left :85px">
                 <i class="fas fa-chevron-up"></i>
@@ -37,11 +38,11 @@
 
             <ul class="list-group list-group-flush" v-if="sideitem2 ==1">
               <li class="list-group-item side_item">리뷰 관리</li>
-              <li class="list-group-item side_item">QnA 관리</li>          
+              <li class="list-group-item side_item">QnA 관리</li>
             </ul>
           </div>
           <div class="card">
-            <div class="card-header hd1"  @click="ONOFF3">
+            <div class="card-header hd1" @click="ONOFF3">
               정보관리
               <button v-if="item3bt==0" style="margin-left :85px">
                 <i class="fas fa-chevron-up"></i>
@@ -53,77 +54,105 @@
 
             <ul class="list-group list-group-flush" v-if="sideitem3 ==1">
               <li class="list-group-item side_item">회원정보 변경</li>
-              <li class="list-group-item side_item">비밀번호 변경</li>          
+              <li class="list-group-item side_item">비밀번호 변경</li>
             </ul>
           </div>
         </div>
 
         <div class="content_body">
           <h2 class="body_header">리뷰 관리</h2>
-          <img src="" alt="img" style="width: 777px; height: 62px" />
+
 
           <div class="body_content">
             <h3>미등록리뷰 n건</h3>
 
             <div class="content_tb">
               <table>
-                <colgroup>
+                <!-- <colgroup>
                   <col style="width: 14%" />
                   <col />
                   <col style="width: 20%" />
                   <col style="width: 17%" />
-                </colgroup>
+                </colgroup> -->
                 <thead>
                   <tr class="th_box">
-                    <th scope="col" style="">주문번호</th>
-                    <th scope="col" style="">주문상품</th>
-                    <th scope="col" style="">
-                      <span class="blind">리뷰 혜택</span>
-                    </th>
-                    <th scope="col" style="">
-                      <span class="blind">리뷰 쓰기</span>
-                    </th>
+                    <th class="td_size1">주문번호</th>
+                    <th class="td_size2">주문상품</th>
+                    <th class="td_size3">수량</th>
+                    <th class="td_size4">총 금액</th>
+                    <th class="td_size5">결제일</th>
+                    <th class="td_size6">리뷰쓰기</th>
                   </tr>
                 </thead>
+
                 <tbody>
                   <tr>
-                    <td class="td_box">
-                      <p style="">
-                        <span style="">해당 기간에 구매내역이 없습니다.</span>
-                      </p>
+                    <td class="td_box" v-if="!unreview_status">
+                      <p><span>구매내역이 없습니다.</span></p>
                     </td>
                   </tr>
+
+                  <tr class="th_underbox" v-for="(unRegister, index) in unRegisters" v-bind:key="index">
+                    <td class="td_size1">{{unRegister.orderUnum}}</td>
+                    <td class="td_size2">{{unRegister.productName}}</td>
+                    <td class="td_size3">{{unRegister.paymentCount}}</td>
+                    <td class="td_size4">{{unRegister.paymentPrice}}</td>
+                    <td class="td_size5">{{dateFormat(unRegister.paymentRegdate)}}</td>
+                    <td class="td_size6">쓰기</td>
+                  </tr>
                 </tbody>
+
+                 <tr class="th_underbox">
+                   <td class="">주문번호 : </td>
+                   <td class="">ㅇㅇ</td>
+                </tr>
+                
+                 <tr class="th_underbox">
+                   <td class="">주문상품 : </td>
+                   <td class="">ㅇㅇ</td>
+                </tr>
+
               </table>
             </div>
-
+            <br><br>
             <h3>작성한리뷰 n건</h3>
 
             <div class="content_tb">
               <table>
-                <colgroup>
-                  <col style="width: 15%" />
-                  <col style="width: 14%" />
+                <!-- <colgroup>
                   <col style="width: 14%" />
                   <col />
-                </colgroup>
+                  <col style="width: 20%" />
+                  <col style="width: 17%" />
+                </colgroup> -->
                 <thead>
                   <tr class="th_box">
-                    <th scope="col" style="">주문상품</th>
-                    <th scope="col"><span class="blind">주문번호</span></th>
-                    <th scope="col" style="">작성일</th>
-                    <th scope="col"><span class="blind">수정/삭제</span></th>
+                    <th class="td_size1">주문번호</th>
+                    <th class="td_size2">주문상품</th>
+                    <th class="td_size3">수량</th>
+                    <th class="td_size4">총 금액</th>
+                    <th class="td_size5">리뷰작성일</th>
+                    <th class="td_size6">리뷰보기</th>
                   </tr>
                 </thead>
+
                 <tbody>
                   <tr>
-                    <td class="td_box">
-                      <p style="">
-                        <span style="">작성한 리뷰가 없습니다.</span>
-                      </p>
+                    <td class="td_box" v-if="!review_status">
+                      <p><span>작성한 리뷰가 없습니다.</span></p>
                     </td>
                   </tr>
+
+                  <tr class="th_underbox" v-for="(register, index) in registers" v-bind:key="index">
+                    <td class="td_size1">{{register.orderUnum}}</td>
+                    <td class="td_size2">{{register.productName}}</td>
+                    <td class="td_size3">{{register.paymentCount}}</td>
+                    <td class="td_size4">{{register.paymentPrice}}</td>
+                    <td class="td_size5">{{dateFormat(register.replyRegdate)}}</td>
+                    <td class="td_size6">보기</td>
+                  </tr>
                 </tbody>
+
               </table>
             </div>
           </div>
@@ -134,216 +163,350 @@
 </template>
 
 <script>
-export default {
+  import axios from 'axios'
+
+  export default {
     data() {
-        return {
-            sideitem1 :1,
-            sideitem2 :1,
-            sideitem3 :1,
-            item1bt : 1,
-            item2bt : 1,
-            item3bt : 1,
-            
-        }
-        
+      return {
+        sideitem1: 1,
+        sideitem2: 1,
+        sideitem3: 1,
+        item1bt: 1,
+        item2bt: 1,
+        item3bt: 1,
+        unRegisters: [],
+        registers: [],
+        unreview_status: false,
+        review_status: false
+      }
+
     },
-      methods: {
-      
+    created() {
+      this.unRegister();
+      this.register();
+    },
+    methods: {
       ONOFF1() {
         if (this.sideitem1 == 0) {
-        this.sideitem1 = 1;
-        this.item1bt =1;
+          this.sideitem1 = 1;
+          this.item1bt = 1;
         } else if (this.sideitem1 == 1) {
-        this.sideitem1 = 0;
-        this.item1bt =0;
+          this.sideitem1 = 0;
+          this.item1bt = 0;
         }
       },
       ONOFF2() {
         if (this.sideitem2 == 0) {
-        this.sideitem2 = 1;
-        this.item2bt =1;
+          this.sideitem2 = 1;
+          this.item2bt = 1;
         } else if (this.sideitem2 == 1) {
-        this.sideitem2 = 0;
-        this.item2bt =0;
+          this.sideitem2 = 0;
+          this.item2bt = 0;
         }
 
       },
       ONOFF3() {
         if (this.sideitem3 == 0) {
-        this.sideitem3 = 1;
-        this.item3bt =1;
+          this.sideitem3 = 1;
+          this.item3bt = 1;
         } else if (this.sideitem3 == 1) {
-        this.sideitem3 = 0;
-        this.item3bt =0;
+          this.sideitem3 = 0;
+          this.item3bt = 0;
         }
       },
+      dateFormat(date) {
+        var regdate = new Date(date);
+        var year = regdate.getFullYear();
+        var month = regdate.getMonth() + 1;
+        var day = regdate.getDate();
 
+        return year + '-' + month + '-' + day;
+      },
+      unRegister() {
+        var headers = {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + this.$store.state.jwtToken
+        };
+
+        axios({
+            url: 'http://localhost:8000/api/mypage/show/reply/unregister',
+            method: 'get',
+            headers: headers,
+            params: {
+              userUnum: this.$store.state.userInfo.userUnum
+            }
+          })
+          .then(res => {
+            var unRegister = new Array();
+            for (var i = 0; i < res.data.length; i++) {
+              unRegister.push(res.data[i]);
+            }
+            this.unRegisters = unRegister;
+            this.unreviewStatus();
+            // console.log(this.unRegisters);
+          })
+      },
+      register() {
+        var headers = {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + this.$store.state.jwtToken
+        };
+
+
+        axios({
+            url: 'http://localhost:8000/api/mypage/show/reply/register',
+            method: 'get',
+            headers: headers,
+            params: {
+              userUnum: this.$store.state.userInfo.userUnum,
+            }
+          })
+          .then(res => {
+            var register = new Array();
+            for (var i = 0; i < res.data.length; i++) {
+              register.push(res.data[i]);
+            }
+            this.registers = register;
+            this.reviewStatus();
+            // console.log(this.registers);
+          })
+      },
+      unreviewStatus() {
+        if (this.unRegisters.length > 0) {
+          this.unreview_status = true;
+        } else {
+          this.unreview_status = false;
+        }
+        
+      },
+      reviewStatus() {
+        if (this.registers.length > 0) {
+          this.review_status =true;
+        } else {
+          this.review_status = false;
+        }
+      },
     },
-};
-
-
+  };
 </script>
 
-<style>
-.body_review{
-  height: 1000px;
+<style scoped>
+  .body_review {
+    height: 1000px;
 
-}
-/* header setting */
+  }
 
-.container_my {
-  /* background-color: aqua; */
+  /* header setting */
 
-
-  margin-top: 30px;
-  margin-left: auto;
-  margin-right: auto;
-  border-right: 1px solid #d1dadd;
-  border-left: 1px solid #d1dadd;
-  width: 1020px;
-  height: 1000px;
-  /* fit content 사용시 풋터가 올라오는 에러 발생  height 고정값 주기*/
-}
-
-.header_my {
-  background-color: #f3fafe;
-  border-bottom: 3px solid #203a4d;
-  width: 1018px;
-  height: 94px;
-  margin: 20px 0px 20px 0px;
-}
-.header_tag {
-  /* background-color: aquamarine; */
-  height: 37px;
-  width: 139px;
-  float: left;
-  margin: 8px 0px 8px 0px;
-  padding: 32px 15px 9px 18px;
-}
-.user_name {
-  height: 17.5px;
-  width: 53.5px;
-  font-size: 12px;
-}
-.ssg_img {
-  height: 37px;
-  width: 139px;
-}
-
-/* content area */
-/* content_side setting  + content_body setting*/
-
-.content_my {
-  width: 1018px;
-  height: fit-content;
-  /* border : solid 3px red; */
-}
-
-.content_side {
-  /* background-color: aqua; */
-  float: left;
-  width: 200px;
-  height: 600px;
-}
-
-.btn_size {
-  width: 200px;
-  height: 60px;
-}
-
-/* ------------------------side bar start-------------------------------- */
-.hd1{
-  cursor: pointer;
-}
-
-.side_item {
-  background-color: #f3fafe;
-}
+  .container_my {
+    /* background-color: aqua; */
 
 
-.side_item:hover {
-  background-color: cadetblue;
-  display: inline-block
-}
-.side_item:active {
-  background-color: lightskyblue;
-}
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    border-right: 1px solid #d1dadd;
+    border-left: 1px solid #d1dadd;
+    width: 1020px;
+    height: 1000px;
+    /* fit content 사용시 풋터가 올라오는 에러 발생  height 고정값 주기*/
+  }
 
-/* ------------------------side bar end-------------------------------- */
+  .header_my {
+    background-color: #f3fafe;
+    border-bottom: 3px solid #203a4d;
+    width: 1018px;
+    height: 94px;
+    margin: 20px 0px 20px 0px;
+  }
 
-/* ------------------------content_my body start-------------------------------- */
-.content_body {
-  /* background-color: lightgray; */
-  float: left;
-  margin-left: 35px;
-  width: 777px;
-  height: 600px;
-}
+  .header_tag {
+    /* background-color: aquamarine; */
+    height: 37px;
+    width: 139px;
+    float: left;
+    margin: 8px 0px 8px 0px;
+    padding: 32px 15px 9px 18px;
+  }
 
-.body_header {
-  height: fit-content;
-  width: 780px;
-  padding: 15px 0px 13px 10px;
-  border-bottom: 1px solid #203a4d;
-  line-height: 30px;
-}
-.body_content {
-  /* background-color: aquamarine; */
-  margin-top: 30px;
-  height: 207px;
-  width: 777px;
-}
+  .user_name {
+    height: 17.5px;
+    width: 53.5px;
+    font-size: 12px;
+  }
 
-.content_tb {
-  /* background-color: brown; */
-}
+  .ssg_img {
+    height: 37px;
+    width: 139px;
+  }
 
-.blind {
-  display: none;
-}
+  /* content area */
+  /* content_side setting  + content_body setting*/
 
-h2 {
-  margin: 0px;
-  padding: 0px;
-  display: block;
-  font-size: 26px;
-}
+  .content_my {
+    width: 1018px;
+    height: fit-content;
+    /* border : solid 3px red; */
+  }
 
-h3 {
-  font-size: 20px;
-  margin-top: 20px;
-}
+  .content_side {
+    /* background-color: aqua; */
+    float: left;
+    width: 200px;
+    height: 600px;
+  }
 
-thead {
-  /* background: red; */
-  height: 18px;
-  width: 80px;
-  padding: 15px;
-  border-bottom: 1px solid #ededed;
-  color: #222;
-  font-size: 12px;
-}
+  .btn_size {
+    width: 200px;
+    height: 60px;
+  }
 
-.th_box {
-  background-color: lightgray;
-  width: 777px;
-  height: 40px;
-  border-top: 1px solid #203a4d;
-  border-bottom: 1px solid #203a4d;
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
+  /* ------------------------side bar start-------------------------------- */
+  .hd1 {
+    cursor: pointer;
+  }
 
-.td_box {
-  width: 777px;
-  height: 100px;
-  border-bottom: 1px solid #203a4d;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .side_item {
+    background-color: #f3fafe;
+  }
 
-/* ------------------------content_my body end-------------------------------- */
+
+  .side_item:hover {
+    background-color: cadetblue;
+    display: inline-block
+  }
+
+  .side_item:active {
+    background-color: lightskyblue;
+  }
+
+  /* ------------------------side bar end-------------------------------- */
+
+  /* ------------------------content_my body start-------------------------------- */
+  .content_body {
+    /* background-color: lightgray; */
+    float: left;
+    margin-left: 35px;
+    width: 777px;
+    height: 600px;
+  }
+
+  .body_header {
+    height: fit-content;
+    width: 780px;
+    padding: 15px 0px 13px 10px;
+    border-bottom: 1px solid #203a4d;
+    line-height: 30px;
+  }
+
+  .body_content {
+    /* background-color: aquamarine; */
+    margin-top: 30px;
+    height: 207px;
+    width: 777px;
+  }
+
+  .content_tb {
+    /* background-color: brown; */
+  }
+
+  .blind {
+    display: none;
+  }
+
+  h2 {
+    margin: 0px;
+    padding: 0px;
+    display: block;
+    font-size: 26px;
+  }
+
+  h3 {
+    font-size: 20px;
+    margin-top: 20px;
+  }
+
+  thead {
+    /* background: red; */
+    height: 18px;
+    width: 80px;
+    padding: 15px;
+    border-bottom: 1px solid #ededed;
+    color: #222;
+    font-size: 12px;
+  }
+
+  .th_box {
+    background-color: lightgray;
+    height: 40px;
+    border-top: 3px solid #203a4d;
+    border-bottom: 3px solid #203a4d;
+    display: flex;
+    /* justify-content: space-around; */
+    align-items: center;
+    text-align: center;
+  }
+
+  .th_underbox {
+    /* background-color: lightgray; */
+    height: 40px;
+    /* border-top: 1px solid #203a4d; */
+    border-bottom: 1px solid #203a4d;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .td_box {
+    /* width: 777px; */
+    /* height: 100px; */
+    /* border-bottom: 1px solid #203a4d; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* ------------------------content_my body end-------------------------------- */
+
+  .td_size1 {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .td_size2 {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .td_size3 {
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .td_size4 {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .td_size5 {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .td_size6 {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 </style>

@@ -17,9 +17,9 @@ public class PayOrdRepProService {
 		return payRepMapper.unregistReply(userUnum);
 	}
 
-	public List<PayOrdRepProDTO> registReply(Long userUnum, String replyStartDate, String replyEndDate) {
+	public List<PayOrdRepProDTO> registReply(Long userUnum) {
 //		Date replyStartDate = new SimpleDateFormat("yyyy-MM-dd").parse(startDate);
 //		Date replyEndDate = new SimpleDateFormat("yyyy-MM-dd").parse(endDate);
-		return payRepMapper.registReply(userUnum, replyStartDate, replyEndDate);
+		return payRepMapper.registReply(userUnum);
 	}
 }
