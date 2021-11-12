@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.finalProject.domain.dto.OrdDelDTO;
 import com.example.finalProject.domain.dto.OrdPayDelProDTO;
 import com.example.finalProject.domain.dto.PayOrdRepProDTO;
+import com.example.finalProject.domain.dto.Qna2DTO;
 import com.example.finalProject.domain.entity.DeliveryVO;
 import com.example.finalProject.domain.entity.QnaVO;
 import com.example.finalProject.domain.entity.ReplyVO;
@@ -58,9 +59,10 @@ public class MypageController {
 	}
 
 	@GetMapping(value = "/show/qna", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<QnaVO>> mypageShowQna(@RequestParam Long userUnum) {
-		List<QnaVO> qna = qnaService.mypageShowQna(userUnum);
-		return new ResponseEntity<List<QnaVO>>(qna, HttpStatus.OK);
+	public ResponseEntity<List<Qna2DTO>> mypageShowQna(@RequestParam Long userUnum) {
+//		List<QnaVO> qna = qnaService.mypageShowQna(userUnum);
+		List<Qna2DTO> qna = qnaService.showQna(userUnum);
+		return new ResponseEntity<List<Qna2DTO>>(qna, HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/show/detail/qna", produces = MediaType.APPLICATION_JSON_VALUE)

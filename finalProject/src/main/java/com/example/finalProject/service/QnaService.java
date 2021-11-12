@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.finalProject.domain.dto.Qna2DTO;
 import com.example.finalProject.domain.entity.QnaVO;
 import com.example.finalProject.mapper.QnaMapper;
 import com.example.finalProject.respository.QnaRepository;
@@ -37,5 +38,11 @@ public class QnaService {
 
 	public Long registQna(QnaVO qnaVO) {
 		return qnaMapper.registQna(qnaVO);
+	}
+
+	public List<Qna2DTO> showQna(Long userUnum) {
+		List<Qna2DTO> qna = new ArrayList<>();
+		qna = qnaMapper.showQna(userUnum);
+		return qna;
 	}
 }
