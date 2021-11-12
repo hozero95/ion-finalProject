@@ -187,7 +187,13 @@
         .then(res => {
           var product = new Array();
 
-          for (var i = 0; i < res.data.length; i++) {
+          var dataLength = res.data.length;
+
+          if(dataLength > 5) {
+            dataLength = 5;
+          }
+
+          for (var i = 0; i < dataLength; i++) {
             if (res.data[i].productSeason != null && res.data[i].productSeason != '') {
               product.push(res.data[i]);
             }
