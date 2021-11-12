@@ -42,7 +42,11 @@
       }
     }
   }
+
 </script>
 
 <style>
+  /* body {
+    text-align: center;
+  } */
 </style>

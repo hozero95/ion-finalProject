@@ -6,7 +6,7 @@
     </div>
     <div class="seasonal__seafoods">
       <div class="seasonal__seafoods__wrap" v-for="(product, index) in products" v-bind:key="index"
-      @click="showDetail(product.productUnum)">
+        @click="showDetail(product.productUnum)">
         <a class="seafood" target="blank" data-type="">
           <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
           <div class="seafood__info">
@@ -50,7 +50,7 @@
       } else {
         seasonmonth = 3; //겨울
       }
-    
+
       axios.get('http://localhost:8000/api/season/show/product', {
           params: {
             productSeason: seasonmonth
@@ -69,7 +69,7 @@
         })
     },
     methods: {
-     showDetail(productUnum) {
+      showDetail(productUnum) {
         this.$store.commit('setProductUnum', productUnum);
 
         if (this.$route.path !== '/product') {
@@ -78,6 +78,7 @@
       }
     },
   }
+
 </script>
 
 <style scoped>
@@ -85,7 +86,7 @@
   .seasonal {
     /* background-color: aqua; */
     width: 1300px;
-    margin: 100px 0 0 300px;
+    margin: 100px auto;
   }
 
   .seasonal__img {
@@ -101,8 +102,13 @@
 
   .seasonal__seafoods {
     display: flex;
-    justify-content: space-evenly;
+    flex-wrap: wrap;
     margin-left: 20px;
+  }
+
+  .seasonal__seafoods__wrap {
+    margin-left: 2%;
+    margin-bottom: 2%;
   }
 
   .seasonal__seafoods img {
@@ -130,8 +136,8 @@
     margin-bottom: 1%;
   }
 
-  .seafood__info__clickable{
-      font-size: 20px;
+  .seafood__info__clickable {
+    font-size: 20px;
   }
 
   /* 노트북 사이즈 */
@@ -140,4 +146,5 @@
       margin-left: 60px;
     }
   }
+
 </style>

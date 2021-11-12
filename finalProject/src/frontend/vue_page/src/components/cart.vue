@@ -58,11 +58,11 @@
                       </div>
                     </td>
                     <td class="btnarea">
-                      <div class="btnarea__btn">
+                      <!-- <div class="btnarea__btn"> -->
                         <!-- <div class="cartbtn">계속담아두기</div> -->
-                        <div class="buybtn cursor_pointer">바로구매</div>
-                      </div>
-                      <div class="btnarea__icon"><i class="far fa-trash-alt cursor_pointer" @click="delCart(index)"></i>
+                        <!-- <div class="buybtn cursor_pointer">바로구매</div> -->
+                      <!-- </div> -->
+                      <div class="btnarea__btn"><i class="far fa-trash-alt cursor_pointer" @click="delCart(index)"></i>
                       </div>
                     </td>
                   </tr>
