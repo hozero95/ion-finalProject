@@ -22,4 +22,14 @@
 			</if>
 		)
 	</insert>
+	
+	<select id="showQna" resultType="Qna2DTO">
+		SELECT *
+		  FROM qna q
+		  LEFT OUTER JOIN (SELECT qna_title res_title, qna_content res_content, qna_comment res_comment
+		                     FROM qna) q2
+		    ON q.qna_unum = q2.res_comment
+		 WHERE q.user_unum = #{userUnum}
+		 ORDER BY q.qna_regdate DESC
+	</select>
 </mapper>
