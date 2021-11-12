@@ -46,7 +46,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   /* Event */
   .event {
     margin-top: 5%;

@@ -235,7 +235,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   /* 레이아웃 틀 */
   html {
     height: 100%;

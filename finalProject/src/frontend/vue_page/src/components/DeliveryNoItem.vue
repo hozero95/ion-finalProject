@@ -50,8 +50,8 @@
           <h2 class="body_header">주문배송 조회</h2>
 
           <div class="body_header2">
-            <span>조회기간 {{getRecent3MonthStr()}}(최근3개월)</span>
-            <span>조회설정</span>
+            <span>조회기간 : {{getRecent3MonthStr()}} (최근3개월)</span>
+            <!-- <span>조회설정</span> -->
           </div>
 
           <div class="body_content">
@@ -74,10 +74,24 @@
       getRecent3MonthStr() {
         var date = new Date();
         var year = date.getFullYear();
-        var month = date.getMonth() + 1;
-        var day = date.getDate();
+        var month = date.getMonth() - 2;
+        var day = date.getDate() + 1;
+        var str = '';
 
-        var str = year + "-" + month + "-" + day;
+        if (month < 10) {
+          str = year + "-0" + month + "-" + day + " ~ ";
+        } else {
+          str = year + "-0" + month + "-" + day + " ~ ";
+        }
+
+        month = month + 3;
+        day = day - 1;
+
+        if (month < 10) {
+          str = str + year + "-0" + month + "-" + day;
+        } else {
+          str = str + year + "-" + month + "-" + day;
+        }
 
         return str;
       }
@@ -86,7 +100,7 @@
 
 </script>
 
-<style>
+<style scoped>
   /* header setting */
   .container_my {
     /* background-color: aqua; */

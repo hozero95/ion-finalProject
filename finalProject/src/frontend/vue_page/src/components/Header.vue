@@ -57,7 +57,7 @@
         <router-link to="userpage">
           <li class="header__menu__iteam"><i class="far fa-user"></i></li>
         </router-link>
-        <router-link to="deliverynoitem">
+        <router-link to="deliveryitem">
           <li class="header__menu__iteam"><i class="fas fa-truck"></i></li>
         </router-link>
         <router-link to="cart">

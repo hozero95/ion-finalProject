@@ -52,129 +52,72 @@
           <h2 class="body_header">주문배송 조회</h2>
 
           <div class="body_header2">
-            <span>조회기간 2021.07.28~2021.10.28(최근3개월)</span>
-            <span>조회설정</span>
+            <span>조회기간 : {{getRecent3MonthStr()}} (최근3개월)</span>
+            <!-- <span>조회설정</span> -->
           </div>
 
-          <dl>
-            <dt>
-              <span class="codr_odrdeliv_odrdate notranslate" style="">2021.10.20</span>
-              <span>
-                <em style="">주문번호 : </em>
-                20211020-0074DF</span>
-              <button class="btn_small">상세보기<span></span></button>
-            </dt>
-            <dd>
-              <button type="button" class="btn_small"><span> 내 주문내역에서 삭제 </span></button>
+          <div class="body_content" v-if="orderList == null || orderList.length == 0">
+            <img src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/del.jpg" alt="img">
+            <p style="font-size: 20px;">주문내역이 없습니다.</p>
+            <button class="btn cs" name="btn_ssgMain" @click="toMain()">쇼핑시작하기</button>
+          </div>
 
-              <!-- <button type="button" class="btn_small"><span>| 전자영수증 </span></button> -->
+          <div class="forClass" v-for="(order, index) in orderList" v-bind:key="index">
+            <dl>
+              <dt>
+                <span class="codr_odrdeliv_odrdate notranslate" style="">{{dateFormat(order[0].orderRegdate)}}</span>
+                <span>
+                  <em>주문번호 : </em>
+                  {{order[0].orderUnum}}
+                </span>
+              </dt>
+            </dl>
 
-              <!-- <button type="button" class="btn_small"><span>| 장바구니 담기 </span></button> -->
-            </dd>
-          </dl>
-
-          <div class="del_box">
-            <div class="del_box1">
-              <em><span>롯데택배</span>&nbsp;/&nbsp;403566618722&nbsp;&nbsp;</em>
-              배송완료
+            <div class="del_box">
+              <div class="del_box1">
+                <em>{{isDelivery(order[0])}}</em>
+              </div>
             </div>
 
-            <!-- <div class="del_box2">
-              <div class="del_box2_ch">결제완료</div>
-              <div class="del_box2_ch">상품준비중</div>
-              <div class="del_box2_ch">배송준비중</div>
-              <div class="del_box2_ch">배송중</div>
-              <div class="del_box2_ch">배송완료</div>
-            </div> -->
+            <div class="item_list" style="">
+              <table>
+                <colgroup>
+                  <col style="width:100px">
+                  <col style="width:500px">
+                  <col style="width:185px">
+                </colgroup>
+
+                <tbody>
+                  <tr name="divItemUnit" v-for="(product, index2) in order" v-bind:key="index2">
+                    <td>
+                      <div>
+                        <a href="">
+                          <span>
+                            <img src="/del.jpg" alt="상품" style="width: 90px; height: 70px;">
+                          </span>
+                        </a>
+                      </div>
+                    </td>
+                    <td>
+                      <span>{{product.productName}}</span>
+                    </td>
+                    <td>
+                      <div>
+                        <span class="blind">판매가격</span> <em class="ssg_price notranslate"
+                          style="">{{product.paymentPrice}}</em> <span class="ssg_tx">원</span>
+                      </div>
+                      <strong>수량</strong> <em>{{product.paymentCount}}</em><span>개</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <ul class="cs_button_area" style="text-align: center;">
+                <button class="cs_button_item" @click="orderCancel(order[0])">주문취소</button>
+                <button class="cs_button_item" @click="orderChange(order[0])">교환신청</button>
+                <button class="cs_button_item" @click="orderReturn(order[0])">반품신청</button>
+              </ul>
+            </div>
           </div>
-
-          <div class="item_list" style="">
-            <table>
-              <colgroup>
-                <col style="width:100px">
-                <col style="width:500px">
-                <col style="width:185px">
-              </colgroup>
-
-              <tbody>
-                <tr name="divItemUnit">
-                  <td>
-                    <div>
-                      <a href="">
-                        <span>
-                          <img src="/del.jpg" alt="상품" style="width: 90px; height: 70px;">
-                        </span>
-                      </a>
-                    </div>
-                  </td>
-
-                  <td>
-                    <p>
-                      <a href="">
-                        <span>STL-1944 방문손잡이 문손잡이 문고리 방문고리</span>
-                      </a>
-                    </p>
-                  </td>
-
-                  <td>
-                    <div>
-                      <span class="blind">판매가격</span> <em class="ssg_price notranslate" style="">9,800</em> <span
-                        class="ssg_tx">원</span>
-                    </div>
-                    <strong>수량</strong> <em>1</em><span>개</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <!-- <ul class="cs_button_area">
-                    <button class="cs_button_item">반품신청</button>
-                    <button class="cs_button_item">교환신청</button>
-                    <button class="cs_button_item">리뷰작성</button>
-                </ul> -->
-
-          <!-- <div class="codr_contit ty_underline" style="">
-                    <h3 class="codr_contit_tx" style="">주문에 불편함이 있으신가요?</h3>
-                </div>
-
-                <ul class="codr_lst">
-                    <li>
-                        <a class="codr_btn_view">
-                            상품을 이미 받았는데 배송중입니다.
-                        </a>
-                    </li>
-                    <li>
-                        <a class="codr_btn_view">
-                            쓱배송 예약시간을 바꾸고 싶어요.
-                        </a>
-                    </li>
-                    <li>
-                        <a class="codr_btn_view">
-                            옵션을 잘못 선택했어요.
-                        </a>
-                    </li>
-                    <li>
-                        <a class="codr_btn_view">
-                            배송받을 주소를 바꾸고 싶어요.
-                        </a>
-                    </li>
-                    <li>
-                        <a class="codr_btn_view">
-                            무통장입금 주문을 카드결제하고 싶어요.
-                        </a>
-                    </li>
-                    <li>
-                        <a class="codr_btn_view">
-                            교환/반품 접수를 취소할 수 있나요?
-                        </a>
-                    </li>
-                </ul> -->
-          <ul class="cs_button_area" style="text-align: center;">
-            <button class="cs_button_item">주문취소</button>
-            <button class="cs_button_item">교환신청</button>
-            <button class="cs_button_item">반품신청</button>
-            <!-- <button class="cs_button_item">E-mail 상담</button> -->
-          </ul>
         </div>
       </div>
     </div>
@@ -182,23 +125,219 @@
 </template>
 
 <script>
-  export default {
+  import axios from 'axios';
 
+  export default {
+    data() {
+      return {
+        orderList: [
+          []
+        ]
+      }
+    },
+    created() {
+      this.getOrderList3Month();
+    },
+    methods: {
+      toMain() {
+        this.$router.push('/');
+      },
+      getRecent3MonthStr() {
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth() - 2;
+        var day = date.getDate() + 1;
+        var str = '';
+
+        if (month < 10) {
+          str = year + "-0" + month + "-" + day + " ~ ";
+        } else {
+          str = year + "-0" + month + "-" + day + " ~ ";
+        }
+
+        month = month + 3;
+        day = day - 1;
+
+        if (month < 10) {
+          str = str + year + "-0" + month + "-" + day;
+        } else {
+          str = str + year + "-" + month + "-" + day;
+        }
+
+        return str;
+      },
+      dateFormat(date) {
+        var data = new Date(date);
+        var year = data.getFullYear();
+        var month = data.getMonth() + 1;
+        var day = data.getDate();
+
+        return year + '.' + month + '.' + day;
+      },
+      getOrderList3Month() {
+        var headers = {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + this.$store.state.jwtToken
+        };
+
+        axios.defaults.headers.post = null;
+        axios({
+            url: 'http://localhost:8000/api/mypage/show/orderdelivery/threemonth',
+            method: 'get',
+            headers: headers,
+            params: {
+              userUnum: this.$store.state.userInfo.userUnum
+            }
+          })
+          .then(res => {
+            var orderList = new Array();
+            var list = new Array();
+            var count = 0;
+            var temp = res.data[count].orderUnum;
+
+            for (var i = 0; i < res.data.length; i++) {
+              if (temp != res.data[i].orderUnum) {
+                orderList.push(list);
+                list = new Array();
+                temp = res.data[i].orderUnum;
+                count++;
+              }
+              list.push(res.data[i]);
+            }
+            orderList.push(list);
+            this.orderList = orderList;
+
+            console.log(this.orderList);
+          }, error => {
+            alert("주문배송 조회에 실패했습니다.");
+          });
+      },
+      isDelivery(order) {
+        var status = '';
+
+        if(order.orderStatus == 1) {
+          return '취소된 주문입니다.';
+        }
+        if (order.deliveryUnum != null || order.deliveryUnum > 0) {
+          if (order.deliveryStatus == null || order.deliveryStatus == 0) {
+            status = '결제완료';
+          } else if (order.deliveryStatus == 1) {
+            status = '상품준비중';
+          } else if (order.deliveryStatus == 2) {
+            status = '배송중';
+          } else if (order.deliveryStatus == 3) {
+            status = '배송완료';
+          } else if (order.deliveryStatus == 4) {
+            status = '교환신청';
+          } else if (order.deliveryStatus == 5) {
+            status = '반품신청';
+          }
+          return '오징어택배 / ' + order.deliveryUnum + ' / ' + status;
+        }
+
+        return '해당 주문의 결제 내역을 확인중입니다.';
+      },
+      orderCancel(order) {
+        if (order.deliveryStatus < 2 && order.deliveryStatus != null) {
+          var headers = {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + this.$store.state.jwtToken
+          };
+
+          axios.defaults.headers.post = null;
+          axios({
+              url: 'http://localhost:8000/api/mypage/remove/order',
+              method: 'delete',
+              headers: headers,
+              params: {
+                orderUnum: order.orderUnum
+              }
+            })
+            .then(res => {
+              alert(order.orderUnum + "번 주문이 취소되었습니다.");
+              this.getOrderList3Month();
+            }, error => {
+              alert("주문 취소를 실패했습니다.");
+            });
+        } else {
+          alert("배송 시작 전에만 주문취소가 가능합니다.");
+        }
+      },
+      orderChange(order) {
+        if (order.deliveryStatus == 3 && order.deliveryStatus != null) {
+          var headers = {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + this.$store.state.jwtToken
+          };
+
+          var body = {
+            deliveryStatus: 4,
+            orderUnum: order.orderUnum
+          };
+
+          axios.defaults.headers.post = null;
+          axios({
+              url: 'http://localhost:8000/api/mypage/replace/orderchange',
+              method: 'patch',
+              headers: headers,
+              data: body
+            })
+            .then(res => {
+              alert(order.orderUnum + "번 주문이 교환 신청되었습니다.");
+              this.getOrderList3Month();
+            }, error => {
+              alert("주문 교환 신청에 실패했습니다.");
+            });
+        } else {
+          alert("배송 완료 상태이어야 교환이 가능합니다.");
+        }
+      },
+      orderReturn(order) {
+        if (order.deliveryStatus == 3 && order.deliveryStatus != null) {
+          var headers = {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + this.$store.state.jwtToken
+          };
+
+          var body = {
+            deliveryStatus: 5,
+            orderUnum: order.orderUnum
+          };
+
+          axios.defaults.headers.post = null;
+          axios({
+              url: 'http://localhost:8000/api/mypage/replace/orderreturn',
+              method: 'patch',
+              headers: headers,
+              data: body
+            })
+            .then(res => {
+              alert(order.orderUnum + "번 주문이 반품 신청되었습니다.");
+              this.getOrderList3Month();
+            }, error => {
+              alert("주문 반품 신청에 실패했습니다.");
+            });
+        } else {
+          alert("배송 완료 상태이어야 반품이 가능합니다.");
+        }
+      }
+    }
   }
+
 </script>
 
-<style>
+<style scoped>
   /* header setting */
   .container_my {
     /* background-color: aqua; */
 
-    margin-top: 30px;
+    /* margin-top: 30px; */
     margin-left: auto;
     margin-right: auto;
     border-right: 1px solid #d1dadd;
     border-left: 1px solid #d1dadd;
     width: 1020px;
-    height: 2000px;
+    /* height: 2000px; */
   }
 
   .header_my {
@@ -236,8 +375,9 @@
 
   .content_my {
     width: 1018px;
-    height: 1000px;
-    border: solid 3px red;
+    height: auto;
+    overflow: hidden;
+    /* border: solid 3px red; */
   }
 
   .content_side {
@@ -269,7 +409,7 @@
     float: left;
     margin-left: 35px;
     width: 777px;
-    height: 600px;
+    /* height: 600px; */
   }
 
   .body_header {
@@ -289,17 +429,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
 
-
+  .forClass {
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   .body_content {
-
     margin-top: 50px;
-    height: 228px;
+    /* height: 228px; */
     width: 777px;
     text-align: center;
-
   }
 
   .cs {
@@ -315,7 +456,7 @@
     width: 777px;
 
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     margin-top: 30px;
     border-top: 2px solid #222222;
@@ -335,7 +476,7 @@
   }
 
   .del_box1 {
-    background-color: lightslategrey;
+    /* background-color: lightslategrey; */
     width: 777px;
     height: 70px;
     display: flex;
@@ -365,24 +506,24 @@
   }
 
   .item_list {
-    background-color: #d1dadd;
+    /* background-color: #d1dadd; */
     margin-top: 20px;
-    height: 90px;
+    /* height: 90px; */
     width: 777px;
     border-top: 1px solid #eeeeee;
     border-bottom: 1px solid #eeeeee;
   }
 
   td {
-    background-color: burlywood;
-    border: 3px solid red;
+    /* background-color: burlywood; */
+    border: 1px solid black;
     height: 90px;
   }
 
   .cs_button_area {
     margin-top: 30px;
     text-align: end;
-    background-color: aqua;
+    /* background-color: aqua; */
 
   }
 

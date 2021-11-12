@@ -30,7 +30,7 @@
         </div>
         
         <div class="content_box " >
-            <router-link to="deliverynoitem"><h3>③ 주문/배송관리</h3></router-link>
+            <router-link to="deliveryitem"><h3>③ 주문/배송관리</h3></router-link>
             <!-- 주문상품이있다면 to = deliveryitem 으로가야함 데이터바인딩해서 vue 문법으로 다뤄야함 -->
         </div>
         </div>
@@ -61,7 +61,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 /* box sizing */
 .content_my{
     /* background-color: aqua; */
