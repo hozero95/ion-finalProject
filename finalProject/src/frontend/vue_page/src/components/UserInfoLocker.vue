@@ -129,7 +129,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   /* header setting */
   .container_my {
     /* background-color: aqua; */

@@ -196,7 +196,7 @@
 
 </script>
 
-<style>
+<style scoped>
   /* MD 추천 */
   .category {
     /* background-color: aqua; */

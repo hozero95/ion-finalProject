@@ -11,10 +11,11 @@
 	
 	<select id="recentOrderUnum" resultType="OrdersVO">
 		SELECT *
-		  FROM orders
-		 WHERE user_unum = #{userUnum}
-		   AND rownum = 1
-		 ORDER BY order_regdate desc
+		  FROM (SELECT *
+		          FROM orders
+		         WHERE user_unum = #{userUnum}
+		         ORDER BY order_regdate DESC)
+		 WHERE rownum = 1
 	</select>
 	
 	<insert id="registOrder">
