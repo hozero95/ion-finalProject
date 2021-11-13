@@ -89,7 +89,7 @@
               <div class="seafood__info__top">
                 <div class="logo">해물오빠</div>
                 <div class="cart-icon">
-                  <i class="fas fa-shopping-cart"></i>
+                  <i class="fas fa-shopping-cart fa-2x"></i>
                 </div>
               </div>
               <div class="seafood__info__title">
@@ -149,7 +149,7 @@
               <div class="seafood__info__top">
                 <div class="logo">해물오빠</div>
                 <div class="cart-icon">
-                  <i class="fas fa-shopping-cart"></i>
+                  <i class="fas fa-shopping-cart fa-2x"></i>
                 </div>
               </div>
               <div class="seafood__info__title">
@@ -163,14 +163,14 @@
             </div>
           </a>
         </div>
+      <div class="more">
+        <button @click="range()" v-if="showMore">
+          See More <i class="fas fa-chevron-down"></i>
+        </button>
       </div>
+      </div>
+      
     </section>
-
-    <div class="more">
-      <button @click="range()" v-if="showMore">
-        해산물 더보기<i class="fas fa-chevron-down"></i>
-      </button>
-    </div>
   </body>
 </template>
 
@@ -414,10 +414,10 @@ body {
 
 .seasonal__seafoods {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
 .seasonal__seafoods__wrap {
-  margin: 10px 10px;
+  margin: 30px 30px;
 }
 .seasonal__seafoods__wrap__box {
   background-color: #5172de;
@@ -431,6 +431,7 @@ body {
   border-radius: 5%;
   margin-bottom: 5%;
 }
+
 .seafood__info__top {
   display: flex;
   justify-content: space-between;
@@ -486,7 +487,7 @@ body {
 }
 
 .best__seafoods {
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
 
   margin: 10px 200px 0 200px;
   display: flex;
@@ -524,6 +525,8 @@ body {
 
 /* more btn */
 .more {
+  width: 3000px;
+  height: 200px;
   text-align: center;
   margin-top: 100px;
 }
@@ -532,6 +535,36 @@ body {
   border: 1px solid #132c7d;
   width: 10%;
   height: 30%;
+  padding: 15px 20px;
+  font-size: 20px;
+  background: skyblue;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  display: block;
+  margin: 30px auto;
+}
+.more:hover {
+  animation-name: shake;
+  animation-duration: 1s;
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-8deg);
+  }
+  50% {
+    transform: rotate(8deg);
+  }
+  75% {
+    transform: rotate(-8deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 /* 노트북 사이즈 */
@@ -586,4 +619,12 @@ body {
     width: 100%;
   }
 } */
+
+
+/* 추가 css */
+
+ul {
+    list-style: none;
+  }
+
 </style>
