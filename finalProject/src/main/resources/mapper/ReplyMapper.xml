@@ -5,14 +5,18 @@
 <mapper namespace="com.example.finalProject.mapper.ReplyMapper">
 	<insert id="registReply">
 		INSERT INTO reply(
-			  payment_unum
+			  reply_unum
+			, payment_unum
 			, reply_content
+			, reply_regdate
 			<if test="replyImage01Path != null">
 			, reply_image01_path
 			</if>
 		) VALUES(
-			  #{paymentUnum}
+			 seq_reply_unum.nextval
+			, #{paymentUnum}
 			, #{replyContent}
+			, sysdate
 			<if test="replyImage01Path != null">
 			, #{replyImage01Path}
 			</if>
