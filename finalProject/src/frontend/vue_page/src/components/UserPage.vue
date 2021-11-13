@@ -21,8 +21,18 @@
         </div>
         
         <div>
+
         <div class="content_box right_line">
-            <router-link to="userinfolocker"><h3>① 회원정보변경</h3></router-link>
+            
+            <div class="content_box_item">
+            <router-link to="userinfolocker">
+                <div class="i_box">
+                    <i class="fas fa-truck fa-5x"></i>
+                </div>
+                <h4>회원정보 변경</h4>
+                <p>ddddddddddddddd</p>
+            </router-link>
+            </div>
         </div>
         
         <div class="content_box right_line">
@@ -109,6 +119,43 @@ export default {
     padding-top: 32px;
     padding-left: 30px;
     border-bottom: 1px solid #ccd6da;
+    
+    
+
+    
+}
+.content_box_item{
+    width: fit-content;
+    height: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+
+}
+.i_box{
+    background-color: #F3FAFE;
+    width: 160px;
+    height: 160px;
+    border-radius: 80px;
+    padding-top: 25px;
+    box-sizing: border-box;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    
+}
+
+.content_box_item i{
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    height: fit-content;
+    margin-bottom: 30px;
+
+    
+    
 }
 
 .content_box2{

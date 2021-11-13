@@ -97,7 +97,7 @@
     <!-- table area start -->
     
     <div>
-      <h1>상품 관리</h1>
+      <h1>회원 관리</h1>
 
 <table class="table table-bordered" style="border: 2px solid black">
       <thead>
