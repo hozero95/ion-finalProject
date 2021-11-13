@@ -49,6 +49,7 @@
       <div class="white-bg">
         <h4>ModifiedItem</h4>
         <table class="table table-bordered" style="border: 2px solid black">
+          
           <thead>
             <tr>
               <th scope="col0">상품번호</th>
@@ -59,6 +60,7 @@
               <th scope="col5">시즌</th>
             </tr>
           </thead>
+
           <tbody>
             <tr>
               <td>
@@ -83,6 +85,7 @@
               </td>
             </tr>
           </tbody>
+          
         </table>
         <div style="float: right">
           <button>확인</button>
@@ -100,6 +103,7 @@
       <h1>상품 관리</h1>
 
 <table class="table table-bordered" style="border: 2px solid black">
+
       <thead>
         <tr>
           <th scope="col5">
@@ -117,21 +121,22 @@
           <th scope="col4">등록일자</th>
           <th scope="col5">시즌</th>
         </tr>
+
       </thead>
       <tbody>
-        <tr v-for="(p, index) in paginatedData" :key="index">
-          <th scope="row">
+        <tr v-for="(product, index) in products" v-bind:key="index">
+          <!-- <th scope="row">
             {{index+1}}
             <button style="float: right" @click="showMdfModal(index)">
               <i class="fas fa-tools"></i>
             </button>
-          </th>
-          <td>{{p.productUnum }}</td>
-          <td>{{ p.categoryUnum }}</td>
-          <td>{{ p.productName }}</td>
-          <td>{{ p.productPrice }}</td>
-          <td>{{ p.productRegdate }}</td>
-          <td>{{ p.productSeason }}</td>
+          </th> -->
+          <td>{{product.productUnum }}</td>
+          <td>{{ product.categoryUnum }}</td>
+          <td>{{ product.productName }}</td>
+          <td>{{ product.productPrice }}</td>
+          <td>{{ product.productRegdate }}</td>
+          <td>{{ product.productSeason }}</td>
         </tr>
       </tbody>
     </table>
@@ -160,7 +165,7 @@ export default {
   name: "simple-pagination",
   data() {
     return {
-      pageArray: [],
+      products: [],
       
       AddModal: false,
       MdfModal: false,
@@ -261,7 +266,7 @@ export default {
         for (var i = 0; i < res.data.length; i++) {
           product.push(res.data[i]);
         }
-        this.pageArray = product;
+        this.products = product;
       });
   },
 };

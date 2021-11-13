@@ -1,11 +1,11 @@
 <template>
   <body>
-    <div> test area</div>
+    <!-- <div> test area</div>
     
     <div>bigcates 0 </div>
     <div>{{ bigCates[0] }}</div>
     <div>smallcates 0 </div>
-    <div>{{smallCates[0]}}</div>
+    <div>{{smallCates[0]}}</div> -->
 
     <div class="container mt-2" style="background-color: cadetblue">
       <div class="row">

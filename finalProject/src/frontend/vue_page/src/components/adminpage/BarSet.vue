@@ -39,7 +39,7 @@
 
       <!-- 우측 내용 시작-->
     
-    <div class="content">
+    <!-- <div class="content">
         <nav class="navbar navbar-expand-lg navbar-light bg-light" >
           <div class="container-fluid sticky">
             <button
@@ -89,7 +89,7 @@
             </div>
           </div>
         </nav>
-    </div>        
+    </div>         -->
 </body>
 </template>
 

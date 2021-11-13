@@ -62,33 +62,28 @@
 
         <div class="content_body">
 
-          <h2 class="stit"><span>비밀번호 변경</span></h2>
-          <form id="submitForm" method="post">
+          <h2 class="stit"><span>회원 탈퇴</span></h2>
+          <form id="submitForm" method="POST">
+
             <div class="password_change">
               <div class="wrap">
-                <label for="pwd" class="label">이전 비밀번호 : </label>
-                <input type="password" id="pwd" name="pwd" title="비밀번호" value="" class="input_text small"
-                  style="width: 270px" maxlength="20">
+                <label for="password" class="label">비밀번호 : </label>
+                <input type="password" id="password" name="password" title="비밀번호" value="" class="input_text small"
+                  style="width: 270px" v-model="passwordVal">
+                <span class="error_txt small warning"></span>
               </div>
-
-
-
             </div>
-
             <div class="btn_area">
-              <button type="submit" id="submitBtn" class="cs_btn">확인</button>
+              <router-link to="">
+                <button @click="passwordTrue()" id="submitBtn" class="cs_btn">확인</button>
+              </router-link>
             </div>
-
-
-
           </form>
 
           <div class="information">
             <h4>주의하세요</h4>
             <ul>
-              <li>비밀번호는 <span style="color: red;">영문과 숫자를 조합하여 8~20자리로 입력</span>해 주세요.</li>
-              <li>아이디와 같은 비밀번호나 주민등록번호, 생일, 학번, 전화번호 등 개인정보와 관련된 숫자, 연속된 숫자, 동일 반복된 숫자 등 <br>다른 사람이 쉽게 알아낼 수
-                있는 비밀번호는 사용하지 않도록 주의하여 주시기 바랍니다.</li>
+              <li><span style="color: red;">회원탈퇴시 저장된 정보는 모두 삭제됩니다.</span></li>
             </ul>
           </div>
 
@@ -106,23 +101,60 @@
   import axios from 'axios'
 
   export default {
-    // methods: {
-    //   deleteUser() {
-    //     var headers = {
-    //       "Content-Type": "application/json",
-    //       "Authorization": "Bearer " + this.$store.state.jwtToken
-    //     };
+    data() {
+      return {
+        passwordVal: null
+      }
+    },
+    methods: {
+      passwordTrue() {
+        axios.post('http://localhost:8000/api/signin', {
+            "userId": this.$store.state.userInfo.userId,
+            "userPassword": this.passwordVal
+          })
+          .then(res => {
+            alert('비밀번호가 맞습니다');
+            if (confirm('탈퇴하시겠습니까?')) {
+              this.deleteUser();
 
-    //     axios({
-    //       url: 'http://localhost:8000/api/mypage/remove/user',
-    //       method: 'delete',
-    //       headers: headers,
-    //       params(){
-    //           userUnum : this.$store.state.userInfo.userUnum
-    //       }
-    //     })
-    //   }
-    // },
+            } else {
+              alert('탈퇴가 취소되었습니다.');
+
+            }
+
+          }, error => {
+            alert('비밀번호가 잘못되었습니다.');
+          });
+      },
+      deleteUser() {
+        var headers = {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + this.$store.state.jwtToken
+        };
+
+        axios({
+            url: 'http://localhost:8000/api/mypage/remove/user',
+            method: 'delete',
+            headers: headers,
+            params: {
+              userUnum: this.$store.state.userInfo.userUnum,
+            },
+          })
+          .then(res => {
+            alert('탈퇴가 완료되었습니다.');
+            this.logout();
+          }, error => {
+            console.log(error);
+            alert('회원탈퇴에 실패하였습니다.')
+
+          })
+
+      },
+      logout() {
+        this.$store.commit("logout");
+        this.$router.push('/login');
+      },
+    },
 
   }
 </script>
