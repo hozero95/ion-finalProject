@@ -57,18 +57,18 @@
           </ul>
 
           <div class="body_content">
-            <button class="qnaadd" v-if="add_qna && showComment" @click="addQnaStatus()" type="button">
+            <button class="qnaadd" v-if="!add_qna && !showComment" @click="addQnaStatus()" type="button">
               +
             </button>
             <div class="content_tb">
-              <table>
+              <table v-if="!add_qna && !showComment">
                 <!-- <colgroup>
                   <col style="width:276px">
                   <col style="width:324px">
                   <col style="width:99px">
                   <col>
                 </colgroup> -->
-                <thead v-if="add_qna && showComment">
+                <thead>
                   <tr class="th_box">
                     <th class="td_size1">제목</th>
                     <th class="td_size2">내용</th>
@@ -78,7 +78,7 @@
                 </thead>
 
                 <div style="height: 250px; overflow-y: scroll; positon: relative">
-                  <tbody v-if="add_qna && showComment">
+                  <tbody>
                     <tr v-if="qnais">
                       <td class="td_box">
                         <p><span>작성된 Q&A가 없습니다.</span></p>
@@ -97,49 +97,53 @@
                       <td class="td_size4" v-if="qna.resComment == null">X</td>
                     </tr>
                   </tbody>
-                  <div class="add_qna" v-if="!add_qna && showComment" style="position: absolute">
-                    <textarea name="ta_qna_modify" placeholder="제목" id="qna_modify" cols="95" rows="1"
-                      style="resize: none" v-model="title"></textarea><br />
-                    <textarea name="ta_qna_modify" placeholder="내용" id="qna_modify" cols="95" rows="11"
-                      style="resize: none" v-model="content"></textarea><br />
-                    <div class="add_qna_button">
-                      <button type="button" @click="addQnaConfirm()">
-                        추가
-                      </button>
-                      <button type="button" @click="addQnaStatus()">
-                        취소
-                      </button>
-                    </div>
-                  </div>
-                </div>
 
-                <br />
-
-                <div class="add_comment" v-if="!showComment && add_qna">
-                  <div class="add_comment_box">
-                    <div class="qnatitle">
-                      <strong>제목 : </strong>{{ contComm.qnaTitle }}
-                    </div>
-
-                    <strong>내용 : </strong>
-                    <div class="qnacontent">
-                      <textarea name="ta_qna_modify" id="qna_modify" cols="95" rows="3"
-                        style="resize: none; border: none" :value="contComm.qnaContent" readonly></textarea><br />
-                    </div>
-
-                    <div v-if="resContentis" class="contentres">
-                      &nbsp; &nbsp; &nbsp;<strong>↳</strong>
-                      <strong>답변 : </strong> {{ contComm.resContent }}
-                    </div>
-
-                    <div class="add_qna_button">
-                      <button type="button" @click="allContCommStatus()">
-                        돌아가기
-                      </button>
-                    </div>
-                  </div>
                 </div>
               </table>
+
+
+
+              <div class="add_qna" v-if="add_qna" style="position: absolute">
+                <textarea name="ta_qna_modify" placeholder="제목" id="qna_modify" cols="95" rows="1" style="resize: none"
+                  v-model="title"></textarea><br />
+                <textarea name="ta_qna_modify" placeholder="내용" id="qna_modify" cols="95" rows="11" style="resize: none"
+                  v-model="content"></textarea><br />
+                <div class="add_qna_button">
+                  <button type="button" @click="addQnaConfirm()">
+                    추가
+                  </button>
+                  <button type="button" @click="clear()">
+                    취소
+                  </button>
+                </div>
+              </div>
+
+              <div class="add_comment" v-if="showComment">
+                <div class="add_comment_box">
+                  <div class="qnatitle">
+                    <strong>제목 : </strong>{{ contComm.qnaTitle }}
+                  </div>
+
+                  <strong>내용 : </strong>
+                  <div class="qnacontent">
+                    <textarea name="ta_qna_modify" id="qna_modify" cols="95" rows="3" style="resize: none; border: none"
+                      :value="contComm.qnaContent" readonly></textarea><br />
+                  </div>
+
+                  <div v-if="resContentis" class="contentres">
+                    &nbsp; &nbsp; &nbsp;<strong>↳</strong>
+                    <strong>답변 : </strong> {{ contComm.resContent }}
+                  </div>
+
+                  <div class="add_qna_button">
+                    <button type="button" @click="allContCommStatus()">
+                      돌아가기
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+
             </div>
           </div>
         </div>
@@ -156,8 +160,8 @@
       return {
         qnas: [],
         qnais: true,
-        add_qna: true,
-        showComment: true,
+        add_qna: false,
+        showComment: false,
         resContentis: false,
         title: "",
         content: "",
@@ -182,8 +186,6 @@
     // },
     methods: {
       showqna() {
-        this.add_qna = true;
-        this.showComment = true;
 
         var headers = {
           "Content-Type": "application/json",
@@ -260,6 +262,8 @@
           },
           (error) => {
             alert("질문등록에 실패하였습니다.");
+            this.title = "";
+            this.content = "";
             this.addQnaStatus();
           }
         );
@@ -288,6 +292,11 @@
         }
         this.allContCommStatus();
       },
+      clear(){
+        this.title = "";
+        this.content = "";
+        this.addQnaStatus();
+      }
     },
   };
 </script>
