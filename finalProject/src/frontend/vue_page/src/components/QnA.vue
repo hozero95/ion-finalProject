@@ -292,7 +292,7 @@
   };
 </script>
 
-<style scope>
+<style scoped>
   /* header setting */
   .container_my {
     /* background-color: aqua; */

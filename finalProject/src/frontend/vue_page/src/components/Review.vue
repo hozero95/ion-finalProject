@@ -12,12 +12,19 @@
           <div class="card">
             <div class="card-header hd1" @click="ONOFF1">
               주문관리
-              <button v-if="item1bt==0" style="margin-left :85px">
-                <i class="fas fa-chevron-up"></i>
-              </button>
-              <button v-if="item1bt==1" style="margin-left :85px">
-                <i class="fas fa-chevron-down"></i>
-              </button>
+              <div style="display:inline-block; margin-left : 85px">
+                <i
+                  v-if="item1bt == 0"
+                  style="float: right;"
+                  class="fas fa-chevron-up"
+                  
+                ></i>
+                <i
+                  v-if="item1bt == 1"
+                  style="float: right"
+                  class="fas fa-chevron-down"
+                ></i>
+              </div>
             </div>
 
             <ul class="list-group list-group-flush" v-if="sideitem1 ==1">
@@ -28,12 +35,19 @@
           <div class="card">
             <div class="card-header hd1" @click="ONOFF2">
               활동관리
-              <button v-if="item2bt==0" style="margin-left :85px">
-                <i class="fas fa-chevron-up"></i>
-              </button>
-              <button v-if="item2bt==1" style="margin-left :85px">
-                <i class="fas fa-chevron-down"></i>
-              </button>
+              <div style="display:inline-block; margin-left : 85px">
+                <i
+                  v-if="item2bt == 0"
+                  style="float: right;"
+                  class="fas fa-chevron-up"
+                  
+                ></i>
+                <i
+                  v-if="item2bt == 1"
+                  style="float: right"
+                  class="fas fa-chevron-down"
+                ></i>
+              </div>
             </div>
 
             <ul class="list-group list-group-flush" v-if="sideitem2 ==1">
@@ -44,12 +58,19 @@
           <div class="card">
             <div class="card-header hd1" @click="ONOFF3">
               정보관리
-              <button v-if="item3bt==0" style="margin-left :85px">
-                <i class="fas fa-chevron-up"></i>
-              </button>
-              <button v-if="item3bt==1" style="margin-left :85px">
-                <i class="fas fa-chevron-down"></i>
-              </button>
+              <div style="display:inline-block; margin-left : 85px">
+                <i
+                  v-if="item3bt == 0"
+                  style="float: right;"
+                  class="fas fa-chevron-up"
+                  
+                ></i>
+                <i
+                  v-if="item3bt == 1"
+                  style="float: right"
+                  class="fas fa-chevron-down"
+                ></i>
+              </div>
             </div>
 
             <ul class="list-group list-group-flush" v-if="sideitem3 ==1">
