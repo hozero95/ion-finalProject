@@ -64,10 +64,10 @@
 
 
           <div class="body_content">
-            <h3>미등록리뷰 n건</h3>
+            <h3 v-if="!writeReview_status && !showReview_status">미등록리뷰 n건</h3>
 
             <div class="content_tb">
-              <table>
+              <table v-if="!writeReview_status && !showReview_status">
                 <!-- <colgroup>
                   <col style="width: 14%" />
                   <col />
@@ -98,27 +98,38 @@
                     <td class="td_size3">{{unRegister.paymentCount}}</td>
                     <td class="td_size4">{{unRegister.paymentPrice}}</td>
                     <td class="td_size5">{{dateFormat(unRegister.paymentRegdate)}}</td>
-                    <td class="td_size6">쓰기</td>
+                    <td class="td_size6" @click="writeReview(unRegister)">쓰기</td>
                   </tr>
                 </tbody>
-
-                 <tr class="th_underbox">
-                   <td class="">주문번호 : </td>
-                   <td class="">ㅇㅇ</td>
-                </tr>
-                
-                 <tr class="th_underbox">
-                   <td class="">주문상품 : </td>
-                   <td class="">ㅇㅇ</td>
-                </tr>
-
               </table>
+
+              <div class="write_review" v-if="writeReview_status">
+
+                <strong>주문번호 : </strong> {{write_review.orderUnum}}<br>
+                <strong>주문상품 : </strong> {{write_review.productName}}<br>
+                <div class="write_review_box">
+                  <textarea name="ta_qna_modify" id="qna_modify" cols="95" rows="10" style="resize: none"
+                    placeholder="리뷰를 작성해주세요." v-model="reviewWrite"></textarea>
+                </div>
+                <div class="add_review_button">
+                  <button type="button" @click="addReview(write_review.paymentUnum)">
+                    추가
+                  </button>
+                  <button type="button" @click="writeReviewStatus()">
+                    취소
+                  </button>
+                </div>
+
+              </div>
+
+
+
             </div>
             <br><br>
-            <h3>작성한리뷰 n건</h3>
+            <h3 v-if="!writeReview_status && !showReview_status">작성한리뷰 n건</h3>
 
             <div class="content_tb">
-              <table>
+              <table  v-if="!writeReview_status && !showReview_status"> 
                 <!-- <colgroup>
                   <col style="width: 14%" />
                   <col />
@@ -142,18 +153,33 @@
                       <p><span>작성한 리뷰가 없습니다.</span></p>
                     </td>
                   </tr>
-
                   <tr class="th_underbox" v-for="(register, index) in registers" v-bind:key="index">
                     <td class="td_size1">{{register.orderUnum}}</td>
                     <td class="td_size2">{{register.productName}}</td>
                     <td class="td_size3">{{register.paymentCount}}</td>
                     <td class="td_size4">{{register.paymentPrice}}</td>
                     <td class="td_size5">{{dateFormat(register.replyRegdate)}}</td>
-                    <td class="td_size6">보기</td>
+                    <td class="td_size6" @click="showReview(register.replyUnum, register.orderUnum, register.productName)">보기</td>
                   </tr>
                 </tbody>
-
               </table>
+
+              <div class="show_review" v-if="showReview_status">
+                <strong>주문번호 : </strong> {{show_review.orderUnum}}<br> 
+                <strong>주문상품 : </strong> {{show_review.productName}} <br>
+                <strong>리뷰작성일 : </strong> {{dateFormat(show_review[0].replyRegdate)}} <br>
+                <div class="write_review_box">
+                  <textarea name="ta_qna_modify" id="qna_modify" cols="95" rows="10" style="resize: none; border:none"
+                    :value="show_review[0].replyContent" readonly></textarea>
+                </div>
+                <div class="add_review_button">
+                  <button type="button" @click="showReviewStatus()">
+                    돌아가기
+                  </button>
+                </div>
+
+              </div>
+
             </div>
           </div>
         </div>
@@ -174,10 +200,15 @@
         item1bt: 1,
         item2bt: 1,
         item3bt: 1,
+        reviewWrite: "",
         unRegisters: [],
         registers: [],
+        write_review: {},
+        show_review: {},
         unreview_status: false,
-        review_status: false
+        review_status: false,
+        writeReview_status: false,
+        showReview_status: false
       }
 
     },
@@ -243,6 +274,7 @@
             }
             this.unRegisters = unRegister;
             this.unreviewStatus();
+            console.log(this.unRegisters);
             // console.log(this.unRegisters);
           })
       },
@@ -277,15 +309,82 @@
         } else {
           this.unreview_status = false;
         }
-        
+
       },
       reviewStatus() {
         if (this.registers.length > 0) {
-          this.review_status =true;
+          this.review_status = true;
         } else {
           this.review_status = false;
         }
       },
+      writeReview(unRegister) {
+        this.write_review = unRegister;
+        this.writeReviewStatus()
+      },
+      writeReviewStatus() {
+        this.writeReview_status = !this.writeReview_status;
+      },
+      addReview(paymentUnum) {
+        var headers = {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.$store.state.jwtToken,
+        };
+
+        var body = {
+          paymentUnum: paymentUnum,
+          replyContent: this.reviewWrite,
+        };
+        console.log(body);
+        axios({
+          url: "http://localhost:8000/api/mypage/regist/reply",
+          method: "post",
+          headers: headers,
+          data: body,
+        }).then(
+          (res) => {
+            alert("리뷰등록이 완료되었습니다.");
+            this.reviewWrite="";
+            this.writeReviewStatus();
+            this.register();
+            this.unRegister();
+          },
+          (error) => {
+            alert("리뷰등록에 실패하였습니다.");
+
+          }
+        );
+      },
+      showReviewStatus() {
+        this.showReview_status = !this.showReview_status;
+      },
+      showReview(replyUnum, orderUnum, productName) {
+        var headers = {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.$store.state.jwtToken,
+        };
+
+        axios({
+          url: "http://localhost:8000/api/mypage/show/detail/reply",
+          method: "get",
+          headers: headers,
+          params: {
+            replyUnum: replyUnum
+          }
+        }).then(
+          (res) => {
+            this.show_review = res.data;
+            this.show_review.orderUnum = orderUnum;
+            this.show_review.productName = productName;
+            this.showReviewStatus();
+            console.log(this.show_review)
+          },
+          (error) => {
+            console.log(error);
+            alert('상세리뷰 불러오기 실패하였습니다.');
+          }
+        );
+      }
     },
   };
 </script>
