@@ -80,16 +80,30 @@
 	</update>
 	
 	<update id="deliveryStatus">
-		UPDATE delivery
-		SET delivery_status = #{deliveryStatus}
-		WHERE delivery_unum = #{deliveryUnum}
-	</update>
+        UPDATE delivery
+           SET delivery_status = #{deliveryStatus}
+    	      <if test="deliveryStatus ==3">
+               , delivery_enddate = sysdate
+     		  </if>
+	     WHERE delivery_unum = #{deliveryUnum}
+    </update>
 	
-	<update id="orderStatus">
-		UPDATE orders
-		SET order_status = #{orderStatus}
-		WHERE order_unum = #{orderUnum}
-	</update>
+	<insert id="deliveryStart">
+		INSERT into delivery(
+			    delivery_unum
+			  , order_unum
+			  , delivery_status
+			  , delivery_address
+			  , delivery_regdate
+			    
+		) VALUES(
+   				seq_delivery_unum.nextval  
+    	      , #{orderUnum}
+   			  ,	0
+    		  ,	#{orderAddress}
+    		  ,	sysdate
+		)
+	</insert>
 	
 	<insert id="productAdd">
 		INSERT INTO product(
@@ -169,16 +183,28 @@
 	   ORDER BY product_unum DESC
    </select>
    
-   <select id="orderDeliveryAll" resultType="OrdPayDelProDTO">
- 	  SELECT *
-		FROM orders o
-		LEFT OUTER JOIN payment p
-		ON o.order_unum = p.order_unum
-		LEFT OUTER JOIN delivery d
-		ON o.order_unum = d.order_unum
-		LEFT OUTER JOIN product t
-		ON p.product_unum = t.product_unum
-		ORDER BY o.order_regdate DESC, o.order_unum, p.payment_unum
+   <select id="deliveryAll" resultType="DeliveryVO">
+	   SELECT *
+	     FROM delivery
+		ORDER BY delivery_regdate DESC
+   </select>
+   
+   <select id="orderAll" resultType="OrdersVO">
+  	   SELECT *
+		 FROM orders
+		WHERE order_unum not in (SELECT order_unum
+	  						       FROM delivery)
+		ORDER BY order_regdate DESC
+   </select>
+   
+   <select id="qnaAll" resultType="Qna2DTO">
+	   	SELECT *
+		  FROM qna q
+		  LEFT OUTER JOIN (SELECT qna_title res_title, qna_content res_content, qna_comment res_comment
+		                     FROM qna) q2
+		    ON q.qna_unum = q2.res_comment
+		 WHERE qna_comment IS NULL
+		 ORDER BY q.qna_regdate DESC
    </select>
 </mapper>
 

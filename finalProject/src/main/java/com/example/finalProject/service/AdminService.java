@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.finalProject.domain.dto.OrdPayDelProDTO;
+import com.example.finalProject.domain.dto.Qna2DTO;
 import com.example.finalProject.domain.entity.CategoryVO;
 import com.example.finalProject.domain.entity.DeliveryVO;
 import com.example.finalProject.domain.entity.EventVO;
@@ -47,8 +47,8 @@ public class AdminService {
 		return adminMapper.deliveryStatus(deliveryVO);
 	}
 
-	public Long orderStatus(OrdersVO ordersVO) {
-		return adminMapper.orderStatus(ordersVO);
+	public Long deliveryStart(OrdersVO ordersVO) {
+		return adminMapper.deliveryStart(ordersVO);
 	}
 
 	public Long productAdd(ProductVO productVO) {
@@ -70,12 +70,19 @@ public class AdminService {
 	public Long userDelete(Long userUnum) {
 		return adminMapper.userDelete(userUnum);
 	}
-	
-	public List<ProductVO> productAll(){
+
+	public List<ProductVO> productAll() {
 		return adminMapper.productAll();
 	}
-	
-	public List<OrdPayDelProDTO> orderDeliveryAll(){
-		return adminMapper.orderDeliveryAll();
+
+	public List<DeliveryVO> deliveryAll(){
+		return adminMapper.deliveryAll();
+	}
+	public List<OrdersVO> orderAll(){
+		return adminMapper.orderAll();
+	}
+
+	public List<Qna2DTO> qnaAll() {
+		return adminMapper.qnaAll();
 	}
 }
