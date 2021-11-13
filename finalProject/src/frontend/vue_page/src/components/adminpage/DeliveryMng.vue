@@ -2,7 +2,7 @@
 
   <body>
     <!-- add modal -->
-    <div class="black-bg" v-if="AddModal == true">
+    <!-- <div class="black-bg" v-if="AddModal == true">
       <div class="white-bg">
         <h4>AddItem</h4>
         <table class="table table-bordered" style="border: 2px solid black">
@@ -23,10 +23,14 @@
               <td><input v-model="addProductPrice" type="text" /></td>
               <td><input v-model="addProductSeason" type="text" /></td>
               <td>
-                <input v-model="addProductImage01" type="text" /><br /><input type="file" />
+                <input v-model="addProductImage01" type="text" /><br /><input
+                  type="file"
+                />
               </td>
               <td>
-                <input v-model="addProductImage02" type="text" /><br /><input type="file" />
+                <input v-model="addProductImage02" type="text" /><br /><input
+                  type="file"
+                />
               </td>
             </tr>
           </tbody>
@@ -38,59 +42,12 @@
           </button>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- add modal end -->
 
-    <!-- modified mo dal -->
-    <div class="black-bg" v-if="MdfModal == true">
-      <div class="white-bg">
-        <h4>ModifiedItem</h4>
-        <table class="table table-bordered" style="border: 2px solid black">
-          <thead>
-            <tr>
-              <th scope="col0">상품번호</th>
-              <th scope="col1">카테고리</th>
-              <th scope="col2">상품이름</th>
-              <th scope="col3">상품가격</th>
-              <th scope="col4">등록일자</th>
-              <th scope="col5">시즌</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <textarea v-model="pageArray[ItemNum].productUnum"></textarea>
-              </td>
-              <td>
-                <textarea v-model="pageArray[ItemNum].categoryUnum"></textarea>
-              </td>
-              <td>
-                <textarea v-model="pageArray[ItemNum].productName"></textarea>
-              </td>
-              <td>
-                <textarea v-model="pageArray[ItemNum].productPrice"></textarea>
-              </td>
-              <td>
-                <textarea v-model="pageArray[ItemNum].productRegdate"></textarea>
-              </td>
-              <td>
-                <textarea v-model="pageArray[ItemNum].productSeason"></textarea>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div style="float: right">
-          <button>확인</button>
-          <button @click="MdfModal = false" style="margin-left: 40px">
-            취소
-          </button>
-        </div>
-      </div>
-    </div>
-    <!-- modified modal end -->
 
 
-
+    <!-- table area start -->
 
     <div>
       <h1>배송 관리</h1>
@@ -98,36 +55,28 @@
       <table class="table table-bordered" style="border: 2px solid black">
         <thead>
           <tr>
-            <th scope="col5">
-              list
-              <div style="float: right">
-                <span>
-                  <button @click="AddItem()"><i class="fas fa-plus"></i></button>
-                </span>
-              </div>
-            </th>
-            <th scope="col0">상품번호</th>
-            <th scope="col1">카테고리</th>
-            <th scope="col2">상품이름</th>
-            <th scope="col3">상품가격</th>
-            <th scope="col4">등록일자</th>
-            <th scope="col5">시즌</th>
+
+            <th scope="col0">주문번호</th>
+            <th scope="col1">배송번호</th>
+            <th scope="col2">주소</th>
+            <th scope="col3">배송날짜</th>
+            <th scope="col5">배송상태</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(p, index) in paginatedData" :key="index">
-            <th scope="row">
-              {{index}}
-              <button style="float: right" @click="showMdfModal(index)">
-                <i class="fas fa-tools"></i>
-              </button>
-            </th>
-            <td>{{p.productUnum }}</td>
-            <td>{{ p.categoryUnum }}</td>
-            <td>{{ p.productName }}</td>
-            <td>{{ p.productPrice }}</td>
-            <td>{{ p.productRegdate }}</td>
-            <td>{{ p.productSeason }}</td>
+          <tr v-for="(deliveryAll, index) in paginatedData" :key="index">
+            <!-- <th scope="row">
+            {{index}}
+            <button style="float: right" @click="showMdfModal(index)">
+              <i class="fas fa-tools"></i>
+            </button>
+          </th> -->
+            <td>{{deliveryAll.orderUnum}}</td>
+            <td>{{deliveryAll.deliveryUnum}}</td>
+            <td>{{addressSubstring(deliveryAll.deliveryAddress)}}</td>
+            <td>{{dateFormat(deliveryAll.deliveryRegdate)}}</td>
+            <td @click="changeStatus(deliveryAll.orderUnum, deliveryAll.deliveryUnum, deliveryAll.deliveryStatus)">
+              {{deliveryStatus(deliveryAll.deliveryStatus)}}</td>
           </tr>
         </tbody>
       </table>
@@ -157,6 +106,8 @@
     data() {
       return {
         pageArray: [],
+        deliveryAlls: [],
+
 
         AddModal: false,
         MdfModal: false,
@@ -190,42 +141,111 @@
       prevPage() {
         this.pageNum -= 1;
       },
+      showDliveryAll() {
+        var headers = {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.$store.state.jwtToken,
+        };
 
-      ProductAdd() {
+        axios({
+            url: 'http://localhost:8000/api/admin/delivery/all',
+            method: 'get',
+            headers: headers
+          })
+          .then(res => {
+            var deliveryAll = new Array();
+            for (var i = 0; i < res.data.length; i++) {
+              deliveryAll.push(res.data[i]);
+            }
+            this.deliveryAlls = deliveryAll;
+          })
+      },
+      changeStatus(orderUnum, deliveryUnum, beforeStatus) {
+        var afterStatus = beforeStatus;
+        if (beforeStatus >= 3) {
+          alert(orderUnum + "번 주문의 배송 상태를 변경할 수 없습니다.");
+        } else {
+          if (confirm(orderUnum + '번 주문의 배송상태를 변경하시겠습니까?')) {
+            if (beforeStatus == 0) {
+              afterStatus = 1;
+              this.patchStatus(deliveryUnum, afterStatus);
+            } else if (beforeStatus == 1) {
+              afterStatus = 2;
+              this.patchStatus(deliveryUnum, afterStatus);
+            } else if (beforeStatus == 2) {
+              afterStatus = 3;
+              this.patchStatus(deliveryUnum, afterStatus);
+            }
+          } else {
+            alert('배송상태 변경을 취소하였습니다.')
+          }
+        }
+      },
+      patchStatus(deliveryUnum, deliveryStatus) {
         var headers = {
           "Content-Type": "application/json",
           Authorization: "Bearer " + this.$store.state.jwtToken,
         };
 
         var body = {
-          categoryUnum: this.addCategoryUnum,
-          productName: this.addProductName,
-          productPrice: this.addProductPrice,
-          productSeason: this.addProductSeason,
-          productImage01Path: this.addProductImage01,
-          productImage02Path: this.addProductImage02,
-        };
+          deliveryUnum: deliveryUnum,
+          deliveryStatus: deliveryStatus
+        }
 
-        axios.defaults.headers.post = null;
         axios({
-            url: "http://localhost:8000/api/admin/product/add",
-            method: "post",
+            url: 'http://localhost:8000/api/admin/deliverystatus',
+            method: 'patch',
             headers: headers,
-            data: body,
+            data: body
           })
-          .then((res) => {
-            alert("상품 등록 " + res.data);
-            this.AddModal = false;
+          .then(res => {
+            alert('배송상태가 변경되었습니다.');
+            this.showDliveryAll();
           })
-          .catch((err) => {
-            alert("이미 있는 상품이거나, 등록할 수 없는 상품입니다.");
-            this.AddModal = false;
-          });
       },
+      dateFormat(date) {
+        var regdate = new Date(date);
+        var year = regdate.getFullYear();
+        var month = regdate.getMonth() + 1;
+        var day = regdate.getDate();
+
+        return year + "-" + month + "-" + day;
+      },
+      addressSubstring(str) {
+        if (str.length > 10) {
+          str = str.substring(0, 10) + "...";
+        }
+        return str;
+      },
+      messageSubstring(str) {
+        if (str.length > 20) {
+          str = str.substring(0, 20) + "...";
+        }
+        return str;
+      },
+      deliveryStatus(delivery) {
+        var status = '';
+        if (delivery == 0) {
+          status = '결제완료';
+        } else if (delivery == 1) {
+          status = '상품준비중';
+        } else if (delivery == 2) {
+          status = '배송중';
+        } else if (delivery == 3) {
+          status = '배송완료';
+        } else if (delivery == 4) {
+          status = '교환';
+        } else if (delivery == 5) {
+          status = '반품';
+        }
+        return status;
+      }
+
+
     },
     computed: {
       pageCount() {
-        let listLeng = this.pageArray.length,
+        let listLeng = this.deliveryAlls.length,
           listSize = this.pageSize,
           page = Math.floor(listLeng / listSize);
         if (listLeng % listSize > 0) page += 1;
@@ -239,27 +259,13 @@
       paginatedData() {
         const start = this.pageNum * this.pageSize,
           end = start + this.pageSize;
-        return this.pageArray.slice(start, end);
+        return this.deliveryAlls.slice(start, end);
       },
     },
 
     created() {
-      var headers = {
-        Authorization: "Bearer " + this.$store.state.jwtToken,
-      };
-      axios
-        .get("http://localhost:8000/api/admin/orderdelivery/all", {
-          headers,
-        })
-        .then((res) => {
-          var product = new Array();
-
-          for (var i = 0; i < res.data.length; i++) {
-            product.push(res.data[i]);
-          }
-          this.pageArray = product;
-        });
-    },
+      this.showDliveryAll();
+    }
   };
 </script>
 
