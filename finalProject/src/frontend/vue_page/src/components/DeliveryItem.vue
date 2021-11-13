@@ -91,15 +91,13 @@
                   <tr name="divItemUnit" v-for="(product, index2) in order" v-bind:key="index2">
                     <td>
                       <div>
-                        <a href="">
-                          <span>
-                            <img src="/del.jpg" alt="상품" style="width: 90px; height: 70px;">
-                          </span>
-                        </a>
+                        <span class="cursor_pointer" @click="showDetail(product.productUnum)">
+                          <img src="/del.jpg" alt="상품" style="width: 90px; height: 70px;">
+                        </span>
                       </div>
                     </td>
                     <td>
-                      <span>{{product.productName}}</span>
+                      <span class="cursor_pointer" @click="showDetail(product.productUnum)">{{product.productName}}</span>
                     </td>
                     <td>
                       <div>
@@ -130,9 +128,7 @@
   export default {
     data() {
       return {
-        orderList: [
-          []
-        ]
+        orderList: null
       }
     },
     created() {
@@ -207,7 +203,7 @@
             orderList.push(list);
             this.orderList = orderList;
 
-            console.log(this.orderList);
+            // console.log(this.orderList);
           }, error => {
             alert("주문배송 조회에 실패했습니다.");
           });
@@ -215,7 +211,7 @@
       isDelivery(order) {
         var status = '';
 
-        if(order.orderStatus == 1) {
+        if (order.orderStatus == 1) {
           return '취소된 주문입니다.';
         }
         if (order.deliveryUnum != null || order.deliveryUnum > 0) {
@@ -228,9 +224,9 @@
           } else if (order.deliveryStatus == 3) {
             status = '배송완료';
           } else if (order.deliveryStatus == 4) {
-            status = '교환신청';
+            status = '교환신청완료';
           } else if (order.deliveryStatus == 5) {
-            status = '반품신청';
+            status = '반품신청완료';
           }
           return '오징어택배 / ' + order.deliveryUnum + ' / ' + status;
         }
@@ -319,6 +315,14 @@
             });
         } else {
           alert("배송 완료 상태이어야 반품이 가능합니다.");
+        }
+      },
+      showDetail(productUnum) {
+        this.$store.commit('setProductUnum', productUnum);
+
+        if (this.$route.path !== '/product') {
+          this.$router.push('/product');
+          location.replace('#app');
         }
       }
     }
@@ -578,6 +582,10 @@
     width: 777px;
     border: 1px solid black;
 
+  }
+
+  .cursor_pointer {
+    cursor: pointer;
   }
 
 
