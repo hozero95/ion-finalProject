@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.finalProject.domain.dto.OrdPayDelProDTO;
+import com.example.finalProject.domain.dto.Qna2DTO;
 import com.example.finalProject.domain.entity.CategoryVO;
 import com.example.finalProject.domain.entity.DeliveryVO;
 import com.example.finalProject.domain.entity.EventVO;
@@ -77,9 +78,9 @@ public class AdminController {
 				: new ResponseEntity<String>("fail", HttpStatus.OK);
 	}
 
-	@PatchMapping(value = "/orderstatus", produces = MediaType.TEXT_PLAIN_VALUE)
-	public ResponseEntity<String> orderStatus(@RequestBody OrdersVO ordersVO) {
-		return adminService.orderStatus(ordersVO) > 0 ? new ResponseEntity<String>("success", HttpStatus.OK)
+	@PostMapping(value = "/deliverystart", produces = MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<String> deliveryStart(@RequestBody OrdersVO ordersVO) {
+		return adminService.deliveryStart(ordersVO) > 0 ? new ResponseEntity<String>("success", HttpStatus.OK)
 				: new ResponseEntity<String>("fail", HttpStatus.OK);
 	}
 
@@ -125,9 +126,21 @@ public class AdminController {
 		return new ResponseEntity<List<UsersVO>>(userAll, HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "/orderdelivery/all", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<OrdPayDelProDTO>> orderDeliveryAll(){
-		List<OrdPayDelProDTO> orderDeliveryAll = adminService.orderDeliveryAll();
-		return new ResponseEntity<List<OrdPayDelProDTO>>(orderDeliveryAll, HttpStatus.OK);
+	@GetMapping(value = "/delivery/all", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<DeliveryVO>> deliveryAll(){
+		List<DeliveryVO> deliveryAll = adminService.deliveryAll();
+		return new ResponseEntity<List<DeliveryVO>>(deliveryAll, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/order/all", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<OrdersVO>> orderAll(){
+		List<OrdersVO> orderAll = adminService.orderAll();
+		return new ResponseEntity<List<OrdersVO>>(orderAll, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/qna/all", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Qna2DTO>> qnaAll() {
+		List<Qna2DTO> qnaAll = adminService.qnaAll();
+		return new ResponseEntity<List<Qna2DTO>>(qnaAll, HttpStatus.OK);
 	}
 }

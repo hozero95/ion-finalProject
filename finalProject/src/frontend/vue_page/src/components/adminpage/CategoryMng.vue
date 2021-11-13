@@ -1,11 +1,11 @@
 <template>
   <body>
-    <!-- <div> test area</div>
+    <div> test area</div>
     
     <div>bigcates 0 </div>
     <div>{{ bigCates[0] }}</div>
     <div>smallcates 0 </div>
-    <div>{{smallCates[0]}}</div> -->
+    <div>{{smallCates[0]}}</div>
 
     <div class="container mt-2" style="background-color: cadetblue">
       <div class="row">
@@ -18,10 +18,10 @@
               </div>
               <div style="float: right">
                 <span
-                  ><button><i class="fas fa-plus" @click=""></i></button
+                  ><button><i class="fas fa-plus" ></i></button
                 ></span>
                 <span style="margin-left: 20px"
-                  ><button><i class="fas fa-minus" @click=""></i></button
+                  ><button><i class="fas fa-minus"></i></button
                 ></span>
               </div>
             </div>
@@ -29,7 +29,7 @@
               <li class="list-group-item" v-for="(items,i) in smallCates[index]" :key="i">
                 {{smallCates[index][i].categoryName}}
                 <button style="float: right">
-                  <i class="fas fa-tools" @click=""></i>
+                  <i class="fas fa-tools" ></i>
                 </button>
               </li>
             </ul>
