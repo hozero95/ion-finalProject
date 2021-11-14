@@ -142,9 +142,9 @@
 	   <delete id="productDelete">
       DELETE from product
        WHERE product_unum = #{productUnum}
-   </delete>
+    </delete>
    
-   <update id="productInfoChange">
+    <update id="productInfoChange">
       UPDATE product
          SET category_unum = #{categoryUnum},
              product_name = #{productName},
@@ -159,9 +159,9 @@
              , product_image02_path = #{productImage02Path}
              </if>
        WHERE product_unum = #{productUnum};
-   </update>
+    </update>
    
-   <insert id="qnareply">
+    <insert id="qnareply">
       INSERT INTO qna values(
           seq_qna_unum.nextval,
           #{userUnum},
@@ -170,24 +170,24 @@
           #{qnaComment},
           sysdate
       )
-   </insert>
+    </insert>
    
-   <delete id="userDelete">
-      DELETE FROM users
-       WHERE user_unum = #{userUnum}
-   </delete>
+    <delete id="userDelete">
+       DELETE FROM users
+        WHERE user_unum = #{userUnum}
+    </delete>
    
-   <select id="productAll" resultType="ProductVO">
-      SELECT *
-	    FROM product
-	   ORDER BY product_unum DESC
-   </select>
+    <select id="productAll" resultType="ProductVO">
+       SELECT *
+	     FROM product
+	    ORDER BY product_unum DESC
+    </select>
    
-   <select id="deliveryAll" resultType="DeliveryVO">
-	   SELECT *
-	     FROM delivery
-		ORDER BY delivery_regdate DESC
-   </select>
+    <select id="deliveryAll" resultType="DeliveryVO">
+	    SELECT *
+	      FROM delivery
+      ORDER BY delivery_regdate DESC
+    </select>
    
    <select id="orderAll" resultType="OrdersVO">
   	   SELECT *
@@ -205,6 +205,13 @@
 		    ON q.qna_unum = q2.res_comment
 		 WHERE qna_comment IS NULL
 		 ORDER BY q.qna_regdate DESC
+   </select>
+   
+   <select id="eventAll" resultType="EventVO">
+   	     SELECT *
+   	       FROM event
+   	   ORDER BY event_unum DESC
+  
    </select>
 </mapper>
 

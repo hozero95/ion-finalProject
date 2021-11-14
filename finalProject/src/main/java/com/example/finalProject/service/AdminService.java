@@ -85,4 +85,9 @@ public class AdminService {
 	public List<Qna2DTO> qnaAll() {
 		return adminMapper.qnaAll();
 	}
+	
+	public List<EventVO> eventAll(){
+		return adminMapper.eventAll();
+	}
+	
 }
