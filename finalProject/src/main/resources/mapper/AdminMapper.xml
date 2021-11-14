@@ -6,9 +6,9 @@
 	<insert id="categoryAdd">
 		INSERT INTO category
 		(
-			  event_unum
+			  category_unum
 			, category_name
-			<if test="categoryRef !=null">
+			<if test="categoryRef != null">
 		    , category_ref
 		    </if>
 		    , category_used
@@ -16,7 +16,7 @@
 		VALUES(
 		      seq_category_unum.nextval
 		    , #{categoryName}
-		    <if test="categoryRef !=null">
+		    <if test="categoryRef != null">
 		    , #{categoryRef}
 		    </if>
 		    , null

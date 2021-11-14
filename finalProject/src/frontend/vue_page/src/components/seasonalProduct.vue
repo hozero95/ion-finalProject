@@ -8,16 +8,16 @@
       <div class="seasonal__seafoods__wrap" v-for="(product, index) in products" v-bind:key="index"
         @click="showDetail(product.productUnum)">
         <a class="seafood" target="blank" data-type="">
-          <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
+          <img src="../images/img1.jpg" alt="해산물" class="seafood__img cursor_pointer" />
           <div class="seafood__info">
             <div class="seafood__info__top">
               <div class="logo">해물오빠</div>
-              <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div>
+              <!-- <div class="cart-icon"><i class="fas fa-shopping-cart"></i></div> -->
             </div>
-            <div class="seafood__info__title">
+            <div class="seafood__info__title cursor_pointer">
               <a class="seafood__info__clickable">{{product.productName}}</a>
             </div>
-            <div class="seafood__info__price">{{product.productPrice}}원</div>
+            <div class="seafood__info__price cursor_pointer">{{product.productPrice}}원</div>
             <input type="hidden" :value="product.productUnum">
           </div>
         </a>
@@ -145,6 +145,10 @@
     .seasonal {
       margin-left: 60px;
     }
+  }
+
+  .cursor_pointer {
+    cursor: pointer;
   }
 
 </style>

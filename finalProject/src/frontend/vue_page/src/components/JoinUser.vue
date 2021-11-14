@@ -30,7 +30,7 @@
             <input type="password" id="pswd1" v-model="pswd1" class="int" maxlength="20" minlength="3"
               placeholder="비밀번호 입력" required>
             <!-- <span id="alertTxt">사용불가</span> -->
-            <img src="" id="pswd1_img1" class="pswdImg">
+            <!-- <img src="" id="pswd1_img1" class="pswdImg"> -->
           </span>
           <span v-if="pswd1Check" id="error_password" class="error_next_box">잘못된 비밀번호 입니다.</span>
         </div>
@@ -41,7 +41,7 @@
           <span class="box int_pass_check">
             <input type="password" id="pswd2" v-model="pswd2" class="int" maxlength="20" minlength="3"
               placeholder="비밀번호 재입력" @input="inputPswdCheck" required>
-            <img src="" id="pswd2_img1" class="pswdImg">
+            <!-- <img src="" id="pswd2_img1" class="pswdImg"> -->
           </span>
           <span v-if="pswd2Check" id="error_password2" class="error_next_box">비밀번호가 일치하지 않습니다.</span>
         </div>
@@ -427,7 +427,7 @@
   #btnCheck {
     width: 80px;
     color: #fff;
-    font-size: 14px;
+    font-size: 12px;
     background-color: #185B9A;
     font-family: Dotum, '돋움', Helvetica, sans-serif;
   }
