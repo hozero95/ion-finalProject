@@ -235,7 +235,7 @@ export default {
 }
 .category {
   width: 1300px;
-  margin: 30px 0 0 300px;
+  margin: 0 auto;
 }
 
 .category__top {
@@ -272,17 +272,16 @@ export default {
   margin: 3% 3% 0 0;
 }
 .category__seafoods {
+  width: 1050px;
   margin-top: 3%;
   display: flex;
   flex-wrap: wrap;
-  
-  /* justify-content:space-around; */
+  /* text-align: center; */
+  justify-content: center;
 }
 
 .category__seafoods__wrap {
-  margin-left: 2%;
-  margin-bottom: 50px;
-  margin-right: 100px;
+  margin: 30px
 }
 .seafood__img:hover {
   animation-name: bounce;
