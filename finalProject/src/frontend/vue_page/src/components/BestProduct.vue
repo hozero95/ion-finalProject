@@ -212,7 +212,7 @@ export default {
 }
 
 .best__seafoods__wrap {
-  margin-left: 30px;
+  margin-left: 0px;
 }
 
 .best__seafoods__wrap {
