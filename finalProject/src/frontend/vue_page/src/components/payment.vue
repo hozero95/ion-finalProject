@@ -319,7 +319,10 @@
                             })
                             .then(res => {
                               alert("결제가 완료되었습니다.");
-                              this.$router.push('/');
+                              if (this.$route.path !== '/deliveryitem') {
+                                this.$router.push('/deliveryitem');
+                                location.replace('#app');
+                              }
                             }, error => {
                               alert("장바구니 내역이 갱신되지 못했습니다.");
                             });
@@ -343,7 +346,10 @@
                       })
                       .then(res => {
                         alert("결제가 완료되었습니다.");
-                        this.$router.push('/');
+                        if (this.$route.path !== '/deliveryitem') {
+                          this.$router.push('/deliveryitem');
+                          location.replace('#app');
+                        }
                       }, error => {
                         alert(this.payProductUnum + " 상품의 결제가 정상적으로 이루어지지 않았습니다.");
                       });
@@ -360,6 +366,7 @@
       }
     }
   }
+
 </script>
 
 <style scoped>
@@ -550,4 +557,5 @@
       margin-left: 256px;
     }
   }
+
 </style>
