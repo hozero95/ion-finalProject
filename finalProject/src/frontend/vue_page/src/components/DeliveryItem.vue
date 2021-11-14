@@ -340,6 +340,108 @@ export default {
         );
       } else {
         alert("배송 시작 전에만 주문취소가 가능합니다.");
+          return '오징어택배 / ' + order.deliveryUnum + ' / ' + status;
+        }
+
+        return '해당 주문의 결제 내역을 확인중입니다.';
+      },
+      orderCancel(order) {
+        this.getOrderList3Month();
+
+        if (order.deliveryStatus < 2 && order.deliveryStatus != null) {
+          var headers = {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + this.$store.state.jwtToken
+          };
+
+          axios.defaults.headers.post = null;
+          axios({
+              url: 'http://localhost:8000/api/mypage/remove/order',
+              method: 'delete',
+              headers: headers,
+              params: {
+                orderUnum: order.orderUnum
+              }
+            })
+            .then(res => {
+              alert(order.orderUnum + "번 주문이 취소되었습니다.");
+              this.getOrderList3Month();
+            }, error => {
+              alert("주문 취소를 실패했습니다.");
+            });
+        } else {
+          alert("배송 시작 전에만 주문취소가 가능합니다.");
+        }
+      },
+      orderChange(order) {
+        this.getOrderList3Month();
+
+        if (order.deliveryStatus == 3 && order.deliveryStatus != null) {
+          var headers = {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + this.$store.state.jwtToken
+          };
+
+          var body = {
+            deliveryStatus: 4,
+            orderUnum: order.orderUnum
+          };
+
+          axios.defaults.headers.post = null;
+          axios({
+              url: 'http://localhost:8000/api/mypage/replace/orderchange',
+              method: 'patch',
+              headers: headers,
+              data: body
+            })
+            .then(res => {
+              alert(order.orderUnum + "번 주문이 교환 신청되었습니다.");
+              this.getOrderList3Month();
+            }, error => {
+              alert("주문 교환 신청에 실패했습니다.");
+            });
+        } else {
+          alert("배송 완료 상태이어야 교환이 가능합니다.");
+        }
+      },
+      orderReturn(order) {
+        this.getOrderList3Month();
+
+        if (order.deliveryStatus == 3 && order.deliveryStatus != null) {
+          var headers = {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + this.$store.state.jwtToken
+          };
+
+          var body = {
+            deliveryStatus: 5,
+            orderUnum: order.orderUnum
+          };
+
+          axios.defaults.headers.post = null;
+          axios({
+              url: 'http://localhost:8000/api/mypage/replace/orderreturn',
+              method: 'patch',
+              headers: headers,
+              data: body
+            })
+            .then(res => {
+              alert(order.orderUnum + "번 주문이 반품 신청되었습니다.");
+              this.getOrderList3Month();
+            }, error => {
+              alert("주문 반품 신청에 실패했습니다.");
+            });
+        } else {
+          alert("배송 완료 상태이어야 반품이 가능합니다.");
+        }
+      },
+      showDetail(productUnum) {
+        this.$store.commit('setProductUnum', productUnum);
+
+        if (this.$route.path !== '/product') {
+          this.$router.push('/product');
+          location.replace('#app');
+        }
       }
     },
     orderChange(order) {
@@ -412,7 +514,6 @@ export default {
         location.replace("#app");
       }
     },
-  },
 };
 </script>
 
