@@ -421,6 +421,7 @@
   /* best */
   .best {
     margin-top: 100px;
+    /* text-align: center; */
   }
 
   .best__title {
@@ -457,15 +458,15 @@
 
   .best__seafoods {
     /* background-color: aquamarine; */
-
-    margin: 10px 200px 0 200px;
+    width: 1338px;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     /* justify-content:space-around; */
   }
 
   .best__seafoods__wrap {
-    margin: 3%;
+    margin: 30px;
   }
 
   .best__seafoods__wrap .seafood__img {
@@ -506,7 +507,7 @@
 
   .more button {
     border: 1px solid #132c7d;
-    width: 10%;
+    width: 15%;
     height: 30%;
     padding: 15px 20px;
     font-size: 20px;
