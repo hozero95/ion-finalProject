@@ -126,7 +126,7 @@ public class MypageController {
 	
 	@DeleteMapping(value = "/remove/order", produces = MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<String> removeOrder(@RequestParam Long orderUnum) {
-		return deliveryService.deleteByOrderUnum(orderUnum) > 0 && ordersService.replaceOrder(orderUnum) > 0 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>("fail", HttpStatus.OK);
+		return deliveryService.deleteByOrderUnum(orderUnum) >= 0 && ordersService.replaceOrder(orderUnum) > 0 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>("fail", HttpStatus.OK);
 	}
 	
 	@PostMapping(value = "/regist/reply", produces = MediaType.TEXT_PLAIN_VALUE)

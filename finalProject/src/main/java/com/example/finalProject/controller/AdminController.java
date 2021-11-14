@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.finalProject.domain.dto.OrdPayDelProDTO;
 import com.example.finalProject.domain.dto.Qna2DTO;
 import com.example.finalProject.domain.entity.CategoryVO;
 import com.example.finalProject.domain.entity.DeliveryVO;
@@ -37,7 +36,6 @@ public class AdminController {
 
 	@PostMapping(value = "/category/add", produces = MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<String> categoryAdd(@RequestBody CategoryVO categoryVO) {
-		System.out.println(categoryVO.getCategoryRef());
 		return adminService.categoryAdd(categoryVO) > 0 ? new ResponseEntity<String>("success", HttpStatus.OK)
 				: new ResponseEntity<String>("fail", HttpStatus.OK);
 	}

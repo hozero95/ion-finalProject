@@ -15,6 +15,10 @@
 		    ON p.product_unum = d.product_unum
 		 WHERE r.reply_unum IS NULL
 	  	   AND o.user_unum = #{userUnum}
+	  	   AND o.order_status = 0
+	  	   AND o.order_unum IN (SELECT order_unum
+                                  FROM delivery
+                                 WHERE delivery_status = 3)
 	  	 ORDER BY payment_regdate DESC
 		]]>
 	</select>

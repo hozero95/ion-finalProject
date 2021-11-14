@@ -69,11 +69,11 @@
                 </div> -->
               </div>
               <div class="seafood__info__title">
-                <a class="seafood__info__clickable">{{
+                <a class="seafood__info__clickable cursor_pointer">{{
                   product.productName
                 }}</a>
               </div>
-              <div class="seafood__info__price">
+              <div class="seafood__info__price cursor_pointer">
                 {{ product.productPrice }}원
               </div>
             </div>
@@ -91,11 +91,11 @@
       <!-- best nav bar -->
       <div class="best__navbar-mid nav_sticky explain-container">
         <ul class="best__navbar-mid__menu">
-          <li class="best__navbar-mid__menu__iteam" @click="showBestProduct(-1)">
+          <li class="best__navbar-mid__menu__iteam cursor_pointer" @click="showBestProduct(-1)">
             전체
           </li>
-          <li v-for="(bigCate, index) in bigCates" v-bind:key="index" class="best__navbar-mid__menu__iteam"
-            @click="showBestProduct(index)">
+          <li v-for="(bigCate, index) in bigCates" v-bind:key="index"
+            class="best__navbar-mid__menu__iteam cursor_pointer" @click="showBestProduct(index)">
             {{ bigCate.categoryName }}
           </li>
         </ul>
@@ -109,7 +109,7 @@
         <div class="best__seafoods__wrap" v-for="(product, index) in list" v-bind:key="index"
           @click="showDetail(product.productUnum)">
           <a class="seafood">
-            <img src="../images/img1.jpg" alt="해산물" class="seafood__img" />
+            <img src="../images/img1.jpg" alt="해산물" class="seafood__img cursor_pointer" />
             <div class="seafood__info">
               <div class="seafood__info__top">
                 <div class="logo">해물오빠</div>
@@ -117,12 +117,12 @@
                   <i class="fas fa-shopping-cart fa-2x"></i>
                 </div> -->
               </div>
-              <div class="seafood__info__title">
+              <div class="seafood__info__title cursor_pointer">
                 <a class="seafood__info__clickable">{{
                   product.productName
                 }}</a>
               </div>
-              <div class="seafood__info__price">
+              <div class="seafood__info__price cursor_pointer">
                 {{ product.productPrice }}원
               </div>
             </div>
@@ -605,6 +605,10 @@
 
   ul {
     list-style: none;
+  }
+
+  .cursor_pointer {
+    cursor: pointer;
   }
 
 </style>

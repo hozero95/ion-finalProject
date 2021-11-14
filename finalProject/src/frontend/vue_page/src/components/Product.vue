@@ -32,9 +32,9 @@
             <p>[5징어] {{product.productName}}</p>
             <div class="add-box__bottom">
               <div class="add-box__add">
-                <div class="add-box__add-btn minus" @click="countMinus">-</div>
+                <div class="add-box__add-btn minus cursor_pointer" @click="countMinus">-</div>
                 <div class="add-box__add-btn number">{{productCount}}</div>
-                <div class="add-box__add-btn plus" @click="countPlus">+</div>
+                <div class="add-box__add-btn plus cursor_pointer" @click="countPlus">+</div>
               </div>
               <div class="add-box__price">{{productPrice}}원</div>
             </div>
@@ -48,9 +48,9 @@
 
           <!-- 장바구니 바로구매 버튼 -->
           <div class="button">
-            <div class="button cartbtn" @click="addCart">장바구니</div>
+            <div class="button cartbtn cursor_pointer" @click="addCart">장바구니</div>
             <!-- <router-link to="payment"> -->
-            <div class="button buy" @click="goPayment()">바로구매</div>
+            <div class="button buy cursor_pointer" @click="goPayment()">바로구매</div>
             <!-- </router-link> -->
           </div>
         </div>
@@ -130,7 +130,7 @@
 
 
         <!-- 댓글 페이징 -->
-        <div class="comment__pagging">
+        <!-- <div class="comment__pagging">
           <nav aria-label="...">
             <ul class="pagination pagination-sm">
               <li class="page-item disabled">
@@ -149,7 +149,7 @@
               <li class="page-item"><a class="page-link" href="#">&gt;&gt;</a></li>
             </ul>
           </nav>
-        </div>
+        </div> -->
 
       </div>
     </div>
@@ -314,7 +314,7 @@
           this.$store.commit('setPayProductUnum', this.productUnum);
           this.$store.commit('setPayProductCount', this.productCount);
           this.$store.commit('setPayProductPrice', this.productPrice);
-          
+
           if (this.$route.path !== '/payment') {
             this.$router.push('/payment');
           }
@@ -325,6 +325,7 @@
       }
     }
   }
+
 </script>
 
 <style scoped>
@@ -586,4 +587,9 @@
       padding-left: 20%;
     }
   }
+
+  .cursor_pointer {
+    cursor: pointer;
+  }
+
 </style>

@@ -155,7 +155,7 @@
     justify-content: center;
     margin-left: 30px;
     margin-top: 15px;
-    cursor: pointer;
+    /* cursor: pointer; */
   }
 
   /* navbar dropdown */
