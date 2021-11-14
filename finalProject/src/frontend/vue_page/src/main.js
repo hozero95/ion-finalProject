@@ -6,6 +6,9 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import router from './router'
 import store from './assets/store.js'
 
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
@@ -14,6 +17,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
+Vue.use(ElementUI);
 
 /* eslint-disable no-new */
 new Vue({

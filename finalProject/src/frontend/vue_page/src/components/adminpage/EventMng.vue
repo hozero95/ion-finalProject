@@ -1,43 +1,30 @@
 <template>
+
   <body>
-    <div>test area</div>
-    <div>{{pageArray[0]}}</div>
     <!-- add modal -->
     <div class="black-bg" v-if="AddModal == true">
       <div class="white-bg">
-        <h4>AddItem</h4>
+        <h4>이벤트추가</h4>
         <table class="table table-bordered" style="border: 2px solid black">
           <thead>
             <tr>
-              <th scope="col0">카테고리</th>
-              <th scope="col1">상품이름</th>
-              <th scope="col2">상품가격</th>
-              <th scope="col3">시즌</th>
-              <th scope="col4">이미지 1</th>
-              <th scope="col5">이미지 2</th>
+              <th scope="col1">제목</th>
+              <th scope="col2">내용</th>
+              <th scope="col4">이미지추가</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><input v-model="addCategoryUnum" type="text" /></td>
-              <td><input v-model="addProductName" type="text" /></td>
-              <td><input v-model="addProductPrice" type="text" /></td>
-              <td><input v-model="addProductSeason" type="text" /></td>
+              <td><input v-model="addEventTitle" type="text" /></td>
+              <td><input v-model="addEventContent" type="text" /></td>
               <td>
-                <input v-model="addProductImage01" type="text" /><br /><input
-                  type="file"
-                />
-              </td>
-              <td>
-                <input v-model="addProductImage02" type="text" /><br /><input
-                  type="file"
-                />
+                <input v-model="addEventImage01" type="text" /><br /><input type="file" />
               </td>
             </tr>
           </tbody>
         </table>
         <div style="float: right">
-          <button @click="ProductAdd()">확인</button>
+          <button @click="eventAdd()">확인</button>
           <button @click="AddModal = false" style="margin-left: 40px">
             취소
           </button>
@@ -49,45 +36,44 @@
     <!-- modified mo dal -->
     <div class="black-bg" v-if="MdfModal == true">
       <div class="white-bg">
-        <h4>ModifiedItem</h4>
+        <h4>이벤트수정</h4>
         <table class="table table-bordered" style="border: 2px solid black">
           <thead>
             <tr>
-              <th scope="col0">상품번호</th>
-              <th scope="col1">카테고리</th>
-              <th scope="col2">상품이름</th>
-              <th scope="col3">상품가격</th>
-              <th scope="col4">등록일자</th>
-              <th scope="col5">시즌</th>
+              <th scope="col0">이벤트번호</th>
+              <th scope="col1">제목</th>
+              <th scope="col2">내용</th>
+              <th scope="col3">시작일자</th>
+              <th scope="col4">종료일자</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>
-                <textarea v-model="pageArray[ItemNum].productUnum"></textarea>
+                <textarea :value="eventShow.eventUnum" style="resize: none" readonly></textarea>
               </td>
               <td>
-                <textarea v-model="pageArray[ItemNum].categoryUnum"></textarea>
+                <textarea :value="eventShow.eventTitle" style="resize: none" readonly></textarea>
               </td>
               <td>
-                <textarea v-model="pageArray[ItemNum].productName"></textarea>
+                <textarea :value="eventShow.eventContent" style="resize: none" readonly></textarea>
               </td>
               <td>
-                <textarea v-model="pageArray[ItemNum].productPrice"></textarea>
+                <textarea :value="dateFormat(eventShow.eventRegdate)" style="resize: none" readonly></textarea>
               </td>
               <td>
-                <textarea
-                  v-model="pageArray[ItemNum].productRegdate"
-                ></textarea>
-              </td>
-              <td>
-                <textarea v-model="pageArray[ItemNum].productSeason"></textarea>
+                <div class="block">
+                  <!-- <span class="demonstration">Default</span> -->
+                  <el-date-picker v-model="enddate" type="date" placeholder="Pick a day">
+                  </el-date-picker>
+                </div>
+                <!-- <textarea :value="dateFormat(eventShow.eventEnddate)" style="resize: none"></textarea> -->
               </td>
             </tr>
           </tbody>
         </table>
         <div style="float: right">
-          <button>확인</button>
+          <button @click="eventDateChange(eventShow.eventUnum,eventShow.eventRegdate)">확인</button>
           <button @click="MdfModal = false" style="margin-left: 40px">
             취소
           </button>
@@ -95,227 +81,348 @@
       </div>
     </div>
     <!-- modified modal end -->
-    
+
     <!-- table area start -->
-    
+
     <div>
       <h1>이벤트 관리</h1>
 
-<table class="table table-bordered" style="border: 2px solid black">
-      <thead>
-        <tr>
-          <th scope="col5">
-            list
-            <div style="float: right">
-              <span>
-                <button @click="AddItem()"><i class="fas fa-plus"></i></button>
-              </span>
-            </div>
-          </th>
-          <th scope="col0">제목</th>
-          <th scope="col1">내용</th>
-          <th scope="col2">이벤트 등록일자</th>
-          <th scope="col3">이벤트 종료일자</th>
+      <table class="table table-bordered" style="border: 2px solid black">
+        <thead>
+          <tr>
+            <th scope="col5">
+              이벤트번호
+              <div style="float: right">
+                <span>
+                  <button @click="AddItem()"><i class="fas fa-plus"></i></button>
+                </span>
+              </div>
+            </th>
+            <th scope="col1">제목</th>
+            <th scope="col2">내용</th>
+            <th scope="col3">시작일자</th>
+            <th scope="col4">종료일자</th>
+            <th scope="col4">삭제여부</th>
 
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(p, index) in paginatedData" :key="index">
-          <th scope="row">
-            {{index}}
-            <button style="float: right" @click="showMdfModal(index)">
-              <i class="fas fa-tools"></i>
-            </button>
-          </th>
-          <td>{{p.eventTitle}}</td>
-          <td>{{ p.eventContent }}</td>
-          <td>{{ p.eventRegdate }}</td>
-          <td>{{ p.eventEnddate }}</td>                    
-        </tr>
-      </tbody>
-    </table>
-    <!-- table area end -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(event, index) in paginatedData" :key="index">
+            <td scope="row">
+              {{event.eventUnum}}
+              <button style="float: right" @click="showMdfModal(index, event)">
+                <i class="fas fa-tools"></i>
+              </button>
+            </td>
+            <td>{{event.eventTitle}}</td>
+            <td>{{ event.eventContent }}</td>
+            <td>{{ dateFormat(event.eventRegdate) }}</td>
+            <td>{{ dateFormat(event.eventEnddate) }}</td>
+            <td @click="deleteSure(event.eventUnum)">삭제</td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- table area end -->
 
-    <!-- pagination area start -->
-    <div class="btn-cover">
-      <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
-        이전
-      </button>
-      <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }} 페이지</span>
-      <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn">
-        다음
-      </button>
-    </div>
+      <!-- pagination area start -->
+      <div class="btn-cover">
+        <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
+          이전
+        </button>
+        <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }} 페이지</span>
+        <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn">
+          다음
+        </button>
+      </div>
     </div>
     <!-- pagination area end -->
   </body>
 </template>
 
 <script>
-import axios from "axios";
+  import axios from "axios";
 
 
-export default {
-  name: "simple-pagination",
-  data() {
-    return {
-      pageArray: [],
-      
-      AddModal: false,
-      MdfModal: false,
-      ItemNum: 0,
-      pageNum: 0,
-      pageSize: 10,
+  export default {
+    name: "simple-pagination",
 
-      // add modal
-      addCategoryUnum: null,
-      addProductName: null,
-      addProductPrice: null,
-      addProductSeason: null,
-      addProductImage01: null,
-      addProductImage02: null,
-    };
-  },
+    data() {
+      return {
+        pageArray: [],
+        events: [],
+        eventShow: {},
 
-  methods: {
 
-    AddItem() {
-      this.AddModal = true;
+        addEventTitle: '',
+        addEventContent: '',
+        addEventImage01: '',
+
+        AddModal: false,
+        MdfModal: false,
+        ItemNum: 0,
+        pageNum: 0,
+        pageSize: 10,
+
+        // add modal
+        addCategoryUnum: null,
+        addProductName: null,
+        addProductPrice: null,
+        addProductSeason: null,
+        addProductImage01: null,
+        addProductImage02: null,
+
+        pickerOptions: {
+          disabledDate(time) {
+            return time.getTime() > Date.now();
+          },
+          shortcuts: [{
+            text: 'Today',
+            onClick(picker) {
+              picker.$emit('pick', new Date());
+            }
+          }, {
+            text: 'Yesterday',
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24);
+              picker.$emit('pick', date);
+            }
+          }, {
+            text: 'A week ago',
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit('pick', date);
+            }
+          }]
+        },
+        enddate: '',
+
+
+
+      }
     },
-    showMdfModal(index) {
-      this.MdfModal = true;
-      this.ItemNum = index;
-    },
 
-    nextPage() {
-      this.pageNum += 1;
-    },
-    prevPage() {
-      this.pageNum -= 1;
-    },
 
-    ProductAdd() {
-      var headers = {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + this.$store.state.jwtToken,
-      };
+    methods: {
 
-      var body = {
-        categoryUnum: this.addCategoryUnum,
-        productName: this.addProductName,
-        productPrice: this.addProductPrice,
-        productSeason: this.addProductSeason,
-        productImage01Path: this.addProductImage01,
-        productImage02Path: this.addProductImage02,
-      };
+      AddItem() {
+        this.AddModal = true;
 
-      axios.defaults.headers.post = null;
-      axios({
-        url: "http://localhost:8000/api/admin/product/add",
-        method: "post",
-        headers: headers,
-        data: body,
-      })
-        .then((res) => {
-          alert("상품 등록 " + res.data);
-          this.AddModal = false;
-        })
-        .catch((err) => {
-          alert("이미 있는 상품이거나, 등록할 수 없는 상품입니다.");
-          this.AddModal = false;
-        });
-    },
-  },
-  computed: {
-    pageCount() {
-      let listLeng = this.pageArray.length,
-        listSize = this.pageSize,
-        page = Math.floor(listLeng / listSize);
-      if (listLeng % listSize > 0) page += 1;
+      },
+      showMdfModal(index, event) {
+        this.MdfModal = true;
+        this.ItemNum = index;
+        this.eventShow = event;
+      },
 
-      /*
-      아니면 page = Math.floor((listLeng - 1) / listSize) + 1;
-      이런식으로 if 문 없이 고칠 수도 있다!
-      */
-      return page;
-    },
-    paginatedData() {
-      const start = this.pageNum * this.pageSize,
-        end = start + this.pageSize;
-      return this.pageArray.slice(start, end);
-    },
-  },
+      nextPage() {
+        this.pageNum += 1;
+      },
+      prevPage() {
+        this.pageNum -= 1;
+      },
+      showEvent() {
+        var headers = {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.$store.state.jwtToken,
+        };
 
-  created() {
+        axios({
+            url: 'http://localhost:8000/api/admin/event/all',
+            method: 'get',
+            headers: headers
+          })
+          .then(res => {
+            // console.log(res.data);
+            var eventAll = new Array();
+            for (var i = 0; i < res.data.length; i++) {
+              eventAll.push(res.data[i]);
+            }
+            this.events = eventAll;
+          })
+      },
 
-    axios
-      .get("http://localhost:8000/api/event/show/event")
-      .then((res) => {
-        var product = new Array();
+      eventDateChange(eventUnum, eventRegdate) {
+        var enddate = new Date(this.enddate);
+        if (new Date(eventRegdate) < enddate) {
+          var headers = {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + this.$store.state.jwtToken,
+          };
+          var body = {
+            eventUnum: eventUnum,
+            eventEnddate: enddate
+          }
 
-        for (var i = 0; i < res.data.length; i++) {
-          product.push(res.data[i]);
+          axios({
+              url: 'http://localhost:8000/api/admin/event/datechange',
+              method: 'patch',
+              headers: headers,
+              data: body
+            })
+            .then(res => {
+              this.MdfModal = false;
+              this.showEvent()
+            })
+        } else {
+          alert('시작날짜보다 큰 날짜를 넣어주세요')
         }
-        this.pageArray = product;
-      });
-  },
-};
+
+      },
+      eventAdd() {
+        var headers = {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.$store.state.jwtToken,
+        };
+
+        var body = {
+          eventTitle: this.addEventTitle,
+          eventContent: this.addEventContent,
+        }
+        axios({
+            url: 'http://localhost:8000/api/admin/event/add',
+            method: 'post',
+            headers: headers,
+            data: body
+          })
+          .then(res => {
+            this.AddModal = false;
+            this.showEvent();
+            alert('이벤트등록이 완료되었습니다.')
+          }, error => {
+            alert('이벤트등록이 실패하였습니다')
+          })
+
+      },
+      deleteSure(eventUnum) {
+        if (confirm('이벤트를 삭제하시겠습니까?')) {
+          this.eventDelete(eventUnum);
+        } else {
+          alert('이벤트삭제를 취소합니다.')
+        }
+      },
+      eventDelete(eventUnum) {
+        var headers = {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.$store.state.jwtToken,
+        };
+
+        axios({
+            url: 'http://localhost:8000/api/admin/event/delete',
+            method: 'delete',
+            headers: headers,
+            params: {
+              eventUnum: eventUnum
+            }
+          })
+          .then(res => {
+            this.showEvent();
+            alert('이벤트삭제가 완료되었습니다')
+          })
+      },
+
+
+
+
+      dateFormat(date) {
+        if (date != null) {
+          var regdate = new Date(date);
+          var year = regdate.getFullYear();
+          var month = regdate.getMonth() + 1;
+          var day = regdate.getDate();
+
+          return year + "-" + month + "-" + day;
+        }
+      },
+    },
+    computed: {
+      pageCount() {
+        let listLeng = this.events.length,
+          listSize = this.pageSize,
+          page = Math.floor(listLeng / listSize);
+        if (listLeng % listSize > 0) page += 1;
+
+        /*
+        아니면 page = Math.floor((listLeng - 1) / listSize) + 1;
+        이런식으로 if 문 없이 고칠 수도 있다!
+        */
+        return page;
+      },
+      paginatedData() {
+        const start = this.pageNum * this.pageSize,
+          end = start + this.pageSize;
+        return this.events.slice(start, end);
+      },
+    },
+
+    created() {
+      this.showEvent();
+    },
+  };
 </script>
 
 <style scoped>
-body {
-  margin: 30px;
-}
+  body {
+    margin: 30px;
+  }
 
-div {
-  box-sizing: border-box;
-}
+  div {
+    box-sizing: border-box;
+  }
 
-.black-bg {
-  width: 100%;
-  height: 100%;
-  /* background: rgba(0,0,0,0.5); */
+  .black-bg {
+    width: 100%;
+    height: 100%;
+    /* background: rgba(0,0,0,0.5); */
 
-  position: fixed;
-}
+    position: fixed;
+  }
 
-.white-bg {
-  width: fit-content;
-  background: white;
-  border-radius: 8px;
-  padding: 20px;
-}
+  .white-bg {
+    width: fit-content;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+  }
 
-/* -----------------------pagination start -------------------------- */
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-table th {
-  font-size: 1.2rem;
-}
-table tr {
-  height: 2rem;
-  text-align: center;
-  border-bottom: 1px solid #505050;
-}
-table tr:first-of-type {
-  border-top: 2px solid #404040;
-}
-table tr td {
-  padding: 1rem 0;
-  font-size: 1.1rem;
-}
-.btn-cover {
-  margin-top: 1.5rem;
-  text-align: center;
-}
-.btn-cover .page-btn {
-  width: 5rem;
-  height: 2rem;
-  letter-spacing: 0.5px;
-}
-.btn-cover .page-count {
-  padding: 0 1rem;
-}
+  /* -----------------------pagination start -------------------------- */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  table th {
+    font-size: 1.2rem;
+  }
+
+  table tr {
+    height: 2rem;
+    text-align: center;
+    border-bottom: 1px solid #505050;
+  }
+
+  table tr:first-of-type {
+    border-top: 2px solid #404040;
+  }
+
+  table tr td {
+    padding: 1rem 0;
+    font-size: 1.1rem;
+  }
+
+  .btn-cover {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  .btn-cover .page-btn {
+    width: 5rem;
+    height: 2rem;
+    letter-spacing: 0.5px;
+  }
+
+  .btn-cover .page-count {
+    padding: 0 1rem;
+  }
 </style>

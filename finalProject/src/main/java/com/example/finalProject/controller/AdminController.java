@@ -143,4 +143,10 @@ public class AdminController {
 		List<Qna2DTO> qnaAll = adminService.qnaAll();
 		return new ResponseEntity<List<Qna2DTO>>(qnaAll, HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/event/all", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<EventVO>> eventAll() {
+		List<EventVO> eventAll = adminService.eventAll();
+		return new ResponseEntity<List<EventVO>>(eventAll, HttpStatus.OK);
+	}
 }

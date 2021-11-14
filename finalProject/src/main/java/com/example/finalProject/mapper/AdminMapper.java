@@ -49,6 +49,7 @@ public interface AdminMapper {
 	
 	public List<Qna2DTO> qnaAll();
 	
+	public List<EventVO> eventAll();
 	
 	
 
