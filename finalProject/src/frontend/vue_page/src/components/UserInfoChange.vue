@@ -4,12 +4,6 @@
     <div class="container_my">
 
       <div class="header_my">
-
-
-        <p class="user_name">#손님</p>
-        <img class="ssg_img" src="" alt="img">
-
-
       </div>
 
       <div class="content_my">

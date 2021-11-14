@@ -13,44 +13,47 @@
 </template>
 
 <script>
-  import Header from './components/Header.vue'
-  import Footer from './components/Footer.vue'
-  import NavbarTop from './components/Navbar-top.vue'
-  export default {
-    name: 'App',
-    components: {
-      Header,
-      Footer,
-      NavbarTop
+import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
+import NavbarTop from "./components/Navbar-top.vue";
+export default {
+  name: "App",
+  components: {
+    Header,
+    Footer,
+    NavbarTop,
+  },
+  data() {
+    return {
+      viewflag: [],
+    };
+  },
+  created() {
+    this.viewflag = this.$store.state.viewflag;
+  },
+  computed: {
+    setViewFlag() {
+      return this.$store.state.viewflag;
     },
-    data() {
-      return {
-        viewflag: []
-      }
+  },
+  watch: {
+    setViewFlag() {
+      this.viewflag = this.setViewFlag;
     },
-    created() {
-      this.viewflag = this.$store.state.viewflag;
-    },
-    computed: {
-      setViewFlag() {
-        return this.$store.state.viewflag;
-      }
-    },
-    watch: {
-      setViewFlag() {
-        this.viewflag = this.setViewFlag;
-      }
-    }
-  }
-
+  },
+};
 </script>
 
 <style>
-  /* body {
+/* body {
     text-align: center;
   } */
-  a{
+a {
   text-decoration: none;
   color: black;
+}
+ul li {
+  text-decoration: none;
+  list-style: none;
 }
 </style>
