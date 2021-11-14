@@ -234,6 +234,8 @@
         return '해당 주문의 결제 내역을 확인중입니다.';
       },
       orderCancel(order) {
+        this.getOrderList3Month();
+
         if (order.deliveryStatus < 2 && order.deliveryStatus != null) {
           var headers = {
             "Content-Type": "application/json",
@@ -260,6 +262,8 @@
         }
       },
       orderChange(order) {
+        this.getOrderList3Month();
+
         if (order.deliveryStatus == 3 && order.deliveryStatus != null) {
           var headers = {
             "Content-Type": "application/json",
@@ -289,6 +293,8 @@
         }
       },
       orderReturn(order) {
+        this.getOrderList3Month();
+
         if (order.deliveryStatus == 3 && order.deliveryStatus != null) {
           var headers = {
             "Content-Type": "application/json",
