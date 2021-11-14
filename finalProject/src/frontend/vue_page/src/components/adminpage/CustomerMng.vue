@@ -26,7 +26,7 @@
             <td>{{ userAll.userEmail }}</td>
             <td>{{ userAll.userAddress }}</td>
             <td>{{ userAll.userTel }}</td>
-            <td>{{ userAll.userRegdate }}</td>
+            <td>{{ dateFormat(userAll.userRegdate) }}</td>
             <td @click="deleteAsk(userAll.userUnum)">삭제</td>
           </tr>
         </tbody>
@@ -137,7 +137,17 @@
             console.log(error);
             alert('회원삭제에 실패하였습니다.');
           })
-      }
+      },
+      dateFormat(date) {
+        if (date != null) {
+          var regdate = new Date(date);
+          var year = regdate.getFullYear();
+          var month = regdate.getMonth() + 1;
+          var day = regdate.getDate();
+
+          return year + "-" + month + "-" + day;
+        }
+      },
 
     },
     computed: {

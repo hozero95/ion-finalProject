@@ -158,7 +158,7 @@
              <if test="productImage02Path != null">
              , product_image02_path = #{productImage02Path}
              </if>
-       WHERE product_unum = #{productUnum};
+       WHERE product_unum = #{productUnum}
     </update>
    
     <insert id="qnareply">

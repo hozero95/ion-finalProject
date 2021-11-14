@@ -61,7 +61,7 @@
             <th scope="col2">주문날짜</th>
             <th scope="col3">메세지</th>
             <th scope="col4">주문상태</th>
-            <th scope="col5">배송여부</th>
+            <th scope="col5">결제여부</th>
           </tr>
         </thead>
         <tbody>
@@ -78,7 +78,7 @@
             <td>{{messageSubstring(orderAll.orderMessage)}}</td>
             <td>{{orderStatus(orderAll.orderStatus)}}</td>
             <!--(0: 정상, 1: 주문취소, 2: 환불)-->
-            <td @click="deliveryStart(orderAll.orderUnum, orderAll.orderAddress)">배송 전</td>
+            <td @click="deliveryStart(orderAll.orderUnum, orderAll.orderAddress)">결제 전</td>
           </tr>
         </tbody>
       </table>
@@ -163,7 +163,7 @@
           })
       },
       deliveryStart(orderUnum, orderAddress) {
-        if (confirm('배송시작하시겠습니까?')) {
+        if (confirm('결제완료 처리하시겠습니까?')) {
           var headers = {
             "Content-Type": "application/json",
             Authorization: "Bearer " + this.$store.state.jwtToken,
@@ -183,7 +183,7 @@
             })
             .then(res => {
               console.log(res.data);
-              alert('배송이 시작되었습니다');
+              alert('결제가 완료되었습니다');
               this.showOrderAll();
             }, error => {
               console.log(error);

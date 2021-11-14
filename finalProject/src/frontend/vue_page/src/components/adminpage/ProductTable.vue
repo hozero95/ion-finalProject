@@ -46,7 +46,7 @@
     <!-- modified mo dal -->
     <div class="black-bg" v-if="MdfModal == true">
       <div class="white-bg">
-        <h4>ModifiedItem</h4>
+        <h4>상품 수정</h4>
         <table class="table table-bordered" style="border: 2px solid black">
           <thead>
             <tr>
@@ -54,35 +54,31 @@
               <th scope="col1">카테고리</th>
               <th scope="col2">상품이름</th>
               <th scope="col3">상품가격</th>
-              <th scope="col4">등록일자</th>
               <th scope="col5">시즌</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>
-                <textarea v-model="pageArray[ItemNum].productUnum"></textarea>
+                <textarea :value="product.productUnum" readonly></textarea>
               </td>
               <td>
-                <textarea v-model="pageArray[ItemNum].categoryUnum"></textarea>
+                <textarea v-model="product.categoryUnum"></textarea>
               </td>
               <td>
-                <textarea v-model="pageArray[ItemNum].productName"></textarea>
+                <textarea v-model="product.productName"></textarea>
               </td>
               <td>
-                <textarea v-model="pageArray[ItemNum].productPrice"></textarea>
+                <textarea v-model="product.productPrice"></textarea>
               </td>
               <td>
-                <textarea v-model="pageArray[ItemNum].productRegdate"></textarea>
-              </td>
-              <td>
-                <textarea v-model="pageArray[ItemNum].productSeason"></textarea>
+                <textarea v-model="product.productSeason"></textarea>
               </td>
             </tr>
           </tbody>
         </table>
         <div style="float: right">
-          <button>확인</button>
+          <button @click="ProductChange()">확인</button>
           <button @click="MdfModal = false" style="margin-left: 40px">
             취소
           </button>
@@ -113,13 +109,14 @@
             <th scope="col3">상품가격</th>
             <th scope="col4">등록일자</th>
             <th scope="col5">시즌</th>
+            <th scope="col6">상품삭제</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(p, index) in paginatedData" :key="index">
             <th scope="row">
               {{index+1}}
-              <button style="float: right" @click="showMdfModal(index)">
+              <button style="float: right" @click="showMdfModal(p)">
                 <i class="fas fa-tools"></i>
               </button>
             </th>
@@ -127,8 +124,9 @@
             <td>{{ p.categoryUnum }}</td>
             <td>{{ p.productName }}</td>
             <td>{{ p.productPrice }}</td>
-            <td>{{ p.productRegdate }}</td>
-            <td>{{ p.productSeason }}</td>
+            <td>{{ dateFormat(p.productRegdate) }}</td>
+            <td>{{ seasonWeather(p.productSeason) }}</td>
+            <td @click="ProductDeleteSure(p.productUnum)">삭제</td>
           </tr>
         </tbody>
       </table>
@@ -158,6 +156,7 @@
     data() {
       return {
         pageArray: [],
+        product: {},
 
         AddModal: false,
         MdfModal: false,
@@ -172,17 +171,30 @@
         addProductSeason: null,
         addProductImage01: null,
         addProductImage02: null,
+
+        productName: '',
+        productPrice: 0,
+        productSeason: 0
       };
     },
 
     methods: {
+      dateFormat(date) {
+        var regdate = new Date(date);
+        var year = regdate.getFullYear();
+        var month = regdate.getMonth() + 1;
+        var day = regdate.getDate();
 
+        return year + "-" + month + "-" + day;
+      },
       AddItem() {
         this.AddModal = true;
       },
-      showMdfModal(index) {
+      showMdfModal(p) {
+        this.product = p;
         this.MdfModal = true;
-        this.ItemNum = index;
+        // this.ItemNum = index;
+        // this.ProductChange(productUnum, categoryUnum);
       },
 
       nextPage() {
@@ -203,11 +215,8 @@
           productName: this.addProductName,
           productPrice: this.addProductPrice,
           productSeason: this.addProductSeason,
-          productImage01Path: this.addProductImage01,
-          productImage02Path: this.addProductImage02,
         };
 
-        axios.defaults.headers.post = null;
         axios({
             url: "http://localhost:8000/api/admin/product/add",
             method: "post",
@@ -215,7 +224,9 @@
             data: body,
           })
           .then((res) => {
-            alert(res.data + "상품 등록이 완료되었습니다.");
+            this.AddModal = false;
+            this.ProductAll();
+            alert("상품 등록이 완료되었습니다.");
             this.AddModal = false;
           })
           .catch((err) => {
@@ -223,6 +234,93 @@
             this.AddModal = false;
           });
       },
+      ProductDeleteSure(prouctUnum){
+        if(confirm('상품을 삭제하시겠습니까?')){
+          this.ProductDelete(prouctUnum);
+        }else{
+          alert('상품삭제를 취소하였습니다.')
+        }
+      },
+      ProductDelete(productUnum) {
+        var headers = {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.$store.state.jwtToken,
+        };
+        axios({
+            url: 'http://localhost:8000/api/admin/product/delete',
+            method: 'delete',
+            headers: headers,
+            params: {
+              productUnum: productUnum
+            }
+          })
+          .then(res => {
+            this.ProductAll();
+            alert('상품삭제가 완료되었습니다.')
+          }, error => {
+            alert('상품삭제가 실패되었습니다.')
+          })
+      },
+      ProductAll() {
+        var headers = {
+          Authorization: "Bearer " + this.$store.state.jwtToken,
+        };
+        axios
+          .get("http://localhost:8000/api/admin/product/all", {
+            headers,
+          })
+          .then((res) => {
+            var product = new Array();
+
+            for (var i = 0; i < res.data.length; i++) {
+              product.push(res.data[i]);
+            }
+            this.pageArray = product;
+          });
+
+      },
+      ProductChange() {
+        var headers = {
+          Authorization: "Bearer " + this.$store.state.jwtToken,
+        };
+        var body = {
+
+          productUnum: this.product.productUnum,
+          categoryUnum: this.product.categoryUnum,
+          productName: this.product.productName,
+          productPrice: this.product.productPrice,
+          productSeason: this.product.productSeason
+
+        }
+        console.log(body);
+        axios({
+            url: 'http://localhost:8000/api/admin/product/infochange',
+            method: 'patch',
+            headers: headers,
+            data: body
+          })
+          .then(res => {
+            this.ProductAll();
+            this.MdfModal = false;
+            alert('상품변경이 완료되었습니다')
+            this.ProductAll();
+          }, error=>{
+            alert('상품변경에 실패하였습니다')
+          })
+      },
+      seasonWeather(productSeason){
+        var weather ='';
+        if(productSeason==0){
+          weather='봄';
+        }else if(productSeason==1){
+          weather='여름';
+        }else if(productSeason==2){
+          weather='가을';
+        }else if(productSeason==3){
+          weather='겨울';
+        }
+        return weather;
+      }
     },
     computed: {
       pageCount() {
@@ -245,21 +343,7 @@
     },
 
     created() {
-      var headers = {
-        Authorization: "Bearer " + this.$store.state.jwtToken,
-      };
-      axios
-        .get("http://localhost:8000/api/admin/product/all", {
-          headers,
-        })
-        .then((res) => {
-          var product = new Array();
-
-          for (var i = 0; i < res.data.length; i++) {
-            product.push(res.data[i]);
-          }
-          this.pageArray = product;
-        });
+      this.ProductAll();
     },
   };
 </script>

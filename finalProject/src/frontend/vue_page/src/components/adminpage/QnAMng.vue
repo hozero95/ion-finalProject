@@ -13,7 +13,7 @@
 
             <strong>내용 : </strong>
             <div class="qnacontent">
-              <textarea name="ta_qna_modify" id="qna_modify" cols="135" rows="4" style="resize: none; border: none"
+              <textarea name="ta_qna_modify" id="qna_modify" cols="135" rows="3" style="resize: none; border: none"
                 :value="contComm.qnaContent" readonly></textarea><br />
             </div>
             <div class="contentres">
@@ -21,7 +21,7 @@
 
               <textarea name="ta_qna_modify" placeholder="답변제목" id="qna_modify" cols="158" rows="1" style="resize: none"
                 v-model="qna_title"></textarea><br />
-              <textarea name="ta_qna_modify" placeholder="답변내용" id="qna_modify" cols="158" rows="20"
+              <textarea name="ta_qna_modify" placeholder="답변내용" id="qna_modify" cols="158" rows="5"
                 style="resize: none" v-model="qna_content"></textarea><br />
             </div>
 
