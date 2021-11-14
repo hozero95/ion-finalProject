@@ -3,7 +3,7 @@
     <!-- header -->
     <header class="header">
       <!-- header left -->
-      
+      <div>
         <div class="flip-outer">
           <div class="flip-inner">
             <router-link to="/">
@@ -15,20 +15,46 @@
             <div class="back"></div>
           </div>
         </div>
-      
-
-      <!-- 검색창 -->
-      <!-- <div class="header__search">
-        <div class="input__header__search__input">
-          <input type="">
-          <button class="search-btn" type="button"><i class="fas fa-search"></i></button>
-        </div>
-      </div> -->
+      </div>
 
       <!-- header right -->
-      <ul class="header__menu">
-        <button @click="checkFlag">viewflag 체크</button>
-        <button @click="checkStore">store 체크</button>
+      <ul class="header__menu" style="margin-left: 0px;">
+        <!-- <button @click="checkFlag">viewflag 체크</button>
+        <button @click="checkStore">store 체크</button> -->
+        
+
+        
+        <router-link
+          to="userpage"
+          v-if="
+            this.$store.state.jwtToken != null &&
+            this.$store.state.jwtToken != ''
+          "
+        >
+          <li class="header__menu__iteam"><i class="far fa-user fa-2x"></i></li>
+        </router-link>
+        <router-link 
+          to="deliveryitem"
+          v-if="
+            this.$store.state.jwtToken != null &&
+            this.$store.state.jwtToken != ''
+          "
+        >
+          <li class="header__menu__iteam">
+            <i class="fas fa-truck fa-2x"></i>
+          </li>
+        </router-link>
+        <router-link 
+          to="cart"
+          v-if="
+            this.$store.state.jwtToken != null &&
+            this.$store.state.jwtToken != ''
+          "
+        >
+          <li class="header__menu__iteam">
+            <i class="fas fa-shopping-cart fa-2x"></i>
+          </li>
+        </router-link>
         <router-link
           to="login"
           v-if="
@@ -37,6 +63,15 @@
           "
         >
           <li class="header__menu__iteam">로그인</li>
+        </router-link>
+        <router-link
+          to="joinuser"
+          v-if="
+            this.$store.state.jwtToken == null ||
+            this.$store.state.jwtToken == ''
+          "
+        >
+          <li class="header__menu__iteam">회원가입</li>
         </router-link>
         <router-link
           to="login"
@@ -53,18 +88,12 @@
         >
           <li class="header__menu__iteam" @click="hiding">관리자 페이지</li>
         </router-link>
-
-        <router-link to="userpage">
-          <li class="header__menu__iteam"><i class="far fa-user"></i></li>
-        </router-link>
-        <router-link to="deliveryitem">
-          <li class="header__menu__iteam"><i class="fas fa-truck"></i></li>
-        </router-link>
-        <router-link to="cart">
-          <li class="header__menu__iteam">
-            <i class="fas fa-shopping-cart"></i>
-          </li>
-        </router-link>
+                <li           v-if="
+            this.$store.state.jwtToken != null &&
+            this.$store.state.jwtToken != ''
+          ">
+          {{this.$store.state.userInfo.userId}}님 어서오세요!
+        </li>
       </ul>
     </header>
   </body>
@@ -98,7 +127,6 @@ export default {
 .flip-outer {
   width: 100px;
   height: 100px;
-  
 }
 
 .flip-inner {
@@ -140,13 +168,12 @@ body {
   margin: 0;
 }
 
-a {
-  text-decoration: none;
-  color: var(--color-white);
-}
-
 ul {
-  padding-left: 0;
+  width: 3000px;
+  height: 100px;
+  /* background-color: aquamarine; */
+  align-items: center;
+  justify-content: end;
 }
 
 li {
@@ -184,18 +211,10 @@ p {
 
 /* header */
 .header {
+  height: 100px;
   display: flex;
-  align-items: center;
   padding: 0 300px;
 }
-
-.header__search {
-  width: 230px;
-  height: 15px;
-  margin-left: 30px;
-  /* margin-right: 35%; */
-}
-
 .input__header__search__input button {
   /* position: absolute; */
   /* left: 620px; */
@@ -206,50 +225,11 @@ p {
 
 .header__menu {
   display: flex;
-  margin-top: 30px;
 }
 
 .header__menu__iteam {
   padding: 8px 12px;
   margin: 0 4px;
-}
-
-/* footer */
-
-.footer {
-  width: 100%;
-  height: 335px;
-  padding: 0 320px;
-}
-
-.footer__left {
-  width: 70%;
-  float: left;
-}
-
-.footer__left__row2 {
-  margin-top: 20px;
-}
-
-.footer__left__row2 img {
-  width: 750px;
-  height: 60px;
-  margin-left: 0;
-}
-
-.footer__left__row3 {
-  margin-top: 20px;
-}
-
-.footer__right {
-  width: 30%;
-  float: right;
-  padding-left: 180px;
-}
-
-.footer__right img {
-  width: 200px;
-  height: 80px;
 }
 
 /* 노트북 사이즈 */

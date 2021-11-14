@@ -94,45 +94,6 @@
     color: gray;
   }
 
-  /* header */
-  .header {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0 300px;
-  }
-
-  .header__logo img {
-    width: 100px;
-    height: 100px;
-    margin-top: 20px;
-  }
-
-  .header__search {
-    width: 230px;
-    height: 15px;
-    margin-right: 35%;
-
-  }
-
-  .input__header__search__input button {
-    position: absolute;
-    left: 620px;
-    top: 57px;
-    color: #5172de;
-  }
-
-  .header__menu {
-    display: flex;
-    margin-top: 30px;
-  }
-
-  .header__menu__iteam {
-    padding: 8px 12px;
-    margin: 0 4px;
-
-  }
-
   /* footer */
   .footer {
     width: 100%;

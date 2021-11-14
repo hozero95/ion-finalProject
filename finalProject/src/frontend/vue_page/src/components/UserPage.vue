@@ -63,7 +63,7 @@
                 <i class="fas fa-user-lock fa-5x"></i>
               </div>
               <div class="text_box">
-                <h4>비밀번호 변경</h4>
+                <h4>회원 탈퇴</h4>
                 <!-- <p>ddddddddddddddd</p> -->
               </div>
             </router-link>
@@ -151,7 +151,7 @@ export default {};
 .header_my {
   background-color: #f3fafe;
   border-bottom: 3px solid #203a4d;
-  width: 1020px;
+  width: 1015px;
   height: 94px;
 }
 .deliver_header {
