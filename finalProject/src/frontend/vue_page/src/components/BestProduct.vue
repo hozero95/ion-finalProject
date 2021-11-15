@@ -186,7 +186,7 @@
 
   .bestBtn {
     margin-bottom: 2%;
-    margin-right: 333px;
+    /* margin-right: 333px; */
   }
 
   .best__seafoods {
@@ -196,7 +196,7 @@
 
     display: flex;
     flex-wrap: wrap;
-    margin:0 0 0 270px
+    margin:0 0 0 300px
     /* justify-content:space-around; */
   }
 
