@@ -234,7 +234,7 @@
   }
 
   .category__top__title {
-    margin-right: 30%;
+    margin : 0 auto;
   }
 
   .category__top__aside-text {
@@ -259,7 +259,7 @@
   }
 
   .category__seafoods {
-    width: 1050px;
+    width: 1100px;
     /* margin-top: 3%; */
     display: flex;
     flex-wrap: wrap;
@@ -269,7 +269,7 @@
   }
 
   .category__seafoods__wrap {
-    margin: 30px;
+    margin: 0 60px 0 0;
   }
 
   .seafood__img:hover {

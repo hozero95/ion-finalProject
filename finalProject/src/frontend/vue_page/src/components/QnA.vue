@@ -1,4 +1,5 @@
 <template>
+
   <body>
     <div class="container_my">
       <div class="header_my"></div>
@@ -9,16 +10,8 @@
             <div class="card-header hd1" @click="ONOFF1">
               주문관리
               <div style="display: inline-block; margin-left: 85px">
-                <i
-                  v-if="item1bt == 0"
-                  style="float: right"
-                  class="fas fa-chevron-up"
-                ></i>
-                <i
-                  v-if="item1bt == 1"
-                  style="float: right"
-                  class="fas fa-chevron-down"
-                ></i>
+                <i v-if="item1bt == 0" style="float: right" class="fas fa-chevron-up"></i>
+                <i v-if="item1bt == 1" style="float: right" class="fas fa-chevron-down"></i>
               </div>
             </div>
 
@@ -34,16 +27,8 @@
             <div class="card-header hd1" @click="ONOFF2">
               활동관리
               <div style="display: inline-block; margin-left: 85px">
-                <i
-                  v-if="item2bt == 0"
-                  style="float: right"
-                  class="fas fa-chevron-up"
-                ></i>
-                <i
-                  v-if="item2bt == 1"
-                  style="float: right"
-                  class="fas fa-chevron-down"
-                ></i>
+                <i v-if="item2bt == 0" style="float: right" class="fas fa-chevron-up"></i>
+                <i v-if="item2bt == 1" style="float: right" class="fas fa-chevron-down"></i>
               </div>
             </div>
 
@@ -64,16 +49,8 @@
             <div class="card-header hd1" @click="ONOFF3">
               정보관리
               <div style="display: inline-block; margin-left: 85px">
-                <i
-                  v-if="item3bt == 0"
-                  style="float: right"
-                  class="fas fa-chevron-up"
-                ></i>
-                <i
-                  v-if="item3bt == 1"
-                  style="float: right"
-                  class="fas fa-chevron-down"
-                ></i>
+                <i v-if="item3bt == 0" style="float: right" class="fas fa-chevron-up"></i>
+                <i v-if="item3bt == 1" style="float: right" class="fas fa-chevron-down"></i>
               </div>
             </div>
 
@@ -104,14 +81,9 @@
           </ul>
 
           <div class="body_content">
-            <button
-              class="qnaadd"
-              v-if="!add_qna && !showComment"
-              @click="addQnaStatus()"
-              type="button"
-            >
+            <div class="qnaadd" v-if="!add_qna && !showComment" @click="addQnaStatus()" type="button">
               +
-            </button>
+            </div>
             <div class="content_tb">
               <table v-if="!add_qna && !showComment">
                 <!-- <colgroup>
@@ -129,9 +101,7 @@
                   </tr>
                 </thead>
 
-                <div
-                  style="height: 250px; overflow-y: scroll; positon: relative"
-                >
+                <div style="height: 250px; overflow-y: scroll; positon: relative">
                   <tbody>
                     <tr v-if="qnais">
                       <td class="td_box">
@@ -139,11 +109,7 @@
                       </td>
                     </tr>
 
-                    <tr
-                      class="th_underbox"
-                      v-for="(qna, index) in qnas"
-                      v-bind:key="index"
-                    >
+                    <tr class="th_underbox" v-for="(qna, index) in qnas" v-bind:key="index">
                       <td class="td_size1">
                         {{ titleSubstring(qna.qnaTitle) }}
                       </td>
@@ -159,26 +125,10 @@
               </table>
 
               <div class="add_qna" v-if="add_qna" style="position: absolute">
-                <textarea
-                  name="ta_qna_modify"
-                  placeholder="제목"
-                  id="qna_modify"
-                  cols="95"
-                  rows="1"
-                  style="resize: none"
-                  v-model="title"
-                ></textarea
-                ><br />
-                <textarea
-                  name="ta_qna_modify"
-                  placeholder="내용"
-                  id="qna_modify"
-                  cols="95"
-                  rows="11"
-                  style="resize: none"
-                  v-model="content"
-                ></textarea
-                ><br />
+                <textarea name="ta_qna_modify" placeholder="제목" id="qna_modify" cols="95" rows="1" style="resize: none"
+                  v-model="title"></textarea><br />
+                <textarea name="ta_qna_modify" placeholder="내용" id="qna_modify" cols="95" rows="11" style="resize: none"
+                  v-model="content"></textarea><br />
                 <div class="add_qna_button">
                   <button type="button" @click="addQnaConfirm()">추가</button>
                   <button type="button" @click="clear()">취소</button>
@@ -193,16 +143,8 @@
 
                   <strong>내용 : </strong>
                   <div class="qnacontent">
-                    <textarea
-                      name="ta_qna_modify"
-                      id="qna_modify"
-                      cols="95"
-                      rows="3"
-                      style="resize: none; border: none"
-                      :value="contComm.qnaContent"
-                      readonly
-                    ></textarea
-                    ><br />
+                    <textarea name="ta_qna_modify" id="qna_modify" cols="95" rows="3" style="resize: none; border: none"
+                      :value="contComm.qnaContent" readonly></textarea><br />
                   </div>
 
                   <div v-if="resContentis" class="contentres">
@@ -226,396 +168,396 @@
 </template>
 
 <script>
-import axios from "axios";
+  import axios from "axios";
 
-export default {
-  data() {
-    return {
-      sideitem1: 1,
-      sideitem2: 1,
-      sideitem3: 1,
-      item1bt: 1,
-      item2bt: 1,
-      item3bt: 1,
-      qnas: [],
-      qnais: true,
-      add_qna: false,
-      showComment: false,
-      resContentis: false,
-      title: "",
-      content: "",
-      comment_title: "",
-      comment_content: "",
-      qna_comment: "",
-      contComm: {},
-    };
-  },
-  created() {
-    this.showqna();
-  },
-  // computed: {
-  //   setUserUnum() {
-  //     return this.$store.state.userUnum;
-  //   }
-  // },
-  // watch: {
-  //   setUserUnum() {
-  //     this.userUnum = this.setUserUnum;
-  //   }
-  // },
-  methods: {
-    ONOFF1() {
-      if (this.sideitem1 == 0) {
-        this.sideitem1 = 1;
-        this.item1bt = 1;
-      } else if (this.sideitem1 == 1) {
-        this.sideitem1 = 0;
-        this.item1bt = 0;
-      }
-    },
-    ONOFF2() {
-      if (this.sideitem2 == 0) {
-        this.sideitem2 = 1;
-        this.item2bt = 1;
-      } else if (this.sideitem2 == 1) {
-        this.sideitem2 = 0;
-        this.item2bt = 0;
-      }
-    },
-    ONOFF3() {
-      if (this.sideitem3 == 0) {
-        this.sideitem3 = 1;
-        this.item3bt = 1;
-      } else if (this.sideitem3 == 1) {
-        this.sideitem3 = 0;
-        this.item3bt = 0;
-      }
-    },
-    showqna() {
-      var headers = {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + this.$store.state.jwtToken,
+  export default {
+    data() {
+      return {
+        sideitem1: 1,
+        sideitem2: 1,
+        sideitem3: 1,
+        item1bt: 1,
+        item2bt: 1,
+        item3bt: 1,
+        qnas: [],
+        qnais: true,
+        add_qna: false,
+        showComment: false,
+        resContentis: false,
+        title: "",
+        content: "",
+        comment_title: "",
+        comment_content: "",
+        qna_comment: "",
+        contComm: {},
       };
+    },
+    created() {
+      this.showqna();
+    },
+    // computed: {
+    //   setUserUnum() {
+    //     return this.$store.state.userUnum;
+    //   }
+    // },
+    // watch: {
+    //   setUserUnum() {
+    //     this.userUnum = this.setUserUnum;
+    //   }
+    // },
+    methods: {
+      ONOFF1() {
+        if (this.sideitem1 == 0) {
+          this.sideitem1 = 1;
+          this.item1bt = 1;
+        } else if (this.sideitem1 == 1) {
+          this.sideitem1 = 0;
+          this.item1bt = 0;
+        }
+      },
+      ONOFF2() {
+        if (this.sideitem2 == 0) {
+          this.sideitem2 = 1;
+          this.item2bt = 1;
+        } else if (this.sideitem2 == 1) {
+          this.sideitem2 = 0;
+          this.item2bt = 0;
+        }
+      },
+      ONOFF3() {
+        if (this.sideitem3 == 0) {
+          this.sideitem3 = 1;
+          this.item3bt = 1;
+        } else if (this.sideitem3 == 1) {
+          this.sideitem3 = 0;
+          this.item3bt = 0;
+        }
+      },
+      showqna() {
+        var headers = {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.$store.state.jwtToken,
+        };
 
-      axios({
-        url: "http://localhost:8000/api/mypage/show/qna",
-        method: "get",
-        headers: headers,
-        params: {
-          userUnum: this.$store.state.userInfo.userUnum,
-        },
-      }).then(
-        (res) => {
-          console.log(res);
-          var qna = new Array();
-          for (var i = 0; i < res.data.length; i++) {
-            qna.push(res.data[i]);
+        axios({
+          url: "http://localhost:8000/api/mypage/show/qna",
+          method: "get",
+          headers: headers,
+          params: {
+            userUnum: this.$store.state.userInfo.userUnum,
+          },
+        }).then(
+          (res) => {
+            console.log(res);
+            var qna = new Array();
+            for (var i = 0; i < res.data.length; i++) {
+              qna.push(res.data[i]);
+            }
+            this.qnas = qna;
+            this.qnaMessage();
+          },
+          (error) => {
+            console.log(error);
           }
-          this.qnas = qna;
-          this.qnaMessage();
-        },
-        (error) => {
-          console.log(error);
+        );
+      },
+      qnaMessage() {
+        if (this.qnas.length > 0) {
+          this.qnais = false;
+        } else {
+          this.qnais = true;
         }
-      );
-    },
-    qnaMessage() {
-      if (this.qnas.length > 0) {
-        this.qnais = false;
-      } else {
-        this.qnais = true;
-      }
-    },
-    dateFormat(date) {
-      var regdate = new Date(date);
-      var year = regdate.getFullYear();
-      var month = regdate.getMonth() + 1;
-      var day = regdate.getDate();
+      },
+      dateFormat(date) {
+        var regdate = new Date(date);
+        var year = regdate.getFullYear();
+        var month = regdate.getMonth() + 1;
+        var day = regdate.getDate();
 
-      return year + "-" + month + "-" + day;
-    },
-    toDate(date) {
-      return new Date(date).toLocaleDateString("en-US");
-    },
-    addQnaStatus() {
-      this.add_qna = !this.add_qna;
-    },
-    addQnaConfirm() {
-      var headers = {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + this.$store.state.jwtToken,
-      };
+        return year + "-" + month + "-" + day;
+      },
+      toDate(date) {
+        return new Date(date).toLocaleDateString("en-US");
+      },
+      addQnaStatus() {
+        this.add_qna = !this.add_qna;
+      },
+      addQnaConfirm() {
+        var headers = {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.$store.state.jwtToken,
+        };
 
-      var body = {
-        userUnum: this.$store.state.userInfo.userUnum,
-        qnaTitle: this.title,
-        qnaContent: this.content,
-      };
+        var body = {
+          userUnum: this.$store.state.userInfo.userUnum,
+          qnaTitle: this.title,
+          qnaContent: this.content,
+        };
 
-      axios({
-        url: "http://localhost:8000/api/mypage/regist/qna",
-        method: "post",
-        headers: headers,
-        data: body,
-      }).then(
-        (res) => {
-          alert("질문등록이 완료되었습니다.");
-          this.showqna();
-          this.title = "";
-          this.content = "";
-          this.addQnaStatus();
-        },
-        (error) => {
-          alert("질문등록에 실패하였습니다.");
-          this.title = "";
-          this.content = "";
-          this.addQnaStatus();
+        axios({
+          url: "http://localhost:8000/api/mypage/regist/qna",
+          method: "post",
+          headers: headers,
+          data: body,
+        }).then(
+          (res) => {
+            alert("질문등록이 완료되었습니다.");
+            this.showqna();
+            this.title = "";
+            this.content = "";
+            this.addQnaStatus();
+          },
+          (error) => {
+            alert("질문등록에 실패하였습니다.");
+            this.title = "";
+            this.content = "";
+            this.addQnaStatus();
+          }
+        );
+      },
+      contentSubstring(str) {
+        if (str.length > 15) {
+          str = str.substring(0, 15) + "...";
         }
-      );
+        return str;
+      },
+      titleSubstring(str) {
+        if (str.length > 5) {
+          str = str.substring(0, 5) + "...";
+        }
+        return str;
+      },
+      allContCommStatus() {
+        this.showComment = !this.showComment;
+      },
+      showContComm(qna) {
+        this.contComm = qna;
+        if (this.contComm.resContent != null) {
+          this.resContentis = true;
+        } else {
+          this.resContentis = false;
+        }
+        this.allContCommStatus();
+      },
+      clear() {
+        this.title = "";
+        this.content = "";
+        this.addQnaStatus();
+      },
     },
-    contentSubstring(str) {
-      if (str.length > 15) {
-        str = str.substring(0, 15) + "...";
-      }
-      return str;
-    },
-    titleSubstring(str) {
-      if (str.length > 5) {
-        str = str.substring(0, 5) + "...";
-      }
-      return str;
-    },
-    allContCommStatus() {
-      this.showComment = !this.showComment;
-    },
-    showContComm(qna) {
-      this.contComm = qna;
-      if (this.contComm.resContent != null) {
-        this.resContentis = true;
-      } else {
-        this.resContentis = false;
-      }
-      this.allContCommStatus();
-    },
-    clear() {
-      this.title = "";
-      this.content = "";
-      this.addQnaStatus();
-    },
-  },
-};
+  };
 </script>
 
 <style scoped>
-.body_review {
-  height: fit-content;
-}
+  .body_review {
+    height: fit-content;
+  }
 
-/* header setting */
+  /* header setting */
 
-.container_my {
-  height: auto;
-  overflow: hidden;
-/* fit content 사용시 풋터가 올라오는 에러 발생  height 고정값 주기*/
-/* 최상위 부모의 영역 설정은 이걸로하면 잘 구성됨 */
-  margin-top: 30px;
-  margin-left: auto;
-  margin-right: auto;
-  border-right: 1px solid #d1dadd;
-  border-left: 1px solid #d1dadd;
-  width: 1020px;
+  .container_my {
+    height: auto;
+    overflow: hidden;
+    /* fit content 사용시 풋터가 올라오는 에러 발생  height 고정값 주기*/
+    /* 최상위 부모의 영역 설정은 이걸로하면 잘 구성됨 */
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    border-right: 1px solid #d1dadd;
+    border-left: 1px solid #d1dadd;
+    width: 1020px;
 
-  
-}
 
-.header_my {
-  background-color: #f3fafe;
-  border-bottom: 3px solid #203a4d;
-  width: 1018px;
-  height: 94px;
-  
-}
+  }
 
-.header_tag {
-  /* background-color: aquamarine; */
-  height: 37px;
-  width: 139px;
-  float: left;
-  margin: 8px 0px 8px 0px;
-  padding: 32px 15px 9px 18px;
-}
+  .header_my {
+    background-color: #f3fafe;
+    border-bottom: 3px solid #203a4d;
+    width: 1018px;
+    height: 94px;
 
-.user_name {
-  height: 17.5px;
-  width: 53.5px;
-  font-size: 12px;
-}
+  }
 
-.ssg_img {
-  height: 37px;
-  width: 139px;
-}
+  .header_tag {
+    /* background-color: aquamarine; */
+    height: 37px;
+    width: 139px;
+    float: left;
+    margin: 8px 0px 8px 0px;
+    padding: 32px 15px 9px 18px;
+  }
 
-/* content area */
-/* content_side setting  + content_body setting*/
+  .user_name {
+    height: 17.5px;
+    width: 53.5px;
+    font-size: 12px;
+  }
 
-.content_my {
-  width: 1018px;
-  height: fit-content;
-  /* border : solid 3px red; */
-}
+  .ssg_img {
+    height: 37px;
+    width: 139px;
+  }
 
-.content_side {
-  /* background-color: aqua; */
-  float: left;
-  width: 200px;
-  height: 600px;
-}
+  /* content area */
+  /* content_side setting  + content_body setting*/
 
-.btn_size {
-  width: 200px;
-  height: 60px;
-}
+  .content_my {
+    width: 1018px;
+    height: fit-content;
+    /* border : solid 3px red; */
+  }
 
-/* ------------------------side bar start-------------------------------- */
-.hd1 {
-  cursor: pointer;
-}
+  .content_side {
+    /* background-color: aqua; */
+    float: left;
+    width: 200px;
+    height: 600px;
+  }
 
-.side_item {
-  background-color: #f3fafe;
-}
+  .btn_size {
+    width: 200px;
+    height: 60px;
+  }
 
-.side_item:hover {
-  background-color: cadetblue;
-  display: inline-block;
-}
+  /* ------------------------side bar start-------------------------------- */
+  .hd1 {
+    cursor: pointer;
+  }
 
-.side_item:active {
-  background-color: lightskyblue;
-}
+  .side_item {
+    background-color: #f3fafe;
+  }
 
-/* ------------------------side bar end-------------------------------- */
+  .side_item:hover {
+    background-color: cadetblue;
+    display: inline-block;
+  }
 
-/* ------------------------content_my body start-------------------------------- */
-.content_body {
-  /* background-color: lightgray; */
-  float: left;
-  margin-left: 35px;
-  width: 777px;
-  height: 600px;
-}
+  .side_item:active {
+    background-color: lightskyblue;
+  }
 
-.body_header {
-  height: fit-content;
-  width: 780px;
-  padding: 15px 0px 13px 10px;
-  border-bottom: 1px solid #203a4d;
-  line-height: 30px;
-}
+  /* ------------------------side bar end-------------------------------- */
 
-.body_content {
-  /* background-color: aquamarine; */
-  margin-top: 30px;
-  height: 207px;
-  width: 777px;
-}
+  /* ------------------------content_my body start-------------------------------- */
+  .content_body {
+    /* background-color: lightgray; */
+    float: left;
+    margin-left: 35px;
+    width: 777px;
+    height: 600px;
+  }
 
-.qnaadd {
-  font-size: 30px;
-  margin-left: 650px;
-}
+  .body_header {
+    height: fit-content;
+    width: 780px;
+    padding: 15px 0px 13px 10px;
+    border-bottom: 1px solid #203a4d;
+    line-height: 30px;
+  }
 
-.add_qna_button {
-  margin-left: 660px;
-}
+  .body_content {
+    /* background-color: aquamarine; */
+    margin-top: 30px;
+    height: 207px;
+    width: 777px;
+  }
 
-.content_tb {
-  /* background-color: brown; */
-}
+  .qnaadd {
+    font-size: 30px;
+    margin-left: 650px;
+  }
 
-.blind {
-  display: none;
-}
+  .add_qna_button {
+    margin-left: 660px;
+  }
 
-h2 {
-  margin: 0px;
-  padding: 0px;
-  display: block;
-  font-size: 26px;
-}
+  .content_tb {
+    /* background-color: brown; */
+  }
 
-h3 {
-  font-size: 20px;
-  margin-top: 20px;
-}
+  .blind {
+    display: none;
+  }
 
-thead {
-  /* background: red; */
-  height: 18px;
-  width: 80px;
-  padding: 15px;
-  border-bottom: 1px solid #ededed;
-  color: #222;
-  font-size: 12px;
-}
+  h2 {
+    margin: 0px;
+    padding: 0px;
+    display: block;
+    font-size: 26px;
+  }
 
-.th_box {
-  background-color: lightgray;
-  height: 40px;
-  border-top: 3px solid #203a4d;
-  border-bottom: 3px solid #203a4d;
-  display: flex;
-  /* justify-content: space-around; */
-  align-items: center;
-  text-align: center;
-}
+  h3 {
+    font-size: 20px;
+    margin-top: 20px;
+  }
 
-.th_underbox {
-  /* background-color: lightgray; */
-  height: 40px;
-  /* border-top: 1px solid #203a4d; */
-  border-bottom: 1px solid #203a4d;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
+  thead {
+    /* background: red; */
+    height: 18px;
+    width: 80px;
+    padding: 15px;
+    border-bottom: 1px solid #ededed;
+    color: #222;
+    font-size: 12px;
+  }
 
-.td_box {
-  /* height: 100px; */
-  /* border-bottom: 1px solid #203a4d; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .th_box {
+    background-color: lightgray;
+    height: 40px;
+    border-top: 3px solid #203a4d;
+    border-bottom: 3px solid #203a4d;
+    display: flex;
+    /* justify-content: space-around; */
+    align-items: center;
+    text-align: center;
+  }
 
-.td_size1 {
-  width: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .th_underbox {
+    /* background-color: lightgray; */
+    height: 40px;
+    /* border-top: 1px solid #203a4d; */
+    border-bottom: 1px solid #203a4d;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
 
-.td_size2 {
-  width: 320px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .td_box {
+    /* height: 100px; */
+    /* border-bottom: 1px solid #203a4d; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.td_size3 {
-  width: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .td_size1 {
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.td_size4 {
-  width: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .td_size2 {
+    width: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-/* ------------------------content_my body end-------------------------------- */
+  .td_size3 {
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .td_size4 {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* ------------------------content_my body end-------------------------------- */
 </style>
