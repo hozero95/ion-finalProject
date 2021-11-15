@@ -334,7 +334,7 @@
   .test {
     /* position: absolute; */
     /* display: inline-block; */
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
     width: 1500px;
     margin: 80px 0 0 500px;
     text-align: center;
@@ -345,7 +345,7 @@
   }
 
   .slider__right {
-    background-color: palevioletred;
+    /* background-color: palevioletred; */
     float: left;
     padding-right: 500px;
     /* height: 511px; */
