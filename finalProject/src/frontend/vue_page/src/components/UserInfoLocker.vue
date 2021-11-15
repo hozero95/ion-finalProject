@@ -93,7 +93,7 @@
         </div>
 
         <div class="content_body">
-          <h2 class="body_header">회원정보 변경</h2>
+          <h2 class="body_header"><span>회원정보 변경</span></h2>
 
           <div class="section notice_txt">
             <p>

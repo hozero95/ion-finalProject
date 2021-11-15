@@ -129,7 +129,7 @@
       },
       range() {
         var index = this.count;
-        this.count += 9;
+        this.count += 8;
         if (this.count > this.products.length) {
           this.count = this.products.length;
           this.showMore = false;
@@ -186,7 +186,7 @@
 
   .bestBtn {
     margin-bottom: 2%;
-    margin-right: 312px;
+    margin-right: 333px;
   }
 
   .best__seafoods {
@@ -196,6 +196,7 @@
 
     display: flex;
     flex-wrap: wrap;
+    margin:0 0 0 270px
     /* justify-content:space-around; */
   }
 
