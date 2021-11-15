@@ -336,7 +336,8 @@
     /* display: inline-block; */
     /* background-color: blueviolet; */
     width: 1500px;
-    margin: 80px 0 0 500px;
+    margin-top: 100px;
+    margin-left: 300px;
     text-align: center;
   }
 
