@@ -29,7 +29,7 @@
           </form>
 
           <div class="adImg">
-            <img src="https://raw.githubusercontent.com/sky4564/img/master/test.jpg" alt="ex" class="adSize">
+            <img src="https://raw.githubusercontent.com/sky4564/img/master/seeimg.jpg" alt="ex" class="adSize">
           </div>
         </div>
       </div>
