@@ -160,10 +160,11 @@
               orderAll.push(res.data[i]);
             }
             this.orderAlls = orderAll;
+            console.log(orderAll)
           })
       },
       deliveryStart(orderUnum, orderAddress) {
-        if (confirm('결제완료 처리하시겠습니까?')) {
+        if (confirm('결제완료하시겠습니까?')) {
           var headers = {
             "Content-Type": "application/json",
             Authorization: "Bearer " + this.$store.state.jwtToken,
@@ -183,7 +184,7 @@
             })
             .then(res => {
               console.log(res.data);
-              alert('결제가 완료되었습니다');
+              alert('배송이 시작되었습니다');
               this.showOrderAll();
             }, error => {
               console.log(error);

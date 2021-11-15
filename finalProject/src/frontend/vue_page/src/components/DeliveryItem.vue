@@ -290,7 +290,7 @@
       },
       orderCancel(order) {
         this.getOrderList3Month();
-        sleep(100);
+        this.sleep(100);
         if (order.deliveryStatus < 2 || order.deliveryStatus == null) {
           if (confirm("주문을 취소하시겠습니까?")) {
             var headers = {
@@ -320,7 +320,7 @@
       },
       orderChange(order) {
         this.getOrderList3Month();
-        sleep(100);
+        this.sleep(100);
         if (order.deliveryStatus == 3 && order.deliveryStatus != null) {
           var headers = {
             "Content-Type": "application/json",
@@ -351,7 +351,7 @@
       },
       orderReturn(order) {
         this.getOrderList3Month();
-        sleep(100);
+        this.sleep(100);
         if (order.deliveryStatus == 3 && order.deliveryStatus != null) {
           var headers = {
             "Content-Type": "application/json",
