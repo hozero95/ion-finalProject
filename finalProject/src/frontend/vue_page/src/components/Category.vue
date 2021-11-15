@@ -183,7 +183,7 @@
       },
       range() {
         var index = this.count;
-        this.count += 8;
+        this.count += 9;
         if (this.count > this.products.length) {
           this.count = this.products.length;
           this.showMore = false;
@@ -260,15 +260,16 @@
 
   .category__seafoods {
     width: 1050px;
-    margin-top: 3%;
+    /* margin-top: 3%; */
     display: flex;
     flex-wrap: wrap;
+    margin : 3% 0 0 130px;
     /* text-align: center; */
-    justify-content: center;
+    /* justify-content: center; */
   }
 
   .category__seafoods__wrap {
-    margin: 30px
+    margin: 30px;
   }
 
   .seafood__img:hover {
