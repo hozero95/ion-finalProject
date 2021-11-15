@@ -346,8 +346,10 @@
 
   .slider__right {
     /* background-color: palevioletred; */
-    float: left;
-    padding-right: 500px;
+    float: right;
+    margin-left: 20px;
+    margin-top: 100px;
+    /* padding-right: 500px; */
     /* height: 511px; */
   }
 
@@ -356,7 +358,7 @@
     height: 50%;
     font-size: 40px;
     color: white;
-    margin: 60px 50px 0 40px;
+    margin: 0 auto;
   }
 
   .slider__right__arrow {
