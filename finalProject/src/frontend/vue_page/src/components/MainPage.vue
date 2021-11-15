@@ -83,7 +83,7 @@
     </section>
 
     <!-- best -->
-    <section class="best">
+    <section id="targetBest" class="best">
       <div class="best__title">
         <h1>해물오빠 BEST</h1>
         <p>해물오빠 인기상품을 먹어보세요!</p>
@@ -91,11 +91,11 @@
       <!-- best nav bar -->
       <div class="best__navbar-mid nav_sticky explain-container">
         <ul class="best__navbar-mid__menu">
-          <li class="best__navbar-mid__menu__iteam cursor_pointer" @click="showBestProduct(-1)">
+          <li class="best__navbar-mid__menu__iteam cursor_pointer" @click="showBestProduct(-1); moveBestScroll();">
             전체
           </li>
           <li v-for="(bigCate, index) in bigCates" v-bind:key="index"
-            class="best__navbar-mid__menu__iteam cursor_pointer" @click="showBestProduct(index)">
+            class="best__navbar-mid__menu__iteam cursor_pointer" @click="showBestProduct(index); moveBestScroll();">
             {{ bigCate.categoryName }}
           </li>
         </ul>
@@ -305,7 +305,14 @@
           location.replace("#app");
         }
       },
-    },
+      moveBestScroll() {
+        var location = document.querySelector("#targetBest").offsetTop;
+        console.log(location);
+        window.scrollTo({
+          top: location
+        });
+      }
+    }
   };
 
 </script>
