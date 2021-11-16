@@ -4,42 +4,41 @@
     <div class="container mt-2" style="background-color: cadetblue">
       <div class="row">
         <div class="col-lg-12">
-          <span><button style="margin: 10px 10px" @click="viewBigAdd = !viewBigAdd"><i
-                class="fas fa-plus"></i></button></span>
+          <div style="margin: 10px 10px;" @click="viewBigAdd = !viewBigAdd"><i
+                class="fas fa-plus" style=" cursor: pointer;"></i></div>
 
           <div class="card" v-if="viewBigAdd">
             <div class="card-header">
               <div style="float: left">
                 Insert Big Category Name :
-                <textarea v-model="addCategoryName" style="resize:none" rows="1" cols="153"></textarea>
-                <button style="float: right" @click="addCategory(null, index)">추가</button>
+                <textarea v-model="addCategoryName" style="resize:none; width : 1200px" rows="1" cols="153"></textarea>
+                <div style="" @click="addCategory(null, index)"><div class="add_button">추가</div></div>
               </div>
             </div>
           </div>
 
           <div class="card" v-for="(item, index) in bigCates" :key="index">
-            <div class="card-header">
-              <div style="float: left">
+            <div class="card-header" style="">
+              <div style="float: left; display : inline-block">
                 {{item.categoryName}}
-                <button @click="viewOnOff(index)"><i class="fas fa-list-alt"></i></button>
               </div>
+              <div @click="viewOnOff(index)"><i class="fas fa-list-alt big_cate_view_button" style="float: left; margin-left:10px;"></i></div>
               <div style="float: right">
-                <span><button @click="addOnOff(index)"><i class="fas fa-plus"></i></button></span>
-                <span style="margin-left: 20px"><button @click="delCategory(item.categoryUnum, true)"><i
-                      class="fas fa-minus"></i></button></span>
+                <span @click="addOnOff(index)"><i class="fas fa-plus"></i></span>
+                <span @click="delCategory(item.categoryUnum, true)"><i class="fas fa-minus" style="margin-left:30px"></i></span>
               </div>
             </div>
             <ul class="list-group list-group-flush" v-if="viewlist[index]">
 
               <li class="list-group-item" v-if="viewSmallAdd[index]">
                 Insert Small Category Name :
-                <textarea v-model="addCategoryName" style="resize:none" rows="1" cols="153"></textarea>
-                <button style="float: right" @click="addCategory(item.categoryUnum, index)">추가</button>
+                <textarea v-model="addCategoryName" style="resize:none; width : 1200px" rows="1" cols="153"></textarea>
+                <div @click="addCategory(item.categoryUnum, index)"><div class="add_button">추가</div></div>
               </li>
 
               <li class="list-group-item" v-for="(items, i) in smallCates[index]" :key="i">
                 {{items.categoryName}}
-                <button style="float: right" @click="delCategory(items.categoryUnum, false)"><i class="fas fa-minus"></i></button>
+                <span style="float: right" @click="delCategory(items.categoryUnum, false)"><i class="fas fa-minus"></i></span>
                 <!-- <button style="float: right" @click="modSmallCategory()"><i class="fas fa-tools"></i></button> -->
               </li>
             </ul>
@@ -197,4 +196,21 @@
 </script>
 
 <style>
+.add_button{
+  width: fit-content;
+  height: fit-content;
+  text-align: end;
+  font-size: 18px;
+  background: cadetblue;
+  color: white;
+  padding: 2px;
+  border: none;
+  border-radius: 5px;
+  float:right;
+  cursor: pointer;    
+}
+
+.big_cate_view_button:hover{
+  
+}
 </style>

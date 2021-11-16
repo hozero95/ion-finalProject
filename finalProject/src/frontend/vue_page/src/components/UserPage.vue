@@ -3,7 +3,7 @@
     <div class="content_my">
       <div class="header_my"></div>
 
-      <div class="deliver_header">
+      <!-- <div class="deliver_header">
         <span class="deliver_img"
           ><img
             src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/deimg.jpg"
@@ -39,7 +39,7 @@
         </li>
 
         <router-link to=""></router-link>
-      </div>
+      </div> -->
 
       <div>
         <div class="content_box right_line">
@@ -115,16 +115,20 @@
       </div>
 
       <div class="img_box">
-        <img
+        <router-link to="event">
+          <img
           src="https://raw.githubusercontent.com/sky4564/img/master/마이페이지/event1.jpeg"
           alt="event"
           class="event_img right_line"
         />
+        </router-link>
+        <router-link to="event">
         <img
           src="https://raw.githubusercontent.com/sky4564/img/master/마이페이지/event2.jpeg"
           alt="event"
           class="event_img"
         />
+        </router-link>
       </div>
     </div>
   </body>

@@ -24,10 +24,10 @@
           </tbody>
         </table>
         <div style="float: right">
-          <button @click="eventAdd()">확인</button>
-          <button @click="AddModal = false" style="margin-left: 40px">
+          <span @click="eventAdd()">확인</span>
+          <span @click="AddModal = false" style="margin-left: 40px">
             취소
-          </button>
+          </span>
         </div>
       </div>
     </div>
@@ -94,7 +94,7 @@
               이벤트번호
               <div style="float: right">
                 <span>
-                  <button @click="AddItem()"><i class="fas fa-plus"></i></button>
+                  <span @click="AddItem()" class="add_event_bt"><i class="fas fa-plus"></i></span>
                 </span>
               </div>
             </th>
@@ -425,4 +425,8 @@
   .btn-cover .page-count {
     padding: 0 1rem;
   }
+  .add_event_bt{
+    cursor: pointer;
+  }
+
 </style>
