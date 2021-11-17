@@ -226,6 +226,7 @@
 
   .category__top {
     margin-top: 6%;
+    margin-left:190px
   }
 
   .category__top {

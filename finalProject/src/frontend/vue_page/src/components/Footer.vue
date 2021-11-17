@@ -6,16 +6,16 @@
     <footer class="footer">
       <div class="footer__left">
         <div class="footer__left__row1">
-          <p><strong>(주) 5징어닷컴</strong></p>
+          <p><strong>(주) 해물오빠닷컴</strong></p>
           <p>
             <h3><i class="fas fa-headset"></i> 1577-3419</h3>
           </p>
           <p class="text2">고객센터/전자금융거래분쟁처리</p>
           <p class="text1">대표자 : 박용우 서울특별시 송파구 중대로 135 아이티벤처타워 사업자등록번호: 555-55-55555 통신판매업 신고번호: 제2020-서울종로-1154호</p>
-          <p class="text1">개인정보보호책임자: 박용우 Fax: 55-5555-5555 5징어@5징어.com</p>
+          <p class="text1">개인정보보호책임자: 박용우 Fax: 55-5555-5555 5징어@해물오빠.com</p>
         </div>
         <div class="footer__left__row2">
-          <p class="text2"><strong>SSG.COM 호스팅서비스 사업자 : (주)5징어닷컴</strong></p>
+          <p class="text2"><strong>해물오빠.COM 호스팅서비스 사업자 : (주)해물오빠닷컴</strong></p>
           <div><img src="../images/prize.png" alt=""></div>
           <p class="text2"><strong>우리은행 채무지급보증 안내</strong></p>
           <p class="text3">당사는 고객님이 현금 결제한 금액에 대해 우리은행과 채무지급보증 계약을 체결하여 안전거래를 보장하고 있습니다</p>
@@ -24,7 +24,7 @@
           </ul>
         </div>
         <div class="footer__left__row3">
-          <p class="text3">㈜5징어닷컴 사이트의 상품/판매자/쇼핑정보, 컨텐츠, UI 등에 대한 무단 복제, 전송, 배포, 스크래핑 등의 행위는 저작권법, 콘텐츠사업 진흥법 등에 의하여
+          <p class="text3">㈜해물오빠닷컴 사이트의 상품/판매자/쇼핑정보, 컨텐츠, UI 등에 대한 무단 복제, 전송, 배포, 스크래핑 등의 행위는 저작권법, 콘텐츠사업 진흥법 등에 의하여
             엄격히 금지됩니다. </p>
         </div>
       </div>

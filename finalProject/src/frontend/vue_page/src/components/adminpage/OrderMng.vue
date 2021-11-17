@@ -160,7 +160,6 @@
               orderAll.push(res.data[i]);
             }
             this.orderAlls = orderAll;
-            console.log(orderAll)
           })
       },
       deliveryStart(orderUnum, orderAddress) {
