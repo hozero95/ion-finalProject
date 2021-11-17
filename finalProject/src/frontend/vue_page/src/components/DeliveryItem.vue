@@ -132,9 +132,9 @@
               </tbody>
             </table>
             <ul class="cs_button_area cus_ul" style="text-align: center;">
-              <button class="cs_button_item" @click="orderCancel(order[0])">주문취소</button>
-              <button class="cs_button_item" @click="orderChange(order[0])">교환신청</button>
-              <button class="cs_button_item" @click="orderReturn(order[0])">반품신청</button>
+              <button class="cs_button_item" @click="orderCancelSure(order[0])">주문취소</button>
+              <button class="cs_button_item" @click="orderChangeSure(order[0])">교환신청</button>
+              <button class="cs_button_item" @click="orderReturnSure(order[0])">반품신청</button>
             </ul>
           </div>
         </div>
@@ -288,34 +288,48 @@
 
         return "해당 주문의 결제 내역을 확인중입니다.";
       },
+      orderCancelSure(order) {
+        if (confirm('주문취소 하시겠습니까?')) {
+          this.orderCancel(order);
+        } else {
+          alert('주문취소를 취소하셨습니다.');
+        }
+      },
       orderCancel(order) {
         this.getOrderList3Month();
         this.sleep(100);
         if (order.deliveryStatus < 2 || order.deliveryStatus == null) {
-          if (confirm("주문을 취소하시겠습니까?")) {
-            var headers = {
-              "Content-Type": "application/json",
-              "Authorization": "Bearer " + this.$store.state.jwtToken
-            };
 
-            axios.defaults.headers.post = null;
-            axios({
-                url: 'http://localhost:8000/api/mypage/remove/order',
-                method: 'delete',
-                headers: headers,
-                params: {
-                  orderUnum: order.orderUnum
-                }
-              })
-              .then(res => {
-                alert(order.orderUnum + "번 주문이 취소되었습니다.");
-                this.getOrderList3Month();
-              }, error => {
-                alert("주문 취소를 실패했습니다.");
-              });
-          }
+          var headers = {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + this.$store.state.jwtToken
+          };
+
+          axios.defaults.headers.post = null;
+          axios({
+              url: 'http://localhost:8000/api/mypage/remove/order',
+              method: 'delete',
+              headers: headers,
+              params: {
+                orderUnum: order.orderUnum
+              }
+            })
+            .then(res => {
+              alert(order.orderUnum + "번 주문이 취소되었습니다.");
+              this.getOrderList3Month();
+            }, error => {
+              alert("주문 취소를 실패했습니다.");
+            });
+
         } else {
           alert("배송 시작 전에만 주문취소가 가능합니다.");
+        }
+      },
+      orderChangeSure(order) {
+        if (confirm('교환신청 하시겠습니까?')) {
+          this.orderChange(order);
+        } else {
+          alert('교환신청를 취소하셨습니다.');
         }
       },
       orderChange(order) {
@@ -347,6 +361,13 @@
             });
         } else {
           alert("배송 완료 상태이어야 교환이 가능합니다.");
+        }
+      },
+      orderReturnSure(order) {
+        if (confirm('반품신청을 하시겠습니까?')) {
+          orderReturn(order);
+        } else {
+          alert('반품신청을 취소하였습니다.');
         }
       },
       orderReturn(order) {
@@ -394,7 +415,6 @@
       }
     }
   };
-
 </script>
 
 <style scoped>
@@ -666,5 +686,4 @@
   }
 
   /* ------------------------content_my body end-------------------------------- */
-
 </style>
