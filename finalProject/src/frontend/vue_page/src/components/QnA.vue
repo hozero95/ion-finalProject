@@ -109,16 +109,18 @@
                       </td>
                     </tr>
 
-                    <tr class="th_underbox" v-for="(qna, index) in qnas" v-bind:key="index">
+                    <tr v-for="(qna, index) in qnas" v-bind:key="index">
+                      <div class="th_underbox" v-if="qna.qnaComment==null">
                       <td class="td_size1">
                         {{ titleSubstring(qna.qnaTitle) }}
                       </td>
-                      <td class="td_size2" @click="showContComm(qna)">
+                      <td class="td_size2" @click="showContComm(qna)" style="cursor:pointer">
                         {{ contentSubstring(qna.qnaContent) }}
                       </td>
                       <td class="td_size3">{{ dateFormat(qna.qnaRegdate) }}</td>
                       <td class="td_size4" v-if="qna.resComment != null">O</td>
                       <td class="td_size4" v-if="qna.resComment == null">X</td>
+                      </div>
                     </tr>
                   </tbody>
                 </div>
@@ -465,11 +467,13 @@
 
   .qnaadd {
     font-size: 30px;
-    margin-left: 650px;
+    text-align: right;
+    margin-right: 70px;
   }
 
   .add_qna_button {
-    margin-left: 660px;
+  
+    margin-left: 630px;
   }
 
   .content_tb {
@@ -529,6 +533,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    width: 700px;
   }
 
   .td_size1 {
