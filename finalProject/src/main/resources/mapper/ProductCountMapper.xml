@@ -12,9 +12,9 @@
 		    ON p.product_unum = v.product_unum
 		 WHERE p.category_unum IN (SELECT c.category_unum
 		                             FROM category c
-		                             <if test="categoryUnum != -1">
+		                           <if test="categoryUnum != -1">
 		                            WHERE category_ref = #{categoryUnum}
-		                            </if>
+		                           </if>
 		                          )
 		 ORDER BY NVL(count, 0) DESC, p.product_regdate DESC, product_name
 	</select>

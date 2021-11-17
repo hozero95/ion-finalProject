@@ -41,13 +41,13 @@
 		   , event_title
 		   , event_content
 		   , event_regdate
-		   <if test="eventEnddate !=null">
+		   <if test="eventEnddate != null">
   		   , event_enddate
   		   </if>
-  		   <if test="eventImage01Path !=null">
+  		   <if test="eventImage01Path != null">
   		   , event_image01_path
   		   </if>
-  		   <if test="eventImage02Path !=null">
+  		   <if test="eventImage02Path != null">
   		   , event_Image02_path
   		   </if>
 		) VALUES(
@@ -55,13 +55,13 @@
    		   , #{eventTitle}
   		   , #{eventContent}
   		   , sysdate
-  		   <if test="eventEnddate !=null">
+  		   <if test="eventEnddate != null">
   		   , #{eventEnddate}
   		   </if>
-  		   <if test="eventImage01Path !=null">
+  		   <if test="eventImage01Path != null">
   		   , #{eventImage01Path}
   		   </if>
-  		   <if test="eventImage02Path !=null">
+  		   <if test="eventImage02Path != null">
   		   , #{eventImage02Path}
   		   </if>
 		)
@@ -82,7 +82,7 @@
 	<update id="deliveryStatus">
         UPDATE delivery
            SET delivery_status = #{deliveryStatus}
-    	      <if test="deliveryStatus ==3">
+    	      <if test="deliveryStatus == 3">
                , delivery_enddate = sysdate
      		  </if>
 	     WHERE delivery_unum = #{deliveryUnum}
@@ -112,13 +112,13 @@
 			, product_name
 			, product_price
 			, product_regdate
-			<if test="productSeason !=null">
+			<if test="productSeason != null">
 			, product_season
 			</if>
-			<if test="productImage01Path !=null">
+			<if test="productImage01Path != null">
 			, product_image01_path
 			</if>
-			<if test="productImage02Path !=null">
+			<if test="productImage02Path != null">
 			, product_image02_path
 			</if>
 		) VALUES(
@@ -127,13 +127,13 @@
 		    , #{productName}
 		    , #{productPrice}
 		    , sysdate
-		    <if test="productSeason !=null">
+		    <if test="productSeason != null">
 		    , #{productSeason}
 		    </if>
-		    <if test="productImage01Path !=null">
+		    <if test="productImage01Path != null">
 		    , #{productImage01Path}
 		    </if>
-		    <if test="productImage02Path !=null">
+		    <if test="productImage02Path != null">
 		    , #{productImage02Path}
 		    </if>
 		)

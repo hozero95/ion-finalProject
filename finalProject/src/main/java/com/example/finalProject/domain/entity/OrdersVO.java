@@ -29,4 +29,6 @@ public class OrdersVO {
 	private String orderMessage;
 	@Column(name = "user_unum")
 	private Long userUnum;
+	@Column(name = "order_type")
+	private Long orderType;
 }

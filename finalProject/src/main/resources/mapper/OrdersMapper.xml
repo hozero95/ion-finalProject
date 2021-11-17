@@ -28,6 +28,7 @@
 		    </if>
 		    , order_regdate
 			, user_unum
+			, order_type
 		) VALUES(
 			  seq_order_unum.nextval
 			, 0
@@ -37,6 +38,7 @@
      		</if>
      		, sysdate
     		, #{userUnum}
+    		, #{orderType}
 		)
 	</insert>
 	
