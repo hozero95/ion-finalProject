@@ -54,7 +54,7 @@
       <div class="information">
         * 결제완료처리의 확인버튼을 누르시면 배송관리탭으로 상품이 넘어갑니다.<br>
           <p style="color:red; font-size:9pt;">&nbsp; &nbsp;(주문취소건에 대해서는 결제완료확인을 하실 수 없습니다.)</p>
-          <br>
+          
       </div>
       <table class="table table-bordered" style="border: 2px solid black">
         <thead>
