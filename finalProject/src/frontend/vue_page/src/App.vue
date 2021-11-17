@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <infoModal v-if="$store.state.modalView ==1"></infoModal>
+    <!-- <infoModal v-if="$store.state.modalView ==1"></infoModal> -->
     
     <Header></Header>
 
@@ -32,9 +32,6 @@ export default {
       viewflag: [],
       
     };
-  },
-  components : {
-    infoModal,
   },
   created() {
     this.viewflag = this.$store.state.viewflag;
