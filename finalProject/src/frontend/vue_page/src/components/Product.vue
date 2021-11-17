@@ -14,7 +14,7 @@
         <div class="col">
 
           <div class="seafood__info__title">
-            <h4>[5징어] {{product.productName}}</h4>
+            <h4>[해물오빠] {{product.productName}}</h4>
             <h3>{{product.productPrice}}원</h3>
           </div>
           <hr>
