@@ -16,7 +16,7 @@ public class OrdDelDTO {
 	private String orderAddress;
 	private Date orderRegdate;
 	private String orderMessage;
-	private Long orderType;
+	private String orderType;
 	private Long userUnum;
 	private Long deliveryUnum;
 	private Long deliveryStatus;

@@ -30,5 +30,5 @@ public class OrdersVO {
 	@Column(name = "user_unum")
 	private Long userUnum;
 	@Column(name = "order_type")
-	private Long orderType;
+	private String orderType;
 }
