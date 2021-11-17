@@ -29,7 +29,7 @@
 
           <!-- top right add box -->
           <div class="add-box">
-            <p>[5징어] {{product.productName}}</p>
+            <p>[해물오빠] {{product.productName}}</p>
             <div class="add-box__bottom">
               <div class="add-box__add">
                 <div class="add-box__add-btn minus cursor_pointer" @click="countMinus">-</div>

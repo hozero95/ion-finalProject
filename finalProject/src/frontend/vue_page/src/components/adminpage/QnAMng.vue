@@ -89,26 +89,20 @@
 
 <script>
   import axios from "axios";
-
-
   export default {
     name: "simple-pagination",
     data() {
       return {
         pageArray: [],
         qnaAlls: [],
-
         qna_title: "",
         qna_content: "",
-
         contComm: {},
-
         AddModal: false,
         MdfModal: false,
         ItemNum: 0,
         pageNum: 0,
         pageSize: 10,
-
         // add modal
         addCategoryUnum: null,
         addProductName: null,
@@ -119,7 +113,6 @@
       };
     },
     methods: {
-
       AddItem(qnaAll) {
         this.AddModal = true;
         this.contComm = qnaAll;
@@ -128,7 +121,6 @@
         this.MdfModal = true;
         this.ItemNum = index;
       },
-
       nextPage() {
         this.pageNum += 1;
       },
@@ -186,7 +178,6 @@
         var year = regdate.getFullYear();
         var month = regdate.getMonth() + 1;
         var day = regdate.getDate();
-
         return year + "-" + month + "-" + day;
       },
       contentSubstring(str) {
@@ -201,16 +192,13 @@
         }
         return str;
       },
-
     },
-
     computed: {
       pageCount() {
         let listLeng = this.qnaAlls.length,
           listSize = this.pageSize,
           page = Math.floor(listLeng / listSize);
         if (listLeng % listSize > 0) page += 1;
-
         /*
         아니면 page = Math.floor((listLeng - 1) / listSize) + 1;
         이런식으로 if 문 없이 고칠 수도 있다!
@@ -226,71 +214,57 @@
     created() {
       this.showqnaAll();
     },
-
   }
 </script>
 
 <style scoped>
-
   div {
     box-sizing: border-box;
   }
-
   .information {
     font-size: 10pt;
   }
-
   .black-bg {
     width: 100%;
     height: 100%;
     /* background: rgba(0,0,0,0.5); */
-
     position: fixed;
   }
-
   .white-bg {
     width: fit-content;
     background: white;
     border-radius: 8px;
     padding: 20px;
   }
-
   /* -----------------------pagination start -------------------------- */
   table {
     width: 100%;
     border-collapse: collapse;
   }
-
   table th {
     font-size: 1.2rem;
   }
-
   table tr {
     height: 2rem;
     text-align: center;
     border-bottom: 1px solid #505050;
   }
-
   table tr:first-of-type {
     border-top: 2px solid #404040;
   }
-
   table tr td {
     padding: 1rem 0;
     font-size: 1.1rem;
   }
-
   .btn-cover {
     margin-top: 1.5rem;
     text-align: center;
   }
-
   .btn-cover .page-btn {
     width: 5rem;
     height: 2rem;
     letter-spacing: 0.5px;
   }
-
   .btn-cover .page-count {
     padding: 0 1rem;
   }
