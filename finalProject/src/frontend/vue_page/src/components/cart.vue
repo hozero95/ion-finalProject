@@ -42,7 +42,7 @@
                       <img :src="product.productImage01Path" alt="">
                     </td>
                     <td class="content">
-                      <div class="logo">5징어</div>
+                      <div class="logo">해물오빠</div>
                       <div class="title cursor_pointer" @click="showDetail(product.productUnum)">{{product.productName}}
                       </div>
                     </td>
@@ -388,7 +388,7 @@
   .left__content__table .content .logo {
     background-color: #132c7d;
     color: white;
-    width: 60px;
+    width: 70px;
     height: 25px;
     text-align: center;
     margin-bottom: 5%;

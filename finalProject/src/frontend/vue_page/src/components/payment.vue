@@ -73,7 +73,7 @@
                 <img :src="product.productImage01Path" alt="">
               </td>
               <td class="order-product__content">
-                <div class="logo">5징어</div>
+                <div class="logo">해물오빠</div>
                 <div class="title">{{product.productName}}</div>
               </td>
               <td class="order-product__pricewrap">
@@ -93,7 +93,7 @@
                 <img src="../images/img1.jpg" alt="">
               </td>
               <td class="order-product__content">
-                <div class="logo">5징어</div>
+                <div class="logo">해물오빠</div>
                 <div class="title">{{payProductName}}</div>
               </td>
               <td class="order-product__pricewrap">
@@ -482,7 +482,7 @@
   .logo {
     background-color: #132c7d;
     color: white;
-    width: 60px;
+    width: 70px;
     height: 25px;
     text-align: center;
     margin-bottom: 5%;
