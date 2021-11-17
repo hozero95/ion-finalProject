@@ -18,7 +18,8 @@
               <td><input v-model="addEventTitle" type="text" /></td>
               <td><input v-model="addEventContent" type="text" /></td>
               <td>
-                <input v-model="addEventImage01" type="text" /><br /><input type="file" />
+                <input v-model="addEventImage01" type="text" /><br />
+                <input type="file" class="dd"/>
               </td>
             </tr>
           </tbody>
@@ -73,11 +74,12 @@
           </tbody>
         </table>
         <div style="float: right">
-          <button @click="eventDateChange(eventShow.eventUnum,eventShow.eventRegdate)">확인</button>
-          <button @click="MdfModal = false" style="margin-left: 40px">
+          <span @click="eventDateChange(eventShow.eventUnum,eventShow.eventRegdate)" style="">확인</span>
+          <span @click="MdfModal = false" style="margin-left: 40px">
             취소
-          </button>
+          </span>
         </div>
+        
       </div>
     </div>
     <!-- modified modal end -->
@@ -110,9 +112,9 @@
           <tr v-for="(event, index) in paginatedData" :key="index">
             <td scope="row">
               {{event.eventUnum}}
-              <button style="float: right" @click="showMdfModal(index, event)">
+              <span style="float: right; margin-right : 10px" @click="showMdfModal(index, event)">
                 <i class="fas fa-tools"></i>
-              </button>
+              </span>
             </td>
             <td>{{event.eventTitle}}</td>
             <td>{{ event.eventContent }}</td>
@@ -427,6 +429,10 @@
   }
   .add_event_bt{
     cursor: pointer;
+  }
+  .dd{
+    
+    margin-left: 100px;
   }
 
 </style>

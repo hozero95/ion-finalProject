@@ -99,7 +99,7 @@
               list
               <div style="float: right">
                 <span>
-                  <button @click="AddItem()"><i class="fas fa-plus"></i></button>
+                  <span @click="AddItem()"><i class="fas fa-plus"></i></span>
                 </span>
               </div>
             </th>
@@ -116,9 +116,9 @@
           <tr v-for="(p, index) in paginatedData" :key="index">
             <th scope="row">
               {{index+1}}
-              <button style="float: right" @click="showMdfModal(p)">
+              <span style="float: right" @click="showMdfModal(p)">
                 <i class="fas fa-tools"></i>
-              </button>
+              </span>
             </th>
             <td>{{p.productUnum }}</td>
             <td>{{ p.categoryUnum }}</td>
