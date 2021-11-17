@@ -39,7 +39,7 @@
                   <tr v-for="(product, index) in products" v-bind:key="index">
                     <td class="imgbox">
                       <!-- <input type="checkbox"> -->
-                      <img src="../images/img1.jpg" alt="">
+                      <img :src="product.productImage01Path" alt="">
                     </td>
                     <td class="content">
                       <div class="logo">5징어</div>

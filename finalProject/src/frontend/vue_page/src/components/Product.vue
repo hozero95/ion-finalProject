@@ -7,7 +7,7 @@
         <!-- top left -->
         <div class="col">
           <div class="title__img">
-            <img src="../images/img1.jpg" alt="">
+            <img class="title_img" :src="product.productImage01Path" alt="">
           </div>
         </div>
         <!-- top right -->
@@ -99,11 +99,11 @@
       <div class="product-info__info__detail">
         <div class="product-info__info__detail__line"></div>
         <div class="product-info__info__detail__img">
-          <img src="../images/img1-1.png" alt="">
+          <img :src="product.productImage02Path" alt="">
         </div>
-        <div class="product-info__info__detail__img">
+        <!-- <div class="product-info__info__detail__img">
           <img src="../images/img1-2.png" alt="">
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -590,6 +590,11 @@
 
   .cursor_pointer {
     cursor: pointer;
+  }
+
+  .title_img {
+    width: 510px;
+    height: 510px;
   }
 
 </style>

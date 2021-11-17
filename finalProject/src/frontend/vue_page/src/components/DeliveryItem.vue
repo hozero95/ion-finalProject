@@ -114,7 +114,7 @@
                   <td>
                     <div>
                       <span class="cursor_pointer" @click="showDetail(product.productUnum)">
-                        <img src="/del.jpg" alt="상품" style="width: 90px; height: 70px;">
+                        <img :src="product.productImage01Path" alt="상품" style="width: 90px; height: 70px;">
                       </span>
                     </div>
                   </td>
