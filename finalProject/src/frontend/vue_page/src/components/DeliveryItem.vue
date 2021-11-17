@@ -91,6 +91,7 @@
               <span>
                 <em>주문번호 : </em>
                 {{order[0].orderUnum}}
+                / 결제수단 : {{order[0].orderType}}
               </span>
             </dt>
           </dl>

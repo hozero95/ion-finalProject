@@ -65,8 +65,9 @@
             <th scope="col1">주문번호</th>
             <th scope="col2">주문날짜</th>
             <th scope="col3">메세지</th>
-            <th scope="col4">주문상태</th>
-            <th scope="col5">결제완료처리</th>
+            <th scope="col4">결제수단</th>
+            <th scope="col5">주문상태</th>
+            <th scope="col6">결제완료처리</th>
           </tr>
         </thead>
         <tbody>
@@ -81,6 +82,7 @@
             <td>{{orderAll.orderUnum}}</td>
             <td>{{dateFormat(orderAll.orderRegdate)}}</td>
             <td>{{messageSubstring(orderAll.orderMessage)}}</td>
+            <td>{{orderAll.orderType}}</td>
             <td>{{orderStatus(orderAll.orderStatus)}}</td>
             <!--(0: 정상, 1: 주문취소, 2: 환불)-->
             <td v-if="orderAll.orderStatus==1 || orderAll.orderStatus==2"> </td>

@@ -60,76 +60,96 @@
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="payment__middle">
-        <div class="order-product">
-          <div class="line"></div>
-          <div class="order-product__title">주문상품 : {{getProductAmount()}}개</div>
-          <table class="order-product__table">
+        <br>
+        <div class="line"></div>
+        <div class="payment__title">결제수단</div>
+        <div class="payment__info">
+          <div class="payment__info__shipping-info">
+            <div class="label">결제수단 선택</div>
+            <div class="info">
+              <select v-model="paymentMethod">
+                <option selected>결제수단 선택</option>
+                <option value="1">카드</option>
+                <option value="2">무통장입금</option>
 
-            <tr v-for="(product, index) in products" v-bind:key="index">
-              <td class="imgbox">
-                <img :src="product.productImage01Path" alt="">
-              </td>
-              <td class="order-product__content">
-                <div class="logo">해물오빠</div>
-                <div class="title">{{product.productName}}</div>
-              </td>
-              <td class="order-product__pricewrap">
-                <div class="price">{{product.cartPrice}}
-                  <div class="won">원</div>
-                </div>
-                <div class="inner-line"></div>
-                <div class="quantity-wrap">
-                  <span class="quantity">수량</span>
-                  <span class="num">{{product.cartCount}}</span>
-                  <span class="gae">개</span>
-                </div>
-              </td>
-            </tr>
-            <tr v-if="products == null">
-              <td class="imgbox">
-                <img src="../images/img1.jpg" alt="">
-              </td>
-              <td class="order-product__content">
-                <div class="logo">해물오빠</div>
-                <div class="title">{{payProductName}}</div>
-              </td>
-              <td class="order-product__pricewrap">
-                <div class="price">{{payProductPrice}}
-                  <div class="won">원</div>
-                </div>
-                <div class="inner-line"></div>
-                <div class="quantity-wrap">
-                  <span class="quantity">수량</span>
-                  <span class="num">{{payProductCount}}</span>
-                  <span class="gae">개</span>
-                </div>
-              </td>
-            </tr>
-          </table>
+              </select>
+              <span v-if="paymentMethod==2">
+                &nbsp; 입금계좌 : (해물은행) 113-555-123098 / 예금주 : (주)해물오빠
+              </span>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="payment__bottom">
-        <div class="totalpay">
-          <div class="">결제예정금액 {{getTotalPrice()}}원</div>
-          <div>(상품가 + 배송비)</div>
-        </div>
-        <div class="terms">
-          <input v-model="payAgree" type="checkbox">
-          <span>주문 상품정보 및 서비스 이용약관에 모두 동의하십니까?</span>
-        </div>
-        <div class="payment__bottom__btn" type="button" @click="doPay()">
-          <div class="pay">{{getTotalPrice()}}</div>
-          <div class="one">원 결제하기</div>
-        </div>
-      </div>
-
-      <!-- <div class="line"></div> -->
     </div>
+
+    <div class="payment__middle">
+      <div class="order-product">
+        <div class="line"></div>
+        <div class="order-product__title">주문상품 : {{getProductAmount()}}개</div>
+        <table class="order-product__table">
+
+          <tr v-for="(product, index) in products" v-bind:key="index">
+            <td class="imgbox">
+              <img :src="product.productImage01Path" alt="">
+            </td>
+            <td class="order-product__content">
+              <div class="logo">해물오빠</div>
+              <div class="title">{{product.productName}}</div>
+            </td>
+            <td class="order-product__pricewrap">
+              <div class="price">{{product.cartPrice}}
+                <div class="won">원</div>
+              </div>
+              <div class="inner-line"></div>
+              <div class="quantity-wrap">
+                <span class="quantity">수량</span>
+                <span class="num">{{product.cartCount}}</span>
+                <span class="gae">개</span>
+              </div>
+            </td>
+          </tr>
+          <tr v-if="products == null">
+            <td class="imgbox">
+              <img src="../images/img1.jpg" alt="">
+            </td>
+            <td class="order-product__content">
+              <div class="logo">해물오빠</div>
+              <div class="title">{{payProductName}}</div>
+            </td>
+            <td class="order-product__pricewrap">
+              <div class="price">{{payProductPrice}}
+                <div class="won">원</div>
+              </div>
+              <div class="inner-line"></div>
+              <div class="quantity-wrap">
+                <span class="quantity">수량</span>
+                <span class="num">{{payProductCount}}</span>
+                <span class="gae">개</span>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="payment__bottom">
+      <div class="totalpay">
+        <div class="">결제예정금액 {{getTotalPrice()}}원</div>
+        <div>(상품가 + 배송비)</div>
+      </div>
+      <div class="terms">
+        <input v-model="payAgree" type="checkbox">
+        <span>주문 상품정보 및 서비스 이용약관에 모두 동의하십니까?</span>
+      </div>
+      <div class="payment__bottom__btn" type="button" @click="doPay()">
+        <div class="pay">{{getTotalPrice()}}</div>
+        <div class="one">원 결제하기</div>
+      </div>
+    </div>
+
   </div>
+
 </template>
 
 <script>
@@ -145,9 +165,10 @@
         productOne: null,
         products: [],
         orderMessage: '',
+        paymentMethod: '',
         address: '',
         payAgree: false,
-        count:0
+        count: 0
       }
     },
     created() {
@@ -271,10 +292,17 @@
             this.orderMessage = "부재시 집 앞에 놔주세요.";
           }
 
+          if (this.paymentMethod == 1) {
+            this.paymentMethod = "카드";
+          } else if (this.paymentMethod == 2) {
+            this.paymentMethod = "무통장입금";
+          }
+
           var body1 = {
             userUnum: this.$store.state.userInfo.userUnum,
             orderAddress: this.address,
-            orderMessage: this.orderMessage
+            orderMessage: this.orderMessage,
+            orderType: this.paymentMethod
           };
 
           axios({
@@ -302,7 +330,7 @@
                         paymentCount: this.products[i].cartCount,
                         paymentPrice: this.products[i].cartPrice
                       };
-                    
+
                       axios({
                           url: 'http://localhost:8000/api/pay/regist/payment',
                           method: 'post',
@@ -319,9 +347,9 @@
                               }
                             })
                             .then(res => {
-                              if(this.count==0){
-                              alert("결제가 완료되었습니다.");
-                              this.count++;
+                              if (this.count == 0) {
+                                alert("결제가 완료되었습니다.");
+                                this.count++;
                               }
                               if (this.$route.path !== '/deliveryitem') {
                                 this.$router.push('/deliveryitem');
@@ -370,7 +398,6 @@
       }
     }
   }
-
 </script>
 
 <style scoped>
@@ -561,5 +588,4 @@
       margin-left: 256px;
     }
   }
-
 </style>
