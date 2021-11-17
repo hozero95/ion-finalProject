@@ -1,9 +1,14 @@
 <template>
 
   <body>
+    <div class="video-box">
+      <video class="video-container" autoplay muted>
+        <source src="../assets/login.mp4" type="video/mp4" />
+      </video>
+    </div>
     <!-- slider -->
-    <section class="slider">
-      <!-- slider 왼쪽 -->
+    <!-- <section class="slider">
+      
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="slider__img">
           <div class="carousel-inner">
@@ -36,7 +41,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- MD 추천 -->
     <!-- seasonal -->
@@ -373,7 +378,7 @@
   /* seasonal */
   .seasonal {
     /* background-color: aqua; */
-    margin: 300px 300px 0 300px;
+    margin: 100px 300px 0 300px;
   }
 
   .seasonal__top__title {
@@ -521,7 +526,7 @@
     height: 30%;
     padding: 15px 20px;
     font-size: 20px;
-    background: skyblue;
+    background: #132B7D;
     color: white;
     border: none;
     border-radius: 5px;
@@ -620,5 +625,20 @@
   .cursor_pointer {
     cursor: pointer;
   }
+/* video 배경 */
+ .video-box {
+  height: 500px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
 
+.video-container {
+  position: absolute;
+  width : 100%;
+  top: 50%;
+  left: 50%;
+  transform : translate(-50%,-50%);
+  z-index: 0;
+}
 </style>
