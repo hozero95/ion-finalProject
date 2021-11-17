@@ -1,14 +1,8 @@
 <template>
   <!-- event -->
   <section class="event">
-    <div class="event__img">
-      <img src="../images/seasonal01.jpeg" alt=""><br>
-      <strong>{{seasonEvent.eventTitle}}</strong><br>
-      {{seasonEvent.eventContent}}
-      <hr>
-    </div>
     <div class="event__img" v-for="(event, index) in events" v-bind:key="index">
-      <img src="../images/seasonal01.jpeg" alt=""><br>
+      <img :src="event.eventImage01Path" alt=""><br>
       <strong>{{event.eventTitle}}</strong><br>
       {{event.eventContent}}
       <hr>
@@ -24,7 +18,6 @@
   export default {
     data() {
       return {
-        seasonEvent: {},
         events: []
       }
     },
@@ -33,11 +26,7 @@
         .then(res => {
           var event = new Array();
           for (var i = 0; i < res.data.length; i++) {
-            if (i == 0) {
-              this.seasonEvent = res.data[i];
-            } else {
-              event.push(res.data[i]);
-            }
+            event.push(res.data[i]);
           }
           this.events = event;
 

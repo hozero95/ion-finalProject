@@ -86,9 +86,16 @@
         </div>
         <button class="addr-re" v-if="!modify_address" @click="modifyAddressStatus()">배송지 변경</button>
         <div class="modify_address" v-if="modify_address">
-          <p>배송지 변경</p>
-          <textarea name="ta_modify_address" id="ta_modify_address" cols="30" rows="3" style="resize: none;"
-            v-model="address"></textarea>
+          <span>
+            <input type="text" id="sample6_postcode" class="int" placeholder="우편번호" v-model="zip" required readonly>
+            <input type="button" id="findAddress" @click="showAddressApi" value="우편번호 찾기">
+          </span>
+          <span>
+            <input type="text" id="sample6_address" class="int" placeholder="주소" v-model="addr1" required readonly>
+          </span>
+          <span>
+            <input type="text" id="sample6_detailAddress" class="int" placeholder="상세주소" v-model="addr2">
+          </span>
           <br>
           <button @click="modifyAddressConfirm()">확인</button>
           &nbsp;&nbsp;
@@ -262,30 +269,37 @@
         this.modifyAddressStatus();
       },
       modifyAddressConfirm() {
-        var headers = {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + this.$store.state.jwtToken
-        };
+        if (this.zip == null || this.zip == '' || this.addr1 == null || this.addr1 == '') {
+          alert("우편번호 찾기를 눌러 주소를 넣어주세요.");
+        } else {
+          if (confirm("배송지를 변경하시겠습니까?")) {
+            var headers = {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer " + this.$store.state.jwtToken
+            };
 
-        var body = {
-          userUnum: this.$store.state.userInfo.userUnum,
-          cartAddress: this.address
-        };
+            this.address = "(" + this.zip + ")" + this.addr1 + " " + this.addr2;
+            var body = {
+              userUnum: this.$store.state.userInfo.userUnum,
+              cartAddress: this.address
+            };
 
-        axios.defaults.headers.post = null;
-        axios({
-            url: 'http://localhost:8000/api/cart/replace/address',
-            method: 'patch',
-            headers: headers,
-            data: body
-          })
-          .then(res => {
-            alert("배송지가 변경되었습니다.");
-          }, error => {
-            alert("배송지 변경에 실패하였습니다.");
-          });
+            axios.defaults.headers.post = null;
+            axios({
+                url: 'http://localhost:8000/api/cart/replace/address',
+                method: 'patch',
+                headers: headers,
+                data: body
+              })
+              .then(res => {
+                alert("배송지가 변경되었습니다.");
+              }, error => {
+                alert("배송지 변경에 실패하였습니다.");
+              });
 
-        this.modifyAddressStatus();
+            this.modifyAddressStatus();
+          }
+        }
       },
       goPayDispaly() {
         this.$store.commit('setPayProductUnum', -1);
