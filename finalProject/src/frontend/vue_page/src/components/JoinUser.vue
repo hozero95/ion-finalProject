@@ -17,9 +17,11 @@
           <h3 class="join_title"><label for="id">아이디</label></h3>
           <span class="box int_id">
             <input type="text" id="id" v-model="id" class="int" maxlength="30" minlength="3" placeholder="아이디 입력"
-              @input="inputIdCheck" required>
+              @input="inputIdCheck()" required>
             <button v-if="!idSave" id="btnCheck" @click="idExistCheck">중복확인</button>
           </span>
+          <span v-if="idLengthCheck" id="error_id" class="error_next_box">아이디는 3글자 이상이어야 합니다.</span>
+          <br>
           <span v-if="idCheck" id="error_id" class="error_next_box">잘못된 아이디 입니다.</span>
         </div>
 
@@ -28,10 +30,12 @@
           <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
           <span class="box int_pass">
             <input type="password" id="pswd1" v-model="pswd1" class="int" maxlength="20" minlength="3"
-              placeholder="비밀번호 입력" required>
+              placeholder="비밀번호 입력" @input="inputPswd1Check()" required>
             <!-- <span id="alertTxt">사용불가</span> -->
             <!-- <img src="" id="pswd1_img1" class="pswdImg"> -->
           </span>
+          <span v-if="pswd1LengthCheck" id="error_password" class="error_next_box">비밀번호는 3자리 이상이어야 입니다.</span>
+          <br>
           <span v-if="pswd1Check" id="error_password" class="error_next_box">잘못된 비밀번호 입니다.</span>
         </div>
 
@@ -44,25 +48,36 @@
             <!-- <img src="" id="pswd2_img1" class="pswdImg"> -->
           </span>
           <span v-if="pswd2Check" id="error_password2" class="error_next_box">비밀번호가 일치하지 않습니다.</span>
+          <br>
         </div>
 
         <!-- EMAIL -->
         <div>
-          <h3 class="join_title"><label for="email">본인확인 이메일<span class="optional"></span></label></h3>
+          <h3 class="join_title"><label for="email">이메일<span class="optional"></span></label></h3>
           <span class="box int_email">
             <input type="email" id="email" v-model="email" class="int" maxlength="50" placeholder="이메일 입력"
               @input="inputEmailCheck" required>
           </span>
           <span v-if="emailCheck" id="error_email" class="error_next_box">잘못된 이메일 입니다.</span>
+          <br>
         </div>
 
         <!-- ADDRESS -->
         <div>
           <h3 class="join_title"><label for="address">주소</label></h3>
+          <span class="box int_id">
+            <!-- <input type="text" id="address" v-model="address" class="int" maxlength="100" placeholder="주소 입력" required> -->
+            <input type="text" id="sample6_postcode" class="int" placeholder="우편번호" v-model="zip" required readonly>
+            <input type="button" id="findAddress" @click="showAddressApi" value="우편번호 찾기">
+          </span>
           <span class="box int_address">
-            <input type="text" id="address" v-model="address" class="int" maxlength="100" placeholder="주소 입력" required>
+            <input type="text" id="sample6_address" class="int" placeholder="주소" v-model="addr1" required readonly>
+          </span>
+          <span class="box int_address">
+            <input type="text" id="sample6_detailAddress" class="int" placeholder="상세주소" v-model="addr2">
           </span>
           <span v-if="addressCheck" id="error_address" class="error_next_box">잘못된 주소 입니다.</span>
+          <br>
         </div>
 
         <!-- PHONE -->
@@ -73,6 +88,7 @@
               @input="inputTelCheck" required>
           </span>
           <span v-if="telCheck" id="error_tel" class="error_next_box">잘못된 연락처 입니다.</span>
+          <br>
         </div>
 
         <!-- JOIN BTN-->
@@ -80,6 +96,7 @@
           <button type="button" id="btnJoin" @click="checkForm">
             <span>가입하기</span>
           </button>
+          <br>
         </div>
 
       </div>
@@ -104,11 +121,17 @@
 
         idSave: false,
         idCheck: false,
+        idLengthCheck: false,
         pswd1Check: false,
         pswd2Check: false,
+        pswd1LengthCheck: false,
         emailCheck: false,
         addressCheck: false,
-        telCheck: false
+        telCheck: false,
+
+        zip: null,
+        addr1: null,
+        addr2: null
       }
     },
     methods: {
@@ -155,11 +178,12 @@
         } else {
           this.emailCheck = false;
         }
-        if (this.address == null || this.address == '') {
+        if (this.zip == null || this.zip == '' || this.addr1 == null || this.addr == '') {
           this.addressCheck = true;
           check = false;
         } else {
           this.addressCheck = false;
+          this.address = "(" + this.zip + ")" + this.addr1 + " " + this.addr2;
         }
         if (this.tel == null || this.tel == '') {
           this.telCheck = true;
@@ -188,15 +212,29 @@
       },
       inputIdCheck() {
         this.id = this.id.replace(/[^0-9|a-z|A-Z]/g, '').replace(/(\..*)\./g, '$1');
+
+        if(this.id.length < 3) {
+          this.idLengthCheck = true;
+        } else {
+          this.idLengthCheck = false;
+        }
+      },
+      inputPswd1Check() {
+        if(this.pswd1.length < 3) {
+          this.pswd1LengthCheck = true;
+        } else {
+          this.pswd1LengthCheck = false;
+        }
       },
       inputPswdCheck() {
-        if (this.pswd2 != this.pswd1 || this.pswd2 == null || this.pswd2 == '') {
+        if (this.pswd2 != this.pswd1 || this.pswd1 == null || this.pswd1 == '' || this.pswd2 == null || this.pswd2 == '') {
           this.pswd2Check = true;
         } else {
           this.pswd2Check = false;
         }
       },
       inputTelCheck() {
+        this.tel = this.tel.replace(/[^0-9]/g, "").replace(/(\..*)\./g, '$1');
         var number = this.tel.replace(/[^0-9]/g, "");
         var phone = "";
 
@@ -230,9 +268,47 @@
         } else {
           this.emailCheck = false;
         }
+      },
+      showAddressApi() {
+        new window.daum.Postcode({
+          oncomplete: (data) => {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+            // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            let fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+            let extraRoadAddr = ''; // 도로명 조합형 주소 변수
+
+            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+            if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+              extraRoadAddr += data.bname;
+            }
+
+            // 건물명이 있고, 공동주택일 경우 추가한다.
+            if (data.buildingName !== '' && data.apartment === 'Y') {
+              extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+            }
+
+            // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+            if (extraRoadAddr !== '') {
+              extraRoadAddr = ' (' + extraRoadAddr + ')';
+            }
+
+            // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+            if (fullRoadAddr !== '') {
+              fullRoadAddr += extraRoadAddr;
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            this.zip = data.zonecode;
+            //5자리 새우편번호 사용 
+            this.addr1 = fullRoadAddr;
+          }
+        }).open();
       }
     }
   }
+
 </script>
 
 <style scoped>
@@ -243,7 +319,7 @@
 
   .body_my {
     margin: 0;
-    height: 1200px;
+    height: 1300px;
     /* overflow:auto; */
     background: #f5f6f7;
     font-family: Dotum, '돋움', Helvetica, sans-serif;
@@ -431,4 +507,13 @@
     background-color: #185B9A;
     font-family: Dotum, '돋움', Helvetica, sans-serif;
   }
+
+  #findAddress {
+    width: 120px;
+    color: #fff;
+    font-size: 12px;
+    background-color: #185B9A;
+    font-family: Dotum, '돋움', Helvetica, sans-serif;
+  }
+
 </style>
