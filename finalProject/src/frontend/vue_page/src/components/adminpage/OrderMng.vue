@@ -50,6 +50,7 @@
     <!-- table area start -->
 
     <div>
+      <br>
       <h1>주문 관리</h1>
       <div class="information">
         * 결제완료처리의 확인버튼을 누르시면 배송관리탭으로 상품이 넘어갑니다.<br>
@@ -257,9 +258,7 @@
 </script>
 
 <style scoped>
-  body {
-    margin: 30px;
-  }
+
 
   div {
     box-sizing: border-box;

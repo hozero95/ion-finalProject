@@ -42,6 +42,7 @@
     <!-- table area start -->
 
     <div>
+      <br>
       <h1>QnA 관리</h1>
       <div class="information">
         * 맨 오른쪽 <strong>답변 ' X '</strong>를 누르시면 질문에대한 답변을 남길 수 있습니다.<br><br>
@@ -230,9 +231,6 @@
 </script>
 
 <style scoped>
-  body {
-    margin: 30px;
-  }
 
   div {
     box-sizing: border-box;
