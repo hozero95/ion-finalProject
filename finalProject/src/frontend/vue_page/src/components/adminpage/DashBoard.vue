@@ -4,7 +4,7 @@
       <h4 class="my-4">Dashboard</h4>
       <div class="row">
         
-        <div class="col-lg-4 mb-5">
+        <div style="cursor:pointer;" class="col-lg-4 mb-5">
           <div class="card" style="border-left: 3px solid red">
             <div class="card-body d-flex justify-content-between" @click="$emit('openCategory')">
               <div>
@@ -21,7 +21,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4">
+        <div style="cursor:pointer;" class="col-lg-4">
           <div class="card" style="border-left: 3px solid cadetblue">
             <div class="card-body d-flex justify-content-between" @click="$emit('openEventMng')">
               <div>
@@ -35,7 +35,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4">
+        <div style="cursor:pointer;" class="col-lg-4">
           <div class="card" style="border-left: 3px solid blue">
             <div class="card-body d-flex justify-content-between" @click="$emit('openDeliveryMng')">
               <div>
@@ -49,7 +49,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4 mb-5">
+        <div style="cursor:pointer;" class="col-lg-4 mb-5">
           <div class="card" style="border-left: 3px solid cadetblue">
             <div class="card-body d-flex justify-content-between" @click="$emit('openOrderMng')">
               <div>
@@ -63,7 +63,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4">
+        <div style="cursor:pointer;" class="col-lg-4">
           <div class="card" style="border-left: 3px solid cadetblue" @click="$emit('openItemList')">
             <div class="card-body d-flex justify-content-between">
               <div>
@@ -77,7 +77,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4">
+        <div style="cursor:pointer;" class="col-lg-4">
           <div class="card" style="border-left: 3px solid cadetblue">
             <div class="card-body d-flex justify-content-between" @click="$emit('openQnAMng')">
               <div>
@@ -91,7 +91,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4">
+        <div style="cursor:pointer;" class="col-lg-4">
           <div class="card" style="border-left: 3px solid plum">
             <div class="card-body d-flex justify-content-between" @click="$emit('openCustomerMng')">
               <div>

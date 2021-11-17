@@ -51,7 +51,11 @@
 
     <div>
       <h1>주문 관리</h1>
-
+      <div class="information">
+        * 결제완료처리의 확인버튼을 누르시면 배송관리탭으로 상품이 넘어갑니다.<br>
+          <p style="color:red; font-size:9pt;">&nbsp; &nbsp;(주문취소건에 대해서는 결제완료확인을 하실 수 없습니다.)</p>
+          <br>
+      </div>
       <table class="table table-bordered" style="border: 2px solid black">
         <thead>
           <tr>
@@ -61,7 +65,7 @@
             <th scope="col2">주문날짜</th>
             <th scope="col3">메세지</th>
             <th scope="col4">주문상태</th>
-            <th scope="col5">결제여부</th>
+            <th scope="col5">결제완료처리</th>
           </tr>
         </thead>
         <tbody>
@@ -78,7 +82,9 @@
             <td>{{messageSubstring(orderAll.orderMessage)}}</td>
             <td>{{orderStatus(orderAll.orderStatus)}}</td>
             <!--(0: 정상, 1: 주문취소, 2: 환불)-->
-            <td @click="deliveryStart(orderAll.orderUnum, orderAll.orderAddress)">결제 전</td>
+            <td v-if="orderAll.orderStatus==1 || orderAll.orderStatus==2"> </td>
+            <td style="cursor:pointer" v-if="orderAll.orderStatus==0" @click="deliveryStart(orderAll.orderUnum, orderAll.orderAddress)">확인</td>
+
           </tr>
         </tbody>
       </table>
@@ -163,7 +169,7 @@
           })
       },
       deliveryStart(orderUnum, orderAddress) {
-        if (confirm('결제완료하시겠습니까?')) {
+        if (confirm('결제완료처리 하시겠습니까?')) {
           var headers = {
             "Content-Type": "application/json",
             Authorization: "Bearer " + this.$store.state.jwtToken,
@@ -183,7 +189,7 @@
             })
             .then(res => {
               console.log(res.data);
-              alert('배송이 시작되었습니다');
+              alert('배송관리탭에서 확인해주세요.');
               this.showOrderAll();
             }, error => {
               console.log(error);
@@ -257,6 +263,10 @@
 
   div {
     box-sizing: border-box;
+  }
+
+  .information {
+    font-size: 10pt;
   }
 
   .black-bg {

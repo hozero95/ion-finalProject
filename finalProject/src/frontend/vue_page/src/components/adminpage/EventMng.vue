@@ -19,7 +19,7 @@
               <td><input v-model="addEventContent" type="text" /></td>
               <td>
                 <input v-model="addEventImage01" type="text" /><br />
-                <input type="file" class="dd"/>
+                <input type="file" class="dd" />
               </td>
             </tr>
           </tbody>
@@ -79,7 +79,7 @@
             취소
           </span>
         </div>
-        
+
       </div>
     </div>
     <!-- modified modal end -->
@@ -88,7 +88,12 @@
 
     <div>
       <h1>이벤트 관리</h1>
+      <div class="information">
+        * 이벤트번호 옆 <strong>' + '</strong>버튼을 누르시면 이벤트를 추가하실 수 있습니다.<br>
+        * 이벤트번호(숫자) 옆 수정아이콘을 누르시면 이벤트 <strong>종료기간</strong>을 설정하실 수 있습니다. <br>
+        * 맨 오른쪽 <strong>삭제버튼</strong>을 누르시면 이벤트가 삭제됩니다.<br><br>
 
+      </div>
       <table class="table table-bordered" style="border: 2px solid black">
         <thead>
           <tr>
@@ -96,7 +101,8 @@
               이벤트번호
               <div style="float: right">
                 <span>
-                  <span @click="AddItem()" class="add_event_bt"><i class="fas fa-plus"></i></span>
+                  <span @click="AddItem()" class="add_event_bt"><i class="fas fa-plus"
+                      style="cursor:pointer;"></i></span>
                 </span>
               </div>
             </th>
@@ -113,14 +119,14 @@
             <td scope="row">
               {{event.eventUnum}}
               <span style="float: right; margin-right : 10px" @click="showMdfModal(index, event)">
-                <i class="fas fa-tools"></i>
+                <i class="fas fa-tools " style="cursor:pointer;"></i>
               </span>
             </td>
             <td>{{event.eventTitle}}</td>
             <td>{{ event.eventContent }}</td>
             <td>{{ dateFormat(event.eventRegdate) }}</td>
             <td>{{ dateFormat(event.eventEnddate) }}</td>
-            <td @click="deleteSure(event.eventUnum)">삭제</td>
+            <td style="cursor:pointer;" @click="deleteSure(event.eventUnum)">삭제</td>
           </tr>
         </tbody>
       </table>
@@ -373,6 +379,10 @@
     box-sizing: border-box;
   }
 
+  .information {
+    font-size: 10pt;
+  }
+
   .black-bg {
     width: 100%;
     height: 100%;
@@ -413,6 +423,10 @@
     font-size: 1.1rem;
   }
 
+  .information {
+    font-size: 10pt;
+  }
+
   .btn-cover {
     margin-top: 1.5rem;
     text-align: center;
@@ -427,12 +441,13 @@
   .btn-cover .page-count {
     padding: 0 1rem;
   }
-  .add_event_bt{
+
+  .add_event_bt {
     cursor: pointer;
   }
-  .dd{
-    
+
+  .dd {
+
     margin-left: 100px;
   }
-
 </style>

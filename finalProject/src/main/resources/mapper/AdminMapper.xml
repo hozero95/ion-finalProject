@@ -194,7 +194,7 @@
 		 FROM orders
 		WHERE order_unum not in (SELECT order_unum
 	  						       FROM delivery)
-		ORDER BY order_regdate DESC
+		ORDER BY order_status, order_regdate DESC
    </select>
    
    <select id="qnaAll" resultType="Qna2DTO">

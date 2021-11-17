@@ -51,6 +51,11 @@
 
     <div>
       <h1>배송 관리</h1>
+      <div class="information">
+        * 맨 오른쪽 배송상태를 누르시면 배송상태를 변경하실 수 있습니다.<br>
+        &nbsp; (결제완료 -> 상품준비중 -> 배송중 -> 배송완료)<br><br>
+
+      </div>
 
       <table class="table table-bordered" style="border: 2px solid black">
         <thead>
@@ -75,7 +80,8 @@
             <td>{{deliveryAll.deliveryUnum}}</td>
             <td>{{addressSubstring(deliveryAll.deliveryAddress)}}</td>
             <td>{{dateFormat(deliveryAll.deliveryRegdate)}}</td>
-            <td @click="changeStatus(deliveryAll.orderUnum, deliveryAll.deliveryUnum, deliveryAll.deliveryStatus)">
+            <td style="cursor : pointer;"
+              @click="changeStatus(deliveryAll.orderUnum, deliveryAll.deliveryUnum, deliveryAll.deliveryStatus)">
               {{deliveryStatus(deliveryAll.deliveryStatus)}}</td>
           </tr>
         </tbody>
@@ -316,6 +322,11 @@
   table tr td {
     padding: 1rem 0;
     font-size: 1.1rem;
+  }
+
+
+  .information {
+    font-size: 10pt;
   }
 
   .btn-cover {

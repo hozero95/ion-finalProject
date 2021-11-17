@@ -43,7 +43,9 @@
 
     <div>
       <h1>QnA 관리</h1>
-
+      <div class="information">
+        * 맨 오른쪽 <strong>답변 ' X '</strong>를 누르시면 질문에대한 답변을 남길 수 있습니다.<br><br>
+      </div>
       <table class="table table-bordered" style="border: 2px solid black">
         <thead>
           <tr>
@@ -63,7 +65,7 @@
             <td>{{ contentSubstring(qnaAll.qnaContent)}}</td>
             <td>{{ dateFormat(qnaAll.qnaRegdate) }}</td>
             <td v-if="qnaAll.resComment != null">O</td>
-            <td v-if="qnaAll.resComment == null" @click="AddItem(qnaAll)">X</td>
+            <td style="cursor:pointer;" v-if="qnaAll.resComment == null" @click="AddItem(qnaAll)">X</td>
           </tr>
         </tbody>
       </table>
@@ -234,6 +236,10 @@
 
   div {
     box-sizing: border-box;
+  }
+
+  .information {
+    font-size: 10pt;
   }
 
   .black-bg {

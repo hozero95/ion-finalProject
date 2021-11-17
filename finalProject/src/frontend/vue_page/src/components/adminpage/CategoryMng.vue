@@ -1,18 +1,28 @@
 <template>
 
   <body>
+    <br>
+    <h1>카테고리 관리</h1>
+    <div class="information">
+      * 맨 위의 <strong>' + '</strong>버튼을 누르시면 <strong>대분류 카테고리</strong>를 추가하실 수 있습니다.<br>
+      * 대분류 카테고리 옆 아이콘을 클릭하시면 소분류 카테고리를 볼 수 있습니다.<br>
+      * 오른쪽 끝의 <strong>' + ',' - '</strong>버튼을 누르시면 <strong>소분류 카테고리</strong>를 추가 또는 삭제하실 수 있습니다.
+
+    </div>
     <div class="container mt-2" style="background-color: cadetblue">
       <div class="row">
         <div class="col-lg-12">
-          <div style="margin: 10px 10px;" @click="viewBigAdd = !viewBigAdd"><i
-                class="fas fa-plus" style=" cursor: pointer;"></i></div>
+          <div style="margin: 10px 10px;" @click="viewBigAdd = !viewBigAdd"><i class="fas fa-plus"
+              style=" cursor: pointer;"></i></div>
 
           <div class="card" v-if="viewBigAdd">
             <div class="card-header">
               <div style="float: left">
                 Insert Big Category Name :
                 <textarea v-model="addCategoryName" style="resize:none; width : 1200px" rows="1" cols="153"></textarea>
-                <div style="" @click="addCategory(null, index)"><div class="add_button">추가</div></div>
+                <div style="" @click="addCategory(null, index)">
+                  <div class="add_button" style=" cursor: pointer;">추가</div>
+                </div>
               </div>
             </div>
           </div>
@@ -22,10 +32,12 @@
               <div style="float: left; display : inline-block">
                 {{item.categoryName}}
               </div>
-              <div @click="viewOnOff(index)"><i class="fas fa-list-alt big_cate_view_button" style="float: left; margin-left:10px;"></i></div>
+              <div @click="viewOnOff(index)"><i class="fas fa-list-alt big_cate_view_button"
+                  style="float: left; margin-left:10px; cursor:pointer;"></i></div>
               <div style="float: right">
-                <span @click="addOnOff(index)"><i class="fas fa-plus"></i></span>
-                <span @click="delCategory(item.categoryUnum, true)"><i class="fas fa-minus" style="margin-left:30px"></i></span>
+                <span @click="addOnOff(index)"><i class="fas fa-plus" style=" cursor:pointer;"></i></span>
+                <span @click="delCategory(item.categoryUnum, true)"><i class="fas fa-minus"
+                    style="margin-left:30px; cursor:pointer;"></i></span>
               </div>
             </div>
             <ul class="list-group list-group-flush" v-if="viewlist[index]">
@@ -33,12 +45,15 @@
               <li class="list-group-item" v-if="viewSmallAdd[index]">
                 Insert Small Category Name :
                 <textarea v-model="addCategoryName" style="resize:none; width : 1200px" rows="1" cols="153"></textarea>
-                <div @click="addCategory(item.categoryUnum, index)"><div class="add_button">추가</div></div>
+                <div @click="addCategory(item.categoryUnum, index)">
+                  <div class="add_button" style=" cursor:pointer;">추가</div>
+                </div>
               </li>
 
               <li class="list-group-item" v-for="(items, i) in smallCates[index]" :key="i">
                 {{items.categoryName}}
-                <span style="float: right" @click="delCategory(items.categoryUnum, false)"><i class="fas fa-minus"></i></span>
+                <span style="float: right" @click="delCategory(items.categoryUnum, false)"><i class="fas fa-minus"
+                    style=" cursor:pointer;"></i></span>
                 <!-- <button style="float: right" @click="modSmallCategory()"><i class="fas fa-tools"></i></button> -->
               </li>
             </ul>
@@ -144,7 +159,7 @@
             alert('카테고리 등록이 완료되었습니다.');
             this.showCategory();
             this.addCategoryName = null;
-            if(categoryRef == null) {
+            if (categoryRef == null) {
               this.viewBigAdd = !this.viewBigAdd;
             } else {
               this.addOnOff(index);
@@ -192,25 +207,26 @@
       }
     }
   };
-
 </script>
 
 <style>
-.add_button{
-  width: fit-content;
-  height: fit-content;
-  text-align: end;
-  font-size: 18px;
-  background: cadetblue;
-  color: white;
-  padding: 2px;
-  border: none;
-  border-radius: 5px;
-  float:right;
-  cursor: pointer;    
-}
+  .information {
+    font-size: 10pt;
+  }
 
-.big_cate_view_button:hover{
-  
-}
+  .add_button {
+    width: fit-content;
+    height: fit-content;
+    text-align: end;
+    font-size: 18px;
+    background: cadetblue;
+    color: white;
+    padding: 2px;
+    border: none;
+    border-radius: 5px;
+    float: right;
+    cursor: pointer;
+  }
+
+  .big_cate_view_button:hover {}
 </style>

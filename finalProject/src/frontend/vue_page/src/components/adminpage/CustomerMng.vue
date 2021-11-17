@@ -6,7 +6,10 @@
 
     <div>
       <h1>회원 관리</h1>
-
+      <div class="information">
+        * 맨 오른쪽 <strong>삭제버튼</strong>을 누르시면 회원을 삭제하실 수 있습니다.
+          <p style="color:red; font-size:9pt;">&nbsp; (회원을 삭제하시면 회원과 관련된 모든정보도 삭제됩니다.)</p>
+      </div>
       <table class="table table-bordered" style="border: 2px solid black">
         <thead>
           <tr>
@@ -27,7 +30,7 @@
             <td>{{ userAll.userAddress }}</td>
             <td>{{ userAll.userTel }}</td>
             <td>{{ dateFormat(userAll.userRegdate) }}</td>
-            <td @click="deleteAsk(userAll.userUnum)">삭제</td>
+            <td style="cursor:pointer;" @click="deleteAsk(userAll.userUnum)">삭제</td>
           </tr>
         </tbody>
       </table>
@@ -184,6 +187,10 @@
 
   div {
     box-sizing: border-box;
+  }
+
+  .information {
+    font-size: 10pt;
   }
 
   .black-bg {

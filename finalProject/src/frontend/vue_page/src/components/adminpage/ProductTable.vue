@@ -91,7 +91,11 @@
 
     <div>
       <h1>상품 관리</h1>
-
+      <div class="information">
+        * list옆 <strong>' + '</strong>버튼을 누르시면 상품을 추가하실 수 있습니다.<br>
+        * list(숫자)옆 <strong>수정아이콘</strong>을 누르시면 상품의 정보(카테고리, 상품이름, 상품가격, 시즌)를 수정하실 수 있습니다.<br>
+        * <strong>상품삭제버튼</strong>을 누르시면 상품을 삭제하실 수 있습니다.<br><br>
+      </div>
       <table class="table table-bordered" style="border: 2px solid black">
         <thead>
           <tr>
@@ -99,7 +103,7 @@
               list
               <div style="float: right">
                 <span>
-                  <span @click="AddItem()"><i class="fas fa-plus"></i></span>
+                  <span @click="AddItem()"><i class="fas fa-plus" style="cursor:pointer;"></i></span>
                 </span>
               </div>
             </th>
@@ -117,7 +121,7 @@
             <th scope="row">
               {{index+1}}
               <span style="float: right" @click="showMdfModal(p)">
-                <i class="fas fa-tools"></i>
+                <i class="fas fa-tools" style="cursor:pointer;"></i>
               </span>
             </th>
             <td>{{p.productUnum }}</td>
@@ -126,7 +130,7 @@
             <td>{{ p.productPrice }}</td>
             <td>{{ dateFormat(p.productRegdate) }}</td>
             <td>{{ seasonWeather(p.productSeason) }}</td>
-            <td @click="ProductDeleteSure(p.productUnum)">삭제</td>
+            <td style="cursor:pointer;" @click="ProductDeleteSure(p.productUnum)">삭제</td>
           </tr>
         </tbody>
       </table>
@@ -234,10 +238,10 @@
             this.AddModal = false;
           });
       },
-      ProductDeleteSure(prouctUnum){
-        if(confirm('상품을 삭제하시겠습니까?')){
+      ProductDeleteSure(prouctUnum) {
+        if (confirm('상품을 삭제하시겠습니까?')) {
           this.ProductDelete(prouctUnum);
-        }else{
+        } else {
           alert('상품삭제를 취소하였습니다.')
         }
       },
@@ -304,20 +308,20 @@
             this.MdfModal = false;
             alert('상품변경이 완료되었습니다')
             this.ProductAll();
-          }, error=>{
+          }, error => {
             alert('상품변경에 실패하였습니다')
           })
       },
-      seasonWeather(productSeason){
-        var weather ='';
-        if(productSeason==0){
-          weather='봄';
-        }else if(productSeason==1){
-          weather='여름';
-        }else if(productSeason==2){
-          weather='가을';
-        }else if(productSeason==3){
-          weather='겨울';
+      seasonWeather(productSeason) {
+        var weather = '';
+        if (productSeason == 0) {
+          weather = '봄';
+        } else if (productSeason == 1) {
+          weather = '여름';
+        } else if (productSeason == 2) {
+          weather = '가을';
+        } else if (productSeason == 3) {
+          weather = '겨울';
         }
         return weather;
       }
@@ -355,6 +359,10 @@
 
   div {
     box-sizing: border-box;
+  }
+
+  .information {
+    font-size: 10pt;
   }
 
   .black-bg {
