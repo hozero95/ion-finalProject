@@ -111,15 +111,15 @@
 
                     <tr v-for="(qna, index) in qnas" v-bind:key="index">
                       <div class="th_underbox" v-if="qna.qnaComment==null">
-                      <td class="td_size1">
-                        {{ titleSubstring(qna.qnaTitle) }}
-                      </td>
-                      <td class="td_size2" @click="showContComm(qna)" style="cursor:pointer">
-                        {{ contentSubstring(qna.qnaContent) }}
-                      </td>
-                      <td class="td_size3">{{ dateFormat(qna.qnaRegdate) }}</td>
-                      <td class="td_size4" v-if="qna.resComment != null">O</td>
-                      <td class="td_size4" v-if="qna.resComment == null">X</td>
+                        <td class="td_size1">
+                          {{ titleSubstring(qna.qnaTitle) }}
+                        </td>
+                        <td class="td_size2" @click="showContComm(qna)" style="cursor:pointer">
+                          {{ contentSubstring(qna.qnaContent) }}
+                        </td>
+                        <td class="td_size3">{{ dateFormat(qna.qnaRegdate) }}</td>
+                        <td class="td_size4" v-if="qna.resComment != null">O</td>
+                        <td class="td_size4" v-if="qna.resComment == null">X</td>
                       </div>
                     </tr>
                   </tbody>
@@ -171,7 +171,6 @@
 
 <script>
   import axios from "axios";
-
   export default {
     data() {
       return {
@@ -240,7 +239,6 @@
           "Content-Type": "application/json",
           Authorization: "Bearer " + this.$store.state.jwtToken,
         };
-
         axios({
           url: "http://localhost:8000/api/mypage/show/qna",
           method: "get",
@@ -275,7 +273,6 @@
         var year = regdate.getFullYear();
         var month = regdate.getMonth() + 1;
         var day = regdate.getDate();
-
         return year + "-" + month + "-" + day;
       },
       toDate(date) {
@@ -289,13 +286,11 @@
           "Content-Type": "application/json",
           Authorization: "Bearer " + this.$store.state.jwtToken,
         };
-
         var body = {
           userUnum: this.$store.state.userInfo.userUnum,
           qnaTitle: this.title,
           qnaContent: this.content,
         };
-
         axios({
           url: "http://localhost:8000/api/mypage/regist/qna",
           method: "post",
@@ -356,7 +351,6 @@
   }
 
   /* header setting */
-
   .container_my {
     height: auto;
     overflow: hidden;
@@ -368,8 +362,6 @@
     border-right: 1px solid #d1dadd;
     border-left: 1px solid #d1dadd;
     width: 1020px;
-
-
   }
 
   .header_my {
@@ -377,7 +369,6 @@
     border-bottom: 3px solid #203a4d;
     width: 1018px;
     height: 94px;
-
   }
 
   .header_tag {
@@ -402,7 +393,6 @@
 
   /* content area */
   /* content_side setting  + content_body setting*/
-
   .content_my {
     width: 1018px;
     height: fit-content;
@@ -440,7 +430,6 @@
   }
 
   /* ------------------------side bar end-------------------------------- */
-
   /* ------------------------content_my body start-------------------------------- */
   .content_body {
     /* background-color: lightgray; */
@@ -468,11 +457,11 @@
   .qnaadd {
     font-size: 30px;
     text-align: right;
-    margin-right: 70px;
+    margin-right: 50px;
   }
 
   .add_qna_button {
-  
+
     margin-left: 630px;
   }
 
