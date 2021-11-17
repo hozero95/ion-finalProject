@@ -69,7 +69,6 @@
             <div class="label">결제수단 선택</div>
             <div class="info">
               <select v-model="paymentMethod">
-                <option selected>결제수단 선택</option>
                 <option value="1">카드</option>
                 <option value="2">무통장입금</option>
 
@@ -290,6 +289,8 @@
             this.orderMessage = "부재시 경비실에 보관해주세요.";
           } else if (this.orderMessage == 3) {
             this.orderMessage = "부재시 집 앞에 놔주세요.";
+          } else {
+            this.orderMessage = "요청사항 없음";
           }
 
           if (this.paymentMethod == 1) {
@@ -390,7 +391,7 @@
                   alert("결제 진행 중 문제가 발생했습니다.");
                 });
             }, error => {
-              alert("결제 진행 중 문제가 발생했습니다.");
+              alert("결제수단을 선택해주십시오.");
             });
         } else {
           alert("주문 상품정보 및 서비스 이용약관에 동의하십시오.");
