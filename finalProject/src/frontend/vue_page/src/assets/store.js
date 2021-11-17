@@ -22,6 +22,8 @@ const store = new Vuex.Store({
       },
 
       viewflag: [1, 1], // navbar, footer
+      modalView: 1,
+      test2 :15,
 
       categoryUnum: -1,
       categoryName: '',
@@ -78,7 +80,12 @@ const store = new Vuex.Store({
     },
     setPayProductPrice(state, payProductPrice) {
       state.payProductPrice = payProductPrice;
+    },
+    onModal(){
+      state.modalView = 1;
     }
+
+    
   },
 
 })
