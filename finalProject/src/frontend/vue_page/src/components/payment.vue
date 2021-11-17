@@ -146,7 +146,8 @@
         products: [],
         orderMessage: '',
         address: '',
-        payAgree: false
+        payAgree: false,
+        count:0
       }
     },
     created() {
@@ -301,7 +302,7 @@
                         paymentCount: this.products[i].cartCount,
                         paymentPrice: this.products[i].cartPrice
                       };
-
+                    
                       axios({
                           url: 'http://localhost:8000/api/pay/regist/payment',
                           method: 'post',
@@ -318,7 +319,10 @@
                               }
                             })
                             .then(res => {
+                              if(this.count==0){
                               alert("결제가 완료되었습니다.");
+                              this.count++;
+                              }
                               if (this.$route.path !== '/deliveryitem') {
                                 this.$router.push('/deliveryitem');
                                 location.replace('#app');
