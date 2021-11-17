@@ -22,7 +22,7 @@ public class PayOrdRepProDTO {
 	private Date orderRegdate;
 	private String orderMessage;
 	private Long userUnum;
-	private Long orderType;
+	private String orderType;
 	private Long replyUnum;
 	private String replyContent;
 	private Date replyRegdate;

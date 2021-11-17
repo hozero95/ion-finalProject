@@ -17,7 +17,7 @@ public class OrdPayDelProDTO {
 	private Date orderRegdate;
 	private String orderMessage;
 	private Long userUnum;
-	private Long orderType;
+	private String orderType;
 	private Long paymentUnum;
 	private Long productUnum;
 	private Long paymentCount;
