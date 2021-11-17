@@ -90,6 +90,7 @@
     <!-- table area start -->
 
     <div>
+      <br>
       <h1>상품 관리</h1>
       <div class="information">
         * list옆 <strong>' + '</strong>버튼을 누르시면 상품을 추가하실 수 있습니다.<br>
@@ -353,9 +354,7 @@
 </script>
 
 <style scoped>
-  body {
-    margin: 30px;
-  }
+
 
   div {
     box-sizing: border-box;

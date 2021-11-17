@@ -268,9 +268,7 @@ export default {
 </script>
 
 <style scoped>
-body {
-  margin: 30px;
-}
+
 
 div {
   box-sizing: border-box;

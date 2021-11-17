@@ -50,6 +50,7 @@
     <!-- table area start -->
 
     <div>
+      <br>
       <h1>배송 관리</h1>
       <div class="information">
         * 맨 오른쪽 배송상태를 누르시면 배송상태를 변경하실 수 있습니다.<br>
@@ -276,9 +277,7 @@
 </script>
 
 <style scoped>
-  body {
-    margin: 30px;
-  }
+
 
   div {
     box-sizing: border-box;

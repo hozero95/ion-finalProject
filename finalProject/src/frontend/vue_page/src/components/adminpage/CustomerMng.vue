@@ -5,6 +5,7 @@
     <!-- table area start -->
 
     <div>
+      <br>
       <h1>회원 관리</h1>
       <div class="information">
         * 맨 오른쪽 <strong>삭제버튼</strong>을 누르시면 회원을 삭제하실 수 있습니다.
@@ -181,9 +182,6 @@
 </script>
 
 <style scoped>
-  body {
-    margin: 30px;
-  }
 
   div {
     box-sizing: border-box;

@@ -7,7 +7,7 @@
       * 맨 위의 <strong>' + '</strong>버튼을 누르시면 <strong>대분류 카테고리</strong>를 추가하실 수 있습니다.<br>
       * 대분류 카테고리 옆 아이콘을 클릭하시면 소분류 카테고리를 볼 수 있습니다.<br>
       * 오른쪽 끝의 <strong>' + ',' - '</strong>버튼을 누르시면 <strong>소분류 카테고리</strong>를 추가 또는 삭제하실 수 있습니다.
-
+      <p style="color:red">** 주의 : 카테고리 삭제시, 카테고리 안에있는 상품이 모두 삭제됩니다. **</p>
     </div>
     <div class="container mt-2" style="background-color: cadetblue">
       <div class="row">
@@ -19,7 +19,7 @@
             <div class="card-header">
               <div style="float: left">
                 Insert Big Category Name :
-                <textarea v-model="addCategoryName" style="resize:none; width : 1200px" rows="1" cols="153"></textarea>
+                <textarea v-model="addCategoryName" style="resize:none; width : 1240px" rows="1" cols="153"></textarea>
                 <div style="" @click="addCategory(null, index)">
                   <div class="add_button" style=" cursor: pointer;">추가</div>
                 </div>
@@ -44,7 +44,7 @@
 
               <li class="list-group-item" v-if="viewSmallAdd[index]">
                 Insert Small Category Name :
-                <textarea v-model="addCategoryName" style="resize:none; width : 1200px" rows="1" cols="153"></textarea>
+                <textarea v-model="addCategoryName" style="resize:none; width : 1240px" rows="1" cols="153"></textarea>
                 <div @click="addCategory(item.categoryUnum, index)">
                   <div class="add_button" style=" cursor:pointer;">추가</div>
                 </div>
