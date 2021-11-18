@@ -219,8 +219,8 @@
         return year + "-" + month + "-" + day;
       },
       addressSubstring(str) {
-        if (str.length > 10) {
-          str = str.substring(0, 10) + "...";
+        if (str.length > 35) {
+          str = str.substring(0, 35) + "...";
         }
         return str;
       },
