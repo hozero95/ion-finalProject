@@ -294,7 +294,7 @@
           }
           this.unRegisters = unRegister;
           this.unreviewStatus();
-          console.log(this.unRegisters);
+          // console.log(this.unRegisters);
           // console.log(this.unRegisters);
         });
       },
@@ -352,7 +352,7 @@
           paymentUnum: paymentUnum,
           replyContent: this.reviewWrite,
         };
-        console.log(body);
+        // console.log(body);
         axios({
           url: "http://localhost:8000/api/mypage/regist/reply",
           method: "post",
@@ -393,10 +393,10 @@
             this.show_review.orderUnum = orderUnum;
             this.show_review.productName = productName;
             this.showReviewStatus();
-            console.log(this.show_review);
+            // console.log(this.show_review);
           },
           (error) => {
-            console.log(error);
+            // console.log(error);
             alert("상세리뷰 불러오기 실패하였습니다.");
           }
         );

@@ -195,7 +195,7 @@
             this.logout();
           },
           (error) => {
-            console.log(error);
+            // console.log(error);
             alert("회원탈퇴에 실패하였습니다.");
           }
         );

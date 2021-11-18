@@ -63,7 +63,7 @@
 
           <div class="filed1">
             <div class="filed1_lbox">
-              <span>아이디 <img src="//sui.ssgcdn.com/ui/ssg/img/mem/ico_star.gif" alt="필수"></span>
+              <span>아이디</span>
             </div>
             <div class="filed1_rbox"><span>{{$store.state.userInfo.userId}}</span></div>
           </div>
@@ -77,9 +77,7 @@
                 <input type="text" name="user_name" class="input_box" v-model="userEmail" @input="inputEmailCheck"
                   required>
               </span><br>
-
               <span v-if="emailCheck" id="error_email" class="error_next_box">잘못된 이메일 입니다.</span>
-
             </div>
           </div>
 
@@ -88,39 +86,35 @@
               <span>자택주소 <img src="//sui.ssgcdn.com/ui/ssg/img/mem/ico_star.gif" alt="필수"></span>
             </div>
             <div class="filed1_rbox">
-              <input type="text" name="user_name" class="input_box" v-model="userAddress">
+              <input type="text" name="user_name" class="input_box" placeholder="우편번호" v-model="zip" readonly
+                required>&nbsp;
+              <input type="button" id="findAddress" @click="showAddressApi" value="우편번호 찾기"><br>
+              <input type="text" name="user_name" class="input_box" placeholder="주소" v-model="addr1" readonly
+                required><br>
+              <input type="text" name="user_name" class="input_box" placeholder="상세주소" v-model="addr2"
+                @input="addr2Check()"><br><br>
+              <span v-if="addressCheck" id="error_address" class="error_next_box">잘못된 주소 입니다.</span>
             </div>
-
-
           </div>
+
           <div class="filed1">
             <div class="filed1_lbox">
               <span>연락처 <img src="//sui.ssgcdn.com/ui/ssg/img/mem/ico_star.gif" alt="필수"> </span>
             </div>
+
             <div class="filed1_rbox">
               <span>
                 <input type="tel" name="user_name" class="input_box" maxlength="20" v-model="userTel"
-                  @input="inputTelCheck" required>
+                  placeholder="연락처 입력" @input="inputTelCheck" required>
               </span><br>
               <span v-if="telCheck" id="error_tel" class="error_next_box">잘못된 연락처 입니다.</span>
             </div>
           </div>
 
           <div class="area_cs_btn">
-            <router-link to="/userinfolocker">
-              <a href="#" @click="changeInfo()" id="submitBtn" class="cs_btn" style="">확인</a>
-            </router-link>
-
-            <router-link to="/userinfolocker">
-              <a href="#" class="cs_btn white" style="">취소</a>
-            </router-link>
+            <button @click="changeInfo()" id="submitBtn" class="cs_btn" style="">확인</button>
+            <button class="cs_btn white" style="" @click="gotoBack()">취소</button>
           </div>
-
-
-
-
-
-
         </div>
       </div>
     </div>
@@ -139,54 +133,87 @@
         userTel: '',
         emailCheck: false,
         addressCheck: false,
-        telCheck: false
+        telCheck: false,
+
+        zip: null,
+        addr1: null,
+        addr2: null
       }
     },
     created() {
       this.userEmail = this.$store.state.userInfo.userEmail;
       this.userAddress = this.$store.state.userInfo.userAddress;
       this.userTel = this.$store.state.userInfo.userTel;
+      this.zip = this.userAddress.substring(1, 6);
+      this.addr1 = this.userAddress.substring(7).split(',')[0];
+      this.addr2 = this.userAddress.split(',')[1].substring(1);
     },
     methods: {
       changeInfo() {
-        var headers = {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + this.$store.state.jwtToken
-        };
+        var check = true;
 
-        var body = {
-          userUnum: this.$store.state.userInfo.userUnum,
-          userEmail: this.userEmail,
-          userAddress: this.userAddress,
-          userTel: this.userTel
-        };
-        console.log(body);
+        if (this.userEmail == null || this.userEmail == '') {
+          this.emailCheck = true;
+          check = false;
+        } else {
+          this.emailCheck = false;
+        }
+        if (this.zip == null || this.zip == '' || this.addr1 == null || this.addr1 == '') {
+          this.addressCheck = true;
+          check = false;
+        } else {
+          this.addressCheck = false;
+          this.userAddress = "(" + this.zip + ")" + this.addr1 + ", " + this.addr2;
+        }
+        if (this.userTel == null || this.userTel == '') {
+          this.telCheck = true;
+          check = false;
+        } else {
+          this.telCheck = false;
+        }
 
-        axios({
-            url: 'http://localhost:8000/api/mypage/replace/userinfo',
-            method: 'patch',
-            headers: headers,
-            data: body
-          })
-          .then(res => {
-            // console.log(res);
-            alert('정보변경이 완료되었습니다.');
-            var modifyUserInfo = {
-              userUnum: this.$store.state.userInfo.userUnum,
-              userId: this.$store.state.userInfo.userId,
-              userEmail: this.userEmail,
-              userAddress: this.userAddress,
-              userTel: this.userTel,
-              userRegdate: this.$store.state.userInfo.userRegdate,
-              authorities: this.$store.state.userInfo.authorities
-            };
-            this.$store.commit('setUserInfo', modifyUserInfo);
-          }, error => {
-            alert('정보 변경에 실패했습니다.');
-          });
+        if (check) {
+          var headers = {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + this.$store.state.jwtToken
+          };
 
+          var body = {
+            userUnum: this.$store.state.userInfo.userUnum,
+            userEmail: this.userEmail,
+            userAddress: this.userAddress,
+            userTel: this.userTel
+          };
+          // console.log(body);
+
+          axios({
+              url: 'http://localhost:8000/api/mypage/replace/userinfo',
+              method: 'patch',
+              headers: headers,
+              data: body
+            })
+            .then(res => {
+              // console.log(res);
+              alert('정보변경이 완료되었습니다.');
+              var modifyUserInfo = {
+                userUnum: this.$store.state.userInfo.userUnum,
+                userId: this.$store.state.userInfo.userId,
+                userEmail: this.userEmail,
+                userAddress: this.userAddress,
+                userTel: this.userTel,
+                userRegdate: this.$store.state.userInfo.userRegdate,
+                authorities: this.$store.state.userInfo.authorities
+              };
+              this.$store.commit('setUserInfo', modifyUserInfo);
+              this.gotoBack();
+            }, error => {
+              alert('정보 변경에 실패했습니다.');
+            });
+        }
       },
       inputTelCheck() {
+        this.telCheck = false;
+        this.userTel = this.userTel.replace(/[^0-9]/g, "").replace(/(\..*)\./g, '$1');
         var number = this.userTel.replace(/[^0-9]/g, "");
         var phone = "";
 
@@ -220,9 +247,68 @@
         } else {
           this.emailCheck = false;
         }
+      },
+      inputAddrCheck() {
+        if (this.zip == null || this.zip == '' || this.addr1 == null || this.addr1 == '') {
+          this.addressCheck = true;
+        } else {
+          this.addressCheck = false;
+        }
+      },
+      addr2Check() {
+        var regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
+
+        if (regExp.test(this.addr2)) {
+          this.addr2 = this.addr2.substring(0, this.addr2.length - 1);
+        }
+      },
+      showAddressApi() {
+        new window.daum.Postcode({
+          oncomplete: (data) => {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+            // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            let fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+            let extraRoadAddr = ''; // 도로명 조합형 주소 변수
+
+            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+            if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+              extraRoadAddr += data.bname;
+            }
+
+            // 건물명이 있고, 공동주택일 경우 추가한다.
+            if (data.buildingName !== '' && data.apartment === 'Y') {
+              extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+            }
+
+            // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+            if (extraRoadAddr !== '') {
+              extraRoadAddr = ' (' + extraRoadAddr + ')';
+            }
+
+            // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+            if (fullRoadAddr !== '') {
+              fullRoadAddr += extraRoadAddr;
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            this.zip = data.zonecode;
+            //5자리 새우편번호 사용 
+            this.addr1 = fullRoadAddr;
+
+            this.addressCheck = false;
+          }
+        }).open();
+      },
+      gotoBack() {
+        if (this.$route.path !== '/userinfolocker') {
+          this.$router.push('/userinfolocker');
+        }
       }
     }
   }
+
 </script>
 
 <style scoped>
@@ -396,7 +482,12 @@
 
   }
 
+  .error_next_box {
+    color: red;
+  }
+
 
 
   /* ------------------------content_my body end-------------------------------- */
+
 </style>

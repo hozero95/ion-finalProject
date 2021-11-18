@@ -70,12 +70,18 @@
     },
     methods: {
       showDetail(productUnum) {
+        this.moveScrollTop();
         this.$store.commit('setProductUnum', productUnum);
 
         if (this.$route.path !== '/product') {
           this.$router.push('/product');
         }
-      }
+      },
+      moveScrollTop() {
+        window.scrollTo({
+          top: 0
+        });
+      },
     },
   }
 

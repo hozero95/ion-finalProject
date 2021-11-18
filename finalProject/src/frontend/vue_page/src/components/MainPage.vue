@@ -191,33 +191,9 @@
         seasonmonth = 3; //겨울
         this.sort = "겨울";
       }
-
-      axios
-        .get("http://localhost:8000/api/season/show/product", {
-          params: {
-            productSeason: seasonmonth,
-          },
-        })
-        .then((res) => {
-          var product = new Array();
-
-          var dataLength = res.data.length;
-
-          if (dataLength > 5) {
-            dataLength = 5;
-          }
-
-          for (var i = 0; i < dataLength; i++) {
-            if (
-              res.data[i].productSeason != null &&
-              res.data[i].productSeason != ""
-            ) {
-              product.push(res.data[i]);
-            }
-          }
-          this.seasonProduct = product;
-        });
-      this.showBestNav(), this.showBestProduct(-1);
+      this.showSeasonProduct(seasonmonth);
+      this.showBestNav();
+      this.showBestProduct(-1);
     },
     computed: {
       setCategoryUnum() {
@@ -236,6 +212,33 @@
       },
     },
     methods: {
+      showSeasonProduct(seasonmonth) {
+        axios
+          .get("http://localhost:8000/api/season/show/product", {
+            params: {
+              productSeason: seasonmonth,
+            },
+          })
+          .then((res) => {
+            var product = new Array();
+
+            var dataLength = res.data.length;
+
+            if (dataLength > 5) {
+              dataLength = 5;
+            }
+
+            for (var i = 0; i < dataLength; i++) {
+              if (
+                res.data[i].productSeason != null &&
+                res.data[i].productSeason != ""
+              ) {
+                product.push(res.data[i]);
+              }
+            }
+            this.seasonProduct = product;
+          });
+      },
       showBestNav() {
         axios.get("http://localhost:8000/api/best/show/nav").then((res) => {
           var bigCate = new Array();
@@ -303,19 +306,30 @@
         }
       },
       showDetail(productUnum) {
+        this.moveScrollTop();
         this.$store.commit("setProductUnum", productUnum);
-
+        // console.log(productUnum + " : " + this.$store.state.productUnum);
+        this.sleep(100);
         if (this.$route.path !== "/product") {
           this.$router.push("/product");
           location.replace("#app");
         }
       },
+      moveScrollTop() {
+        window.scrollTo({
+          top: 0
+        });
+      },
       moveBestScroll() {
         var location = document.querySelector("#targetBest").offsetTop;
-        console.log(location);
+        // console.log(location);
         window.scrollTo({
           top: location
         });
+      },
+      sleep(delay) {
+        var start = new Date().getTime();
+        while (new Date().getTime() < start + delay);
       }
     }
   };
@@ -625,20 +639,22 @@
   .cursor_pointer {
     cursor: pointer;
   }
-/* video 배경 */
- .video-box {
-  height: 500px;
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-}
 
-.video-container {
-  position: absolute;
-  width : 100%;
-  top: 50%;
-  left: 50%;
-  transform : translate(-50%,-50%);
-  z-index: 0;
-}
+  /* video 배경 */
+  .video-box {
+    height: 500px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .video-container {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+  }
+
 </style>

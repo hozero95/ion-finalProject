@@ -196,7 +196,8 @@
               alert('배송관리탭에서 확인해주세요.');
               this.showOrderAll();
             }, error => {
-              console.log(error);
+              // console.log(error);
+              alert("결제완료처리중 문제가 발생했습니다.");
             });
         }
       },
