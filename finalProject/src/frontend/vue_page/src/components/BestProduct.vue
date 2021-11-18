@@ -72,7 +72,7 @@
     },
     created() {
       axios.get("http://localhost:8000/api/best/show/nav").then((res) => {
-        console.log(res);
+        // console.log(res);
         var bigCate = new Array();
 
         for (var i = 0; i < res.data.length; i++) {

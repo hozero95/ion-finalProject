@@ -94,7 +94,7 @@
             <input type="text" id="sample6_address" class="int" placeholder="주소" v-model="addr1" required readonly>
           </span>
           <span>
-            <input type="text" id="sample6_detailAddress" class="int" placeholder="상세주소" v-model="addr2">
+            <input type="text" id="sample6_detailAddress" class="int" placeholder="상세주소" v-model="addr2" @input="addr2Check()">
           </span>
           <br>
           <button @click="modifyAddressConfirm()">확인</button>
@@ -306,6 +306,13 @@
 
         if (this.$route.path !== '/payment') {
           this.$router.push('/payment');
+        }
+      },
+      addr2Check() {
+        var regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
+
+        if (regExp.test(this.addr2)) {
+          this.addr2 = this.addr2.substring(0, this.addr2.length - 1);
         }
       },
       showAddressApi() {

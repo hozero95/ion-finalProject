@@ -156,7 +156,7 @@
           qnaContent: this.qna_content,
           qnaComment: qnaUnum
         }
-        console.log(body);
+        // console.log(body);
         axios({
             url: 'http://localhost:8000/api/admin/qnareply',
             method: 'post',

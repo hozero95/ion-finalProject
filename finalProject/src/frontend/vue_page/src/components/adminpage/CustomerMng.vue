@@ -31,7 +31,7 @@
             <td>{{ userAll.userAddress }}</td>
             <td>{{ userAll.userTel }}</td>
             <td>{{ dateFormat(userAll.userRegdate) }}</td>
-            <td style="cursor:pointer;" @click="deleteAsk(userAll.userUnum)">삭제</td>
+            <td v-if="userAll.userUnum != 0" style="cursor:pointer;" @click="deleteAsk(userAll.userUnum)">삭제</td>
           </tr>
         </tbody>
       </table>
@@ -138,7 +138,7 @@
             alert('회원삭제가 완료되었습니다.');
             this.showUserAll();
           }, error => {
-            console.log(error);
+            // console.log(error);
             alert('회원삭제에 실패하였습니다.');
           })
       },
