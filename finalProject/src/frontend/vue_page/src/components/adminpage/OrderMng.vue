@@ -169,7 +169,7 @@
               orderAll.push(res.data[i]);
             }
             this.orderAlls = orderAll;
-            console.log(this.orderAlls);
+            // console.log(this.orderAlls);
           })
       },
       deliveryStart(orderUnum, orderAddress) {
@@ -183,7 +183,7 @@
             orderAddress: orderAddress
           };
 
-          console.log(body);
+          // console.log(body);
 
           axios({
               url: 'http://localhost:8000/api/admin/deliverystart',
@@ -192,7 +192,7 @@
               data: body
             })
             .then(res => {
-              console.log(res.data);
+              // console.log(res.data);
               alert('배송관리탭에서 확인해주세요.');
               this.showOrderAll();
             }, error => {

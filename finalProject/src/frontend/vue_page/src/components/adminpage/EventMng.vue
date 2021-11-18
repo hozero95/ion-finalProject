@@ -89,7 +89,7 @@
     <div>
       <br>
       <h1>이벤트 관리</h1>
-      
+
       <div class="information">
         * 이벤트번호 옆 <strong>' + '</strong>버튼을 누르시면 이벤트를 추가하실 수 있습니다.<br>
         * 이벤트번호(숫자) 옆 수정아이콘을 누르시면 이벤트 <strong>종료기간</strong>을 설정하실 수 있습니다. <br>
@@ -124,8 +124,8 @@
                 <i class="fas fa-tools " style="cursor:pointer;"></i>
               </span>
             </td>
-            <td>{{event.eventTitle}}</td>
-            <td>{{ event.eventContent }}</td>
+            <td>{{titleSubstring(event.eventTitle)}}</td>
+            <td>{{ contentSubstring(event.eventContent)}}</td>
             <td>{{ dateFormat(event.eventRegdate) }}</td>
             <td>{{ dateFormat(event.eventEnddate) }}</td>
             <td style="cursor:pointer;" @click="deleteSure(event.eventUnum)">삭제</td>
@@ -345,7 +345,20 @@
           return year + "-" + month + "-" + day;
         }
       },
+      contentSubstring(str) {
+        if (str.length > 15) {
+          str = str.substring(0, 15) + "...";
+        }
+        return str;
+      },
+      titleSubstring(str){
+        if(str.length>10){
+          str=str.substring(0,10) + "...";
+        }
+        return str;
+      }
     },
+
     computed: {
       pageCount() {
         let listLeng = this.events.length,
@@ -373,7 +386,6 @@
 </script>
 
 <style scoped>
-
   div {
     box-sizing: border-box;
   }
