@@ -31,7 +31,7 @@
             <td>{{ userAll.userAddress }}</td>
             <td>{{ userAll.userTel }}</td>
             <td>{{ dateFormat(userAll.userRegdate) }}</td>
-            <td style="cursor:pointer;" @click="deleteAsk(userAll.userUnum)">삭제</td>
+            <td v-if="userAll.userUnum != 0" style="cursor:pointer;" @click="deleteAsk(userAll.userUnum)">삭제</td>
           </tr>
         </tbody>
       </table>

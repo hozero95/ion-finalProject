@@ -18,7 +18,6 @@
               <td><input v-model="addEventTitle" type="text" /></td>
               <td><input v-model="addEventContent" type="text" /></td>
               <td>
-                <input v-model="addEventImage01" type="text" /><br />
                 <input type="file" class="dd" />
               </td>
             </tr>
