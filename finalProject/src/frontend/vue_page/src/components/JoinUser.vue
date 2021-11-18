@@ -20,9 +20,8 @@
               @input="inputIdCheck()" required>
             <button v-if="!idSave" id="btnCheck" @click="idExistCheck">중복확인</button>
           </span>
-          <span v-if="idLengthCheck" id="error_id" class="error_next_box">아이디는 3글자 이상이어야 합니다.</span>
-          <br>
-          <span v-if="idCheck" id="error_id" class="error_next_box">잘못된 아이디 입니다.</span>
+          <span v-show="idLengthCheck" id="error_id" class="error_next_box">아이디는 3글자 이상이어야 합니다. </span>
+          <span v-show="idCheck" id="error_id" class="error_next_box">잘못된 아이디 입니다.</span>
         </div>
 
         <!-- PW1 -->
@@ -34,8 +33,7 @@
             <!-- <span id="alertTxt">사용불가</span> -->
             <!-- <img src="" id="pswd1_img1" class="pswdImg"> -->
           </span>
-          <span v-if="pswd1LengthCheck" id="error_password" class="error_next_box">비밀번호는 3자리 이상이어야 입니다.</span>
-          <br>
+          <span v-if="pswd1LengthCheck" id="error_password" class="error_next_box">비밀번호는 3자리 이상이어야 입니다. </span>
           <span v-if="pswd1Check" id="error_password" class="error_next_box">잘못된 비밀번호 입니다.</span>
         </div>
 
@@ -48,7 +46,6 @@
             <!-- <img src="" id="pswd2_img1" class="pswdImg"> -->
           </span>
           <span v-if="pswd2Check" id="error_password2" class="error_next_box">비밀번호가 일치하지 않습니다.</span>
-          <br>
         </div>
 
         <!-- EMAIL -->
@@ -59,7 +56,6 @@
               @input="inputEmailCheck" required>
           </span>
           <span v-if="emailCheck" id="error_email" class="error_next_box">잘못된 이메일 입니다.</span>
-          <br>
         </div>
 
         <!-- ADDRESS -->
@@ -74,10 +70,10 @@
             <input type="text" id="sample6_address" class="int" placeholder="주소" v-model="addr1" required readonly>
           </span>
           <span class="box int_address">
-            <input type="text" id="sample6_detailAddress" class="int" placeholder="상세주소" v-model="addr2">
+            <input type="text" id="sample6_detailAddress" class="int" placeholder="상세주소" v-model="addr2"
+              @input="addr2Check()">
           </span>
           <span v-if="addressCheck" id="error_address" class="error_next_box">잘못된 주소 입니다.</span>
-          <br>
         </div>
 
         <!-- PHONE -->
@@ -88,7 +84,6 @@
               @input="inputTelCheck" required>
           </span>
           <span v-if="telCheck" id="error_tel" class="error_next_box">잘못된 연락처 입니다.</span>
-          <br>
         </div>
 
         <!-- JOIN BTN-->
@@ -96,7 +91,6 @@
           <button type="button" id="btnJoin" @click="checkForm">
             <span>가입하기</span>
           </button>
-          <br>
         </div>
 
       </div>
@@ -137,7 +131,7 @@
     methods: {
       idExistCheck() {
         var url = 'http://localhost:8000/api/userid/' + this.id;
-        console.log(url);
+        // console.log(url);
         axios.get(url)
           .then(res => {
             if (res.data) {
@@ -183,7 +177,7 @@
           check = false;
         } else {
           this.addressCheck = false;
-          this.address = "(" + this.zip + ")" + this.addr1 + " " + this.addr2;
+          this.address = "(" + this.zip + ")" + this.addr1 + ", " + this.addr2;
         }
         if (this.tel == null || this.tel == '') {
           this.telCheck = true;
@@ -211,29 +205,33 @@
         }
       },
       inputIdCheck() {
+        this.idCheck = false;
         this.id = this.id.replace(/[^0-9|a-z|A-Z]/g, '').replace(/(\..*)\./g, '$1');
 
-        if(this.id.length < 3) {
+        if (this.id.length < 3) {
           this.idLengthCheck = true;
         } else {
           this.idLengthCheck = false;
         }
       },
       inputPswd1Check() {
-        if(this.pswd1.length < 3) {
+        this.pswd1Check = false;
+        if (this.pswd1.length < 3) {
           this.pswd1LengthCheck = true;
         } else {
           this.pswd1LengthCheck = false;
         }
       },
       inputPswdCheck() {
-        if (this.pswd2 != this.pswd1 || this.pswd1 == null || this.pswd1 == '' || this.pswd2 == null || this.pswd2 == '') {
+        if (this.pswd2 != this.pswd1 || this.pswd1 == null || this.pswd1 == '' || this.pswd2 == null || this.pswd2 ==
+          '') {
           this.pswd2Check = true;
         } else {
           this.pswd2Check = false;
         }
       },
       inputTelCheck() {
+        this.telCheck = false;
         this.tel = this.tel.replace(/[^0-9]/g, "").replace(/(\..*)\./g, '$1');
         var number = this.tel.replace(/[^0-9]/g, "");
         var phone = "";
@@ -267,6 +265,20 @@
           this.emailCheck = true;
         } else {
           this.emailCheck = false;
+        }
+      },
+      inputAddrCheck() {
+        if (this.zip == null || this.zip == '' || this.addr1 == null || this.addr1 == '') {
+          this.addressCheck = true;
+        } else {
+          this.addressCheck = false;
+        }
+      },
+      addr2Check() {
+        var regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
+
+        if (regExp.test(this.addr2)) {
+          this.addr2 = this.addr2.substring(0, this.addr2.length - 1);
         }
       },
       showAddressApi() {
@@ -303,6 +315,8 @@
             this.zip = data.zonecode;
             //5자리 새우편번호 사용 
             this.addr1 = fullRoadAddr;
+
+            this.addressCheck = false;
           }
         }).open();
       }
@@ -319,7 +333,7 @@
 
   .body_my {
     margin: 0;
-    height: 1300px;
+    height: 1200px;
     /* overflow:auto; */
     background: #f5f6f7;
     font-family: Dotum, '돋움', Helvetica, sans-serif;

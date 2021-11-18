@@ -39,6 +39,7 @@
   export default {
 
   }
+
 </script>
 
 <style scoped>
@@ -151,4 +152,5 @@
       padding-left: 170px;
     }
   }
+
 </style>

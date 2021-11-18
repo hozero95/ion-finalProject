@@ -257,7 +257,8 @@
             this.qnaMessage();
           },
           (error) => {
-            console.log(error);
+            // console.log(error);
+            alert("qna 목록을 불러오기에 실패했습니다.");
           }
         );
       },

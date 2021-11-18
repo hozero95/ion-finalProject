@@ -22,9 +22,7 @@
               <td><input v-model="addProductName" type="text" /></td>
               <td><input v-model="addProductPrice" type="text" /></td>
               <td><input v-model="addProductSeason" type="text" /></td>
-              <td>
-                <input v-model="addProductImage01" type="text" /><br /><input type="file" />
-              </td>
+              <td><input type="file" name="files"/></td>
               <!-- <td>
                 <input v-model="addProductImage02" type="text" /><br /><input
                   type="file"
@@ -297,7 +295,7 @@
           productSeason: this.product.productSeason
 
         }
-        console.log(body);
+        // console.log(body);
         axios({
             url: 'http://localhost:8000/api/admin/product/infochange',
             method: 'patch',

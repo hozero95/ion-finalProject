@@ -94,7 +94,7 @@
       <div class="product-info__num">
         <h3>상품상세정보</h3>
         <div class="product-info__line"></div>
-        <p>상품번호 : 1000256725469</p>
+        <p>상품번호 : {{product.productUnum}}</p>
       </div>
       <div class="product-info__info__detail">
         <div class="product-info__info__detail__line"></div>
@@ -212,6 +212,7 @@
     },
     methods: {
       getProduct() {
+        // console.log(this.productUnum);
         axios.get('http://localhost:8000/api/detail/show/product', {
             params: {
               productUnum: this.productUnum

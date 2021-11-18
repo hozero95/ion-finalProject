@@ -138,7 +138,7 @@
             alert('회원삭제가 완료되었습니다.');
             this.showUserAll();
           }, error => {
-            console.log(error);
+            // console.log(error);
             alert('회원삭제에 실패하였습니다.');
           })
       },

@@ -366,7 +366,7 @@
       },
       orderReturnSure(order) {
         if (confirm('반품신청을 하시겠습니까?')) {
-          orderReturn(order);
+          this.orderReturn(order);
         } else {
           alert('반품신청을 취소하였습니다.');
         }
