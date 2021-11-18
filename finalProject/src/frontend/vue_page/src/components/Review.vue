@@ -111,7 +111,7 @@
                     <td class="td_size5">
                       {{ dateFormat(unRegister.paymentRegdate) }}
                     </td>
-                    <td class="td_size6" @click="writeReview(unRegister)">
+                    <td style="cursor:pointer;" class="td_size6" @click="writeReview(unRegister)">
                       쓰기
                     </td>
                   </tr>
@@ -174,7 +174,7 @@
                     <td class="td_size5">
                       {{ dateFormat(register.replyRegdate) }}
                     </td>
-                    <td class="td_size6" @click="
+                    <td style="cursor:pointer;" class="td_size6" @click="
                         showReview(
                           register.replyUnum,
                           register.orderUnum,

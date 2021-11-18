@@ -248,7 +248,7 @@
           },
         }).then(
           (res) => {
-            console.log(res);
+            // console.log(res);
             var qna = new Array();
             for (var i = 0; i < res.data.length; i++) {
               qna.push(res.data[i]);
@@ -461,7 +461,6 @@
   }
 
   .add_qna_button {
-
     margin-left: 630px;
   }
 
