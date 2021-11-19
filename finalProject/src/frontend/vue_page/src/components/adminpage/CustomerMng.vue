@@ -9,7 +9,7 @@
       <h1>회원 관리</h1>
       <div class="information">
         * 맨 오른쪽 <strong>삭제버튼</strong>을 누르시면 회원을 삭제하실 수 있습니다.
-          <p style="color:red; font-size:9pt;">&nbsp; (회원을 삭제하시면 회원과 관련된 모든정보도 삭제됩니다.)</p>
+        <p style="color:red; font-size:9pt;">&nbsp; (회원을 삭제하시면 회원과 관련된 모든정보도 삭제됩니다.)</p>
       </div>
       <table class="table table-bordered" style="border: 2px solid black">
         <thead>
@@ -78,9 +78,21 @@
         addProductImage02: null,
       };
     },
-
+    created() {
+      this.pageCheck();
+    },
     methods: {
+      pageCheck() {
+        if (this.$store.state.userInfo.authorities.length < 2) {
+          alert("관리자 외 출입금지");
 
+          // this.moveScrollTop();
+          if (this.$route.path !== "/") {
+            this.$router.push("/");
+            location.replace("#app");
+          }
+        }
+      },
       AddItem() {
         this.AddModal = true;
       },
@@ -185,10 +197,10 @@
 
 
   };
+
 </script>
 
 <style scoped>
-
   div {
     box-sizing: border-box;
   }
@@ -251,4 +263,5 @@
   .btn-cover .page-count {
     padding: 0 1rem;
   }
+
 </style>

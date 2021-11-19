@@ -67,7 +67,21 @@
 
 <script>
   export default {
+    created() {
+      this.pageCheck();
+    },
     methods: {
+      pageCheck() {
+        if (this.$store.state.jwtToken == null || this.$store.state.jwtToken == '') {
+          alert("로그인이 필요합니다..");
+
+          // this.moveScrollTop();
+          if (this.$route.path !== "/login") {
+            this.$router.push("/login");
+            location.replace("#app");
+          }
+        }
+      },
       toMain() {
         this.$router.push('/');
       },

@@ -194,6 +194,7 @@
       };
     },
     created() {
+      this.pageCheck();
       this.showqna();
     },
     // computed: {
@@ -207,6 +208,17 @@
     //   }
     // },
     methods: {
+      pageCheck() {
+        if (this.$store.state.jwtToken == null || this.$store.state.jwtToken == '') {
+          alert("로그인이 필요합니다..");
+
+          // this.moveScrollTop();
+          if (this.$route.path !== "/login") {
+            this.$router.push("/login");
+            location.replace("#app");
+          }
+        }
+      },
       ONOFF1() {
         if (this.sideitem1 == 0) {
           this.sideitem1 = 1;

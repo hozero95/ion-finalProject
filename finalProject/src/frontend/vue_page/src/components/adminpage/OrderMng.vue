@@ -54,8 +54,8 @@
       <h1>주문 관리</h1>
       <div class="information">
         * 결제완료처리의 확인버튼을 누르시면 배송관리탭으로 상품이 넘어갑니다.<br>
-          <p style="color:red; font-size:9pt;">&nbsp; &nbsp;(주문취소건에 대해서는 결제완료확인을 하실 수 없습니다.)</p>
-          
+        <p style="color:red; font-size:9pt;">&nbsp; &nbsp;(주문취소건에 대해서는 결제완료확인을 하실 수 없습니다.)</p>
+
       </div>
       <table class="table table-bordered" style="border: 2px solid black">
         <thead>
@@ -86,7 +86,8 @@
             <td>{{orderStatus(orderAll.orderStatus)}}</td>
             <!--(0: 정상, 1: 주문취소, 2: 환불)-->
             <td v-if="orderAll.orderStatus==1 || orderAll.orderStatus==2"> </td>
-            <td style="cursor:pointer" v-if="orderAll.orderStatus==0" @click="deliveryStart(orderAll.orderUnum, orderAll.orderAddress)">확인</td>
+            <td style="cursor:pointer" v-if="orderAll.orderStatus==0"
+              @click="deliveryStart(orderAll.orderUnum, orderAll.orderAddress)">확인</td>
 
           </tr>
         </tbody>
@@ -135,9 +136,21 @@
         addProductImage02: null,
       };
     },
-
+    created() {
+      this.pageCheck();
+    },
     methods: {
+      pageCheck() {
+        if (this.$store.state.userInfo.authorities.length < 2) {
+          alert("관리자 외 출입금지");
 
+          // this.moveScrollTop();
+          if (this.$route.path !== "/") {
+            this.$router.push("/");
+            location.replace("#app");
+          }
+        }
+      },
       AddItem() {
         this.AddModal = true;
       },
@@ -259,11 +272,10 @@
       this.showOrderAll();
     }
   };
+
 </script>
 
 <style scoped>
-
-
   div {
     box-sizing: border-box;
   }
@@ -326,4 +338,5 @@
   .btn-cover .page-count {
     padding: 0 1rem;
   }
+
 </style>

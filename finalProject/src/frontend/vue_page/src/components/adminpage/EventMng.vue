@@ -206,15 +206,23 @@
           }]
         },
         enddate: '',
-
-
-
       }
     },
-
-
+    created() {
+      this.pageCheck();
+    },
     methods: {
+      pageCheck() {
+        if (this.$store.state.userInfo.authorities.length < 2) {
+          alert("관리자 외 출입금지");
 
+          // this.moveScrollTop();
+          if (this.$route.path !== "/") {
+            this.$router.push("/");
+            location.replace("#app");
+          }
+        }
+      },
       AddItem() {
         this.AddModal = true;
 
@@ -350,9 +358,9 @@
         }
         return str;
       },
-      titleSubstring(str){
-        if(str.length>10){
-          str=str.substring(0,10) + "...";
+      titleSubstring(str) {
+        if (str.length > 10) {
+          str = str.substring(0, 10) + "...";
         }
         return str;
       }
@@ -382,6 +390,7 @@
       this.showEvent();
     },
   };
+
 </script>
 
 <style scoped>
@@ -460,4 +469,5 @@
 
     margin-left: 100px;
   }
+
 </style>

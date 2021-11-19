@@ -106,7 +106,8 @@
 
                     <tr class="th_underbox" v-for="(unRegister, index) in unRegisters" v-bind:key="index">
                       <td class="td_size1">{{ unRegister.orderUnum }}</td>
-                      <td style="cursor:pointer;" @click="showDetail(unRegister.productUnum)" class="td_size2">{{ unRegister.productName }}</td>
+                      <td style="cursor:pointer;" @click="showDetail(unRegister.productUnum)" class="td_size2">
+                        {{ unRegister.productName }}</td>
                       <td class="td_size3">{{ unRegister.paymentCount }}</td>
                       <td class="td_size4">{{ wonSubstring(unRegister.paymentPrice) }}</td>
                       <td class="td_size5">
@@ -171,7 +172,8 @@
                     </tr>
                     <tr class="th_underbox" v-for="(register, index) in registers" v-bind:key="index">
                       <td class="td_size1">{{ register.orderUnum }}</td>
-                      <td style="cursor:pointer" @click="showDetail(register.productUnum)" class="td_size2">{{ register.productName }}</td>
+                      <td style="cursor:pointer" @click="showDetail(register.productUnum)" class="td_size2">
+                        {{ register.productName }}</td>
                       <td class="td_size3">{{ register.paymentCount }}</td>
                       <td class="td_size4">{{ wonSubstring(register.paymentPrice) }}</td>
                       <td class="td_size5">
@@ -239,10 +241,22 @@
       };
     },
     created() {
+      this.pageCheck();
       this.unRegister();
       this.register();
     },
     methods: {
+      pageCheck() {
+        if (this.$store.state.jwtToken == null || this.$store.state.jwtToken == '') {
+          alert("로그인이 필요합니다..");
+
+          // this.moveScrollTop();
+          if (this.$route.path !== "/login") {
+            this.$router.push("/login");
+            location.replace("#app");
+          }
+        }
+      },
       ONOFF1() {
         if (this.sideitem1 == 0) {
           this.sideitem1 = 1;
@@ -408,7 +422,7 @@
       wonSubstring(won) {
         return won.toLocaleString();
       },
-       showDetail(productUnum) {
+      showDetail(productUnum) {
         this.$store.commit("setProductUnum", productUnum);
         // console.log(productUnum + " : " + this.$store.state.productUnum);
         if (this.$route.path !== "/product") {
@@ -418,6 +432,7 @@
       },
     },
   };
+
 </script>
 
 <style scoped>
@@ -491,7 +506,7 @@
   .hd1 {
     cursor: pointer;
     float: left;
-    
+
   }
 
   .side_item {
@@ -638,4 +653,5 @@
     justify-content: center;
     align-items: center;
   }
+
 </style>

@@ -172,6 +172,7 @@
       }
     },
     created() {
+      this.pageCheck();
       this.payProductUnum = this.$store.state.payProductUnum;
       this.payProductCount = this.$store.state.payProductCount;
       this.payProductPrice = this.$store.state.payProductPrice;
@@ -207,6 +208,17 @@
       }
     },
     methods: {
+      pageCheck() {
+        if (this.$store.state.jwtToken == null || this.$store.state.jwtToken == '') {
+          alert("로그인이 필요합니다..");
+
+          // this.moveScrollTop();
+          if (this.$route.path !== "/login") {
+            this.$router.push("/login");
+            location.replace("#app");
+          }
+        }
+      },
       getCart() {
         var headers = {
           "Content-Type": "application/json",
