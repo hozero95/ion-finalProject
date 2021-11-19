@@ -341,5 +341,6 @@
 
   .btn-cover .page-count {
     padding: 0 1rem;
+    
   }
 </style>

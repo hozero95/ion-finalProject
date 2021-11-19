@@ -3,13 +3,14 @@
     <!-- header -->
     <header class="header">
       <!-- header left -->
-      <div>
+      <div class="cc">
         <div class="flip-outer">
           <div class="flip-inner">
             <router-link to="/">
               <img
                 src="../assets/logo.jpeg"
                 class="front"
+                
               />
             </router-link>
             <div class="back"></div>
@@ -124,9 +125,14 @@ export default {
 </script>
 
 <style scoped>
+.cc{
+  margin-top: 5px;
+}
+
 .flip-outer {
   width: 100px;
   height: 100px;
+  
 }
 
 .flip-inner {

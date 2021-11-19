@@ -29,7 +29,7 @@
           </form>
 
           <div class="adImg">
-            <img src="https://raw.githubusercontent.com/sky4564/img/master/seeimg.jpg" alt="ex" class="adSize">
+            <img src="../assets/logo.jpeg" alt="ex" class="adSize">
           </div>
         </div>
       </div>
@@ -97,7 +97,7 @@
   .loginSheet {
     /* background-color: aqua; */
     width: 1380px;
-    height: 513px;
+    height: 413px;
     margin-left: auto;
     margin-right: auto;
 
@@ -136,9 +136,9 @@
   }
 
   .adImg {
-    background-color: cornflowerblue;
+    /* background-color: cornflowerblue; */
     float: right;
-    height: 345px;
+    height: 253px;
     width: 253px;
   }
 
@@ -207,7 +207,7 @@
 } */
 
   .btnSubmit {
-    background-color: skyblue;
+    background-color: #132B7D;
     border: none;
     color: white;
     width: 100%;
@@ -233,7 +233,7 @@
   /* ---------------------- advertise image sizing -------------------------------- */
   .adSize {
     width: 253px;
-    height: 385px;
+    height: 253px;
   }
 
   /* ---------------------- advertise image sizing end -------------------------------- */
