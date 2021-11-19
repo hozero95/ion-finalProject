@@ -164,7 +164,8 @@
       this.pageCheck();
       this.getOrderList3Month();
     },
-    pageCheck() {
+    methods: {
+      pageCheck() {
         if (this.$store.state.jwtToken == null || this.$store.state.jwtToken == '') {
           alert("로그인이 필요합니다..");
 
@@ -175,7 +176,6 @@
           }
         }
       },
-    methods: {
       ONOFF1() {
         if (this.sideitem1 == 0) {
           this.sideitem1 = 1;
@@ -431,6 +431,7 @@
       }
     }
   };
+
 </script>
 
 <style scoped>
@@ -703,4 +704,5 @@
   }
 
   /* ------------------------content_my body end-------------------------------- */
+
 </style>
