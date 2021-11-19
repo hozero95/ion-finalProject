@@ -180,8 +180,21 @@
         productSeason: 0
       };
     },
-
+    created() {
+      this.pageCheck();
+    },
     methods: {
+      pageCheck() {
+        if (this.$store.state.userInfo.authorities.length < 2) {
+          alert("관리자 외 출입금지");
+
+          // this.moveScrollTop();
+          if (this.$route.path !== "/") {
+            this.$router.push("/");
+            location.replace("#app");
+          }
+        }
+      },
       dateFormat(date) {
         var regdate = new Date(date);
         var year = regdate.getFullYear();
@@ -353,6 +366,7 @@
     },
 
   };
+
 </script>
 
 <style scoped>
@@ -418,4 +432,5 @@
   .btn-cover .page-count {
     padding: 0 1rem;
   }
+
 </style>

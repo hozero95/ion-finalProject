@@ -128,7 +128,21 @@
         addr2: null
       }
     },
+    created() {
+      this.loginCheck();
+    },
     methods: {
+      loginCheck() {
+        if (this.$store.state.jwtToken != null && this.$store.state.jwtToken != '') {
+          alert("이미 로그인 중입니다.");
+
+          // this.moveScrollTop();
+          if (this.$route.path !== "/") {
+            this.$router.push("/");
+            location.replace("#app");
+          }
+        }
+      },
       idExistCheck() {
         var url = 'http://localhost:8000/api/userid/' + this.id;
         // console.log(url);
@@ -142,7 +156,7 @@
               alert("사용 가능한 아이디 입니다.");
               this.idSave = true;
               this.idCheck = false;
-              document.getElementById("id").readOnly=true;
+              document.getElementById("id").readOnly = true;
             }
           });
       },

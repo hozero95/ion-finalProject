@@ -131,9 +131,21 @@
         addProductImage02: null,
       };
     },
-
+    created() {
+      this.pageCheck();
+    },
     methods: {
+      pageCheck() {
+        if (this.$store.state.userInfo.authorities.length < 2) {
+          alert("관리자 외 출입금지");
 
+          // this.moveScrollTop();
+          if (this.$route.path !== "/") {
+            this.$router.push("/");
+            location.replace("#app");
+          }
+        }
+      },
       AddItem() {
         this.AddModal = true;
       },
@@ -274,11 +286,10 @@
       this.showDliveryAll();
     }
   };
+
 </script>
 
 <style scoped>
-
-
   div {
     box-sizing: border-box;
   }
@@ -341,6 +352,7 @@
 
   .btn-cover .page-count {
     padding: 0 1rem;
-    
+
   }
+
 </style>

@@ -15,7 +15,7 @@
 		    ON p.product_unum = t.product_unum
 		 WHERE o.user_unum = #{userUnum}
 		   AND o.order_regdate BETWEEN TRUNC(ADD_MONTHS(SYSDATE, -3) + 1) and SYSDATE
-		 ORDER BY o.order_regdate DESC, o.order_unum, p.payment_unum
+		 ORDER BY o.order_status, nvl(d.delivery_status, 0), o.order_unum desc, o.order_regdate desc, p.payment_unum
 		]]>
 	</select>
 	
@@ -30,7 +30,7 @@
 		  LEFT OUTER JOIN product t
 		    ON p.product_unum = t.product_unum
 		 WHERE o.user_unum = #{userUnum}
-		 ORDER BY o.order_regdate DESC, o.order_unum, p.payment_unum
+		 ORDER BY o.order_status, nvl(d.delivery_status, 0), o.order_unum desc, o.order_regdate desc, p.payment_unum
 		]]>
 	</select>
 	

@@ -57,8 +57,11 @@
         if (this.$store.state.jwtToken != null && this.$store.state.jwtToken != '') {
           alert("이미 로그인 중입니다.");
 
-          this.moveScrollTop();
-          history.back();
+          // this.moveScrollTop();
+          if (this.$route.path !== "/") {
+            this.$router.push("/");
+            location.replace("#app");
+          }
         }
       },
       sleep(delay) {

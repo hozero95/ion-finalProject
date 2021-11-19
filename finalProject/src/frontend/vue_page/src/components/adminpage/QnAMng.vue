@@ -21,8 +21,8 @@
 
               <textarea name="ta_qna_modify" placeholder="답변제목" id="qna_modify" cols="158" rows="1" style="resize: none"
                 v-model="qna_title"></textarea><br />
-              <textarea name="ta_qna_modify" placeholder="답변내용" id="qna_modify" cols="158" rows="5"
-                style="resize: none" v-model="qna_content"></textarea><br />
+              <textarea name="ta_qna_modify" placeholder="답변내용" id="qna_modify" cols="158" rows="5" style="resize: none"
+                v-model="qna_content"></textarea><br />
             </div>
 
           </div>
@@ -112,7 +112,21 @@
         addProductImage02: null,
       };
     },
+    created() {
+      this.pageCheck();
+    },
     methods: {
+      pageCheck() {
+        if (this.$store.state.userInfo.authorities.length < 2) {
+          alert("관리자 외 출입금지");
+
+          // this.moveScrollTop();
+          if (this.$route.path !== "/") {
+            this.$router.push("/");
+            location.replace("#app");
+          }
+        }
+      },
       AddItem(qnaAll) {
         this.AddModal = true;
         this.contComm = qnaAll;
@@ -165,10 +179,10 @@
           })
           .then(res => {
             alert('답변등록이 완료되었습니다.');
-            this.AddModal=false;
+            this.AddModal = false;
             this.showqnaAll();
-            this.qna_title="";
-            this.qna_content="";
+            this.qna_title = "";
+            this.qna_content = "";
           }, error => {
             alert('답변등록에 실패하였습니다.');
           })
@@ -215,57 +229,70 @@
       this.showqnaAll();
     },
   }
+
 </script>
 
 <style scoped>
   div {
     box-sizing: border-box;
   }
+
   .information {
     font-size: 10pt;
   }
+
   .black-bg {
     width: 100%;
     height: 100%;
     /* background: rgba(0,0,0,0.5); */
     position: fixed;
   }
+
   .white-bg {
     width: fit-content;
     background: white;
     border-radius: 8px;
     padding: 20px;
   }
+
   /* -----------------------pagination start -------------------------- */
   table {
     width: 100%;
     border-collapse: collapse;
   }
+
   table th {
     font-size: 1.2rem;
   }
+
   table tr {
     height: 2rem;
     text-align: center;
     border-bottom: 1px solid #505050;
   }
+
   table tr:first-of-type {
     border-top: 2px solid #404040;
   }
+
   table tr td {
     padding: 1rem 0;
     font-size: 1.1rem;
   }
+
   .btn-cover {
     margin-top: 1.5rem;
     text-align: center;
   }
+
   .btn-cover .page-btn {
     width: 5rem;
     height: 2rem;
     letter-spacing: 0.5px;
   }
+
   .btn-cover .page-count {
     padding: 0 1rem;
   }
+
 </style>

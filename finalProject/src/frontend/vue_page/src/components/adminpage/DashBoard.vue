@@ -1,9 +1,10 @@
 <template>
+
   <body>
     <div class="container">
       <h4 class="my-4">Dashboard</h4>
       <div class="row">
-        
+
         <div style="cursor:pointer;" class="col-lg-4 mb-5">
           <div class="card ds1" style="border-left: 3px solid blue">
             <div class="card-body d-flex justify-content-between" @click="$emit('openCategory')">
@@ -12,11 +13,7 @@
                 <h4>카테고리 관리</h4>
               </div>
               <a class="nav-link ml" href="#">
-                <i
-                  
-                  class="fas fa-clipboard-list"
-                  style="font-size: 30px; margin-top: 20px; color : blue"
-                ></i>
+                <i class="fas fa-clipboard-list" style="font-size: 30px; margin-top: 20px; color : blue"></i>
               </a>
             </div>
           </div>
@@ -28,10 +25,7 @@
                 <p class="card-text mb-2">Event Management</p>
                 <h4>이벤트 관리</h4>
               </div>
-              <i
-                class="fas fa-birthday-cake"
-                style="font-size: 30px; margin-top: 20px; color: pink"
-              ></i>
+              <i class="fas fa-birthday-cake" style="font-size: 30px; margin-top: 20px; color: pink"></i>
             </div>
           </div>
         </div>
@@ -42,10 +36,7 @@
                 <p class="card-text mb-2">Delivery Management</p>
                 <h4>배송관리</h4>
               </div>
-              <i
-                class="fas fa-truck"
-                style="font-size: 30px; margin-top: 20px; color: gray"
-              ></i>
+              <i class="fas fa-truck" style="font-size: 30px; margin-top: 20px; color: gray"></i>
             </div>
           </div>
         </div>
@@ -56,10 +47,7 @@
                 <p class="card-text mb-2">Orders Management</p>
                 <h4>주문관리</h4>
               </div>
-              <i
-                class="fas fa-coins"
-                style="font-size: 30px; margin-top: 20px; color: #132B7D"
-              ></i>
+              <i class="fas fa-coins" style="font-size: 30px; margin-top: 20px; color: #132B7D"></i>
             </div>
           </div>
         </div>
@@ -70,10 +58,7 @@
                 <p class="card-text mb-2">Merchandise Management</p>
                 <h4>상품관리</h4>
               </div>
-              <i
-                class="fas fa-gifts"
-                style="font-size: 30px; margin-top: 20px; color: cadetblue"
-              ></i>
+              <i class="fas fa-gifts" style="font-size: 30px; margin-top: 20px; color: cadetblue"></i>
             </div>
           </div>
         </div>
@@ -84,10 +69,7 @@
                 <p class="card-text mb-2">Question & Answer</p>
                 <h4>Q&A답변</h4>
               </div>
-              <i
-                class="fas fa-comments"
-                style="font-size: 30px; margin-top: 20px; color: gold"
-              ></i>
+              <i class="fas fa-comments" style="font-size: 30px; margin-top: 20px; color: gold"></i>
             </div>
           </div>
         </div>
@@ -98,10 +80,7 @@
                 <p class="card-text mb-2">Customer Management</p>
                 <h4>회원관리</h4>
               </div>
-              <i
-                class="fas fa-users-cog"
-                style="font-size: 30px; margin-top: 20px; color: green"
-              ></i>
+              <i class="fas fa-users-cog" style="font-size: 30px; margin-top: 20px; color: green"></i>
             </div>
           </div>
         </div>
@@ -113,35 +92,59 @@
 </template>
 
 <script>
-export default {
+  export default {
     data() {
-    return {
-      viewflag : 1,
+      return {
+        viewflag: 1,
+      }
+    },
+    created() {
+      this.pageCheck();
+    },
+    methods: {
+      pageCheck() {
+        if (this.$store.state.userInfo.authorities.length < 2) {
+          alert("관리자 외 출입금지");
+
+          // this.moveScrollTop();
+          if (this.$route.path !== "/") {
+            this.$router.push("/");
+            location.replace("#app");
+          }
+        }
+      },
     }
-  },
-};
+  };
+
 </script>
 
 <style>
-.ds1:hover{
-  border: 2px solid blue;
-}
-.ds2:hover{
-  border: 2px solid pink;
-}
-.ds3:hover{
-  border: 2px solid gray;
-}
-.ds4:hover{
-  border: 2px solid #132B7D;
-}
-.ds5:hover{
-  border: 2px solid cadetblue;
-}
-.ds6:hover{
-  border: 2px solid gold;
-}.ds7:hover{
-  border: 2px solid green;
-}
+  .ds1:hover {
+    border: 2px solid blue;
+  }
+
+  .ds2:hover {
+    border: 2px solid pink;
+  }
+
+  .ds3:hover {
+    border: 2px solid gray;
+  }
+
+  .ds4:hover {
+    border: 2px solid #132B7D;
+  }
+
+  .ds5:hover {
+    border: 2px solid cadetblue;
+  }
+
+  .ds6:hover {
+    border: 2px solid gold;
+  }
+
+  .ds7:hover {
+    border: 2px solid green;
+  }
 
 </style>

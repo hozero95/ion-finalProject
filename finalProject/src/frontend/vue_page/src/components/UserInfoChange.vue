@@ -141,6 +141,8 @@
       }
     },
     created() {
+      this.pageCheck();
+      
       this.userEmail = this.$store.state.userInfo.userEmail;
       this.userAddress = this.$store.state.userInfo.userAddress;
       this.userTel = this.$store.state.userInfo.userTel;
@@ -149,6 +151,17 @@
       this.addr2 = this.userAddress.split('/')[2];
     },
     methods: {
+      pageCheck() {
+        if (this.$store.state.jwtToken == null || this.$store.state.jwtToken == '') {
+          alert("로그인이 필요합니다..");
+
+          // this.moveScrollTop();
+          if (this.$route.path !== "/login") {
+            this.$router.push("/login");
+            location.replace("#app");
+          }
+        }
+      },
       changeInfo() {
         var check = true;
 
