@@ -106,7 +106,7 @@
 
                     <tr class="th_underbox" v-for="(unRegister, index) in unRegisters" v-bind:key="index">
                       <td class="td_size1">{{ unRegister.orderUnum }}</td>
-                      <td class="td_size2">{{ unRegister.productName }}</td>
+                      <td style="cursor:pointer;" @click="showDetail(unRegister.productUnum)" class="td_size2">{{ unRegister.productName }}</td>
                       <td class="td_size3">{{ unRegister.paymentCount }}</td>
                       <td class="td_size4">{{ wonSubstring(unRegister.paymentPrice) }}</td>
                       <td class="td_size5">
@@ -171,7 +171,7 @@
                     </tr>
                     <tr class="th_underbox" v-for="(register, index) in registers" v-bind:key="index">
                       <td class="td_size1">{{ register.orderUnum }}</td>
-                      <td class="td_size2">{{ register.productName }}</td>
+                      <td style="cursor:pointer" @click="showDetail(register.productUnum)" class="td_size2">{{ register.productName }}</td>
                       <td class="td_size3">{{ register.paymentCount }}</td>
                       <td class="td_size4">{{ wonSubstring(register.paymentPrice) }}</td>
                       <td class="td_size5">
@@ -407,7 +407,15 @@
       },
       wonSubstring(won) {
         return won.toLocaleString();
-      }
+      },
+       showDetail(productUnum) {
+        this.$store.commit("setProductUnum", productUnum);
+        // console.log(productUnum + " : " + this.$store.state.productUnum);
+        if (this.$route.path !== "/product") {
+          this.$router.push("/product");
+          location.replace("#app");
+        }
+      },
     },
   };
 </script>

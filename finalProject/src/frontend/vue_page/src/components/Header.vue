@@ -3,7 +3,7 @@
     <!-- header -->
     <header class="header">
       <!-- header left -->
-      <div class="cc">
+      <div style="margin-top: 5px;">
         <div class="flip-outer">
           <div class="flip-inner">
             <router-link to="/">
@@ -125,9 +125,7 @@ export default {
 </script>
 
 <style scoped>
-.cc{
-  margin-top: 5px;
-}
+
 
 .flip-outer {
   width: 100px;
