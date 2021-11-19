@@ -139,7 +139,10 @@
       </div>
       <div class="terms">
         <input v-model="payAgree" type="checkbox">
-        <span>주문 상품정보 및 서비스 이용약관에 모두 동의하십니까?</span>
+        <span 
+        @click="payAgree = true" style="cursor: pointer;"
+        >
+        주문 상품정보 및 서비스 이용약관에 모두 동의하십니까?</span>
       </div>
       <div class="payment__bottom__btn" type="button" @click="doPay()">
         <div class="pay">{{wonSubstring(getTotalPrice())}}</div>
