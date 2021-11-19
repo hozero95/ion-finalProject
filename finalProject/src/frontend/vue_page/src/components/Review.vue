@@ -7,11 +7,11 @@
       <div class="content_my">
         <div class="content_side">
           <div class="card">
-            <div class="card-header hd1" @click="ONOFF1">
-              주문관리
+            <div class="card-header" @click="ONOFF1">
+              <span class="hd1">주문관리</span>
               <div style="display: inline-block; margin-left: 85px">
-                <i v-if="item1bt == 0" style="float: right" class="fas fa-chevron-up"></i>
-                <i v-if="item1bt == 1" style="float: right" class="fas fa-chevron-down"></i>
+                <i v-if="item1bt == 0" style="float: right; cursor: pointer; " class="fas fa-chevron-up"></i>
+                <i v-if="item1bt == 1" style="float: right; cursor: pointer; " class="fas fa-chevron-down"></i>
               </div>
             </div>
 
@@ -24,11 +24,11 @@
             </ul>
           </div>
           <div class="card">
-            <div class="card-header hd1" @click="ONOFF2">
-              활동관리
+            <div class="card-header" @click="ONOFF2">
+              <span class="hd1">활동관리</span>
               <div style="display: inline-block; margin-left: 85px">
-                <i v-if="item2bt == 0" style="float: right" class="fas fa-chevron-up"></i>
-                <i v-if="item2bt == 1" style="float: right" class="fas fa-chevron-down"></i>
+                <i v-if="item2bt == 0" style="float: right; cursor: pointer; " class="fas fa-chevron-up"></i>
+                <i v-if="item2bt == 1" style="float: right; cursor: pointer; " class="fas fa-chevron-down"></i>
               </div>
             </div>
 
@@ -47,10 +47,10 @@
           </div>
           <div class="card">
             <div class="card-header hd1" @click="ONOFF3">
-              정보관리
+              <span class="hd1">정보관리</span>
               <div style="display: inline-block; margin-left: 85px">
-                <i v-if="item3bt == 0" style="float: right" class="fas fa-chevron-up"></i>
-                <i v-if="item3bt == 1" style="float: right" class="fas fa-chevron-down"></i>
+                <i v-if="item3bt == 0" style="float: right; cursor: pointer; " class="fas fa-chevron-up"></i>
+                <i v-if="item3bt == 1" style="float: right; cursor: pointer; " class="fas fa-chevron-down"></i>
               </div>
             </div>
 
@@ -482,6 +482,8 @@
   /* ------------------------side bar start-------------------------------- */
   .hd1 {
     cursor: pointer;
+    float: left;
+    
   }
 
   .side_item {
