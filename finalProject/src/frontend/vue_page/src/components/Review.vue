@@ -96,26 +96,28 @@
                   </tr>
                 </thead>
 
-                <tbody>
-                  <tr>
-                    <td class="td_box" v-if="!unreview_status">
-                      <p><span>구매내역이 없습니다.</span></p>
-                    </td>
-                  </tr>
+                <div style="overflow-y:scroll; height:200px;">
+                  <tbody>
+                    <tr>
+                      <td class="td_box" v-if="!unreview_status">
+                        <p><span>구매내역이 없습니다.</span></p>
+                      </td>
+                    </tr>
 
-                  <tr class="th_underbox" v-for="(unRegister, index) in unRegisters" v-bind:key="index">
-                    <td class="td_size1">{{ unRegister.orderUnum }}</td>
-                    <td class="td_size2">{{ unRegister.productName }}</td>
-                    <td class="td_size3">{{ unRegister.paymentCount }}</td>
-                    <td class="td_size4">{{ wonSubstring(unRegister.paymentPrice) }}</td>
-                    <td class="td_size5">
-                      {{ dateFormat(unRegister.paymentRegdate) }}
-                    </td>
-                    <td style="cursor:pointer;" class="td_size6" @click="writeReview(unRegister)">
-                      쓰기
-                    </td>
-                  </tr>
-                </tbody>
+                    <tr class="th_underbox" v-for="(unRegister, index) in unRegisters" v-bind:key="index">
+                      <td class="td_size1">{{ unRegister.orderUnum }}</td>
+                      <td class="td_size2">{{ unRegister.productName }}</td>
+                      <td class="td_size3">{{ unRegister.paymentCount }}</td>
+                      <td class="td_size4">{{ wonSubstring(unRegister.paymentPrice) }}</td>
+                      <td class="td_size5">
+                        {{ dateFormat(unRegister.paymentRegdate) }}
+                      </td>
+                      <td style="cursor:pointer;" class="td_size6" @click="writeReview(unRegister)">
+                        쓰기
+                      </td>
+                    </tr>
+                  </tbody>
+                </div>
               </table>
 
               <div class="write_review" v-if="writeReview_status">
@@ -160,31 +162,33 @@
                   </tr>
                 </thead>
 
-                <tbody>
-                  <tr>
-                    <td class="td_box" v-if="!review_status">
-                      <p><span>작성한 리뷰가 없습니다.</span></p>
-                    </td>
-                  </tr>
-                  <tr class="th_underbox" v-for="(register, index) in registers" v-bind:key="index">
-                    <td class="td_size1">{{ register.orderUnum }}</td>
-                    <td class="td_size2">{{ register.productName }}</td>
-                    <td class="td_size3">{{ register.paymentCount }}</td>
-                    <td class="td_size4">{{ wonSubstring(register.paymentPrice) }}</td>
-                    <td class="td_size5">
-                      {{ dateFormat(register.replyRegdate) }}
-                    </td>
-                    <td style="cursor:pointer;" class="td_size6" @click="
+                <div style="overflow-y:scroll; height:200px;">
+                  <tbody>
+                    <tr>
+                      <td class="td_box" v-if="!review_status">
+                        <p><span>작성한 리뷰가 없습니다.</span></p>
+                      </td>
+                    </tr>
+                    <tr class="th_underbox" v-for="(register, index) in registers" v-bind:key="index">
+                      <td class="td_size1">{{ register.orderUnum }}</td>
+                      <td class="td_size2">{{ register.productName }}</td>
+                      <td class="td_size3">{{ register.paymentCount }}</td>
+                      <td class="td_size4">{{ wonSubstring(register.paymentPrice) }}</td>
+                      <td class="td_size5">
+                        {{ dateFormat(register.replyRegdate) }}
+                      </td>
+                      <td style="cursor:pointer;" class="td_size6" @click="
                         showReview(
                           register.replyUnum,
                           register.orderUnum,
                           register.productName
                         )
                       ">
-                      보기
-                    </td>
-                  </tr>
-                </tbody>
+                        보기
+                      </td>
+                    </tr>
+                  </tbody>
+                </div>
               </table>
 
               <div class="show_review" v-if="showReview_status">
@@ -501,7 +505,7 @@
     float: left;
     margin-left: 35px;
     width: 777px;
-    height: 600px;
+    height: 750px;
   }
 
   .body_header {
@@ -577,6 +581,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    width: 700px;
   }
 
   /* ------------------------content_my body end-------------------------------- */

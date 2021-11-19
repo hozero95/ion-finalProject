@@ -15,7 +15,7 @@
 
           <div class="seafood__info__title">
             <h4>[해물오빠] {{product.productName}}</h4>
-            <h3>{{wonSubstring(product.productPrice)}}원</h3>
+            <h3>{{wonSubstring(productPrice)}}원</h3>
           </div>
           <hr>
           <div class="shipping-info-label">
@@ -187,12 +187,13 @@
         productUnum: null,
         product: {},
         productCount: 1,
-        productPrice: null,
+        productPrice: 0,
         replies: []
       }
     },
     created() {
       this.productUnum = this.$store.state.productUnum;
+      this.productPrice = 0;
       this.getProduct();
       this.getReply();
     },
@@ -205,7 +206,7 @@
       setProductUnum() {
         this.productUnum = this.setProductUnum;
         this.productCount = 1;
-        this.productPrice = null;
+        this.productPrice = 0;
         this.getProduct();
         this.getReply();
       }

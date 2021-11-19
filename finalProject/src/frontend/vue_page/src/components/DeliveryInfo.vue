@@ -73,9 +73,9 @@
                     <dd>
                         <button type="button" class="btn_small"><span>내 주문내역에서 삭제 X</span></button>
 
-                        <button type="button" class="btn_small"><span>| &nbsp&nbsp전자영수증</span> </span></button>
+                        <button type="button" class="btn_small"><span>| &nbsp; &nbsp;전자영수증</span></button>
 
-                        <button type="button" class="btn_small"><span>| &nbsp&nbsp장바구니 담기</span></button>
+                        <button type="button" class="btn_small"><span>| &nbsp; &nbsp;장바구니 담기</span></button>
                     </dd>
                 </dl>
                 <div class="del_box">
@@ -86,10 +86,10 @@
 
                     <div class="del_box2">
                         <div class="del_box2_ch">결제완료</div>
-                        <div class="del_box2_ch">상품준비중</div>
-                        <div class="del_box2_ch">배송준비중</div>
-                        <div class="del_box2_ch">배송중</div>
-                        <div class="del_box2_ch">배송완료</div>
+                        <div class="del_box2_ch">상품준비중</div>
+                        <div class="del_box2_ch">배송준비중</div>
+                        <div class="del_box2_ch">배송중</div>
+                        <div class="del_box2_ch">배송완료</div>
                     </div>
 
                 </div>
