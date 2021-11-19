@@ -15,7 +15,7 @@
 
           <div class="seafood__info__title">
             <h4>[해물오빠] {{product.productName}}</h4>
-            <h3>{{product.productPrice}}원</h3>
+            <h3>{{wonSubstring(product.productPrice)}}원</h3>
           </div>
           <hr>
           <div class="shipping-info-label">
@@ -23,7 +23,7 @@
             <div class="info">
               무료
               <br>
-              제주 3000원, 도서산간 3000원 추가
+              제주 3,000원, 도서산간 3,000원 추가
             </div>
           </div>
 
@@ -36,14 +36,14 @@
                 <div class="add-box__add-btn number">{{productCount}}</div>
                 <div class="add-box__add-btn plus cursor_pointer" @click="countPlus">+</div>
               </div>
-              <div class="add-box__price">{{productPrice}}원</div>
+              <div class="add-box__price">{{wonSubstring(productPrice)}}원</div>
             </div>
           </div>
 
           <!-- Price -->
           <div class="price-box">
             <span class="price-box__title">합계</span>
-            <span class="price-box__price">{{productPrice}}원</span>
+            <span class="price-box__price">{{wonSubstring(productPrice)}}원</span>
           </div>
 
           <!-- 장바구니 바로구매 버튼 -->
@@ -323,10 +323,12 @@
           alert("로그인이 필요한 서비스입니다.");
           this.$router.push('/login');
         }
+      },
+      wonSubstring(won) {
+        return won.toLocaleString();
       }
     }
   }
-
 </script>
 
 <style scoped>
@@ -597,5 +599,4 @@
     width: 510px;
     height: 510px;
   }
-
 </style>

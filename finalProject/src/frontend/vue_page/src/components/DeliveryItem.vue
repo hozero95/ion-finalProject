@@ -125,7 +125,7 @@
                   <td>
                     <div>
                       <span class="blind">판매가격</span> <em class="ssg_price notranslate"
-                        style="">{{product.paymentPrice}}</em> <span class="ssg_tx">원</span>
+                        style="">{{wonSubstring(product.paymentPrice)}}</em> <span class="ssg_tx">원</span>
                     </div>
                     <strong>수량</strong> <em>{{product.paymentCount}}</em><span>개</span>
                   </td>
@@ -413,6 +413,9 @@
       sleep(delay) {
         var start = new Date().getTime();
         while (new Date().getTime() < start + delay);
+      },
+      wonSubstring(won) {
+        return won.toLocaleString();
       }
     }
   };

@@ -25,7 +25,7 @@
                             주문관리
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <li><a class="dropdown-item" href="#">주문/배송관리</a></li>
+                            <li><a class="dropdown-item" href="#">주문/배송관리</a></li>
                             <li><a class="dropdown-item" href="#"></a></li>
                         </ul>
                     </div>

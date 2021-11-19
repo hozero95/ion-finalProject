@@ -22,7 +22,7 @@
               <td><input v-model="addProductName" type="text" /></td>
               <td><input v-model="addProductPrice" type="text" /></td>
               <td><input v-model="addProductSeason" type="text" /></td>
-              <td><input type="file" name="files"/></td>
+              <td><input type="file" name="files" /></td>
               <!-- <td>
                 <input v-model="addProductImage02" type="text" /><br /><input
                   type="file"
@@ -126,7 +126,7 @@
             <td>{{p.productUnum }}</td>
             <td>{{ p.categoryUnum }}</td>
             <td>{{ p.productName }}</td>
-            <td>{{ p.productPrice }}</td>
+            <td>{{ wonSubstring(p.productPrice) }}</td>
             <td>{{ dateFormat(p.productRegdate) }}</td>
             <td>{{ seasonWeather(p.productSeason) }}</td>
             <td style="cursor:pointer;" @click="ProductDeleteSure(p.productUnum)">삭제</td>
@@ -323,6 +323,9 @@
           weather = '겨울';
         }
         return weather;
+      },
+      wonSubstring(won) {
+        return won.toLocaleString();
       }
     },
     computed: {
@@ -348,12 +351,11 @@
     created() {
       this.ProductAll();
     },
+
   };
 </script>
 
 <style scoped>
-
-
   div {
     box-sizing: border-box;
   }
