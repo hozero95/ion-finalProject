@@ -317,7 +317,9 @@
           this.$store.commit('setPayProductCount', this.productCount);
           this.$store.commit('setPayProductPrice', this.productPrice);
 
-          if (this.$route.path !== '/payment') {
+          this.moveScrollTop();
+
+          if(this.$route.path !== '/payment') {
             this.$router.push('/payment');
           }
         } else {
@@ -327,9 +329,15 @@
       },
       wonSubstring(won) {
         return won.toLocaleString();
-      }
+      },
+      moveScrollTop() {
+        window.scrollTo({
+          top: 0
+        });
+      },
     }
   }
+
 </script>
 
 <style scoped>
@@ -384,7 +392,7 @@
   .add-box__price {
     font-size: 20px;
     margin-top: 55px;
-    margin-left: 70%;
+    margin-left: 65%;
   }
 
   /* top right price */
@@ -600,4 +608,5 @@
     width: 510px;
     height: 510px;
   }
+
 </style>

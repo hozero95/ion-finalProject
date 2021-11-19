@@ -142,6 +142,7 @@
               alert("사용 가능한 아이디 입니다.");
               this.idSave = true;
               this.idCheck = false;
+              document.getElementById("id").readOnly=true;
             }
           });
       },
@@ -177,7 +178,7 @@
           check = false;
         } else {
           this.addressCheck = false;
-          this.address = "(" + this.zip + ")" + this.addr1 + ", " + this.addr2;
+          this.address = this.zip + "/" + this.addr1 + "/" + this.addr2;
         }
         if (this.tel == null || this.tel == '') {
           this.telCheck = true;
