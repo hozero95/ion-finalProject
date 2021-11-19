@@ -5,7 +5,7 @@
       <div class="row">
         
         <div style="cursor:pointer;" class="col-lg-4 mb-5">
-          <div class="card" style="border-left: 3px solid red">
+          <div class="card ds1" style="border-left: 3px solid blue">
             <div class="card-body d-flex justify-content-between" @click="$emit('openCategory')">
               <div>
                 <p class="card-text mb-2">Customer Service</p>
@@ -15,14 +15,14 @@
                 <i
                   
                   class="fas fa-clipboard-list"
-                  style="font-size: 30px; margin-top: 20px; color"
+                  style="font-size: 30px; margin-top: 20px; color : blue"
                 ></i>
               </a>
             </div>
           </div>
         </div>
         <div style="cursor:pointer;" class="col-lg-4">
-          <div class="card" style="border-left: 3px solid cadetblue">
+          <div class="card ds2" style="border-left: 3px solid pink">
             <div class="card-body d-flex justify-content-between" @click="$emit('openEventMng')">
               <div>
                 <p class="card-text mb-2">Event Management</p>
@@ -36,7 +36,7 @@
           </div>
         </div>
         <div style="cursor:pointer;" class="col-lg-4">
-          <div class="card" style="border-left: 3px solid blue">
+          <div class="card ds3" style="border-left: 3px solid gray">
             <div class="card-body d-flex justify-content-between" @click="$emit('openDeliveryMng')">
               <div>
                 <p class="card-text mb-2">Delivery Management</p>
@@ -50,7 +50,7 @@
           </div>
         </div>
         <div style="cursor:pointer;" class="col-lg-4 mb-5">
-          <div class="card" style="border-left: 3px solid cadetblue">
+          <div class="card ds4" style="border-left: 3px solid #132B7D">
             <div class="card-body d-flex justify-content-between" @click="$emit('openOrderMng')">
               <div>
                 <p class="card-text mb-2">Orders Management</p>
@@ -58,13 +58,13 @@
               </div>
               <i
                 class="fas fa-coins"
-                style="font-size: 30px; margin-top: 20px; color: gold"
+                style="font-size: 30px; margin-top: 20px; color: #132B7D"
               ></i>
             </div>
           </div>
         </div>
         <div style="cursor:pointer;" class="col-lg-4">
-          <div class="card" style="border-left: 3px solid cadetblue" @click="$emit('openItemList')">
+          <div class="card ds5" style="border-left: 3px solid cadetblue" @click="$emit('openItemList')">
             <div class="card-body d-flex justify-content-between">
               <div>
                 <p class="card-text mb-2">Merchandise Management</p>
@@ -78,7 +78,7 @@
           </div>
         </div>
         <div style="cursor:pointer;" class="col-lg-4">
-          <div class="card" style="border-left: 3px solid cadetblue">
+          <div class="card ds6" style="border-left: 3px solid gold">
             <div class="card-body d-flex justify-content-between" @click="$emit('openQnAMng')">
               <div>
                 <p class="card-text mb-2">Question & Answer</p>
@@ -92,7 +92,7 @@
           </div>
         </div>
         <div style="cursor:pointer;" class="col-lg-4">
-          <div class="card" style="border-left: 3px solid plum">
+          <div class="card ds7" style="border-left: 3px solid green">
             <div class="card-body d-flex justify-content-between" @click="$emit('openCustomerMng')">
               <div>
                 <p class="card-text mb-2">Customer Management</p>
@@ -123,4 +123,25 @@ export default {
 </script>
 
 <style>
+.ds1:hover{
+  border: 2px solid blue;
+}
+.ds2:hover{
+  border: 2px solid pink;
+}
+.ds3:hover{
+  border: 2px solid gray;
+}
+.ds4:hover{
+  border: 2px solid #132B7D;
+}
+.ds5:hover{
+  border: 2px solid cadetblue;
+}
+.ds6:hover{
+  border: 2px solid gold;
+}.ds7:hover{
+  border: 2px solid green;
+}
+
 </style>
