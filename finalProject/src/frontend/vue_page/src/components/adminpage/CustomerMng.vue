@@ -15,11 +15,11 @@
         <thead>
           <tr>
             <th scope="col0">회원번호</th>
-            <th scope="col1">ID</th>
-            <th scope="col2">Email</th>
-            <th scope="col3">Address</th>
+            <th scope="col1">아이디</th>
+            <th scope="col2">이메일</th>
+            <th scope="col3">주소</th>
             <th scope="col4">Tel</th>
-            <th scope="col5">Regdate</th>
+            <th scope="col5">가입날짜</th>
             <th scope="col6">삭제</th>
           </tr>
         </thead>
@@ -28,7 +28,7 @@
             <td>{{userAll.userUnum }}</td>
             <td>{{ userAll.userId }}</td>
             <td>{{ userAll.userEmail }}</td>
-            <td>{{ userAll.userAddress }}</td>
+            <td>{{ addressSubstring(userAll.userAddress) }}</td>
             <td>{{ userAll.userTel }}</td>
             <td>{{ dateFormat(userAll.userRegdate) }}</td>
             <td v-if="userAll.userUnum != 0" style="cursor:pointer;" @click="deleteAsk(userAll.userUnum)">삭제</td>
@@ -151,6 +151,12 @@
 
           return year + "-" + month + "-" + day;
         }
+      },
+      addressSubstring(str) {
+        if (str.length > 30) {
+          str = str.substring(0, 30) + "...";
+        }
+        return str;
       },
 
     },
