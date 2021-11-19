@@ -2,7 +2,7 @@
 
   <body>
     <div class="video-box">
-      <video class="video-container" autoplay muted loop>
+      <video class="video-container" autoplay muted>
         <source src="../assets/login.mp4" type="video/mp4" />
       </video>
     </div>

@@ -8,7 +8,7 @@
           <div class="flip-inner">
             <router-link to="/">
               <img
-                src="https://raw.githubusercontent.com/sky4564/img/master/FinalProjectImg/logoimg_white_backgound.jpg"
+                src="../assets/logo.jpeg"
                 class="front"
               />
             </router-link>
