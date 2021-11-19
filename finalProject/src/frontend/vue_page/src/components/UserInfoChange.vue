@@ -144,9 +144,9 @@
       this.userEmail = this.$store.state.userInfo.userEmail;
       this.userAddress = this.$store.state.userInfo.userAddress;
       this.userTel = this.$store.state.userInfo.userTel;
-      this.zip = this.userAddress.substring(1, 6);
-      this.addr1 = this.userAddress.substring(7).split(',')[0];
-      this.addr2 = this.userAddress.split(',')[1].substring(1);
+      this.zip = this.userAddress.split('/')[0];
+      this.addr1 = this.userAddress.split('/')[1];
+      this.addr2 = this.userAddress.split('/')[2];
     },
     methods: {
       changeInfo() {
@@ -163,7 +163,7 @@
           check = false;
         } else {
           this.addressCheck = false;
-          this.userAddress = "(" + this.zip + ")" + this.addr1 + ", " + this.addr2;
+          this.userAddress = this.zip + '/' + this.addr1 + "/" + this.addr2;
         }
         if (this.userTel == null || this.userTel == '') {
           this.telCheck = true;

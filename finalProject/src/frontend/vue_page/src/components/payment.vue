@@ -139,10 +139,8 @@
       </div>
       <div class="terms">
         <input v-model="payAgree" type="checkbox">
-        <span 
-        @click="payAgree = true" style="cursor: pointer;"
-        >
-        주문 상품정보 및 서비스 이용약관에 모두 동의하십니까?</span>
+        <span @click="payAgree = true" style="cursor: pointer;">
+          주문 상품정보 및 서비스 이용약관에 모두 동의하십니까?</span>
       </div>
       <div class="payment__bottom__btn" type="button" @click="doPay()">
         <div class="pay">{{wonSubstring(getTotalPrice())}}</div>
@@ -249,9 +247,13 @@
       },
       getAddress() {
         if (this.products != null) {
-          this.address = this.products[0].cartAddress;
+          this.address = '(' + this.products[0].cartAddress.split('/')[0] + ')' +
+            this.products[0].cartAddress.split('/')[1] + ', ' +
+            this.products[0].cartAddress.split('/')[2];
         } else {
-          this.address = this.$store.state.userInfo.userAddress;
+          this.address = '(' + this.$store.state.userInfo.userAddress.split('/')[0] + ')' +
+            this.$store.state.userInfo.userAddress.split('/')[1] + ', ' +
+            this.$store.state.userInfo.userAddress.split('/')[2];
         }
       },
       getTotalPrice() {
@@ -405,6 +407,7 @@
       }
     }
   }
+
 </script>
 
 <style scoped>
@@ -595,4 +598,5 @@
       margin-left: 256px;
     }
   }
+
 </style>

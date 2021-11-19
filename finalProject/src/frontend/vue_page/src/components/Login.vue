@@ -49,7 +49,22 @@
         passwordVal: ''
       }
     },
+    created() {
+      this.loginCheck();
+    },
     methods: {
+      loginCheck() {
+        if (this.$store.state.jwtToken != null && this.$store.state.jwtToken != '') {
+          alert("이미 로그인 중입니다.");
+
+          this.moveScrollTop();
+          history.back();
+        }
+      },
+      sleep(delay) {
+        var start = new Date().getTime();
+        while (new Date().getTime() < start + delay);
+      },
       login() {
         this.idVal = document.getElementById('inputId').value;
         this.passwordVal = document.getElementById('inputPassword').value;
@@ -90,6 +105,7 @@
     }
 
   }
+
 </script>
 
 <style scoped>
@@ -279,4 +295,5 @@
 
 
   /* ----------------------------비회원 조회 end-------------------------- */
+
 </style>

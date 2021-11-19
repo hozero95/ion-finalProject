@@ -93,7 +93,8 @@
             <input type="text" id="sample6_address" class="int" placeholder="주소" v-model="addr1" required readonly>
           </span>
           <span>
-            <input type="text" id="sample6_detailAddress" class="int" placeholder="상세주소" v-model="addr2" @input="addr2Check()">
+            <input type="text" id="sample6_detailAddress" class="int" placeholder="상세주소" v-model="addr2"
+              @input="addr2Check()">
           </span>
           <br>
           <button @click="modifyAddressConfirm()">확인</button>
@@ -145,9 +146,12 @@
     created() {
       this.getCart();
       if (this.products != null && this.products.length > 0) {
-        this.address = this.products[i].cartAddress;
+        this.address = '(' + this.products[i].cartAddress.split('/')[0] + ')' +
+          this.products[i].cartAddress.split('/')[1] + ', ' + this.products[i].cartAddress.split('/')[2];
       } else {
-        this.address = this.$store.state.userInfo.userAddress;
+        this.address = '(' + this.$store.state.userInfo.userAddress.split('/')[0] + ')' +
+          this.$store.state.userInfo.userAddress.split('/')[1] + ', ' +
+          this.$store.state.userInfo.userAddress.split('/')[2];
       }
     },
     methods: {
@@ -261,9 +265,11 @@
       },
       modifyAddressCancle() {
         if (this.products != null && this.products.length > 0) {
-          this.address = this.products[0].cartAddress;
+          this.address = '(' + this.products[i].cartAddress.split('/')[0] + ')' + this.products[i].cartAddress.split(
+            '/')[1] + ', ' + this.products[i].cartAddress.split('/')[2];
         } else {
-          this.address = this.$store.state.userInfo.userAddress;
+          this.address = '(' + this.$store.state.userInfo.userAddress.split('/')[0] + ')' + this.$store.state.userInfo
+            .userAddress.split('/')[1] + ', ' + this.$store.state.userInfo.userAddress.split('/')[2];
         }
         this.modifyAddressStatus();
       },
@@ -277,10 +283,12 @@
               "Authorization": "Bearer " + this.$store.state.jwtToken
             };
 
-            this.address = "(" + this.zip + ")" + this.addr1 + " " + this.addr2;
+            var address = this.zip + "/" + this.addr1 + "/" + this.addr2;
+            this.address = '(' + this.zip + ')' + this.addr1 + ', ' + this.addr2;
+
             var body = {
               userUnum: this.$store.state.userInfo.userUnum,
-              cartAddress: this.address
+              cartAddress: address
             };
 
             axios.defaults.headers.post = null;
@@ -351,8 +359,8 @@
           }
         }).open();
       },
-       wonSubstring(won){
-        return won.toLocaleString();        
+      wonSubstring(won) {
+        return won.toLocaleString();
       }
     }
   }
