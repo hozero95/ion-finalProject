@@ -17,7 +17,7 @@
             <div class="seafood__info__title cursor_pointer">
               <a class="seafood__info__clickable">{{product.productName}}</a>
             </div>
-            <div class="seafood__info__price cursor_pointer">{{product.productPrice}}원</div>
+            <div class="seafood__info__price cursor_pointer">{{wonSubstring(product.productPrice)}}원</div>
             <input type="hidden" :value="product.productUnum">
           </div>
         </a>
@@ -82,9 +82,11 @@
           top: 0
         });
       },
+      wonSubstring(won) {
+        return won.toLocaleString();
+      }
     },
   }
-
 </script>
 
 <style scoped>
@@ -156,5 +158,4 @@
   .cursor_pointer {
     cursor: pointer;
   }
-
 </style>

@@ -39,7 +39,7 @@
                 }}</a>
               </div>
               <div class="seafood__info__price cursor_pointer">
-                {{ product.productPrice }}원
+                {{ wonSubstring(product.productPrice) }}원
               </div>
             </div>
           </a>
@@ -150,9 +150,11 @@
           location.replace("#app");
         }
       },
+      wonSubstring(won) {
+        return won.toLocaleString();
+      }
     },
   };
-
 </script>
 
 <style scoped>
@@ -196,8 +198,8 @@
 
     display: flex;
     flex-wrap: wrap;
-    margin:0 0 0 300px
-    /* justify-content:space-around; */
+    margin: 0 0 0 300px
+      /* justify-content:space-around; */
   }
 
   .best__seafoods__wrap {
@@ -307,5 +309,4 @@
   .cursor_pointer {
     cursor: pointer;
   }
-
 </style>

@@ -107,7 +107,7 @@
                     <td class="td_size1">{{ unRegister.orderUnum }}</td>
                     <td class="td_size2">{{ unRegister.productName }}</td>
                     <td class="td_size3">{{ unRegister.paymentCount }}</td>
-                    <td class="td_size4">{{ unRegister.paymentPrice }}</td>
+                    <td class="td_size4">{{ wonSubstring(unRegister.paymentPrice) }}</td>
                     <td class="td_size5">
                       {{ dateFormat(unRegister.paymentRegdate) }}
                     </td>
@@ -170,7 +170,7 @@
                     <td class="td_size1">{{ register.orderUnum }}</td>
                     <td class="td_size2">{{ register.productName }}</td>
                     <td class="td_size3">{{ register.paymentCount }}</td>
-                    <td class="td_size4">{{ register.paymentPrice }}</td>
+                    <td class="td_size4">{{ wonSubstring(register.paymentPrice) }}</td>
                     <td class="td_size5">
                       {{ dateFormat(register.replyRegdate) }}
                     </td>
@@ -401,6 +401,9 @@
           }
         );
       },
+      wonSubstring(won) {
+        return won.toLocaleString();
+      }
     },
   };
 </script>

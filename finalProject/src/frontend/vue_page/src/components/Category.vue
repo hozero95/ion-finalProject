@@ -48,7 +48,7 @@
                 <a class="seafood__info__clickable">{{product.productName}}</a>
               </div>
               <div class="seafood__info__price cursor_pointer">
-                {{product.productPrice}}원
+                {{wonSubstring(product.productPrice)}}원
               </div>
             </div>
           </a>
@@ -211,6 +211,9 @@
           top: 0
         });
       },
+      wonSubstring(won){
+        return won.toLocaleString();        
+      }
     },
   };
 

@@ -47,8 +47,7 @@
                       </div>
                     </td>
                     <td class="pricewrap">
-                      <div class="price">{{product.cartPrice}}
-                        <div class="won">원</div>
+                      <div class="price">{{wonSubstring(product.cartPrice)}}
                       </div>
                       <!-- <div class="addbtn"></div> -->
                       <div class="add-box__add">
@@ -69,7 +68,7 @@
 
                 </table>
                 <div class="totalpay">
-                  {{getTotalPrice()}}원 + 배송비 0원 = {{getTotalPrice()}}원
+                  {{wonSubstring(getTotalPrice())}}원 + 배송비 0원 = {{wonSubstring(getTotalPrice())}}원
                 </div>
               </div>
             </div>
@@ -109,7 +108,7 @@
         <div class="right__middle__pays">
           <ul class="right__middle__pay">
             <li>주문금액</li>
-            <li>{{getTotalPrice()}} 원</li>
+            <li>{{wonSubstring(getTotalPrice())}} 원</li>
           </ul>
           <ul class="right__middle__pay">
             <li>배송비</li>
@@ -119,7 +118,7 @@
         <div class="payline"></div>
         <ul class="right__middle__pay total">
           <li>결제예정금액</li>
-          <li>{{getTotalPrice()}} 원</li>
+          <li>{{wonSubstring(getTotalPrice())}} 원</li>
         </ul>
 
       </div>
@@ -351,6 +350,9 @@
             this.addr1 = fullRoadAddr;
           }
         }).open();
+      },
+       wonSubstring(won){
+        return won.toLocaleString();        
       }
     }
   }

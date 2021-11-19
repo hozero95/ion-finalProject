@@ -97,7 +97,7 @@
               <div class="title">{{product.productName}}</div>
             </td>
             <td class="order-product__pricewrap">
-              <div class="price">{{product.cartPrice}}
+              <div class="price">{{wonSubstring(product.cartPrice)}}
                 <div class="won">원</div>
               </div>
               <div class="inner-line"></div>
@@ -117,7 +117,7 @@
               <div class="title">{{payProductName}}</div>
             </td>
             <td class="order-product__pricewrap">
-              <div class="price">{{payProductPrice}}
+              <div class="price">{{wonSubstring(payProductPrice)}}
                 <div class="won">원</div>
               </div>
               <div class="inner-line"></div>
@@ -134,7 +134,7 @@
 
     <div class="payment__bottom">
       <div class="totalpay">
-        <div class="">결제예정금액 {{getTotalPrice()}}원</div>
+        <div class="">결제예정금액 {{wonSubstring(getTotalPrice())}}원</div>
         <div>(상품가 + 배송비)</div>
       </div>
       <div class="terms">
@@ -142,7 +142,7 @@
         <span>주문 상품정보 및 서비스 이용약관에 모두 동의하십니까?</span>
       </div>
       <div class="payment__bottom__btn" type="button" @click="doPay()">
-        <div class="pay">{{getTotalPrice()}}</div>
+        <div class="pay">{{wonSubstring(getTotalPrice())}}</div>
         <div class="one">원 결제하기</div>
       </div>
     </div>
@@ -396,6 +396,9 @@
         } else {
           alert("주문 상품정보 및 서비스 이용약관에 동의하십시오.");
         }
+      },
+      wonSubstring(won) {
+        return won.toLocaleString();
       }
     }
   }

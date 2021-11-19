@@ -79,7 +79,7 @@
                 }}</a>
               </div>
               <div class="seafood__info__price cursor_pointer">
-                {{ product.productPrice }}원
+                {{ wonSubstring(product.productPrice) }}원
               </div>
             </div>
           </a>
@@ -128,7 +128,7 @@
                 }}</a>
               </div>
               <div class="seafood__info__price cursor_pointer">
-                {{ product.productPrice }}원
+                {{ wonSubstring(product.productPrice) }}원
               </div>
             </div>
           </a>
@@ -330,10 +330,12 @@
       sleep(delay) {
         var start = new Date().getTime();
         while (new Date().getTime() < start + delay);
+      },
+      wonSubstring(won) {
+        return won.toLocaleString();
       }
     }
   };
-
 </script>
 
 <style scoped>
@@ -656,5 +658,4 @@
     transform: translate(-50%, -50%);
     z-index: 0;
   }
-
 </style>
