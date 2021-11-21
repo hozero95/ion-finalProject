@@ -41,7 +41,7 @@
         <div class="category__seafoods__wrap" v-for="(product, index) in list" v-bind:key="index"
           @click="showDetail(product.productUnum)">
           <a class="seafood">
-            <img :src="product.productImage01Path" alt="해산물" class="seafood__img cursor_pointer" />
+            <img :src="product.productImage01Path" alt="해산물" class="seafood__img cursor_pointer shadow" />
             <div class="seafood__info">
               <div class="seafood__info__logo">해물오빠</div>
               <div class="seafood__info__title cursor_pointer">
