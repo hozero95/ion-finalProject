@@ -59,7 +59,7 @@
 
     <section class="more">
       <button @click="range()" v-if="showMore">
-        해산물 더보기<i class="fas fa-chevron-down"></i>
+        See More <i class="fas fa-chevron-down"></i>
       </button>
     </section>
   </body>
@@ -312,7 +312,7 @@
   }
 
   .seafood__info__logo {
-    background-color: #132c7d;
+    background-color: #015a99;
     color: white;
     width: 80px;
     height: 25px;
@@ -334,23 +334,22 @@
     height: 200px;
     text-align: center;
     margin-top: 100px;
-
   }
 
   .more button {
     border: 1px solid #132c7d;
-    width: 10%;
+    width: 8%;
     height: 30%;
     padding: 15px 20px;
     font-size: 20px;
-    background: skyblue;
+    background: #015a99;
     color: white;
     border: none;
     border-radius: 5px;
     display: block;
     margin: 30px auto;
-
   }
+
 
   .more:hover {
     animation-name: shake;

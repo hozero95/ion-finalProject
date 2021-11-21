@@ -137,7 +137,7 @@
   /* navber top */
   .navbar-top {
     margin-top: 10px;
-    background-color: #132c7d;
+    background-color: #015a99;
     height: 60px;
   }
 
