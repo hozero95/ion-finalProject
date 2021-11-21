@@ -166,7 +166,7 @@
   }
 
   .header_my {
-    background-color: #80adcc;
+    background-color: #f3fafe;
     border-bottom: 3px solid #203a4d;
     width: 1015px;
     height: 94px;
@@ -213,7 +213,7 @@
   }
 
   .i_box {
-    background-color: #80adcc;
+    background-color: #f3fafe;
     width: 160px;
     height: 160px;
     border-radius: 80px;
@@ -223,7 +223,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
   }
 
   .i_box:hover {
