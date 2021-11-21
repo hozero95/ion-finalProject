@@ -22,6 +22,7 @@
           </span>
           <span v-show="idLengthCheck" id="error_id" class="error_next_box">아이디는 3글자 이상이어야 합니다. </span>
           <span v-show="idCheck" id="error_id" class="error_next_box">잘못된 아이디 입니다.</span>
+          <span v-show="idOk" id="error_id" class="success_next_box">사용 가능한 아이디 입니다.</span>
         </div>
 
         <!-- PW1 -->
@@ -113,6 +114,7 @@
         address: null,
         tel: null,
 
+        idOk: false,
         idSave: false,
         idCheck: false,
         idLengthCheck: false,
@@ -152,10 +154,12 @@
               alert("이미 등록된 아이디 입니다.");
               this.idSave = false;
               this.idCheck = true;
+              this.idOk = false;
             } else {
               alert("사용 가능한 아이디 입니다.");
               this.idSave = true;
               this.idCheck = false;
+              this.idOk = true;
               document.getElementById("id").readOnly = true;
             }
           });
@@ -500,6 +504,12 @@
     margin-top: 9px;
     font-size: 12px;
     color: red;
+  }
+
+  .success_next_box {
+    margin-top: 9px;
+    font-size: 12px;
+    color: #185B9A;
   }
 
   #alertTxt {
