@@ -470,7 +470,7 @@
   }
 
   .left__content__table .content .logo {
-    background-color: #132c7d;
+    background-color: #015a99;
     color: white;
     width: 70px;
     height: 25px;
@@ -533,7 +533,7 @@
   }
 
   .buybtn {
-    background-color: #132c7d;
+    background-color: #015a99;
     color: white;
   }
 
@@ -602,13 +602,13 @@
   }
 
   .total {
-    color: #132c7d;
+    color: #015a99;
   }
 
   .right__btn {
     width: 264px;
     height: 60px;
-    background-color: #132c7d;
+    background-color: #015a99;
     color: white;
     font-size: 24px;
     text-align: center;

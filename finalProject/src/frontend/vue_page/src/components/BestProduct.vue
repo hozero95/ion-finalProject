@@ -25,7 +25,7 @@
         <div class="best__seafoods__wrap" v-for="(product, index) in list" v-bind:key="index"
           @click="showDetail(product.productUnum)">
           <a class="seafood" target="blank" data-type="">
-            <img :src="product.productImage01Path" alt="해산물" class="seafood__img cursor_pointer" />
+            <img :src="product.productImage01Path" alt="해산물" class="seafood__img cursor_pointer shadow" />
             <div class="seafood__info">
               <div class="seafood__info__top">
                 <div class="logo">해물오빠</div>
@@ -49,7 +49,7 @@
 
     <section class="more">
       <button @click="range()" v-if="showMore">
-        해산물 더보기<i class="fas fa-chevron-down"></i>
+        See More <i class="fas fa-chevron-down"></i>
       </button>
     </section>
   </div>
@@ -246,7 +246,7 @@
   }
 
   .seafood__info__top .logo {
-    background-color: #132c7d;
+    background-color:#015a99;
     color: white;
     width: 80px;
     height: 25px;
@@ -258,7 +258,7 @@
   }
 
   /* more btn */
-  .more {
+    .more {
     width: 3000px;
     height: 200px;
     text-align: center;
@@ -267,11 +267,11 @@
 
   .more button {
     border: 1px solid #132c7d;
-    width: 10%;
+    width: 8%;
     height: 30%;
     padding: 15px 20px;
     font-size: 20px;
-    background: skyblue;
+    background: #015a99;
     color: white;
     border: none;
     border-radius: 5px;

@@ -345,8 +345,8 @@ p {
 }
 
 .cs_btn {
-  background: #f14f4f;
-  border: 1px solid #da3a3a;
+  background: #015a99;
+  border: 1px solid  black;
   color: #fff;
   min-width: 130px;
   padding: 11px 16px;
