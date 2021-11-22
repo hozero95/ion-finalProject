@@ -13,6 +13,7 @@
               <th scope="col2">상품가격</th>
               <th scope="col3">시즌</th>
               <th scope="col4">이미지 1</th>
+              <th scope="col4">이미지 2</th>
               <!-- <th scope="col5">이미지 2</th> -->
             </tr>
           </thead>
@@ -22,6 +23,7 @@
               <td><input v-model="addProductName" type="text" /></td>
               <td><input v-model="addProductPrice" type="text" /></td>
               <td><input v-model="addProductSeason" type="text" /></td>
+              <td><input type="file" name="files" /></td>
               <td><input type="file" name="files" /></td>
               <!-- <td>
                 <input v-model="addProductImage02" type="text" /><br /><input
@@ -231,6 +233,8 @@
           productName: this.addProductName,
           productPrice: this.addProductPrice,
           productSeason: this.addProductSeason,
+          productImage01Path: 'static\\image\\product_image01_path\\test1.jpg',
+          productImage02Path: 'static\\image\\product_image02_path\\test2.png'
         };
 
         axios({
